@@ -14,6 +14,7 @@
         </SOURCES>
       </library>
     </orderEntry>
+<<<<<<< HEAD
     <orderEntry type="module-library">
       <library name="PHARS">
         <CLASSES>
@@ -26,5 +27,7 @@
         </SOURCES>
       </library>
     </orderEntry>
+=======
+>>>>>>> 8600c9250ed702c06d604f1ed00e8c2136e6a6d4
   </component>
 </module>

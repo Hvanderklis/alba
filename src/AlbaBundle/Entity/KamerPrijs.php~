@@ -1,0 +1,31 @@
+<?php
+
+namespace AlbaBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * KamerPrijs
+ *
+ * @ORM\Table(name="kamer_prijs")
+ * @ORM\Entity(repositoryClass="AlbaBundle\Repository\KamerPrijsRepository")
+ */
+class KamerPrijs
+{
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="Prijs", type="integer")
+     */
+    private $prijs;
+}
+

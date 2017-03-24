@@ -5,12 +5,12 @@ namespace AlbaBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Kamer_Prijs
+ * KamerPrijs
  *
- * @ORM\Table(name="kamer__prijs")
- * @ORM\Entity(repositoryClass="AlbaBundle\Repository\Kamer_PrijsRepository")
+ * @ORM\Table(name="kamer_prijs")
+ * @ORM\Entity(repositoryClass="AlbaBundle\Repository\KamerPrijsRepository")
  */
-class Kamer_Prijs
+class KamerPrijs
 {
     /**
      * @var int
@@ -28,11 +28,10 @@ class Kamer_Prijs
      */
     private $prijs;
 
-
     /**
      * Get id
      *
-     * @return int
+     * @return integer
      */
     public function getId()
     {
@@ -44,7 +43,7 @@ class Kamer_Prijs
      *
      * @param integer $prijs
      *
-     * @return Kamer_Prijs
+     * @return KamerPrijs
      */
     public function setPrijs($prijs)
     {
@@ -56,11 +55,10 @@ class Kamer_Prijs
     /**
      * Get prijs
      *
-     * @return int
+     * @return integer
      */
     public function getPrijs()
     {
         return $this->prijs;
     }
 }
-

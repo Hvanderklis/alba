@@ -5,12 +5,12 @@ namespace AlbaBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * kaart
+ * Kaart
  *
  * @ORM\Table(name="kaart")
- * @ORM\Entity(repositoryClass="AlbaBundle\Repository\kaartRepository")
+ * @ORM\Entity(repositoryClass="AlbaBundle\Repository\KaartRepository")
  */
-class kaart
+class Kaart
 {
     /**
      * @var int
@@ -35,11 +35,10 @@ class kaart
      */
     private $vervaldatum;
 
-
     /**
      * Get id
      *
-     * @return int
+     * @return integer
      */
     public function getId()
     {
@@ -51,7 +50,7 @@ class kaart
      *
      * @param string $creditcardGegevens
      *
-     * @return kaart
+     * @return Kaart
      */
     public function setCreditcardGegevens($creditcardGegevens)
     {
@@ -75,7 +74,7 @@ class kaart
      *
      * @param \DateTime $vervaldatum
      *
-     * @return kaart
+     * @return Kaart
      */
     public function setVervaldatum($vervaldatum)
     {
@@ -94,4 +93,3 @@ class kaart
         return $this->vervaldatum;
     }
 }
-

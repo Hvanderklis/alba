@@ -1,0 +1,38 @@
+<?php
+
+namespace AlbaBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Kaart
+ *
+ * @ORM\Table(name="kaart")
+ * @ORM\Entity(repositoryClass="AlbaBundle\Repository\KaartRepository")
+ */
+class Kaart
+{
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="Creditcard_gegevens", type="string", length=255)
+     */
+    private $creditcardGegevens;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="Vervaldatum", type="date")
+     */
+    private $vervaldatum;
+}
+

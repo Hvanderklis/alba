@@ -5,12 +5,12 @@ namespace AlbaBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Kamer_Afbeelding
+ * KamerAfbeelding
  *
- * @ORM\Table(name="kamer__afbeelding")
- * @ORM\Entity(repositoryClass="AlbaBundle\Repository\Kamer_AfbeeldingRepository")
+ * @ORM\Table(name="kamer_afbeelding")
+ * @ORM\Entity(repositoryClass="AlbaBundle\Repository\KamerAfbeeldingRepository")
  */
-class Kamer_Afbeelding
+class KamerAfbeelding
 {
     /**
      * @var int
@@ -56,11 +56,10 @@ class Kamer_Afbeelding
      */
     private $kamerNummer;
 
-
     /**
      * Get id
      *
-     * @return int
+     * @return integer
      */
     public function getId()
     {
@@ -72,7 +71,7 @@ class Kamer_Afbeelding
      *
      * @param string $name
      *
-     * @return Kamer_Afbeelding
+     * @return KamerAfbeelding
      */
     public function setName($name)
     {
@@ -96,7 +95,7 @@ class Kamer_Afbeelding
      *
      * @param string $size
      *
-     * @return Kamer_Afbeelding
+     * @return KamerAfbeelding
      */
     public function setSize($size)
     {
@@ -120,7 +119,7 @@ class Kamer_Afbeelding
      *
      * @param string $type
      *
-     * @return Kamer_Afbeelding
+     * @return KamerAfbeelding
      */
     public function setType($type)
     {
@@ -144,7 +143,7 @@ class Kamer_Afbeelding
      *
      * @param string $path
      *
-     * @return Kamer_Afbeelding
+     * @return KamerAfbeelding
      */
     public function setPath($path)
     {
@@ -168,7 +167,7 @@ class Kamer_Afbeelding
      *
      * @param string $kamerNummer
      *
-     * @return Kamer_Afbeelding
+     * @return KamerAfbeelding
      */
     public function setKamerNummer($kamerNummer)
     {
@@ -187,4 +186,3 @@ class Kamer_Afbeelding
         return $this->kamerNummer;
     }
 }
-

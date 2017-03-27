@@ -132,45 +132,5 @@ class Extra
     {
         return $this->omschrijving;
     }
-    /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        $this->reserveringen = new \Doctrine\Common\Collections\ArrayCollection();
-    }
-
-    /**
-     * Add reserveringen
-     *
-     * @param \AlbaBundle\Entity\Reservering $reserveringen
-     *
-     * @return Extra
-     */
-    public function addReserveringen(\AlbaBundle\Entity\Reservering $reserveringen)
-    {
-        $this->reserveringen[] = $reserveringen;
-
-        return $this;
-    }
-
-    /**
-     * Remove reserveringen
-     *
-     * @param \AlbaBundle\Entity\Reservering $reserveringen
-     */
-    public function removeReserveringen(\AlbaBundle\Entity\Reservering $reserveringen)
-    {
-        $this->reserveringen->removeElement($reserveringen);
-    }
-
-    /**
-     * Get reserveringen
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getReserveringen()
-    {
-        return $this->reserveringen;
-    }
 }
+

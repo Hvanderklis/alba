@@ -99,28 +99,5 @@ class Bank
     {
         return $this->paymentNummer;
     }
-
-    /**
-     * Set kaart
-     *
-     * @param \AlbaBundle\Entity\Kaart $kaart
-     *
-     * @return Bank
-     */
-    public function setKaart(\AlbaBundle\Entity\Kaart $kaart = null)
-    {
-        $this->kaart = $kaart;
-
-        return $this;
-    }
-
-    /**
-     * Get kaart
-     *
-     * @return \AlbaBundle\Entity\Kaart
-     */
-    public function getKaart()
-    {
-        return $this->kaart;
-    }
 }
+

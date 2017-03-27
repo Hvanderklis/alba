@@ -29,6 +29,27 @@ class Kamer
     private $kamerNaam;
 
     /**
+     * @ORM\ManyToMany(targetEntity="Reservering")
+     * @ORM\JoinTable(name="Kamer_reservering",
+     *      joinColumns={@ORM\JoinColumn(name="kamer_nummer", referencedColumnName="id")},
+     *      inverseJoinColumns={@ORM\JoinColumn(name="reserveringsnummer", referencedColumnName="id", unique=true)})
+     */
+    private $reservering;
+
+    public function __construct() {
+        $this->groups = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+    /**
+     * @ORM\OneToMany(targetEntity="KamerAfbeelding", mappedBy="kamer")
+     */
+    private $kamerAfbeelding;
+
+    /**
+     * @ORM\OneToMany(targetEntity="KamerPrijs", mappedBy="Kamer")
+     */
+    private $kamerPrijs;
+
+    /**
      * @var int
      *
      * @ORM\Column(name="Prijs", type="integer")
@@ -41,7 +62,6 @@ class Kamer
      * @ORM\Column(name="Omschrijving", type="string", length=255)
      */
     private $omschrijving;
-
 
     /**
      * Get id
@@ -124,5 +144,106 @@ class Kamer
     {
         return $this->omschrijving;
     }
-}
 
+    /**
+     * Add reservering
+     *
+     * @param \AlbaBundle\Entity\Reservering $reservering
+     *
+     * @return Kamer
+     */
+    public function addReservering(\AlbaBundle\Entity\Reservering $reservering)
+    {
+        $this->reservering[] = $reservering;
+
+        return $this;
+    }
+
+    /**
+     * Remove reservering
+     *
+     * @param \AlbaBundle\Entity\Reservering $reservering
+     */
+    public function removeReservering(\AlbaBundle\Entity\Reservering $reservering)
+    {
+        $this->reservering->removeElement($reservering);
+    }
+
+    /**
+     * Get reservering
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getReservering()
+    {
+        return $this->reservering;
+    }
+
+    /**
+     * Add kamerAfbeelding
+     *
+     * @param \AlbaBundle\Entity\KamerAfbeelding $kamerAfbeelding
+     *
+     * @return Kamer
+     */
+    public function addKamerAfbeelding(\AlbaBundle\Entity\KamerAfbeelding $kamerAfbeelding)
+    {
+        $this->kamerAfbeelding[] = $kamerAfbeelding;
+
+        return $this;
+    }
+
+    /**
+     * Remove kamerAfbeelding
+     *
+     * @param \AlbaBundle\Entity\KamerAfbeelding $kamerAfbeelding
+     */
+    public function removeKamerAfbeelding(\AlbaBundle\Entity\KamerAfbeelding $kamerAfbeelding)
+    {
+        $this->kamerAfbeelding->removeElement($kamerAfbeelding);
+    }
+
+    /**
+     * Get kamerAfbeelding
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getKamerAfbeelding()
+    {
+        return $this->kamerAfbeelding;
+    }
+
+    /**
+     * Add kamerPrij
+     *
+     * @param \AlbaBundle\Entity\KamerPrijs $kamerPrij
+     *
+     * @return Kamer
+     */
+    public function addKamerPrij(\AlbaBundle\Entity\KamerPrijs $kamerPrij)
+    {
+        $this->kamerPrijs[] = $kamerPrij;
+
+        return $this;
+    }
+
+    /**
+     * Remove kamerPrij
+     *
+     * @param \AlbaBundle\Entity\KamerPrijs $kamerPrij
+     */
+    public function removeKamerPrij(\AlbaBundle\Entity\KamerPrijs $kamerPrij)
+    {
+        $this->kamerPrijs->removeElement($kamerPrij);
+    }
+
+    /**
+     * Get kamerPrijs
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getKamerPrijs()
+    {
+        return $this->kamerPrijs;
+    }
+}

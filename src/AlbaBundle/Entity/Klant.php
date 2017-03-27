@@ -22,6 +22,17 @@ class Klant
     private $id;
 
     /**
+     *  @ORM\OneToMany(targetEntity="Betaling", mappedBy="Klant")
+     */
+    private $reservering;
+
+    /**
+     * @ORM\OneToMany(targetEntity="gast", mappedBy="Klant")
+     */
+    private $gast;
+
+
+    /**
      * @var string
      *
      * @ORM\Column(name="Voornaam", type="string", length=255)
@@ -310,5 +321,80 @@ class Klant
     {
         return $this->telefoon;
     }
-}
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->reservering = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->gast = new \Doctrine\Common\Collections\ArrayCollection();
+    }
 
+    /**
+     * Add reservering
+     *
+     * @param \AlbaBundle\Entity\Betaling $reservering
+     *
+     * @return Klant
+     */
+    public function addReservering(\AlbaBundle\Entity\Betaling $reservering)
+    {
+        $this->reservering[] = $reservering;
+
+        return $this;
+    }
+
+    /**
+     * Remove reservering
+     *
+     * @param \AlbaBundle\Entity\Betaling $reservering
+     */
+    public function removeReservering(\AlbaBundle\Entity\Betaling $reservering)
+    {
+        $this->reservering->removeElement($reservering);
+    }
+
+    /**
+     * Get reservering
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getReservering()
+    {
+        return $this->reservering;
+    }
+
+    /**
+     * Add gast
+     *
+     * @param \AlbaBundle\Entity\gast $gast
+     *
+     * @return Klant
+     */
+    public function addGast(\AlbaBundle\Entity\gast $gast)
+    {
+        $this->gast[] = $gast;
+
+        return $this;
+    }
+
+    /**
+     * Remove gast
+     *
+     * @param \AlbaBundle\Entity\gast $gast
+     */
+    public function removeGast(\AlbaBundle\Entity\gast $gast)
+    {
+        $this->gast->removeElement($gast);
+    }
+
+    /**
+     * Get gast
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getGast()
+    {
+        return $this->gast;
+    }
+}

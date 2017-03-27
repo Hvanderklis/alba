@@ -22,6 +22,12 @@ class Bank
     private $id;
 
     /**
+     * @ORM\ManyToOne(targetEntity="Kaart", inversedBy="Bank")
+     * @ORM\JoinColumn(name="Kaart_nummer", referencedColumnName="id")
+     */
+    private $kaart;
+
+    /**
      * @var string
      *
      * @ORM\Column(name="Bank", type="string", length=255)
@@ -93,5 +99,28 @@ class Bank
     {
         return $this->paymentNummer;
     }
-}
 
+    /**
+     * Set kaart
+     *
+     * @param \AlbaBundle\Entity\Kaart $kaart
+     *
+     * @return Bank
+     */
+    public function setKaart(\AlbaBundle\Entity\Kaart $kaart = null)
+    {
+        $this->kaart = $kaart;
+
+        return $this;
+    }
+
+    /**
+     * Get kaart
+     *
+     * @return \AlbaBundle\Entity\Kaart
+     */
+    public function getKaart()
+    {
+        return $this->kaart;
+    }
+}

@@ -21,12 +21,19 @@ class Reservering
      */
     private $id;
 
+
     /**
      * @var \DateTime
      *
      * @ORM\Column(name="Aankomst", type="date")
      */
     private $aankomst;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Klant", inversedBy="Reservering")
+     * @ORM\JoinColumn(name="Reserverings_nummer", referencedColumnName="id")
+     */
+    private $klant;
 
     /**
      * @var \DateTime
@@ -124,5 +131,28 @@ class Reservering
     {
         return $this->opmerking;
     }
-}
 
+    /**
+     * Set klant
+     *
+     * @param \AlbaBundle\Entity\Klant $klant
+     *
+     * @return Reservering
+     */
+    public function setKlant(\AlbaBundle\Entity\Klant $klant = null)
+    {
+        $this->klant = $klant;
+
+        return $this;
+    }
+
+    /**
+     * Get klant
+     *
+     * @return \AlbaBundle\Entity\Klant
+     */
+    public function getKlant()
+    {
+        return $this->klant;
+    }
+}

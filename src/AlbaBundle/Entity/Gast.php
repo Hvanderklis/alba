@@ -28,6 +28,23 @@ class Gast
      */
     private $voornaam;
 
+
+    /**
+     * @ORM\ManyToMany(targetEntity="Reservering")
+     * @ORM\JoinTable(name="Gast_reservering",
+     *      joinColumns={@ORM\JoinColumn(name="gast_nummer", referencedColumnName="id")},
+     *      inverseJoinColumns={@ORM\JoinColumn(name="reserveringsnummer", referencedColumnName="id", unique=true)})
+     */
+    private $reservering;
+    /**
+     * @ORM\ManyToOne(targetEntity="Kaart", inversedBy="Gast")
+     * @ORM\JoinColumn(name="Kaartnummer", referencedColumnName="id")
+     */
+    private $kaart;
+
+    public function __construct() {
+        $this->groups = new \Doctrine\Common\Collections\ArrayCollection();
+    }
     /**
      * @var string
      *
@@ -186,5 +203,62 @@ class Gast
     {
         return $this->taal;
     }
-}
 
+    /**
+     * Add reservering
+     *
+     * @param \AlbaBundle\Entity\Reservering $reservering
+     *
+     * @return Gast
+     */
+    public function addReservering(\AlbaBundle\Entity\Reservering $reservering)
+    {
+        $this->reservering[] = $reservering;
+
+        return $this;
+    }
+
+    /**
+     * Remove reservering
+     *
+     * @param \AlbaBundle\Entity\Reservering $reservering
+     */
+    public function removeReservering(\AlbaBundle\Entity\Reservering $reservering)
+    {
+        $this->reservering->removeElement($reservering);
+    }
+
+    /**
+     * Get reservering
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getReservering()
+    {
+        return $this->reservering;
+    }
+
+    /**
+     * Set kaart
+     *
+     * @param \AlbaBundle\Entity\Kaart $kaart
+     *
+     * @return Gast
+     */
+    public function setKaart(\AlbaBundle\Entity\Kaart $kaart = null)
+    {
+        $this->kaart = $kaart;
+
+        return $this;
+    }
+
+    /**
+     * Get kaart
+     *
+     * @return \AlbaBundle\Entity\Kaart
+     */
+    public function getKaart()
+    {
+        return $this->kaart;
+    }
+}

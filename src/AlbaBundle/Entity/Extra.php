@@ -22,6 +22,14 @@ class Extra
     private $id;
 
     /**
+     * @ORM\ManyToMany(targetEntity="Reservering")
+     * @ORM\JoinTable(name="Extra_reservering",
+     *      joinColumns={@ORM\JoinColumn(name="extra_nummer", referencedColumnName="id")},
+     *      inverseJoinColumns={@ORM\JoinColumn(name="reserveringsnummer", referencedColumnName="id", unique=true)})
+     */
+    private $reserveringen;
+
+    /**
      * @var string
      *
      * @ORM\Column(name="Type", type="string", length=255)
@@ -124,5 +132,45 @@ class Extra
     {
         return $this->omschrijving;
     }
-}
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->reserveringen = new \Doctrine\Common\Collections\ArrayCollection();
+    }
 
+    /**
+     * Add reserveringen
+     *
+     * @param \AlbaBundle\Entity\Reservering $reserveringen
+     *
+     * @return Extra
+     */
+    public function addReserveringen(\AlbaBundle\Entity\Reservering $reserveringen)
+    {
+        $this->reserveringen[] = $reserveringen;
+
+        return $this;
+    }
+
+    /**
+     * Remove reserveringen
+     *
+     * @param \AlbaBundle\Entity\Reservering $reserveringen
+     */
+    public function removeReserveringen(\AlbaBundle\Entity\Reservering $reserveringen)
+    {
+        $this->reserveringen->removeElement($reserveringen);
+    }
+
+    /**
+     * Get reserveringen
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getReserveringen()
+    {
+        return $this->reserveringen;
+    }
+}

@@ -29,6 +29,12 @@ class KamerAfbeelding
     private $name;
 
     /**
+     * @ORM\ManyToOne(targetEntity="Kamer", inversedBy="kamerAfbeelding")
+     * @ORM\JoinColumn(name="Kamer_id", referencedColumnName="id")
+     */
+    private $kamer;
+
+    /**
      * @var string
      *
      * @ORM\Column(name="Size", type="string", length=255)
@@ -184,5 +190,29 @@ class KamerAfbeelding
     public function getKamerNummer()
     {
         return $this->kamerNummer;
+    }
+
+    /**
+     * Set kamer
+     *
+     * @param \AlbaBundle\Entity\Kamer $kamer
+     *
+     * @return KamerAfbeelding
+     */
+    public function setKamer(\AlbaBundle\Entity\Kamer $kamer = null)
+    {
+        $this->kamer = $kamer;
+
+        return $this;
+    }
+
+    /**
+     * Get kamer
+     *
+     * @return \AlbaBundle\Entity\Kamer
+     */
+    public function getKamer()
+    {
+        return $this->kamer;
     }
 }

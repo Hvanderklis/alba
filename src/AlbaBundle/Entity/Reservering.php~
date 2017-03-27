@@ -131,28 +131,5 @@ class Reservering
     {
         return $this->opmerking;
     }
-
-    /**
-     * Set klant
-     *
-     * @param \AlbaBundle\Entity\Klant $klant
-     *
-     * @return Reservering
-     */
-    public function setKlant(\AlbaBundle\Entity\Klant $klant = null)
-    {
-        $this->klant = $klant;
-
-        return $this;
-    }
-
-    /**
-     * Get klant
-     *
-     * @return \AlbaBundle\Entity\Klant
-     */
-    public function getKlant()
-    {
-        return $this->klant;
-    }
 }
+

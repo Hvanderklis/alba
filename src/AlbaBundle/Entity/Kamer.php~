@@ -5,12 +5,12 @@ namespace AlbaBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Extra
+ * Kamer
  *
- * @ORM\Table(name="extra")
- * @ORM\Entity(repositoryClass="AlbaBundle\Repository\ExtraRepository")
+ * @ORM\Table(name="kamer")
+ * @ORM\Entity(repositoryClass="AlbaBundle\Repository\KamerRepository")
  */
-class Extra
+class Kamer
 {
     /**
      * @var int
@@ -22,19 +22,32 @@ class Extra
     private $id;
 
     /**
-     * @ORM\ManyToMany(targetEntity="Reservering")
-     * @ORM\JoinTable(name="Extra_reservering",
-     *      joinColumns={@ORM\JoinColumn(name="extra_nummer", referencedColumnName="id")},
-     *      inverseJoinColumns={@ORM\JoinColumn(name="reserveringsnummer", referencedColumnName="id", unique=true)})
-     */
-    private $reserveringen;
-
-    /**
      * @var string
      *
-     * @ORM\Column(name="Type", type="string", length=255)
+     * @ORM\Column(name="Kamer_naam", type="string", length=255)
      */
-    private $type;
+    private $kamerNaam;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="Reservering")
+     * @ORM\JoinTable(name="Kamer_reservering",
+     *      joinColumns={@ORM\JoinColumn(name="kamer_nummer", referencedColumnName="id")},
+     *      inverseJoinColumns={@ORM\JoinColumn(name="reserveringsnummer", referencedColumnName="id", unique=true)})
+     */
+    private $reservering;
+
+    public function __construct() {
+        $this->groups = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+    /**
+     * @ORM\OneToMany(targetEntity="KamerAfbeelding", mappedBy="Kamer")
+     */
+    private $kamerAfbeelding;
+
+    /**
+     * @ORM\OneToMany(targetEntity="KamerPrijs", mappedBy="Kamer")
+     */
+    private $kamerPrijs;
 
     /**
      * @var int
@@ -50,7 +63,6 @@ class Extra
      */
     private $omschrijving;
 
-
     /**
      * Get id
      *
@@ -62,27 +74,27 @@ class Extra
     }
 
     /**
-     * Set type
+     * Set kamerNaam
      *
-     * @param string $type
+     * @param string $kamerNaam
      *
-     * @return Extra
+     * @return Kamer
      */
-    public function setType($type)
+    public function setKamerNaam($kamerNaam)
     {
-        $this->type = $type;
+        $this->kamerNaam = $kamerNaam;
 
         return $this;
     }
 
     /**
-     * Get type
+     * Get kamerNaam
      *
      * @return string
      */
-    public function getType()
+    public function getKamerNaam()
     {
-        return $this->type;
+        return $this->kamerNaam;
     }
 
     /**
@@ -90,7 +102,7 @@ class Extra
      *
      * @param integer $prijs
      *
-     * @return Extra
+     * @return Kamer
      */
     public function setPrijs($prijs)
     {
@@ -114,7 +126,7 @@ class Extra
      *
      * @param string $omschrijving
      *
-     * @return Extra
+     * @return Kamer
      */
     public function setOmschrijving($omschrijving)
     {
@@ -132,45 +144,5 @@ class Extra
     {
         return $this->omschrijving;
     }
-    /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        $this->reserveringen = new \Doctrine\Common\Collections\ArrayCollection();
-    }
-
-    /**
-     * Add reserveringen
-     *
-     * @param \AlbaBundle\Entity\Reservering $reserveringen
-     *
-     * @return Extra
-     */
-    public function addReserveringen(\AlbaBundle\Entity\Reservering $reserveringen)
-    {
-        $this->reserveringen[] = $reserveringen;
-
-        return $this;
-    }
-
-    /**
-     * Remove reserveringen
-     *
-     * @param \AlbaBundle\Entity\Reservering $reserveringen
-     */
-    public function removeReserveringen(\AlbaBundle\Entity\Reservering $reserveringen)
-    {
-        $this->reserveringen->removeElement($reserveringen);
-    }
-
-    /**
-     * Get reserveringen
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getReserveringen()
-    {
-        return $this->reserveringen;
-    }
 }
+

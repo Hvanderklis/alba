@@ -29,6 +29,20 @@ class KamerPrijs
     private $prijs;
 
     /**
+     * @ORM\ManyToOne(targetEntity="Kamer", inversedBy="KamerPrijs")
+     * @ORM\JoinColumn(name="Kamer_id", referencedColumnName="id")
+     *
+     */
+    private $kamer;
+
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Seizoen", inversedBy="KamerPrijs")
+     * @ORM\JoinColumn(name="Seizoen_nummer", referencedColumnName="id")
+     */
+    private $seizoen;
+
+    /**
      * Get id
      *
      * @return integer
@@ -60,5 +74,53 @@ class KamerPrijs
     public function getPrijs()
     {
         return $this->prijs;
+    }
+
+    /**
+     * Set kamer
+     *
+     * @param \AlbaBundle\Entity\Kamer $kamer
+     *
+     * @return KamerPrijs
+     */
+    public function setKamer(\AlbaBundle\Entity\Kamer $kamer = null)
+    {
+        $this->kamer = $kamer;
+
+        return $this;
+    }
+
+    /**
+     * Get kamer
+     *
+     * @return \AlbaBundle\Entity\Kamer
+     */
+    public function getKamer()
+    {
+        return $this->kamer;
+    }
+
+    /**
+     * Set seizoen
+     *
+     * @param \AlbaBundle\Entity\Seizoen $seizoen
+     *
+     * @return KamerPrijs
+     */
+    public function setSeizoen(\AlbaBundle\Entity\Seizoen $seizoen = null)
+    {
+        $this->seizoen = $seizoen;
+
+        return $this;
+    }
+
+    /**
+     * Get seizoen
+     *
+     * @return \AlbaBundle\Entity\Seizoen
+     */
+    public function getSeizoen()
+    {
+        return $this->seizoen;
     }
 }

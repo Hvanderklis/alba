@@ -130,28 +130,5 @@ class Betaling
     {
         return $this->kaartNummer;
     }
-
-    /**
-     * Set kaart
-     *
-     * @param \AlbaBundle\Entity\Kaart $kaart
-     *
-     * @return Betaling
-     */
-    public function setKaart(\AlbaBundle\Entity\Kaart $kaart = null)
-    {
-        $this->kaart = $kaart;
-
-        return $this;
-    }
-
-    /**
-     * Get kaart
-     *
-     * @return \AlbaBundle\Entity\Kaart
-     */
-    public function getKaart()
-    {
-        return $this->kaart;
-    }
 }
+

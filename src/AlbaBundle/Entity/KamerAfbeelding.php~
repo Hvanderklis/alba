@@ -29,6 +29,12 @@ class KamerAfbeelding
     private $name;
 
     /**
+     * @ORM\ManyToOne(targetEntity="Kamer", inversedBy="KamerAfbeelding")
+     * @ORM\JoinColumn(name="Kamer_nummer", referencedColumnName="id")
+     */
+    private $kamer;
+
+    /**
      * @var string
      *
      * @ORM\Column(name="Size", type="string", length=255)
@@ -55,5 +61,134 @@ class KamerAfbeelding
      * @ORM\Column(name="kamer_nummer", type="string", length=255)
      */
     private $kamerNummer;
-}
 
+    /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set name
+     *
+     * @param string $name
+     *
+     * @return KamerAfbeelding
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
+
+        return $this;
+    }
+
+    /**
+     * Get name
+     *
+     * @return string
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    /**
+     * Set size
+     *
+     * @param string $size
+     *
+     * @return KamerAfbeelding
+     */
+    public function setSize($size)
+    {
+        $this->size = $size;
+
+        return $this;
+    }
+
+    /**
+     * Get size
+     *
+     * @return string
+     */
+    public function getSize()
+    {
+        return $this->size;
+    }
+
+    /**
+     * Set type
+     *
+     * @param string $type
+     *
+     * @return KamerAfbeelding
+     */
+    public function setType($type)
+    {
+        $this->type = $type;
+
+        return $this;
+    }
+
+    /**
+     * Get type
+     *
+     * @return string
+     */
+    public function getType()
+    {
+        return $this->type;
+    }
+
+    /**
+     * Set path
+     *
+     * @param string $path
+     *
+     * @return KamerAfbeelding
+     */
+    public function setPath($path)
+    {
+        $this->path = $path;
+
+        return $this;
+    }
+
+    /**
+     * Get path
+     *
+     * @return string
+     */
+    public function getPath()
+    {
+        return $this->path;
+    }
+
+    /**
+     * Set kamerNummer
+     *
+     * @param string $kamerNummer
+     *
+     * @return KamerAfbeelding
+     */
+    public function setKamerNummer($kamerNummer)
+    {
+        $this->kamerNummer = $kamerNummer;
+
+        return $this;
+    }
+
+    /**
+     * Get kamerNummer
+     *
+     * @return string
+     */
+    public function getKamerNummer()
+    {
+        return $this->kamerNummer;
+    }
+}

@@ -17,7 +17,9 @@ class LoadGastData implements FixtureInterface
         $gast->setTussenvoegsel('de');
         $gast->setVoornaam('klaas');
         $gast->setWoonplaats('Zoetermeer');
-        $manager->getRepository("AlbaBundle:Klant")->findOneBy(['voornaam' => 'piet']);
+        $klant = $manager->getRepository("AlbaBundle:Klant")->findOneBy(['voornaam' => 'piet']);
+        $gast->setKlant($klant);
+        $gast->setAchternaam("hoog");
 
         $manager->persist($gast);
         $manager->flush();

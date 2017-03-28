@@ -34,12 +34,6 @@ class Bank
      */
     private $bank;
 
-    /**
-     * @var int
-     *
-     * @ORM\Column(name="Payment_nummer", type="integer")
-     */
-    private $paymentNummer;
 
 
     /**
@@ -74,30 +68,6 @@ class Bank
     public function getBank()
     {
         return $this->bank;
-    }
-
-    /**
-     * Set paymentNummer
-     *
-     * @param integer $paymentNummer
-     *
-     * @return Bank
-     */
-    public function setPaymentNummer($paymentNummer)
-    {
-        $this->paymentNummer = $paymentNummer;
-
-        return $this;
-    }
-
-    /**
-     * Get paymentNummer
-     *
-     * @return int
-     */
-    public function getPaymentNummer()
-    {
-        return $this->paymentNummer;
     }
 
     /**

@@ -41,13 +41,6 @@ class Betaling
      */
     private $datum;
 
-    /**
-     * @var int
-     *
-     * @ORM\Column(name="kaart_nummer", type="integer")
-     */
-    private $kaartNummer;
-
 
     /**
      * Get id

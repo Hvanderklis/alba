@@ -40,6 +40,7 @@ framework:
 twig:
     debug: '%kernel.debug%'
     strict_variables: '%kernel.debug%'
+    form_theme: ['bootstrap_3_horizontal_layout.html.twig']
 
 # Doctrine Configuration
 doctrine:
@@ -84,11 +85,4 @@ framework:
     translator: {  fallbacks: [en] }
 
 
-sonata_block:
-        default_contexts: [cms]
-        blocks:
-            # enable the SonataAdminBundle block
-            sonata.admin.block.admin_list:
-                contexts: [admin]
-            # ...
 

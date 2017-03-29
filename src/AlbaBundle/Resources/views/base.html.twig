@@ -6,6 +6,7 @@
         {% block stylesheets %}
             <link rel="stylesheet" type="text/css" href="{{ asset('bundles/alba/cssf/foundation.css') }}">
             <link rel="stylesheet" type="text/css" href="{{ asset('bundles/alba/cssf/foundation.min.css') }}">
+            <link rel="stylesheet" type="text/css" href="{{ asset('bundles/alba/cssf/stylesheet.css') }}">
         {% endblock %}
     </head>
     <body>
@@ -14,7 +15,7 @@
         <div class="top-bar" id="realEstateMenu">
             <div class="top-bar-left">
                 <ul class="menu accordion-menu" data-responsive-menu="accordion" role="tablist" aria-multiselectable="true" data-accordionmenu="kklsv3-accordionmenu" data-responsivemenu="kran3z-responsivemenu">
-                    <li class="menu-text" role="menuitem">Logo</li>
+                    <li class="menu-text" role="menuitem">ALBA B&B</li>
                     <li role="menuitem"><a href="#">Home</a></li>
                     <li role="menuitem"><a href="#">Rooms</a></li>
                     <li role="menuitem"><a href="#">Resavation</a></li>
@@ -156,18 +157,35 @@
                 </ul>
             </div>
             <div class="small-6 large-3 columns">
-                <p class="lead">Maps</p>
+                <p class="lead">Map</p>
+                <div id="map"></div>
             </div>
         </div>
         <div class="row">
             <div class="medium-12 columns">
                 <ul class="menu center">
-                    <li class="menu-text">© Copyright 2017</li>
+                    <li class="menu-text">© ALBA B&B 2017</li>
                 </ul>
             </div>
         </div>
     </footer>
         {% endblock %}
         {% block javascripts %}{% endblock %}
+        <script>
+            function initMap() {
+                var uluru = {lat: 57.474911, lng: -3.216983};
+                var map = new google.maps.Map(document.getElementById('map'), {
+                    zoom: 4,
+                    center: uluru
+                });
+                var marker = new google.maps.Marker({
+                    position: uluru,
+                    map: map
+                });
+            }
+        </script>
+        <script async defer
+                src="https://maps.googleapis.com/maps/api/js?key= AIzaSyCSfpv4Zcn3ozYBfP3kMYikUA03XT_wkzg &callback=initMap">
+        </script>
     </body>
 </html>

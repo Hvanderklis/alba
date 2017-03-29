@@ -1,3 +1,8 @@
 #home{
 	background-image: url(header.jpg);
 }
+
+#map {
+	height: 250px;
+	width: 100%;
+}

@@ -22,24 +22,22 @@ class Bank
     private $id;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Kaart", inversedBy="Bank")
-     * @ORM\JoinColumn(name="Kaart_nummer", referencedColumnName="id")
-     */
-    private $kaart;
-
-    /**
      * @var string
      *
      * @ORM\Column(name="Bank", type="string", length=255)
      */
     private $bank;
 
-
+    /**
+     * @ORM\ManyToOne(targetEntity="Kaart", inversedBy="bank")
+     * @ORM\JoinColumn(name="Kaart_nummer", referencedColumnName="id")
+     */
+    private $kaart;
 
     /**
      * Get id
      *
-     * @return int
+     * @return integer
      */
     public function getId()
     {

@@ -29,27 +29,6 @@ class Kamer
     private $kamerNaam;
 
     /**
-     * @ORM\ManyToMany(targetEntity="Reservering")
-     * @ORM\JoinTable(name="Kamer_reservering",
-     *      joinColumns={@ORM\JoinColumn(name="kamer_nummer", referencedColumnName="id")},
-     *      inverseJoinColumns={@ORM\JoinColumn(name="reserveringsnummer", referencedColumnName="id", unique=true)})
-     */
-    private $reservering;
-
-    public function __construct() {
-        $this->groups = new \Doctrine\Common\Collections\ArrayCollection();
-    }
-    /**
-     * @ORM\OneToMany(targetEntity="KamerAfbeelding", mappedBy="kamer")
-     */
-    private $kamerAfbeelding;
-
-    /**
-     * @ORM\OneToMany(targetEntity="KamerPrijs", mappedBy="Kamer")
-     */
-    private $kamerPrijs;
-
-    /**
      * @var int
      *
      * @ORM\Column(name="Prijs", type="integer")
@@ -64,9 +43,37 @@ class Kamer
     private $omschrijving;
 
     /**
+     * @ORM\ManyToMany(targetEntity="Reservering")
+     * @ORM\JoinTable(name="Kamer_reservering",
+     *      joinColumns={@ORM\JoinColumn(name="kamer_nummer", referencedColumnName="id")},
+     *      inverseJoinColumns={@ORM\JoinColumn(name="reserveringsnummer", referencedColumnName="id", unique=true)})
+     */
+    private $reservering;
+
+    /**
+     * @ORM\OneToMany(targetEntity="KamerAfbeelding", mappedBy="kamer")
+     */
+    private $kamerAfbeelding;
+
+    /**
+     * @ORM\OneToMany(targetEntity="KamerPrijs", mappedBy="kamer")
+     */
+    private $kamerPrijs;
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->reservering = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->kamerAfbeelding = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->kamerPrijs = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
      * Get id
      *
-     * @return int
+     * @return integer
      */
     public function getId()
     {
@@ -114,7 +121,7 @@ class Kamer
     /**
      * Get prijs
      *
-     * @return int
+     * @return integer
      */
     public function getPrijs()
     {

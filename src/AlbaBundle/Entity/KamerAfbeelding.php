@@ -28,11 +28,7 @@ class KamerAfbeelding
      */
     private $name;
 
-    /**
-     * @ORM\ManyToOne(targetEntity="Kamer", inversedBy="kamerAfbeelding")
-     * @ORM\JoinColumn(name="Kamer_id", referencedColumnName="id")
-     */
-    private $kamer;
+
 
     /**
      * @var string
@@ -61,6 +57,12 @@ class KamerAfbeelding
      * @ORM\Column(name="kamer_nummer", type="string", length=255)
      */
     private $kamerNummer;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Kamer", inversedBy="kamerAfbeelding")
+     * @ORM\JoinColumn(name="Kamer_id", referencedColumnName="id")
+     */
+    private $kamer;
 
     /**
      * Get id

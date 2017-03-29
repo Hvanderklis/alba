@@ -22,30 +22,11 @@ class Kaart
     private $id;
 
     /**
-     * @ORM\OneToMany(targetEntity="Bank", mappedBy="Kaart")
-     */
-
-    private $bank;
-
-    /**
-     * @ORM\OneToMany(targetEntity="Betaling", mappedBy="Kaart")
-     */
-
-    private $betaling;
-
-    /**
-     * @ORM\ManyToOne(targetEntity="Klant", inversedBy="Kaart")
-     * @ORM\JoinColumn(name="Klantnummer", referencedColumnName="id")
-     */
-    private $klant;
-
-    /**
      * @var string
      *
      * @ORM\Column(name="Creditcard_gegevens", type="string", length=255)
      */
     private $creditcardGegevens;
-
 
     /**
      * @var \DateTime
@@ -55,60 +36,18 @@ class Kaart
     private $vervaldatum;
 
     /**
-     * Get id
-     *
-     * @return integer
+     * @ORM\ManyToOne(targetEntity="Klant", inversedBy="kaart")
+     * @ORM\JoinColumn(name="Klantnummer", referencedColumnName="id")
      */
-    public function getId()
-    {
-        return $this->id;
-    }
+    private $klant;
 
     /**
-     * Set creditcardGegevens
-     *
-     * @param string $creditcardGegevens
-     *
-     * @return Kaart
+     * @ORM\OneToMany(targetEntity="Bank", mappedBy="kaart")
      */
-    public function setCreditcardGegevens($creditcardGegevens)
-    {
-        $this->creditcardGegevens = $creditcardGegevens;
-
-        return $this;
-    }
+    private $bank;
 
     /**
-     * Get creditcardGegevens
-     *
-     * @return string
+     * @ORM\OneToMany(targetEntity="Betaling", mappedBy="kaart")
      */
-    public function getCreditcardGegevens()
-    {
-        return $this->creditcardGegevens;
-    }
-
-    /**
-     * Set vervaldatum
-     *
-     * @param \DateTime $vervaldatum
-     *
-     * @return Kaart
-     */
-    public function setVervaldatum($vervaldatum)
-    {
-        $this->vervaldatum = $vervaldatum;
-
-        return $this;
-    }
-
-    /**
-     * Get vervaldatum
-     *
-     * @return \DateTime
-     */
-    public function getVervaldatum()
-    {
-        return $this->vervaldatum;
-    }
+    private $betaling;
 }

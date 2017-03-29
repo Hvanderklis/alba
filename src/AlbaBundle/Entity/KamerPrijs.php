@@ -29,15 +29,14 @@ class KamerPrijs
     private $prijs;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Kamer", inversedBy="KamerPrijs")
-     * @ORM\JoinColumn(name="Kamer_id", referencedColumnName="id")
+     * @ORM\ManyToOne(targetEntity="Kamer", inversedBy="kamerPrijs")
+     * @ORM\JoinColumn(name="Kamer_nummer", referencedColumnName="id")
      *
      */
     private $kamer;
 
-
     /**
-     * @ORM\ManyToOne(targetEntity="Seizoen", inversedBy="KamerPrijs")
+     * @ORM\ManyToOne(targetEntity="Seizoen", inversedBy="kamerPrijs")
      * @ORM\JoinColumn(name="Seizoen_nummer", referencedColumnName="id")
      */
     private $seizoen;

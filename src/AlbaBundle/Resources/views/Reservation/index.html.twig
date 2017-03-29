@@ -1,5 +1,29 @@
 {% extends 'AlbaBundle::Dashboard.html.twig' %}
 {% block body %}
+    <h1>Reservation</h1>
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Reservation number</th>
+            <th>Arrival</th>
+            <th>Departure</th>
+            <th>Note</th>
+        </tr>
+        </thead>
+        <tbody>
+            {% for reservation in reservations %}
+                <tr>
+                    <td>{{ reservation.id }}</td>
+                    <td>{{ reservation.aankomst |date("m/d/Y") }}</td>
+                    <td>{{ reservation.vertek |date("m/d/Y")}}</td>
+                    <td>{{ reservation.opmerking }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+
+
 
 {% endblock %}
 

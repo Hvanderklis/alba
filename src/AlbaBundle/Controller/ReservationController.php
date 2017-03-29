@@ -18,9 +18,11 @@ class ReservationController extends Controller
      */
     public function IndexAction(){
         $em = $this->getDoctrine()->getManager();
-        $repo = $em->getRepository("AlbaBundle:Kamer");
-        return $this->render("AlbaBundle:Reservation:index.html.twig", [
+        $repositoryReservation = $em->getRepository("AlbaBundle:Reservering");
+        $reservations = $repositoryReservation->findAll();
 
+        return $this->render("AlbaBundle:Reservation:index.html.twig", [
+            "reservations" => $reservations
         ]);
     }
 }

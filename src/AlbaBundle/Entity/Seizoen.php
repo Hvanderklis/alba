@@ -22,17 +22,10 @@ class Seizoen
     private $id;
 
     /**
-     * @ORM\OneToMany(targetEntity="KamerPrijs", mappedBy="Seizoen")
-     */
-    private $kamer_prijs;
-
-
-    /**
      * @var string
      *
      * @ORM\Column(name="Naam", type="string", length=255)
      */
-
     private $naam;
 
     /**
@@ -49,11 +42,22 @@ class Seizoen
      */
     private $eindDatum;
 
+    /**
+     * @ORM\OneToMany(targetEntity="KamerPrijs", mappedBy="seizoen")
+     */
+    private $kamerPrijs;
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->kamerPrijs = new \Doctrine\Common\Collections\ArrayCollection();
+    }
 
     /**
      * Get id
      *
-     * @return int
+     * @return integer
      */
     public function getId()
     {
@@ -131,13 +135,6 @@ class Seizoen
     {
         return $this->eindDatum;
     }
-    /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        $this->kamer_prijs = new \Doctrine\Common\Collections\ArrayCollection();
-    }
 
     /**
      * Add kamerPrij
@@ -148,7 +145,7 @@ class Seizoen
      */
     public function addKamerPrij(\AlbaBundle\Entity\KamerPrijs $kamerPrij)
     {
-        $this->kamer_prijs[] = $kamerPrij;
+        $this->kamerPrijs[] = $kamerPrij;
 
         return $this;
     }
@@ -160,7 +157,7 @@ class Seizoen
      */
     public function removeKamerPrij(\AlbaBundle\Entity\KamerPrijs $kamerPrij)
     {
-        $this->kamer_prijs->removeElement($kamerPrij);
+        $this->kamerPrijs->removeElement($kamerPrij);
     }
 
     /**
@@ -170,6 +167,6 @@ class Seizoen
      */
     public function getKamerPrijs()
     {
-        return $this->kamer_prijs;
+        return $this->kamerPrijs;
     }
 }

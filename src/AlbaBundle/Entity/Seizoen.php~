@@ -22,17 +22,10 @@ class Seizoen
     private $id;
 
     /**
-     * @ORM\OneToMany(targetEntity="KamerPrijs", mappedBy="Seizoen")
-     */
-    private $kamer_prijs;
-
-
-    /**
      * @var string
      *
      * @ORM\Column(name="Naam", type="string", length=255)
      */
-
     private $naam;
 
     /**
@@ -49,87 +42,8 @@ class Seizoen
      */
     private $eindDatum;
 
-
     /**
-     * Get id
-     *
-     * @return int
+     * @ORM\OneToMany(targetEntity="KamerPrijs", mappedBy="seizoen")
      */
-    public function getId()
-    {
-        return $this->id;
-    }
-
-    /**
-     * Set naam
-     *
-     * @param string $naam
-     *
-     * @return Seizoen
-     */
-    public function setNaam($naam)
-    {
-        $this->naam = $naam;
-
-        return $this;
-    }
-
-    /**
-     * Get naam
-     *
-     * @return string
-     */
-    public function getNaam()
-    {
-        return $this->naam;
-    }
-
-    /**
-     * Set beginDatum
-     *
-     * @param \DateTime $beginDatum
-     *
-     * @return Seizoen
-     */
-    public function setBeginDatum($beginDatum)
-    {
-        $this->beginDatum = $beginDatum;
-
-        return $this;
-    }
-
-    /**
-     * Get beginDatum
-     *
-     * @return \DateTime
-     */
-    public function getBeginDatum()
-    {
-        return $this->beginDatum;
-    }
-
-    /**
-     * Set eindDatum
-     *
-     * @param \DateTime $eindDatum
-     *
-     * @return Seizoen
-     */
-    public function setEindDatum($eindDatum)
-    {
-        $this->eindDatum = $eindDatum;
-
-        return $this;
-    }
-
-    /**
-     * Get eindDatum
-     *
-     * @return \DateTime
-     */
-    public function getEindDatum()
-    {
-        return $this->eindDatum;
-    }
+    private $kamerPrijs;
 }
-

@@ -28,29 +28,19 @@ class Gast
      */
     private $voornaam;
 
-
-    /**
-     * @ORM\ManyToMany(targetEntity="Reservering")
-     * @ORM\JoinTable(name="Gast_reservering",
-     *      joinColumns={@ORM\JoinColumn(name="gast_nummer", referencedColumnName="id")},
-     *      inverseJoinColumns={@ORM\JoinColumn(name="reserveringsnummer", referencedColumnName="id", unique=true)})
-     */
-    private $reservering;
-    /**
-     * @ORM\ManyToOne(targetEntity="Kaart", inversedBy="Gast")
-     * @ORM\JoinColumn(name="Kaartnummer", referencedColumnName="id")
-     */
-    private $kaart;
-
-    public function __construct() {
-        $this->groups = new \Doctrine\Common\Collections\ArrayCollection();
-    }
     /**
      * @var string
      *
      * @ORM\Column(name="Tussenvoegsel", type="string", length=255, nullable=true)
      */
     private $tussenvoegsel;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="Achternaam", type="string", length=255)
+     */
+    private $achternaam;
 
     /**
      * @var string
@@ -73,135 +63,16 @@ class Gast
      */
     private $taal;
 
-
     /**
-     * Get id
-     *
-     * @return int
+     * @ORM\ManyToMany(targetEntity="Reservering")
+     * @ORM\JoinTable(name="Gast_reservering",
+     *      joinColumns={@ORM\JoinColumn(name="gast_nummer", referencedColumnName="id")},
+     *      inverseJoinColumns={@ORM\JoinColumn(name="reserveringsnummer", referencedColumnName="id", unique=true)})
      */
-    public function getId()
-    {
-        return $this->id;
-    }
-
+    private $reservering;
     /**
-     * Set voornaam
-     *
-     * @param string $voornaam
-     *
-     * @return Gast
+     * @ORM\ManyToOne(targetEntity="Klant", inversedBy="gast")
+     * @ORM\JoinColumn(name="Klantnummer", referencedColumnName="id")
      */
-    public function setVoornaam($voornaam)
-    {
-        $this->voornaam = $voornaam;
-
-        return $this;
-    }
-
-    /**
-     * Get voornaam
-     *
-     * @return string
-     */
-    public function getVoornaam()
-    {
-        return $this->voornaam;
-    }
-
-    /**
-     * Set tussenvoegsel
-     *
-     * @param string $tussenvoegsel
-     *
-     * @return Gast
-     */
-    public function setTussenvoegsel($tussenvoegsel)
-    {
-        $this->tussenvoegsel = $tussenvoegsel;
-
-        return $this;
-    }
-
-    /**
-     * Get tussenvoegsel
-     *
-     * @return string
-     */
-    public function getTussenvoegsel()
-    {
-        return $this->tussenvoegsel;
-    }
-
-    /**
-     * Set woonplaats
-     *
-     * @param string $woonplaats
-     *
-     * @return Gast
-     */
-    public function setWoonplaats($woonplaats)
-    {
-        $this->woonplaats = $woonplaats;
-
-        return $this;
-    }
-
-    /**
-     * Get woonplaats
-     *
-     * @return string
-     */
-    public function getWoonplaats()
-    {
-        return $this->woonplaats;
-    }
-
-    /**
-     * Set geboortedatum
-     *
-     * @param \DateTime $geboortedatum
-     *
-     * @return Gast
-     */
-    public function setGeboortedatum($geboortedatum)
-    {
-        $this->geboortedatum = $geboortedatum;
-
-        return $this;
-    }
-
-    /**
-     * Get geboortedatum
-     *
-     * @return \DateTime
-     */
-    public function getGeboortedatum()
-    {
-        return $this->geboortedatum;
-    }
-
-    /**
-     * Set taal
-     *
-     * @param string $taal
-     *
-     * @return Gast
-     */
-    public function setTaal($taal)
-    {
-        $this->taal = $taal;
-
-        return $this;
-    }
-
-    /**
-     * Get taal
-     *
-     * @return string
-     */
-    public function getTaal()
-    {
-        return $this->taal;
-    }
+    private $klant;
 }
-

@@ -22,12 +22,6 @@ class Bank
     private $id;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Kaart", inversedBy="Bank")
-     * @ORM\JoinColumn(name="Kaart_nummer", referencedColumnName="id")
-     */
-    private $kaart;
-
-    /**
      * @var string
      *
      * @ORM\Column(name="Bank", type="string", length=255)
@@ -35,17 +29,15 @@ class Bank
     private $bank;
 
     /**
-     * @var int
-     *
-     * @ORM\Column(name="Payment_nummer", type="integer")
+     * @ORM\ManyToOne(targetEntity="Kaart", inversedBy="bank")
+     * @ORM\JoinColumn(name="Kaart_nummer", referencedColumnName="id")
      */
-    private $paymentNummer;
-
+    private $kaart;
 
     /**
      * Get id
      *
-     * @return int
+     * @return integer
      */
     public function getId()
     {
@@ -74,30 +66,6 @@ class Bank
     public function getBank()
     {
         return $this->bank;
-    }
-
-    /**
-     * Set paymentNummer
-     *
-     * @param integer $paymentNummer
-     *
-     * @return Bank
-     */
-    public function setPaymentNummer($paymentNummer)
-    {
-        $this->paymentNummer = $paymentNummer;
-
-        return $this;
-    }
-
-    /**
-     * Get paymentNummer
-     *
-     * @return int
-     */
-    public function getPaymentNummer()
-    {
-        return $this->paymentNummer;
     }
 
     /**

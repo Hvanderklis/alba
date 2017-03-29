@@ -29,7 +29,7 @@ class KamerPrijs
     private $prijs;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Kamer", inversedBy="KamerPrijs")
+     * @ORM\ManyToOne(targetEntity="Kamer", inversedBy="kamerprijs")
      * @ORM\JoinColumn(name="Kamer_id", referencedColumnName="id")
      *
      */
@@ -37,42 +37,8 @@ class KamerPrijs
 
 
     /**
-     * @ORM\ManyToOne(targetEntity="Seizoen", inversedBy="KamerPrijs")
+     * @ORM\ManyToOne(targetEntity="Seizoen", inversedBy="kamerPrijs")
      * @ORM\JoinColumn(name="Seizoen_nummer", referencedColumnName="id")
      */
     private $seizoen;
-
-    /**
-     * Get id
-     *
-     * @return integer
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
-
-    /**
-     * Set prijs
-     *
-     * @param integer $prijs
-     *
-     * @return KamerPrijs
-     */
-    public function setPrijs($prijs)
-    {
-        $this->prijs = $prijs;
-
-        return $this;
-    }
-
-    /**
-     * Get prijs
-     *
-     * @return integer
-     */
-    public function getPrijs()
-    {
-        return $this->prijs;
-    }
 }

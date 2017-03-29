@@ -22,30 +22,11 @@ class Kaart
     private $id;
 
     /**
-     * @ORM\OneToMany(targetEntity="Bank", mappedBy="Kaart")
-     */
-
-    private $bank;
-
-    /**
-     * @ORM\OneToMany(targetEntity="Betaling", mappedBy="Kaart")
-     */
-
-    private $betaling;
-
-    /**
-     * @ORM\ManyToOne(targetEntity="Klant", inversedBy="Kaart")
-     * @ORM\JoinColumn(name="Klantnummer", referencedColumnName="id")
-     */
-    private $klant;
-
-    /**
      * @var string
      *
      * @ORM\Column(name="Creditcard_gegevens", type="string", length=255)
      */
     private $creditcardGegevens;
-
 
     /**
      * @var \DateTime
@@ -53,6 +34,30 @@ class Kaart
      * @ORM\Column(name="Vervaldatum", type="date")
      */
     private $vervaldatum;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Klant", inversedBy="kaart")
+     * @ORM\JoinColumn(name="KlantNummer", referencedColumnName="id")
+     */
+    private $klant;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Bank", mappedBy="kaart")
+     */
+    private $bank;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Betaling", mappedBy="kaart")
+     */
+    private $betaling;
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->bank = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->betaling = new \Doctrine\Common\Collections\ArrayCollection();
+    }
 
     /**
      * Get id
@@ -111,13 +116,29 @@ class Kaart
     {
         return $this->vervaldatum;
     }
+
     /**
-     * Constructor
+     * Set klant
+     *
+     * @param \AlbaBundle\Entity\Klant $klant
+     *
+     * @return Kaart
      */
-    public function __construct()
+    public function setKlant(\AlbaBundle\Entity\Klant $klant = null)
     {
-        $this->bank = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->betaling = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->klant = $klant;
+
+        return $this;
+    }
+
+    /**
+     * Get klant
+     *
+     * @return \AlbaBundle\Entity\Klant
+     */
+    public function getKlant()
+    {
+        return $this->klant;
     }
 
     /**
@@ -186,29 +207,5 @@ class Kaart
     public function getBetaling()
     {
         return $this->betaling;
-    }
-
-    /**
-     * Set klant
-     *
-     * @param \AlbaBundle\Entity\Klant $klant
-     *
-     * @return Kaart
-     */
-    public function setKlant(\AlbaBundle\Entity\Klant $klant = null)
-    {
-        $this->klant = $klant;
-
-        return $this;
-    }
-
-    /**
-     * Get klant
-     *
-     * @return \AlbaBundle\Entity\Klant
-     */
-    public function getKlant()
-    {
-        return $this->klant;
     }
 }

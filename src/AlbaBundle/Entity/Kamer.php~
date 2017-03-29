@@ -29,27 +29,6 @@ class Kamer
     private $kamerNaam;
 
     /**
-     * @ORM\ManyToMany(targetEntity="Reservering")
-     * @ORM\JoinTable(name="Kamer_reservering",
-     *      joinColumns={@ORM\JoinColumn(name="kamer_nummer", referencedColumnName="id")},
-     *      inverseJoinColumns={@ORM\JoinColumn(name="reserveringsnummer", referencedColumnName="id", unique=true)})
-     */
-    private $reservering;
-
-    public function __construct() {
-        $this->groups = new \Doctrine\Common\Collections\ArrayCollection();
-    }
-    /**
-     * @ORM\OneToMany(targetEntity="KamerAfbeelding", mappedBy="Kamer")
-     */
-    private $kamerAfbeelding;
-
-    /**
-     * @ORM\OneToMany(targetEntity="KamerPrijs", mappedBy="Kamer")
-     */
-    private $kamerPrijs;
-
-    /**
      * @var int
      *
      * @ORM\Column(name="Prijs", type="integer")
@@ -64,85 +43,20 @@ class Kamer
     private $omschrijving;
 
     /**
-     * Get id
-     *
-     * @return int
+     * @ORM\ManyToMany(targetEntity="Reservering")
+     * @ORM\JoinTable(name="Kamer_reservering",
+     *      joinColumns={@ORM\JoinColumn(name="kamer_nummer", referencedColumnName="id")},
+     *      inverseJoinColumns={@ORM\JoinColumn(name="reserveringsnummer", referencedColumnName="id", unique=true)})
      */
-    public function getId()
-    {
-        return $this->id;
-    }
+    private $reservering;
 
     /**
-     * Set kamerNaam
-     *
-     * @param string $kamerNaam
-     *
-     * @return Kamer
+     * @ORM\OneToMany(targetEntity="KamerAfbeelding", mappedBy="kamer")
      */
-    public function setKamerNaam($kamerNaam)
-    {
-        $this->kamerNaam = $kamerNaam;
-
-        return $this;
-    }
+    private $kamerAfbeelding;
 
     /**
-     * Get kamerNaam
-     *
-     * @return string
+     * @ORM\OneToMany(targetEntity="KamerPrijs", mappedBy="kamer")
      */
-    public function getKamerNaam()
-    {
-        return $this->kamerNaam;
-    }
-
-    /**
-     * Set prijs
-     *
-     * @param integer $prijs
-     *
-     * @return Kamer
-     */
-    public function setPrijs($prijs)
-    {
-        $this->prijs = $prijs;
-
-        return $this;
-    }
-
-    /**
-     * Get prijs
-     *
-     * @return int
-     */
-    public function getPrijs()
-    {
-        return $this->prijs;
-    }
-
-    /**
-     * Set omschrijving
-     *
-     * @param string $omschrijving
-     *
-     * @return Kamer
-     */
-    public function setOmschrijving($omschrijving)
-    {
-        $this->omschrijving = $omschrijving;
-
-        return $this;
-    }
-
-    /**
-     * Get omschrijving
-     *
-     * @return string
-     */
-    public function getOmschrijving()
-    {
-        return $this->omschrijving;
-    }
+    private $kamerPrijs;
 }
-

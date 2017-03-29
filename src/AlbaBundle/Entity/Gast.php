@@ -31,29 +31,16 @@ class Gast
     /**
      * @var string
      *
-     * @ORM\Column(name="Achternaam", type="string", length=255)
+     * @ORM\Column(name="Tussenvoegsel", type="string", length=255, nullable=true)
      */
-    private $achternaam;
-
-    /**
-     * @ORM\ManyToMany(targetEntity="Reservering")
-     * @ORM\JoinTable(name="Gast_reservering",
-     *      joinColumns={@ORM\JoinColumn(name="gast_nummer", referencedColumnName="id")},
-     *      inverseJoinColumns={@ORM\JoinColumn(name="reserveringsnummer", referencedColumnName="id", unique=true)})
-     */
-    private $reservering;
-    /**
-     * @ORM\ManyToOne(targetEntity="Klant", inversedBy="Gast")
-     * @ORM\JoinColumn(name="Klantnummer", referencedColumnName="id")
-     */
-    private $klant;
+    private $tussenvoegsel;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="Tussenvoegsel", type="string", length=255, nullable=true)
+     * @ORM\Column(name="Achternaam", type="string", length=255)
      */
-    private $tussenvoegsel;
+    private $achternaam;
 
     /**
      * @var string
@@ -76,7 +63,18 @@ class Gast
      */
     private $taal;
 
-
+    /**
+     * @ORM\ManyToMany(targetEntity="Reservering")
+     * @ORM\JoinTable(name="Gast_reservering",
+     *      joinColumns={@ORM\JoinColumn(name="gast_nummer", referencedColumnName="id")},
+     *      inverseJoinColumns={@ORM\JoinColumn(name="reserveringsnummer", referencedColumnName="id", unique=true)})
+     */
+    private $reservering;
+    /**
+     * @ORM\ManyToOne(targetEntity="Klant", inversedBy="gast")
+     * @ORM\JoinColumn(name="Klantnummer", referencedColumnName="id")
+     */
+    private $klant;
     /**
      * Constructor
      */
@@ -120,30 +118,6 @@ class Gast
     }
 
     /**
-     * Set achternaam
-     *
-     * @param string $achternaam
-     *
-     * @return Gast
-     */
-    public function setAchternaam($achternaam)
-    {
-        $this->achternaam = $achternaam;
-
-        return $this;
-    }
-
-    /**
-     * Get achternaam
-     *
-     * @return string
-     */
-    public function getAchternaam()
-    {
-        return $this->achternaam;
-    }
-
-    /**
      * Set tussenvoegsel
      *
      * @param string $tussenvoegsel
@@ -165,6 +139,30 @@ class Gast
     public function getTussenvoegsel()
     {
         return $this->tussenvoegsel;
+    }
+
+    /**
+     * Set achternaam
+     *
+     * @param string $achternaam
+     *
+     * @return Gast
+     */
+    public function setAchternaam($achternaam)
+    {
+        $this->achternaam = $achternaam;
+
+        return $this;
+    }
+
+    /**
+     * Get achternaam
+     *
+     * @return string
+     */
+    public function getAchternaam()
+    {
+        return $this->achternaam;
     }
 
     /**

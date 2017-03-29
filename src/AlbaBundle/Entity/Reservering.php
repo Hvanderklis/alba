@@ -30,12 +30,6 @@ class Reservering
     private $aankomst;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Klant", inversedBy="Reservering")
-     * @ORM\JoinColumn(name="Reserverings_nummer", referencedColumnName="id")
-     */
-    private $klant;
-
-    /**
      * @var \DateTime
      *
      * @ORM\Column(name="Vertek", type="date")
@@ -49,11 +43,16 @@ class Reservering
      */
     private $opmerking;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="Klant", inversedBy="reservering")
+     * @ORM\JoinColumn(name="klant_nummer", referencedColumnName="id")
+     */
+    private $klant;
 
     /**
      * Get id
      *
-     * @return int
+     * @return integer
      */
     public function getId()
     {

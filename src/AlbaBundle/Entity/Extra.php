@@ -22,14 +22,6 @@ class Extra
     private $id;
 
     /**
-     * @ORM\ManyToMany(targetEntity="Reservering")
-     * @ORM\JoinTable(name="Extra_reservering",
-     *      joinColumns={@ORM\JoinColumn(name="extra_nummer", referencedColumnName="id")},
-     *      inverseJoinColumns={@ORM\JoinColumn(name="reserveringsnummer", referencedColumnName="id", unique=true)})
-     */
-    private $reserveringen;
-
-    /**
      * @var string
      *
      * @ORM\Column(name="Type", type="string", length=255)
@@ -50,11 +42,25 @@ class Extra
      */
     private $omschrijving;
 
+    /**
+     * @ORM\ManyToMany(targetEntity="Reservering")
+     * @ORM\JoinTable(name="Extra_reservering",
+     *      joinColumns={@ORM\JoinColumn(name="extra_nummer", referencedColumnName="id")},
+     *      inverseJoinColumns={@ORM\JoinColumn(name="reserveringsnummer", referencedColumnName="id", unique=true)})
+     */
+    private $reserveringen;
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->reserveringen = new \Doctrine\Common\Collections\ArrayCollection();
+    }
 
     /**
      * Get id
      *
-     * @return int
+     * @return integer
      */
     public function getId()
     {
@@ -102,7 +108,7 @@ class Extra
     /**
      * Get prijs
      *
-     * @return int
+     * @return integer
      */
     public function getPrijs()
     {
@@ -131,13 +137,6 @@ class Extra
     public function getOmschrijving()
     {
         return $this->omschrijving;
-    }
-    /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        $this->reserveringen = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**

@@ -30,12 +30,6 @@ class Reservering
     private $aankomst;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Klant", inversedBy="Reservering")
-     * @ORM\JoinColumn(name="Reserverings_nummer", referencedColumnName="id")
-     */
-    private $klant;
-
-    /**
      * @var \DateTime
      *
      * @ORM\Column(name="Vertek", type="date")
@@ -49,87 +43,9 @@ class Reservering
      */
     private $opmerking;
 
-
     /**
-     * Get id
-     *
-     * @return int
+     * @ORM\ManyToOne(targetEntity="Klant", inversedBy="reservering")
+     * @ORM\JoinColumn(name="klant_nummer", referencedColumnName="id")
      */
-    public function getId()
-    {
-        return $this->id;
-    }
-
-    /**
-     * Set aankomst
-     *
-     * @param \DateTime $aankomst
-     *
-     * @return Reservering
-     */
-    public function setAankomst($aankomst)
-    {
-        $this->aankomst = $aankomst;
-
-        return $this;
-    }
-
-    /**
-     * Get aankomst
-     *
-     * @return \DateTime
-     */
-    public function getAankomst()
-    {
-        return $this->aankomst;
-    }
-
-    /**
-     * Set vertek
-     *
-     * @param \DateTime $vertek
-     *
-     * @return Reservering
-     */
-    public function setVertek($vertek)
-    {
-        $this->vertek = $vertek;
-
-        return $this;
-    }
-
-    /**
-     * Get vertek
-     *
-     * @return \DateTime
-     */
-    public function getVertek()
-    {
-        return $this->vertek;
-    }
-
-    /**
-     * Set opmerking
-     *
-     * @param string $opmerking
-     *
-     * @return Reservering
-     */
-    public function setOpmerking($opmerking)
-    {
-        $this->opmerking = $opmerking;
-
-        return $this;
-    }
-
-    /**
-     * Get opmerking
-     *
-     * @return string
-     */
-    public function getOpmerking()
-    {
-        return $this->opmerking;
-    }
+    private $klant;
 }
-

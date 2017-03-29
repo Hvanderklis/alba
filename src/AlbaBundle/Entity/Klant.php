@@ -22,17 +22,6 @@ class Klant
     private $id;
 
     /**
-     *  @ORM\OneToMany(targetEntity="Betaling", mappedBy="Klant")
-     */
-    private $reservering;
-
-    /**
-     * @ORM\OneToMany(targetEntity="gast", mappedBy="Klant")
-     */
-    private $gast;
-
-
-    /**
      * @var string
      *
      * @ORM\Column(name="Voornaam", type="string", length=255)
@@ -95,11 +84,34 @@ class Klant
      */
     private $telefoon;
 
+    /**
+     *  @ORM\OneToMany(targetEntity="Reservering", mappedBy="klant")
+     */
+    private $reservering;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Gast", mappedBy="klant")
+     */
+    private $gast;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Kaart", mappedBy="klant")
+     */
+    private $kaart;
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->reservering = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->gast = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->kaart = new \Doctrine\Common\Collections\ArrayCollection();
+    }
 
     /**
      * Get id
      *
-     * @return int
+     * @return integer
      */
     public function getId()
     {
@@ -315,29 +327,21 @@ class Klant
     /**
      * Get telefoon
      *
-     * @return int
+     * @return integer
      */
     public function getTelefoon()
     {
         return $this->telefoon;
     }
-    /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        $this->reservering = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->gast = new \Doctrine\Common\Collections\ArrayCollection();
-    }
 
     /**
      * Add reservering
      *
-     * @param \AlbaBundle\Entity\Betaling $reservering
+     * @param \AlbaBundle\Entity\Reservering $reservering
      *
      * @return Klant
      */
-    public function addReservering(\AlbaBundle\Entity\Betaling $reservering)
+    public function addReservering(\AlbaBundle\Entity\Reservering $reservering)
     {
         $this->reservering[] = $reservering;
 
@@ -347,9 +351,9 @@ class Klant
     /**
      * Remove reservering
      *
-     * @param \AlbaBundle\Entity\Betaling $reservering
+     * @param \AlbaBundle\Entity\Reservering $reservering
      */
-    public function removeReservering(\AlbaBundle\Entity\Betaling $reservering)
+    public function removeReservering(\AlbaBundle\Entity\Reservering $reservering)
     {
         $this->reservering->removeElement($reservering);
     }
@@ -367,11 +371,11 @@ class Klant
     /**
      * Add gast
      *
-     * @param \AlbaBundle\Entity\gast $gast
+     * @param \AlbaBundle\Entity\Gast $gast
      *
      * @return Klant
      */
-    public function addGast(\AlbaBundle\Entity\gast $gast)
+    public function addGast(\AlbaBundle\Entity\Gast $gast)
     {
         $this->gast[] = $gast;
 
@@ -381,9 +385,9 @@ class Klant
     /**
      * Remove gast
      *
-     * @param \AlbaBundle\Entity\gast $gast
+     * @param \AlbaBundle\Entity\Gast $gast
      */
-    public function removeGast(\AlbaBundle\Entity\gast $gast)
+    public function removeGast(\AlbaBundle\Entity\Gast $gast)
     {
         $this->gast->removeElement($gast);
     }
@@ -396,5 +400,39 @@ class Klant
     public function getGast()
     {
         return $this->gast;
+    }
+
+    /**
+     * Add kaart
+     *
+     * @param \AlbaBundle\Entity\Kaart $kaart
+     *
+     * @return Klant
+     */
+    public function addKaart(\AlbaBundle\Entity\Kaart $kaart)
+    {
+        $this->kaart[] = $kaart;
+
+        return $this;
+    }
+
+    /**
+     * Remove kaart
+     *
+     * @param \AlbaBundle\Entity\Kaart $kaart
+     */
+    public function removeKaart(\AlbaBundle\Entity\Kaart $kaart)
+    {
+        $this->kaart->removeElement($kaart);
+    }
+
+    /**
+     * Get kaart
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getKaart()
+    {
+        return $this->kaart;
     }
 }

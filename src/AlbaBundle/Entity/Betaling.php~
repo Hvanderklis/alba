@@ -29,12 +29,6 @@ class Betaling
     private $betaald;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Kaart", inversedBy="Betaling")
-     * @ORM\JoinColumn(name="Kaartnummer", referencedColumnName="id")
-     */
-    private $kaart;
-
-    /**
      * @var \DateTime
      *
      * @ORM\Column(name="Datum", type="date")
@@ -42,93 +36,8 @@ class Betaling
     private $datum;
 
     /**
-     * @var int
-     *
-     * @ORM\Column(name="kaart_nummer", type="integer")
+     * @ORM\ManyToOne(targetEntity="Kaart", inversedBy="betaling")
+     * @ORM\JoinColumn(name="Kaartnummer", referencedColumnName="id")
      */
-    private $kaartNummer;
-
-
-    /**
-     * Get id
-     *
-     * @return int
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
-
-    /**
-     * Set betaald
-     *
-     * @param string $betaald
-     *
-     * @return Betaling
-     */
-    public function setBetaald($betaald)
-    {
-        $this->betaald = $betaald;
-
-        return $this;
-    }
-
-    /**
-     * Get betaald
-     *
-     * @return string
-     */
-    public function getBetaald()
-    {
-        return $this->betaald;
-    }
-
-    /**
-     * Set datum
-     *
-     * @param \DateTime $datum
-     *
-     * @return Betaling
-     */
-    public function setDatum($datum)
-    {
-        $this->datum = $datum;
-
-        return $this;
-    }
-
-    /**
-     * Get datum
-     *
-     * @return \DateTime
-     */
-    public function getDatum()
-    {
-        return $this->datum;
-    }
-
-    /**
-     * Set kaartNummer
-     *
-     * @param integer $kaartNummer
-     *
-     * @return Betaling
-     */
-    public function setKaartNummer($kaartNummer)
-    {
-        $this->kaartNummer = $kaartNummer;
-
-        return $this;
-    }
-
-    /**
-     * Get kaartNummer
-     *
-     * @return int
-     */
-    public function getKaartNummer()
-    {
-        return $this->kaartNummer;
-    }
+    private $kaart;
 }
-

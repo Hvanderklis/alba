@@ -31,7 +31,7 @@ class Reservering
 
     /**
      * @ORM\ManyToOne(targetEntity="Klant", inversedBy="Reservering")
-     * @ORM\JoinColumn(name="Reserverings_nummer", referencedColumnName="id")
+     * @ORM\JoinColumn(name="Klantnummer", referencedColumnName="id")
      */
     private $klant;
 

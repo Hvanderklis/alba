@@ -17,9 +17,9 @@
         <span class="title-bar-title">Dashboard</span>
     </div>
     <ul class="menu align-right">
-        <li><a href="#">Log off</a></li>
+        <li><a href="{{ path('fos_user_security_logout') }}">Log off</a></li>
         <li><a href="#">Help</a></li>
-        <li><a href="#">Account</a></li>
+        <li><a href="{{ path('fos_user_profile_show') }}">Account</a></li>
     </ul>
 </div>
 <div class="off-canvas position-left" id="offCanvasLeft" data-off-canvas>
@@ -27,16 +27,15 @@
         <span aria-hidden="true">&times;</span>
     </button>
     <ul class="vertical dropdown menu" data-dropdown-menu style="max-width: 300px;">
-        <li><a href="#">Item 1</a></li>
-        <li><a href="#">Item 2</a></li>
-        <li><a href="#">Item 3</a></li>
-        <li><a href="#">Item 4</a></li>
+        <li><a href="#">Customers</a></li>
+        <li><a href="{{ path('reservationIndex') }}">Reservation</a></li>
+        <li><a href="#">Rooms and Season</a></li>
+        <li><a href="#">Extra's</a></li>
     </ul>
 </div>
 {% block body %}{% endblock %}
 
 {% block javascripts %}{% endblock %}
-<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 <script src="{{ asset('bundles/alba/js/vendor/jquery.js') }}"></script>
 <script src="{{ asset('bundles/alba/js/vendor/foundation.min.js') }}"></script>
 <script>

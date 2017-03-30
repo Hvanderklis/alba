@@ -25,4 +25,14 @@ class ReservationController extends Controller
             "reservations" => $reservations
         ]);
     }
+
+    /**
+     * @return \Symfony\Component\HttpFoundation\Response
+     * @Route("/{id}", name="reservationShow")
+     */
+    public function ShowAction(){
+        return $this->render("@Alba/Reservation/show.html.twig", [
+
+        ]);
+    }
 }

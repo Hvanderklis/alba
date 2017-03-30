@@ -1,6 +1,8 @@
 {% extends 'AlbaBundle::Dashboard.html.twig' %}
 {% block body %}
-    <h1>Reservation</h1>
+    <h1 class="pull-left">Reservation</h1>
+    <a href="" class="pull-right btn btn-info"><i class="fa fa-plus"></i></a>
+    <div class="clearfix"></div>
     <table class="table">
         <thead>
         <tr>
@@ -8,6 +10,7 @@
             <th>Arrival</th>
             <th>Departure</th>
             <th>Note</th>
+            <th>More</th>
         </tr>
         </thead>
         <tbody>
@@ -17,13 +20,10 @@
                     <td>{{ reservation.aankomst |date("m/d/Y") }}</td>
                     <td>{{ reservation.vertek |date("m/d/Y")}}</td>
                     <td>{{ reservation.opmerking }}</td>
+                    <td><a class="btn btn-info"><i class="fa fa-eye"></i></a></td>
                 </tr>
             {% endfor %}
         </tbody>
     </table>
-
-
-
-
 {% endblock %}
 

@@ -1,3 +1,7 @@
+alba_reservering:
+    resource: "@AlbaBundle/Controller/ReserveringController.php"
+    type:     annotation
+
 # app/config/routing.yml
 fos_user:
     resource: "@FOSUserBundle/Resources/config/routing/all.xml"

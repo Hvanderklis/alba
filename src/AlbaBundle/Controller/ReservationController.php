@@ -2,6 +2,7 @@
 
 namespace AlbaBundle\Controller;
 
+use AlbaBundle\Entity\Reservering;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
@@ -30,9 +31,9 @@ class ReservationController extends Controller
      * @return \Symfony\Component\HttpFoundation\Response
      * @Route("/{id}", name="reservationShow")
      */
-    public function ShowAction(){
+    public function ShowAction(Reservering $reservering){
         return $this->render("@Alba/Reservation/show.html.twig", [
-
+            'reservation' => $reservering
         ]);
     }
 }

@@ -1,4 +1,25 @@
 {% extends 'AlbaBundle::dashboard.html.twig' %}
 {% block body %}
+    <h1>Reservering</h1>
 
+    <table>
+        <tbody>
+        <tr>
+            <th>Id</th>
+            <td>{{ reservation.id }}</td>
+        </tr>
+        <tr>
+            <th>Aankomst</th>
+            <td>{% if reservation.aankomst %}{{ reservation.aankomst|date('Y-m-d') }}{% endif %}</td>
+        </tr>
+        <tr>
+            <th>Vertek</th>
+            <td>{% if reservation.vertek %}{{ reservation.vertek|date('Y-m-d') }}{% endif %}</td>
+        </tr>
+        <tr>
+            <th>Opmerking</th>
+            <td>{{ reservation.opmerking }}</td>
+        </tr>
+        </tbody>
+    </table>
 {% endblock %}

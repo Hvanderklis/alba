@@ -18,6 +18,17 @@ class DashboardController extends Controller
      * @Security("has_role('ROLE_USER')")
      */
     public function IndexAction(){
-        return $this->render('@Alba/Reservation/show.html.twig');
+        return $this->render('AlbaBundle:Default:DashboardIndex.html.twig', [
+
+        ]);
+    }
+
+    /**
+     * @Route("/faq", name="faq")
+     */
+    public function FAQAction(){
+        return $this->render("AlbaBundle:Default:FAQ.html.twig", [
+
+        ]);
     }
 }

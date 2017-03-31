@@ -1,0 +1,29 @@
+{% extends 'AlbaBundle::Dashboard.html.twig' %}
+{% block body %}
+    <div class="panel">
+        <h1>Reservation</h1>
+        <a href="" class="button"><i class="fa fa-plus"></i></a>
+        <table class="table">
+            <thead>
+            <tr>
+                <th>Reservation number</th>
+                <th>Arrival</th>
+                <th>Departure</th>
+                <th>Note</th>
+                <th>More</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for reservation in reservations %}
+                <tr>
+                    <td>{{ reservation.id }}</td>
+                    <td>{{ reservation.aankomst |date("m/d/Y") }}</td>
+                    <td>{{ reservation.vertek |date("m/d/Y")}}</td>
+                    <td>{{ reservation.opmerking }}</td>
+                    <td><a href="{{ path('reservationShow', { 'id': reservation.id }) }}" class="button"><i class="fa fa-eye"></i></a></td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

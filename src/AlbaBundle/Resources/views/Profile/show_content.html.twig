@@ -1,20 +1,40 @@
 {% trans_default_domain 'FOSUserBundle' %}
-<div class="main">
-    <h2 class="sub-header">Profile</h2>
-    <div class="table-responsive">
-        <table class="table table-hover profile-table">
-            <tbody>
-            <tr>
-                <th>Username</th>
-                <td>{{ user.username }}</td>
-            </tr>
-            <tr>
-                <th>Email</th>
-                <td>{{ user.email }}</td>
-            </tbody>
-        </table>
+<div class="title-bar">
+    <div class="title-bar-left">
+        <button class="menu-icon" type="button" data-open="offCanvasLeft"></button>
+        <span class="title-bar-title">Dashboard</span>
     </div>
-    <a href="{{ path('fos_user_change_password') }}" class="btn btn-edit pull-left">Change Password</a>
-    <a href="{{ path('fos_user_profile_edit') }}" class="btn btn-edit pull-right">Edit Profile</a>
-    <div class="clearfix"></div>
+    <ul class="menu align-right">
+        <li><a href="{{ path('fos_user_security_logout') }}">Log off</a></li>
+        <li><a href="{{ path('faq') }}">Help</a></li>
+        <li><a href="{{ path('fos_user_profile_show') }}">Account</a></li>
+    </ul>
 </div>
+<div class="off-canvas position-left" id="offCanvasLeft" data-off-canvas>
+    <button class="close-button" aria-label="Close menu" type="button" data-close>
+        <span aria-hidden="true">&times;</span>
+    </button>
+    <ul class="vertical dropdown menu" data-dropdown-menu style="max-width: 300px;">
+        <li><a href="#">Customers</a></li>
+        <li><a href="{{ path('reservationIndex') }}">Reservation</a></li>
+        <li><a href="#">Rooms and Season</a></li>
+        <li><a href="#">Extra's</a></li>
+    </ul>
+</div>
+
+
+<h2 class="sub-header">Profile</h2>
+<table class="table">
+    <tbody>
+    <tr>
+        <th>Username</th>
+        <td>{{ user.username }}</td>
+    </tr>
+    <tr>
+        <th>Email</th>
+        <td>{{ user.email }}</td>
+    </tbody>
+</table>
+<a href="{{ path('fos_user_change_password') }}" class="button">Change Password</a>
+<a href="{{ path('fos_user_profile_edit') }}" class="button">Edit Profile</a>
+

@@ -1,3 +1,45 @@
 .panel {
     margin: 30px 150px 0 150px ;
 }
+
+ul li a {
+    color: white;
+}
+.title-bar {
+    background-color: #0e4a71;
+}
+#offCanvasLeft {
+    background-color: #b300b3;
+}
+
+.login-panel {
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    padding: 15px;
+    margin-top: 30px;
+}
+.login-panel i {
+    font-size: 30px;
+    line-height: 50px;
+    color: #999;
+}
+.login-panel form input, .login-panel form span {
+    height: 50px;
+}
+.login-panel .welcome {
+    font-size: 26px;
+    text-align: center;
+    margin-left: 0;
+}
+.login-panel p {
+    font-size: 13px;
+    font-weight: 200;
+    margin-left: 25%;
+}
+.login-panel .button {
+    margin-left: 35%;
+}
+.iconC {
+
+}
+

@@ -15,14 +15,113 @@
     <link rel="stylesheet" href="{{ asset('bundles/alba/bootstrap-3.3.7-dist/css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('bundles/alba/font-awesome-4.7.0/css/font-awesome.min.css') }}">
     <link rel="stylesheet" href="{{ asset('bundles/alba/css/styles.css') }}">
+    <link rel='stylesheet' href='../public/calendar/lib/cupertino/jquery-ui.min.css' />
 
     <title>{% block title %}Welcome!{% endblock %}</title>
-    {% block stylesheets %}{% endblock %}
-    <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+
+        <script src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
+        <script src="{{ path('fos_js_routing_js', { callback: 'fos.Router.setData' }) }}"></script>
+        <link rel="stylesheet" href="{{ asset('bundles/adesignscalendar/css/fullcalendar/fullcalendar.css') }}" />
+        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+
+    <script type="text/javascript" src="{{ asset('bundles/adesignscalendar/js/jquery/jquery-1.8.2.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('bundles/adesignscalendar/js/fullcalendar/jquery.fullcalendar.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('bundles/adesignscalendar/js/calendar-settings.js') }}"></script>
+    <script>
+        $(document).ready(function() {
+
+            $('#calendar').fullCalendar({
+                header: {
+                    left: 'prev,next today',
+                    center: 'title',
+                    right: 'month,basicWeek,basicDay'
+                },
+                defaultDate: '2017-02-12',
+                navLinks: true, // can click day/week names to navigate views
+                editable: true,
+                eventLimit: true, // allow "more" link when too many events
+                events: [
+                    {
+                        title: 'All Day Event',
+                        start: '2017-04-01'
+                    },
+                    {
+                        title: 'Long Event',
+                        start: '2017-04-07',
+                        end: '2017-04-10'
+                    },
+                    {
+                        id: 999,
+                        title: 'Repeating Event',
+                        start: '2017-04-09T16:00:00'
+                    },
+                    {
+                        id: 999,
+                        title: 'Repeating Event',
+                        start: '2017-04-16T16:00:00'
+                    },
+                    {
+                        title: 'Conference',
+                        start: '2017-04-11',
+                        end: '2017-04-13'
+                    },
+                    {
+                        title: 'Meeting',
+                        start: '2017-04-12T10:30:00',
+                        end: '2017-04-12T12:30:00'
+                    },
+                    {
+                        title: 'Lunch',
+                        start: '2017-04-12T12:00:00'
+                    },
+                    {
+                        title: 'Meeting',
+                        start: '2017-04-12T14:30:00'
+                    },
+                    {
+                        title: 'Happy Hour',
+                        start: '2017-04-12T17:30:00'
+                    },
+                    {
+                        title: 'Dinner',
+                        start: '2017-04-12T20:00:00'
+                    },
+                    {
+                        title: 'Birthday Party',
+                        start: '2017-04-13T07:00:00'
+                    },
+                    {
+                        title: 'Click for Google',
+                        url: 'http://google.com/',
+                        start: '2017-04-28'
+                    }
+                ]
+            });
+
+        });
+    </script>
+    <style>
+
+        body {
+            margin: 40px 10px;
+            padding: 0;
+            font-family: "Lucida Grande",Helvetica,Arial,Verdana,sans-serif;
+            font-size: 14px;
+        }
+
+        #calendar {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+    </style>
 
 </head>
 <body>
-
+<div id="add-event" title="Add New Event">
+    <form action="" id ="add-event-form" name="add-event-form">
+        <label for="title">Event Name</label>
+        <input type="text" name="title" id="title"/>
 <nav class="navbar navbar-inverse navbar-fixed-top">
     <div class="container-fluid">
         <div class="navbar-header">
@@ -72,7 +171,7 @@
                 <li><a>Overview</a></li>
             </ul>
             <ul class="nav nav-sidebar">
-                <li><a href="#">Customers</a></li>
+                <li class="active"><a href="#">Customers <span class="sr-only">(current)</span></a></li>
                 <li><a href="#">Kamers</a></li>
                 <li><a href="#">Vakantie</a></li>
                 <li><a href="#">Reservatie</a></li>
@@ -83,15 +182,11 @@
         </div>
         <div class="main">
             <div class="col-md-7 col-md-offset-2">
-                {% block body %}{% endblock %}
             </div>
         </div>
     </div>
 </div>
-{% block javascripts %}{% endblock %}
-<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-<!-- Include all compiled plugins (below), or include individual files as needed -->
-<script src="{{ asset('bundles/alba/bootstrap-3.3.7-dist/js/bootstrap.min.js') }}"></script>
+
+<div id='calendar'></div>
 </body>
 </html>

@@ -15,13 +15,12 @@ class ReservationController extends Controller
 {
     /**
      * @return \Symfony\Component\HttpFoundation\Response
-     * @Route("/", name="reservationIndex")
+//     * @Route("/", name="reservationIndex")
      */
     public function IndexAction(){
         $em = $this->getDoctrine()->getManager();
         $repositoryReservation = $em->getRepository("AlbaBundle:Reservering");
         $reservations = $repositoryReservation->findAll();
-
         return $this->render("AlbaBundle:Reservation:index.html.twig", [
             "reservations" => $reservations
         ]);

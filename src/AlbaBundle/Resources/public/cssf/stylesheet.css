@@ -1,3 +1,46 @@
-#home{
-	background-image: url(header.jpg);
+#colorp {
+	background-color: #6d41ba;
+}
+#colorw {
+	color: white;
+}
+ul li a {
+	color: white;
+}
+#home {
+	background-image: url("../img/Alba B&B header.jpg");
+	background-repeat: no-repeat;
+	background-size: cover;
+	padding-top: 15px;
+}
+#book {
+	background-color: purple;
+}
+#realEstateMenu {
+	background-color: #0d47a1;
+	margin-bottom: -25px;
+}
+.top-bar ul {
+	background-color: #0d47a1;
+}
+#footer {
+	background-color: #0d47a1;
+}
+footer {
+	background-color: #0e3b81;
+}
+label {
+	color: white;
+}
+p {
+	color: white;
+}
+i {
+	color: purple;
+}
+.button {
+	background-color: #a567a5!important;
+}
+.letters {
+	color: black;
 }

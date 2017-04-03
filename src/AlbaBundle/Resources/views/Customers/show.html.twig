@@ -1,0 +1,41 @@
+{% extends 'AlbaBundle::adminpanel.html.twig' %}
+{% block body %}
+    <h1>Reservering</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ customers.id }}</td>
+            </tr>
+            <tr>
+                <th>Voornaam</th>
+                <td>{{ customers.Voornaam }}</td>
+            </tr>
+            <tr>
+                <th>tussenvoegsel</th>
+                <td>{{ customers.Tussenvoegsel }}</td>
+            </tr>
+            <tr>
+                <th>Achternaam</th>
+                <td>{{ customers.Achternaam }}</td>
+            </tr>
+            <tr>
+                <th>Geboortedatum</th>
+                <td>{{ customers.Geboortedatum |date('Y-m-d')}}</td>
+            </tr>
+            <tr>
+                <th>Geslacht</th>
+                <td>{{ customers.Geslacht }}</td>
+            </tr>
+            <tr>
+                <th>Email</th>
+                <td>{{ customers.Email }}</td>
+            </tr>
+            <tr>
+                <th>Telefoon</th>
+                <td>{{ customers.Telefoon }}</td>
+            </tr>
+        </tbody>
+    </table>
+{% endblock %}

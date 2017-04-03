@@ -4,8 +4,9 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-<<<<<<< HEAD
-    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>Alba B&B</title>
+
+    !-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -16,21 +17,10 @@
     <link rel="stylesheet" href="{{ asset('bundles/alba/bootstrap-3.3.7-dist/css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('bundles/alba/font-awesome-4.7.0/css/font-awesome.min.css') }}">
     <link rel="stylesheet" href="{{ asset('bundles/alba/css/styles.css') }}">
-=======
->>>>>>> adf044b709b3350e699aa628c6a297fa00e9ce56
-
-    <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
-<<<<<<< HEAD
-=======
-    <link rel="stylesheet" href="{{ asset('bundles/alba/cssf/foundation.css') }}">
-    <link rel="stylesheet" href="{{ asset('bundles/alba/cssf/foundation.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('bundles/alba/cssf/stylesheet.css') }}">
-    <link rel="stylesheet" href="{{ asset('bundles/alba/css/styles.css') }}">
 
     <title>{% block title %}Welcome!{% endblock %}</title>
     {% block stylesheets %}{% endblock %}
     <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
->>>>>>> adf044b709b3350e699aa628c6a297fa00e9ce56
 
 </head>
 <body>
@@ -75,69 +65,8 @@
             </form>
         </div>
     </div>
-<<<<<<< HEAD
 </nav>
 
-=======
-    <ul class="menu align-right">
-        <li><a href="#">Log off</a></li>
-        <li><a href="#">Help</a></li>
-        <li><a href="#">Account</a></li>
-    </ul>
-</div>
-<div class="off-canvas position-left" id="offCanvasLeft" data-off-canvas>
-    <button class="close-button" aria-label="Close menu" type="button" data-close>
-        <span aria-hidden="true">&times;</span>
-    </button>
-    <ul class="vertical dropdown menu" data-dropdown-menu style="max-width: 300px;">
-        <li><a href="#">Customers</a></li>
-        <li><a href="#">Rooms</a></li>
-        <li><a href="#">Holidays</a></li>
-        <li><a href="#">Reservation</a></li>
-    </ul>
-</div>
-<!--nav class="navbar navbar-inverse navbar-fixed-top">
-    <div class="container-fluid">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand">Alba B&B</a>
-        </div>
-        <div id="navbar" class="navbar-collapse collapse">
-            <ul class="nav navbar-nav navbar-right">
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dashboard <span class="caret"></span></a>
-                    <ul class="dropdown-menu">
-                        <li><a href="#">Customers</a></li>
-                        <li><a href="#">Rooms</a></li>
-                        <li><a href="#">Holidays</a></li>
-                        <li><a href="#">Reservation</a></li>
-                        <li><a href="#">Breakfast</a></li>
-                        <li><a href="#">Archiment</a></li>
-                    </ul>
-                </li>
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Administrator <span class="caret"></span></a>
-                    <ul class="dropdown-menu">
-                        <li><a href="#">Profile</a></li>
-                        <li><a href="#">Change Password</a></li>
-                        <li role="separator" class="divider"></li>
-                        <li><a href="#">Log out</a></li>
-                    </ul>
-                </li>
-                <li><a href="">Help</a></li>
-            </ul>
-            <form class="navbar-form">
-                <input type="text" class="form-control" placeholder="Search...">
-            </form>
-        </div>
-    </div>
-</nav>
->>>>>>> adf044b709b3350e699aa628c6a297fa00e9ce56
 <div class="container-fluid">
     <div class="row">
         <div class="col-md-2 sidebar">
@@ -160,12 +89,14 @@
             </div>
         </div>
     </div>
-<<<<<<< HEAD
 </div>
-=======
-</div-->
->>>>>>> adf044b709b3350e699aa628c6a297fa00e9ce56
+
 {% block javascripts %}{% endblock %}
+<script src="js/vendor/jquery.js"></script>
+<script src="js/vendor/foundation.min.js"></script>
+<script>
+    $(document).foundation();
+</script>
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <!-- Include all compiled plugins (below), or include individual files as needed -->

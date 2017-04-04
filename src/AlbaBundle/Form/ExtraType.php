@@ -13,7 +13,12 @@ class ExtraType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('type')->add('prijs')->add('omschrijving')->add('reserveringen');
+        $builder
+            ->add('type')
+            ->add('prijs')
+            ->add('omschrijving')
+//            ->add('reserveringen')
+        ;
     }
     
     /**

@@ -1,16 +1,12 @@
-{% extends 'base.html.twig' %}
+{% extends '@Alba/adminpanel.html.twig' %}
 
 {% block body %}
     <h1>Extra creation</h1>
 
     {{ form_start(form) }}
         {{ form_widget(form) }}
-        <input type="submit" value="Create" />
+        <input class="button success" style="float: right" type="submit" value="Create" />
     {{ form_end(form) }}
 
-    <ul>
-        <li>
-            <a href="{{ path('extra_index') }}">Back to the list</a>
-        </li>
-    </ul>
+    <a href="{{ path('extra_index') }}" class="button secondary" style="float: left">Back to the list</a>
 {% endblock %}

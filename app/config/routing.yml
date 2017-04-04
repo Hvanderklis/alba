@@ -1,3 +1,7 @@
+alba_extra:
+    resource: "@AlbaBundle/Controller/ExtraController.php"
+    type:     annotation
+
 alba_reservering:
     resource: "@AlbaBundle/Controller/ReserveringController.php"
     type:     annotation

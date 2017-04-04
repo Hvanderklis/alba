@@ -91,7 +91,7 @@ class ExtraController extends Controller
             return $this->redirectToRoute('extra_edit', array('id' => $extra->getId()));
         }
 
-        return $this->render('extra/edit.html.twig', array(
+        return $this->render('AlbaBundle:Extra:edit.html.twig', array(
             'extra' => $extra,
             'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),

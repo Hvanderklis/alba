@@ -162,22 +162,23 @@
         </div>
     </footer>
         {% endblock %}
-        {% block javascripts %}{% endblock %}
-        <script>
-            function initMap() {
-                var uluru = {lat: 57.474911, lng: -3.216983};
-                var map = new google.maps.Map(document.getElementById('map'), {
-                    zoom: 13,
-                    center: uluru
-                });
-                var marker = new google.maps.Marker({
-                    position: uluru,
-                    map: map
-                });
-            }
-        </script>
-        <script async defer
-                src="https://maps.googleapis.com/maps/api/js?key= AIzaSyCSfpv4Zcn3ozYBfP3kMYikUA03XT_wkzg &callback=initMap">
-        </script>
+        {% block javascripts %}
+            <script>
+                function initMap() {
+                    var uluru = {lat: 57.474911, lng: -3.216983};
+                    var map = new google.maps.Map(document.getElementById('map'), {
+                        zoom: 12,
+                        center: uluru
+                    });
+                    var marker = new google.maps.Marker({
+                        position: uluru,
+                        map: map
+                    });
+                }
+            </script>
+            <script async defer
+                    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCBHP5Qvd9BG79TFPbNTVditsbUc-uY7Ng&callback=initMap">
+            </script>
+        {% endblock %}
     </body>
 </html>

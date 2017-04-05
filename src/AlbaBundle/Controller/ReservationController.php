@@ -9,7 +9,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 /**
  * Class ReservationController
  * @package AlbaBundle\Controller
- * @Route("dashboard/reservation")
+ * @Route("adminpanel/reservation")
  */
 class ReservationController extends Controller
 {
@@ -31,8 +31,11 @@ class ReservationController extends Controller
      * @Route("/{id}", name="reservationShow")
      */
     public function ShowAction(Reservering $reservering){
+        $klant = $this->getDoctrine()->getRepository('AlbaBundle:Reservering')->CustomerShow(1);
+
         return $this->render("@Alba/Reservation/show.html.twig", [
-            'reservation' => $reservering
+            'reservation' => $reservering,
+            'klant' => $klant
         ]);
     }
 }

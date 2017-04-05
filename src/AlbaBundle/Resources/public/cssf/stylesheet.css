@@ -56,7 +56,7 @@ i {
 	background-color: #0d47a1 !important;
 }
 .callout.warning {
-	background-color: #ffffff !important;
+	background-color: purple !important;
 }
 .sight {
     height: 100%;
@@ -64,4 +64,20 @@ i {
 #map {
     height: 200px;
     width: 100%;
+}
+#sight {
+    height: 400px;
+    width: 100%;
+}
+#linnfalls {
+    min-height: 370px;
+}
+#aberlour {
+    min-height: 380px;
+}
+#knockando {
+    min-height: 325px;
+}
+#macallan {
+    min-height: 370px;
 }

@@ -48,3 +48,7 @@ i {
     font-size: 30px!important;
     padding-bottom: 20px;
 }
+#map {
+    height: 200px;
+    width: 100%;
+}

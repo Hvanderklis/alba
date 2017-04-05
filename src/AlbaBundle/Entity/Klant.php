@@ -85,17 +85,17 @@ class Klant
     private $telefoon;
 
     /**
-     *  @ORM\OneToMany(targetEntity="Reservering", mappedBy="klant")
+     *  @ORM\OneToMany(targetEntity="Reservering", mappedBy="Klant")
      */
     private $reservering;
 
     /**
-     * @ORM\OneToMany(targetEntity="Gast", mappedBy="klant")
+     * @ORM\OneToMany(targetEntity="Gast", mappedBy="Klant")
      */
     private $gast;
 
     /**
-     * @ORM\OneToMany(targetEntity="Kaart", mappedBy="klant")
+     * @ORM\OneToMany(targetEntity="Kaart", mappedBy="Klant")
      */
     private $kaart;
     /**

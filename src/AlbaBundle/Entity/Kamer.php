@@ -46,7 +46,7 @@ class Kamer
      * @ORM\ManyToMany(targetEntity="Reservering")
      * @ORM\JoinTable(name="Kamer_reservering",
      *      joinColumns={@ORM\JoinColumn(name="kamer_nummer", referencedColumnName="id")},
-     *      inverseJoinColumns={@ORM\JoinColumn(name="reserveringsnummer", referencedColumnName="id", unique=true)})
+     *      inverseJoinColumns={@ORM\JoinColumn(name="reserveringsnummer", referencedColumnName="id", unique=true, nullable=true, onDelete="SET NULL")})
      */
     private $reservering;
 
@@ -56,7 +56,7 @@ class Kamer
     private $kamerAfbeelding;
 
     /**
-     * @ORM\OneToMany(targetEntity="KamerPrijs", mappedBy="kamer")
+     * @ORM\OneToMany(targetEntity="KamerPrijs", mappedBy="kamer", cascade={"remove"}, orphanRemoval=true)
      */
     private $kamerPrijs;
 

@@ -1,3 +1,19 @@
+alba_kamer_prijs:
+    resource: "@AlbaBundle/Controller/KamerPrijsController.php"
+    type:     annotation
+
+alba_reservering:
+    resource: "@AlbaBundle/Controller/ReserveringController.php"
+    type:     annotation
+
+alba_seizoen:
+    resource: "@AlbaBundle/Controller/SeizoenController.php"
+    type:     annotation
+
+alba_kamer:
+    resource: "@AlbaBundle/Controller/KamerController.php"
+    type:     annotation
+
 alba_reservering:
     resource: "@AlbaBundle/Controller/ReserveringController.php"
     type:     annotation

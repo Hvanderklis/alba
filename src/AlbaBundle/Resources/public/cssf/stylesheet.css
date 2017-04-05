@@ -7,3 +7,9 @@ ul li a {
 #offCanvasLeft {
 	background-color: #b300b3;
 }
+.callout.success {
+	background-color: #fa0000 !important;
+}
+.callout.warning {
+	background-color: #ffd200 !important;
+}

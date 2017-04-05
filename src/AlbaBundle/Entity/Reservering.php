@@ -154,4 +154,9 @@ class Reservering
     {
         return $this->klant;
     }
+
+    public function __toString()
+    {
+        return $this->name;
+    }
 }

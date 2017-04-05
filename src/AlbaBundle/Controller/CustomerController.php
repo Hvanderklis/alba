@@ -9,7 +9,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 /**
  * Class CustomerController
  * @package AlbaBundle\Controller
- * @Route("/dashboard/customer")
+ * @Route("/adminpanel/customer")
  */
 class CustomerController extends Controller
 {

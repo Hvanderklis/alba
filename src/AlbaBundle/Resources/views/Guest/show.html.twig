@@ -1,0 +1,52 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Gast</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ gast.id }}</td>
+            </tr>
+            <tr>
+                <th>Voornaam</th>
+                <td>{{ gast.voornaam }}</td>
+            </tr>
+            <tr>
+                <th>Tussenvoegsel</th>
+                <td>{{ gast.tussenvoegsel }}</td>
+            </tr>
+            <tr>
+                <th>Achternaam</th>
+                <td>{{ gast.achternaam }}</td>
+            </tr>
+            <tr>
+                <th>Woonplaats</th>
+                <td>{{ gast.woonplaats }}</td>
+            </tr>
+            <tr>
+                <th>Geboortedatum</th>
+                <td>{% if gast.geboortedatum %}{{ gast.geboortedatum|date('Y-m-d') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Taal</th>
+                <td>{{ gast.taal }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('gast_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('gast_edit', { 'id': gast.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

@@ -1,3 +1,11 @@
+alba_gast:
+    resource: "@AlbaBundle/Controller/GastController.php"
+    type:     annotation
+
+alba_bank:
+    resource: "@AlbaBundle/Controller/BankController.php"
+    type:     annotation
+
 alba_reservering:
     resource: "@AlbaBundle/Controller/ReserveringController.php"
     type:     annotation

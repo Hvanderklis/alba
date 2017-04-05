@@ -15,11 +15,4 @@ class DefaultController extends Controller
         return $this->render('AlbaBundle:Default:index.html.twig');
     }
 
-    /**
-     * @Route("/dashboard")
-     */
-    public function dashboardAction()
-    {
-        return $this->render('AlbaBundle:Default:test.html.twig');
-    }
 }

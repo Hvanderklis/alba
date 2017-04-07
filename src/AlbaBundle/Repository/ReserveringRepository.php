@@ -3,6 +3,7 @@
 namespace AlbaBundle\Repository;
 
 use Doctrine\ORM\EntityRepository;
+
 /**
  * ReserveringRepository
  *
@@ -11,14 +12,5 @@ use Doctrine\ORM\EntityRepository;
  */
 class ReserveringRepository extends EntityRepository
 {
-    public function CustomerShow($klantId){
-        $qb = $this->getEntityManager()->createQueryBuilder();
-        $qb
-            ->from('AlbaBundle:Klant', 'k')
-            ->select(array('k.id','k.voornaam', 'k.tussenvoegsel', 'k.achternaam'))
-            ->where('k.id = :klantId')
-            ->setParameter('klantId', $klantId);
 
-             return $qb->getQuery()->getResult();
-    }
 }

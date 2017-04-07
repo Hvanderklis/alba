@@ -17,7 +17,7 @@ class ExtraType extends AbstractType
             ->add('type')
             ->add('prijs')
             ->add('omschrijving')
-//            ->add('reserveringen')
+            ->add('reserveringen')
         ;
     }
     

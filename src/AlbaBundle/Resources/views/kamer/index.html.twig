@@ -1,0 +1,42 @@
+{% extends 'AlbaBundle::adminpanel.html.twig' %}
+{% block body %}
+    <h1>Kamers list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Kamernaam</th>
+                <th>Prijs</th>
+                <th>Omschrijving</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for kamer in kamers %}
+            <tr>
+                <td><a href="{{ path('kamer_show', { 'id': kamer.id }) }}">{{ kamer.id }}</a></td>
+                <td>{{ kamer.kamerNaam }}</td>
+                <td>{{ kamer.prijs }}</td>
+                <td>{{ kamer.omschrijving }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a class="button" href="{{ path('kamer_show', { 'id': kamer.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a class ="button warning" href="{{ path('kamer_edit', { 'id': kamer.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a class="button success" href="{{ path('kamer_new') }}">Create a new kamer</a>
+        </li>
+    </ul>
+{% endblock %}

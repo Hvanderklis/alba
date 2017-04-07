@@ -1,0 +1,40 @@
+{% extends 'AlbaBundle::adminpanel.html.twig' %}
+
+{% block body %}
+    <h1>Kamer</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ kamer.id }}</td>
+            </tr>
+            <tr>
+                <th>Kamernaam</th>
+                <td>{{ kamer.kamerNaam }}</td>
+            </tr>
+            <tr>
+                <th>Prijs</th>
+                <td>{{ kamer.prijs }}</td>
+            </tr>
+            <tr>
+                <th>Omschrijving</th>
+                <td>{{ kamer.omschrijving }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a class="button secondary" href="{{ path('kamer_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a class="button warning" href="{{ path('kamer_edit', { 'id': kamer.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input class="button alert" type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

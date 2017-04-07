@@ -12,5 +12,7 @@ use Doctrine\ORM\EntityRepository;
  */
 class ReserveringRepository extends EntityRepository
 {
+    public function findCustomer(){
 
+    }
 }

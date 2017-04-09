@@ -1,5 +1,5 @@
 #colorp {
-    background-color: #6d41ba;
+    background-color: purple;
 }
 #colorw {
     color: white;
@@ -38,7 +38,7 @@ p {
 i {
     color: purple;
 }
-.button {
+.buttonC {
     background-color: #a567a5!important;
 }
 .letters {
@@ -46,7 +46,6 @@ i {
 }
 .fa {
     font-size: 30px!important;
-    padding-bottom: 20px;
 }
 #map {
     height: 200px;

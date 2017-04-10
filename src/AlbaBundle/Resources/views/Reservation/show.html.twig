@@ -1,25 +1,131 @@
-{% extends 'AlbaBundle::dashboard.html.twig' %}
+{% extends '@Alba/adminpanel.html.twig' %}
 {% block body %}
-    <h1>Reservering</h1>
+    <h1>Reservation details</h1>
+    <a href="{{ path('reservering_edit', { 'id': reservation.id }) }}" class="button"><i class="fa fa-pencil"></i></a>
 
     <table>
+        <thead>
+        <tr>
+            <th colspan="4">Reservation</th>
+        </tr>
+        <tr>
+            <th>Reservation number</th>
+            <th>Arrival</th>
+            <th>Departure</th>
+            <th>Note</th>
+        </tr>
+        </thead>
         <tbody>
         <tr>
-            <th>Id</th>
             <td>{{ reservation.id }}</td>
-        </tr>
-        <tr>
-            <th>Aankomst</th>
-            <td>{% if reservation.aankomst %}{{ reservation.aankomst|date('Y-m-d') }}{% endif %}</td>
-        </tr>
-        <tr>
-            <th>Vertek</th>
-            <td>{% if reservation.vertek %}{{ reservation.vertek|date('Y-m-d') }}{% endif %}</td>
-        </tr>
-        <tr>
-            <th>Opmerking</th>
+            <td>{% if reservation.aankomst %}{{ reservation.aankomst|date('d F Y') }}{% endif %}</td>
+            <td>{% if reservation.vertek %}{{ reservation.vertek|date('d F Y') }}{% endif %}</td>
             <td>{{ reservation.opmerking }}</td>
         </tr>
         </tbody>
     </table>
+
+    <table>
+        <thead>
+        <tr>
+            <th colspan="5">Customer</th>
+        </tr>
+        <tr>
+            <th>First name</th>
+            <th>Insertion</th>
+            <th>Last name</th>
+            <th>Gender</th>
+            <th>Birthday</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for customer in customers %}
+            <tr>
+                <td>{{ customer.voornaam }}</td>
+                <td>{{ customer.tussenvoegsel }}</td>
+                <td>{{ customer.achternaam }}</td>
+                <td>{{ customer.geslacht }}</td>
+                <td>{% if customer.geboortedatum %}{{ customer.geboortedatum|date('d F Y') }}{% endif %}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <table>
+        <thead>
+        <tr>
+            <th colspan="6">Guests</th>
+        </tr>
+        <tr>
+            <th>First name</th>
+            <th>Insertion</th>
+            <th>Last name</th>
+            <th>Resident</th>
+            <th>Birthday</th>
+            <th>Language</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for guest in guests %}
+            <tr>
+                <td>{{ guest.voornaam }}</td>
+                <td>{{ guest.tussenvoegsel }}</td>
+                <td>{{ guest.achternaam }}</td>
+                <td>{{ guest.woonplaats }}</td>
+                <td>{% if guest.geboortedatum %}{{ guest.geboortedatum|date('d F Y') }}{% endif %}</td>
+                <td>{{ guest.taal }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <table>
+        <thead>
+        <tr>
+            <th colspan="3">Rooms</th>
+        </tr>
+        <tr>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Price</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for room in rooms %}
+            <tr>
+                <td>{{ room.kamernaam }}</td>
+                <td>{{ room.omschrijving }}</td>
+                <td>{{ room.prijs }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <table>
+        <thead>
+        <tr>
+            <th colspan="3">Extra</th>
+        </tr>
+        <tr>
+            <th>Type</th>
+            <th>Description</th>
+            <th>Price</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for extra in extras %}
+            <tr>
+                <td>{{ extra.type }}</td>
+                <td>{{ extra.omschrijving }}</td>
+                <td>{{ extra.prijs }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+
+    {#{{ form_start(delete_form) }}#}
+    {#<input type="submit" value="Delete">#}
+    {#{{ form_end(delete_form) }}#}
+
 {% endblock %}

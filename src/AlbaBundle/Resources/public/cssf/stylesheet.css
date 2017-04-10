@@ -48,11 +48,36 @@ i {
     font-size: 30px!important;
     padding-bottom: 20px;
 }
+
+#offCanvasLeft {
+	background-color: #b300b3;
+}
+.callout.success {
+	background-color: #0d47a1 !important;
+}
+.callout.warning {
+	background-color: purple !important;
+}
+.sight {
+    height: 100%;
+}
 #map {
     height: 200px;
     width: 100%;
 }
-#logo {
-    width: 80px;
-    height: 80px;
+#sight {
+    height: 400px;
+    width: 100%;
+}
+#linnfalls {
+    min-height: 370px;
+}
+#aberlour {
+    min-height: 380px;
+}
+#knockando {
+    min-height: 325px;
+}
+#macallan {
+    min-height: 370px;
 }

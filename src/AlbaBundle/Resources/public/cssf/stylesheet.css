@@ -52,3 +52,9 @@ i {
     height: 200px;
     width: 100%;
 }
+.callout.success {
+    background-color: #0d47a1 !important;
+}
+.callout.warning {
+    background-color: purple !important;
+}

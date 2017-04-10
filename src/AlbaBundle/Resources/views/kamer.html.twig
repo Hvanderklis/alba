@@ -1,0 +1,78 @@
+{% extends '@Alba/base.html.twig' %}
+
+{% block body %}
+    <div class="row">
+        <div class="medium-6 large-6 columns">
+            <h2>Rooms</h2>
+            <h4>May All Who Enter As Guests, Leave As Friends</h4>
+            <p class="subheader">Alba Bed & Breakfast offers you 4 kind of rooms against a small price.  The four kind of rooms are Thistle room, Tartan room, Spey room and last but not least the Whiskey room. The price is inclusive breakfast. Alba is a great choice for business travellers as well as tourists. We can assure you that your stuff is safe in your room.<br/>
+                <br/>All bedrooms have free Wi-Fi, airconditioning, heater and every room has their own shower.
+            </p>
+        </div>
+        <div class="row" style="background-image: url('header.jpg');">
+            <div class="medium-6 large-3 columns">
+                <div class="callout secondary">
+                    <form>
+                        <div class="row">
+                            <div class="small-12 columns">
+                                <label>Room type
+                                    <select>
+                                        <option>Thistle Room</option>
+                                        <option>Tartan Room</option>
+                                        <option>Spey Room</option>
+                                        <option>Whiskey Room</option>
+                                    </select>
+                                </label>
+                                <label>Check-in date
+                                    <input type="date" placeholder="Check-in date">
+                                </label>
+                            </div>
+                            <div class="small-12 columns">
+                                <label>Check-out date
+                                    <input type="date" placeholder="Check-out date">
+                                </label>
+                                <button type="submit" class="button">Book Now!</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="row small-up-1 medium-up-2 large-up-3">
+            <div class="column">
+                <div class="callout">
+                    <p>Thistle Room</p>
+                    <p><img src="{{ asset('bundles/alba/img/thistle.jpg') }}" alt="image of the Thistle Room"></p>
+                    <p class="lead">Copernican Revolution caused an uproar</p>
+                    <p class="subheader">Find Earth-like planets life outside the Solar System</p>
+                </div>
+            </div>
+            <div class="column">
+                <div class="callout">
+                    <p>Tartan Room</p>
+                    <p><img src="{{ asset('bundles/alba/img/tartan.jpg') }}" alt="image of the Tartan Room"></p>
+                    <p class="lead">Copernican Revolution caused an uproar</p>
+                    <p class="subheader">Find Earth-like planets life outside the Solar System</p>
+                </div>
+            </div>
+
+        </div>
+        <div class="row small-up-1 medium-up-2 large-up-3">
+            <div class="column">
+                <div class="callout">
+                    <p>Spey Room</p>
+                    <p><img src="{{ asset('bundles/alba/img/spey.jpg') }}" alt="image of the Spey Room"></p>
+                    <p class="lead">Copernican Revolution caused an uproar</p>
+                    <p class="subheader">Find Earth-like planets life outside the Solar System</p>
+                </div>
+            </div>
+            <div class="column">
+                <div class="callout">
+                    <p>Whiskey Room</p>
+                    <p><img src="{{ asset('bundles/alba/img/whiskey.jpg') }}" alt="image of the Whiskey Room"></p>
+                    <p class="lead">Copernican Revolution caused an 1uproar</p>
+                    <p class="subheader">Find Earth-like planets life outside the Solar System</p>
+                </div>
+            </div>
+        </div>
+{% endblock %}

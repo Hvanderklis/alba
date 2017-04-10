@@ -1,0 +1,29 @@
+{% extends 'AlbaBundle::base.html.twig' %}
+{% block body %}
+    <h1>Rooms</h1>
+
+    <table>
+        <tbody>
+        <tr>
+            <th>Id</th>
+            <td>{{ Kamer.id }}</td>
+        </tr>
+          <tr>
+            <th>Foto</th>
+            <td>{{ Kamer.kamerAfbeelding }}</td>
+        </tr>
+        <tr>
+            <th>Naam</th>
+            <td>{{ Kamer.kamerNaam }}</td>
+        </tr>
+        <tr>
+            <th>Prijs</th>
+            <td>{{ Kamer.kamerPrijs }}</td>
+        </tr>
+        <tr>
+            <th>Omschrijving</th>
+            <td>{{ Kamer.omschrijving }}</td>
+        </tr>
+        </tbody>
+    </table>
+{% endblock %}

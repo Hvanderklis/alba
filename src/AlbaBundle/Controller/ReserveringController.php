@@ -10,7 +10,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component
 /**
  * Reservering controller.
  *
- * @Route("reservering")
+ * @Route("adminpanel/reservering")
  */
 class ReserveringController extends Controller
 {
@@ -26,8 +26,8 @@ class ReserveringController extends Controller
 
         $reserverings = $em->getRepository('AlbaBundle:Reservering')->findAll();
 
-        return $this->render('reservering/index.html.twig', array(
-            'reserverings' => $reserverings,
+        return $this->render('@Alba/Reservation/index.html.twig', array(
+            'reservation' => $reserverings,
         ));
     }
 

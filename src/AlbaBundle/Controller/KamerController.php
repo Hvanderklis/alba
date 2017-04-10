@@ -3,6 +3,7 @@
 namespace AlbaBundle\Controller;
 
 use AlbaBundle\Entity\Kamer;
+use AlbaBundle\Entity\KamerAfbeelding;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component\HttpFoundation\Request;
@@ -133,5 +134,48 @@ class KamerController extends Controller
             ->setMethod('DELETE')
             ->getForm()
         ;
+    }
+
+    /**
+     * @Route("/{id}/image", name="image")
+     */
+    public function readImage(Request $request, Kamer $kamer){
+        $uploadLocation = $this->getParameter('upload_directory');
+
+        if ($request->isMethod('POST')){
+            $image = $request->files->get('image');
+
+            $roomName = $kamer->getKamerNaam();
+            $roomName = str_replace(" ", "_", $roomName);
+
+            $roomImage = new KamerAfbeelding();
+
+            $imageName = preg_replace('/\\.[^.\\s]{3,4}$/', '', $image->getClientOriginalName());
+            $fullImageName = str_replace(" ", "_", $image->getClientOriginalName());
+
+            $type = $fullImageName;
+            $position = strpos($type, '.');
+            $lenght = strlen($type);
+            $typo = substr($type, $position, $lenght);
+            $typo = ltrim($typo,'.');
+
+            $roomImage->setPath("uploads/" . $roomName . "/" . $fullImageName);
+            $roomImage->setName($imageName);
+            $roomImage->setKamer($kamer);
+            $roomImage->setType($typo);
+
+            $roomImage->upload();
+
+            $em = $this->getDoctrine()->getManager();
+
+            $em->persist($roomImage);
+            $em->flush();
+
+            return $this->redirectToRoute('image', ['id' => $kamer->getId()]);
+            }
+
+        return $this->render('AlbaBundle:RoomImage:index.html.twig', [
+            'kamer' => $kamer,
+        ]);
     }
 }

@@ -1,0 +1,7 @@
+{% extends '@Alba/adminpanel.html.twig' %}
+{% block body %}
+    <form action="{{ path('image', {'id':kamer.id}) }}" enctype="multipart/form-data" method="post">
+        <input type="file" name="image" required>
+        <input type="submit" name="submit">
+    </form>
+{% endblock %}

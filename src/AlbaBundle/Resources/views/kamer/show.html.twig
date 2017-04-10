@@ -21,6 +21,10 @@
                 <th>Omschrijving</th>
                 <td>{{ kamer.omschrijving }}</td>
             </tr>
+            <tr>
+                <th>Show Image</th>
+                <td><a href="{{ path('image', { 'id': kamer.id }) }}" class="button"><i class="fa fa-eye"></i></a></td>
+            </tr>
         </tbody>
     </table>
 

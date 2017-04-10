@@ -3,6 +3,8 @@
 namespace AlbaBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * KamerAfbeelding
@@ -28,15 +30,6 @@ class KamerAfbeelding
      */
     private $name;
 
-
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="Size", type="string", length=255)
-     */
-    private $size;
-
     /**
      * @var string
      *
@@ -52,17 +45,49 @@ class KamerAfbeelding
     private $path;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="kamer_nummer", type="string", length=255)
-     */
-    private $kamerNummer;
-
-    /**
      * @ORM\ManyToOne(targetEntity="Kamer", inversedBy="kamerAfbeelding")
      * @ORM\JoinColumn(name="Kamer_id", referencedColumnName="id")
      */
     private $kamer;
+
+    /**
+     * @Assert\File(maxSize="1000000")
+     */
+    private $file;
+
+    public function setFile(UploadedFile $file = null){
+        $this->file = $file;
+    }
+
+    public function getFile(){
+        return $this->file;
+    }
+
+    public function upload(){
+        if (null === $this->getFile()){return;}
+
+        $filename = $this->getFile()->getClientOriginalName();
+        $this->getFile()->move($this->getUploadAbsolutePath(),$filename);
+        $this->setPath($filename);
+        $this->setFile();
+
+    }
+
+    protected function getUploadPath(){
+        return 'uploads';
+    }
+
+    protected function getUploadAbsolutePath(){
+        return __DIR__. '/../../../web/' . $this->getUploadPath();
+            }
+
+    public function getCoverWeb(){
+        return null === $this->getPath() ? null : $this->getUploadPath() . '/' . $this->getPath();
+    }
+
+    public function getCoverAbsolute(){
+        return null === $this->getPath() ? null : $this->getUploadAbsolutePath() . '/' . $this->getPath();
+    }
 
     /**
      * Get id
@@ -96,30 +121,6 @@ class KamerAfbeelding
     public function getName()
     {
         return $this->name;
-    }
-
-    /**
-     * Set size
-     *
-     * @param string $size
-     *
-     * @return KamerAfbeelding
-     */
-    public function setSize($size)
-    {
-        $this->size = $size;
-
-        return $this;
-    }
-
-    /**
-     * Get size
-     *
-     * @return string
-     */
-    public function getSize()
-    {
-        return $this->size;
     }
 
     /**
@@ -168,30 +169,6 @@ class KamerAfbeelding
     public function getPath()
     {
         return $this->path;
-    }
-
-    /**
-     * Set kamerNummer
-     *
-     * @param string $kamerNummer
-     *
-     * @return KamerAfbeelding
-     */
-    public function setKamerNummer($kamerNummer)
-    {
-        $this->kamerNummer = $kamerNummer;
-
-        return $this;
-    }
-
-    /**
-     * Get kamerNummer
-     *
-     * @return string
-     */
-    public function getKamerNummer()
-    {
-        return $this->kamerNummer;
     }
 
     /**

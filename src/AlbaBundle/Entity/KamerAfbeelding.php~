@@ -28,15 +28,6 @@ class KamerAfbeelding
      */
     private $name;
 
-
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="Size", type="string", length=255)
-     */
-    private $size;
-
     /**
      * @var string
      *
@@ -50,13 +41,6 @@ class KamerAfbeelding
      * @ORM\Column(name="Path", type="string", length=255)
      */
     private $path;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="kamer_nummer", type="string", length=255)
-     */
-    private $kamerNummer;
 
     /**
      * @ORM\ManyToOne(targetEntity="Kamer", inversedBy="kamerAfbeelding")

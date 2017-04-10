@@ -45,7 +45,7 @@ class Reservering
 
     /**
      * @ORM\ManyToOne(targetEntity="Klant", inversedBy="reservering")
-     * @ORM\JoinColumn(name="klant_nummer", referencedColumnName="id")
+     * @ORM\JoinColumn(name="Klantnummer", referencedColumnName="id")
      */
     private $klant;
 
@@ -155,8 +155,4 @@ class Reservering
         return $this->klant;
     }
 
-    public function __toString()
-    {
-        return $this->name;
-    }
 }

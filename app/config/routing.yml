@@ -1,3 +1,15 @@
+alba_kaart:
+    resource: "@AlbaBundle/Controller/KaartController.php"
+    type:     annotation
+
+alba_betaling:
+    resource: "@AlbaBundle/Controller/BetalingController.php"
+    type:     annotation
+
+alba_klant:
+    resource: "@AlbaBundle/Controller/KlantController.php"
+    type:     annotation
+
 alba_gast:
     resource: "@AlbaBundle/Controller/GastController.php"
     type:     annotation

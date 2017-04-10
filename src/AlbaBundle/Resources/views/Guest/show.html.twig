@@ -1,4 +1,4 @@
-{% extends 'base.html.twig' %}
+{% extends '@Alba/adminpanel.html.twig' %}
 
 {% block body %}
     <h1>Gast</h1>
@@ -38,14 +38,14 @@
 
     <ul>
         <li>
-            <a href="{{ path('gast_index') }}">Back to the list</a>
+            <a href="{{ path('guest_index') }}" class="button">Back to the list</a>
         </li>
         <li>
-            <a href="{{ path('gast_edit', { 'id': gast.id }) }}">Edit</a>
+            <a href="{{ path('guest_edit', { 'id': gast.id }) }}" class="button">Edit</a>
         </li>
         <li>
             {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
+                <input type="submit" value="Delete" class="button alert">
             {{ form_end(delete_form) }}
         </li>
     </ul>

@@ -1,0 +1,64 @@
+{% extends '@Alba/adminpanel.html.twig' %}
+
+{% block body %}
+    <h1>Klant</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ klant.id }}</td>
+            </tr>
+            <tr>
+                <th>Voornaam</th>
+                <td>{{ klant.voornaam }}</td>
+            </tr>
+            <tr>
+                <th>Tussenvoegsel</th>
+                <td>{{ klant.tussenvoegsel }}</td>
+            </tr>
+            <tr>
+                <th>Achternaam</th>
+                <td>{{ klant.achternaam }}</td>
+            </tr>
+            <tr>
+                <th>Geboortedatum</th>
+                <td>{% if klant.geboortedatum %}{{ klant.geboortedatum|date('Y-m-d') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Geslacht</th>
+                <td>{{ klant.geslacht }}</td>
+            </tr>
+            <tr>
+                <th>Plaats</th>
+                <td>{{ klant.plaats }}</td>
+            </tr>
+            <tr>
+                <th>Taal</th>
+                <td>{{ klant.taal }}</td>
+            </tr>
+            <tr>
+                <th>Email</th>
+                <td>{{ klant.email }}</td>
+            </tr>
+            <tr>
+                <th>Telefoon</th>
+                <td>{{ klant.telefoon }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('customer_index') }}" class="button">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('customer_edit', { 'id': klant.id }) }}" class="button">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete" class="button alert">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

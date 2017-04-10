@@ -2,40 +2,37 @@
 
 namespace AlbaBundle\Form;
 
+use AlbaBundle\AlbaBundle;
+use Doctrine\ORM\Mapping\Entity;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\Form\FormInterface;
-use Symfony\Component\Form\FormView;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class BankType extends AbstractType
+class BetalingType extends AbstractType
 {
     /**
      * {@inheritdoc}
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('bank')->add('kaart');
-        $builder->add('kaart', EntityType::class, array(
-            'class' => 'AlbaBundle\Entity\Kaart',
-            'mapped' => false,
-            'label' => 'Choose your creditcard',
-            'choice_label' => function($kaart) {
-                return $kaart->getCreditcardGegevens();
-            }
-        ));
-
+        $builder->add('betaald')
+            ->add('datum')
+            ->add('kaart', EntityType::class, [
+                'class' => 'AlbaBundle\Entity\Kaart',
+                'choice_label' => function($kaart){
+                    return $kaart->getId();
+                }
+            ]);
     }
     
     /**
      * {@inheritdoc}
-     *
      */
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'AlbaBundle\Entity\Bank'
+            'data_class' => 'AlbaBundle\Entity\Betaling'
         ));
     }
 
@@ -44,7 +41,8 @@ class BankType extends AbstractType
      */
     public function getBlockPrefix()
     {
-        return 'albabundle_bank';
+        return 'albabundle_betaling';
     }
+
 
 }

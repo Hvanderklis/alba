@@ -14,6 +14,14 @@ class ReserveringType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder->add('aankomst')->add('vertek')->add('opmerking')->add('klant');
+
+        $builder->add('klant', EntityType::class, array(
+            'class' => 'AlbaBundle\Entity\klant',
+            'label' => 'Klant',
+            'choice_label' => function ($klant){
+                return $klant->getGeslacht();
+            }
+        ) );
     }
     
     /**

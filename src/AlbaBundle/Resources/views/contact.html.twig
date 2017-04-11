@@ -3,10 +3,41 @@
     <br>
     <div class="row medium-8 large-7 columns">
         <div class="blog-post callout success">
-            <p>Neem contact met ons op</p>
-            <p><i class="fa fa-phone"></i> +447398045168</p>
-            <p><i class="fa fa-envelope"></i> booking@alba-bb.co.uk</p>
-            <p><i class="fa fa-map-marker"></i> Aberlour AB38 9PJ, United Kingdom</p>
+            <ul class="menu vertical" id="colorw">
+                <li><i class="fa fa-envelope"></i> booking@alba-bb.co.uk</li>
+                <li><i class="fa fa-phone"></i> +447398045168</li>
+                <li><i class="fa fa-globe"></i> Aberlour AB38 9PJ, United Kingdom</li>
+            </ul>
+            <br>
+            <form id="contactform" name="contactform" method="post" action="">
+                <p>Neem contact met ons op</p>
+                <div class="row collapse">
+                    <div class="large-8 columns">
+                        <label class="inline">Name</label>
+                        <input type="text" name="name" id="name" placeholder="Jane Smith" required>
+                    </div>
+                </div>
+
+                <div class="row collapse">
+                    <div class="large-8 columns">
+                        <label class="inline">Email</label>
+                        <input type="email" id="email" name="email" placeholder="name@email.com" required pattern="email">
+                    </div>
+                </div>
+
+                <div class="row collapse">
+                    <div class="large-8 columns">
+                        <label class="inline">Message</label>
+                        <textarea name="comments" id="comments" type="text" placeholder="Your message..."></textarea>
+                    </div>
+                </div>
+
+                <div class="row collapse">
+                    <div class="large-4 columns">
+                        <button name="Submit" value="Submit" type="submit" class="radius button expand">Submit</button>
+                    </div>
+                </div>
+            </form>
         </div>
     </div>
     <br>

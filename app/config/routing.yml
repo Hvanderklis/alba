@@ -23,11 +23,8 @@ app:
     resource: '@AppBundle/Controller/'
     type: annotation
 
-<<<<<<< HEAD
-=======
 fos_js_routing:
     resource: "@FOSJsRoutingBundle/Resources/config/routing/routing.xml"
 
 adesigns_calendar:
   resource: "@ADesignsCalendarBundle/Resources/config/routing.xml"
->>>>>>> fb2e722c37dc7607dafb49f8df1eda6f9516d573

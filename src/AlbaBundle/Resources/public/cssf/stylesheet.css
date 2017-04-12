@@ -1,5 +1,5 @@
 #colorp {
-    background-color: #6d41ba;
+    background-color: purple;
 }
 #colorw {
     color: white;
@@ -39,6 +39,7 @@ p {
 i {
     color: purple;
 }
+
 .button {
     background-color: #a567a5;
 }
@@ -65,6 +66,7 @@ i {
     height: 200px;
     width: 100%;
 }
+
 #sight {
     height: 400px;
     width: 100%;

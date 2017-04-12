@@ -9,8 +9,7 @@
     <link rel="stylesheet" href="{{ asset('bundles/alba/cssf/foundation.css') }}">
     <link rel="stylesheet" href="{{ asset('bundles/alba/cssf/foundation.min.css')
     }}">
-    <link rel="stylesheet" href="{{ asset('bundles/alba/font-awesome/css/font-
-awesome.css') }}">
+    <link rel="stylesheet" href="{{ asset('bundles/alba/font-awesome/css/font-awesome.css') }}">
     <link rel="stylesheet" href="{{ asset('bundles/alba/cssf/stylesheet.css') }}">
     <link rel="stylesheet" href="{{ asset('bundles/alba/css/Dashboard.css') }}">
 </head>
@@ -34,11 +33,11 @@ awesome.css') }}">
     300px;">
             <li><a href="#">Customers</a></li>
             <li><a href="{{ path('reservering_index') }}">Reservation</a></li>
-            <li><a href="#">Rooms and Season</a></li>
-            <li><a href="#">Extra's</a></li>
+            <li><a href="{{ path('seizoen_index') }}">Rooms and Season</a></li>
+            <li><a href="{{ path('extra_index') }}">Extra's</a></li>
         </ul>
     </div>
-    <div class="content">
+    <div class="row fullwidth">
 {% block body %}{% endblock %}
     </div>
 {% block javascripts %}{% endblock %}

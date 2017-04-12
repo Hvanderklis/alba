@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Henk van der Klis
- * Date: 4/3/2017
- * Time: 15:19
- */
 
 namespace AlbaBundle\Controller;
 
@@ -26,5 +20,14 @@ class WebsiteController extends Controller
     public function contacAction()
     {
         return $this->render("@Alba/contact.html.twig");
+    }
+
+     /**
+     * @Route("/sightseeing")
+     */
+
+    public function sightseeingAction()
+    {
+        return $this->render("@Alba/sightseeing.html.twig");
     }
 }

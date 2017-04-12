@@ -64,9 +64,9 @@ class KamerController extends Controller
      * @Method("GET")
      */
     public function showAction(Kamer $kamer)
+
     {
         $deleteForm = $this->createDeleteForm($kamer);
-
 
         return $this->render('AlbaBundle:kamer:show.html.twig', array(
             'kamer' => $kamer,

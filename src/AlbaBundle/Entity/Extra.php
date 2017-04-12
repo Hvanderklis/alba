@@ -43,18 +43,16 @@ class Extra
     private $omschrijving;
 
     /**
-     * @ORM\ManyToMany(targetEntity="Reservering")
-     * @ORM\JoinTable(name="Extra_reservering",
-     *      joinColumns={@ORM\JoinColumn(name="extra_nummer", referencedColumnName="id")},
-     *      inverseJoinColumns={@ORM\JoinColumn(name="reserveringsnummer", referencedColumnName="id", unique=true)})
+     * Many Groups have Many Users.
+     * @ORM\ManyToMany(targetEntity="AlbaBundle\Entity\Reservering", mappedBy="extra")
      */
-    private $reserveringen;
+    private $reservering;
     /**
      * Constructor
      */
     public function __construct()
     {
-        $this->reserveringen = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->reservering = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**
@@ -140,36 +138,36 @@ class Extra
     }
 
     /**
-     * Add reserveringen
+     * Add reservering
      *
-     * @param \AlbaBundle\Entity\Reservering $reserveringen
+     * @param \AlbaBundle\Entity\Reservering $reservering
      *
      * @return Extra
      */
-    public function addReserveringen(\AlbaBundle\Entity\Reservering $reserveringen)
+    public function addReservering(\AlbaBundle\Entity\Reservering $reservering)
     {
-        $this->reserveringen[] = $reserveringen;
+        $this->reservering[] = $reservering;
 
         return $this;
     }
 
     /**
-     * Remove reserveringen
+     * Remove reservering
      *
-     * @param \AlbaBundle\Entity\Reservering $reserveringen
+     * @param \AlbaBundle\Entity\Reservering $reservering
      */
-    public function removeReserveringen(\AlbaBundle\Entity\Reservering $reserveringen)
+    public function removeReservering(\AlbaBundle\Entity\Reservering $reservering)
     {
-        $this->reserveringen->removeElement($reserveringen);
+        $this->reservering->removeElement($reservering);
     }
 
     /**
-     * Get reserveringen
+     * Get reservering
      *
      * @return \Doctrine\Common\Collections\Collection
      */
-    public function getReserveringen()
+    public function getReservering()
     {
-        return $this->reserveringen;
+        return $this->reservering;
     }
 }

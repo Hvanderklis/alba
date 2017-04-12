@@ -43,10 +43,8 @@ class Kamer
     private $omschrijving;
 
     /**
-     * @ORM\ManyToMany(targetEntity="Reservering")
-     * @ORM\JoinTable(name="Kamer_reservering",
-     *      joinColumns={@ORM\JoinColumn(name="kamer_nummer", referencedColumnName="id")},
-     *      inverseJoinColumns={@ORM\JoinColumn(name="reserveringsnummer", referencedColumnName="id", unique=true)})
+     * Many Groups have Many Users.
+     * @ORM\ManyToMany(targetEntity="AlbaBundle\Entity\Reservering", mappedBy="kamer")
      */
     private $reservering;
 
@@ -59,7 +57,6 @@ class Kamer
      * @ORM\OneToMany(targetEntity="KamerPrijs", mappedBy="kamer")
      */
     private $kamerPrijs;
-
     /**
      * Constructor
      */

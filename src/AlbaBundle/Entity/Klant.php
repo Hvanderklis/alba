@@ -408,7 +408,7 @@ class Klant
 
     public function __toString()
     {
-        return $this->
+        return $this->getGast();
     }
 
     /**

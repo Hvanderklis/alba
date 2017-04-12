@@ -7,32 +7,31 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class KamerPrijsType extends AbstractType
+class KamerAfbeeldingType extends AbstractType
 {
     /**
      * {@inheritdoc}
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-
-        $builder->add('prijs')->add('kamer')->add('seizoen');
-        $builder->add('kamer', EntityType::class, array(
-            'class' => 'AlbaBundle\Entity\Kamer',
-            'label' => 'Room',
-            'choice_label' => function ($kamer){
-                return $kamer->getKamerNaam();
+        $builder
+            ->add('file')
+            ->add('kamer', EntityType::class, [
+                'class' => 'AlbaBundle\Entity\Kamer',
+                'choice_label' => function($kamer){
+                    return $kamer->getKamernaam();
+                }
+            ])
+        ;
     }
-        ) );
 
-    }
-    
     /**
      * {@inheritdoc}
      */
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'AlbaBundle\Entity\KamerPrijs'
+            'data_class' => 'AlbaBundle\Entity\KamerAfbeelding'
         ));
     }
 
@@ -41,7 +40,7 @@ class KamerPrijsType extends AbstractType
      */
     public function getBlockPrefix()
     {
-        return 'albabundle_kamerprijs';
+        return 'albabundle_kamerafbeelding';
     }
 
 

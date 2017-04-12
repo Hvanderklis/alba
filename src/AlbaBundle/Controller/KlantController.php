@@ -5,7 +5,8 @@ namespace AlbaBundle\Controller;
 use AlbaBundle\Entity\Klant;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component\HttpFoundation\Request;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\HttpFoundation\Request;
 
 /**
  * Klant controller.
@@ -18,7 +19,6 @@ class KlantController extends Controller
      * Lists all customer entities.
      *
      * @Route("/", name="customer_index")
-     * @Method("GET")
      */
     public function indexAction()
     {
@@ -47,14 +47,8 @@ class KlantController extends Controller
             $em = $this->getDoctrine()->getManager();
             $em->persist($klant);
             $em->flush($klant);
-
             return $this->redirectToRoute('customer_show', array('id' => $klant->getId()));
         }
-
-        return $this->render('AlbaBundle:Customer:new.html.twig', array(
-            'klant' => $klant,
-            'form' => $form->createView(),
-        ));
     }
 
     /**
@@ -77,7 +71,6 @@ class KlantController extends Controller
         return $this->render('AlbaBundle:Customer:show.html.twig', array(
             'customer' => $customers,
             'guest' => $gasten,
-            'delete_form' => $deleteForm->createView(),
         ));
     }
 
@@ -95,11 +88,10 @@ class KlantController extends Controller
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
-
             return $this->redirectToRoute('customer_edit', array('id' => $klant->getId()));
         }
 
-        return $this->render('AlbaBundle:Customer:edit.html.twig', array(
+        return $this->render('klant/edit.html.twig', array(
             'klant' => $klant,
             'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
@@ -122,13 +114,11 @@ class KlantController extends Controller
             $em->remove($klant);
             $em->flush();
         }
-
         return $this->redirectToRoute('customer_index');
     }
 
     /**
-     * Creates a form to delete a customer entity.
-     *
+     * Creates a form to delete a klant entity.
      * @param Klant $klant The klant entity
      *
      * @return \Symfony\Component\Form\Form The form
@@ -138,7 +128,6 @@ class KlantController extends Controller
         return $this->createFormBuilder()
             ->setAction($this->generateUrl('customer_delete', array('id' => $klant->getId())))
             ->setMethod('DELETE')
-            ->getForm()
-        ;
+            ->getForm();
     }
 }

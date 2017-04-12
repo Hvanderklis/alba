@@ -64,12 +64,11 @@ class Gast
     private $taal;
 
     /**
-     * @ORM\ManyToMany(targetEntity="Reservering")
-     * @ORM\JoinTable(name="Gast_reservering",
-     *      joinColumns={@ORM\JoinColumn(name="gast_nummer", referencedColumnName="id")},
-     *      inverseJoinColumns={@ORM\JoinColumn(name="reserveringsnummer", referencedColumnName="id", unique=true)})
+     * Many Groups have Many Users.
+     * @ORM\ManyToMany(targetEntity="AlbaBundle\Entity\Reservering", mappedBy="gast")
      */
     private $reservering;
+
     /**
      * @var \Doctrine\Common\Collections\ArrayCollection
      *
@@ -78,6 +77,7 @@ class Gast
      * @ORM\JoinTable(name="klant")
      */
     private $klant;
+
     /**
      * Constructor
      */
@@ -298,11 +298,8 @@ class Gast
         return $this->klant;
     }
 
-    /**
-     * @param int $id
-     */
-    public function __toString($id)
+    public function __toString()
     {
-        $this->id = $id;
+        return $this->getId();
     }
 }

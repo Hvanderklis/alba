@@ -91,7 +91,7 @@ class KlantController extends Controller
             return $this->redirectToRoute('customer_edit', array('id' => $klant->getId()));
         }
 
-        return $this->render('klant/edit.html.twig', array(
+        return $this->render('AlbaBundle:Customer:edit.html.twig', array(
             'klant' => $klant,
             'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),

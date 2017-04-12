@@ -1,0 +1,43 @@
+{% extends 'AlbaBundle::adminpanel.html.twig' %}
+
+{% block body %}
+    <h1>Kamerprijs list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Price</th>
+                <th>Room Name</th>
+                <th>Season</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for kamerPrij in kamerPrijs %}
+            <tr>
+                <td><a href="{{ path('kamerprijs_show', { 'id': kamerPrij.id }) }}">{{ kamerPrij.id }}</a></td>
+                <td>{{ kamerPrij.prijs }}</td>
+                <td>{{ kamerPrij.getKamer().getKamerNaam() }}</td>
+                <td>{{ kamerPrij.getSeizoen().getNaam() }}</td></td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('kamerprijs_show', { 'id': kamerPrij.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('kamerprijs_edit', { 'id': kamerPrij.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('kamerprijs_new') }}">Create a new kamerPrijs</a>
+        </li>
+    </ul>
+{% endblock %}

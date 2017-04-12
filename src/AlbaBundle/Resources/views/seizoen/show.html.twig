@@ -1,0 +1,40 @@
+{% extends 'AlbaBundle::adminpanel.html.twig' %}
+
+{% block body %}
+    <h1>Seizoen</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ seizoen.id }}</td>
+            </tr>
+            <tr>
+                <th>Naam</th>
+                <td>{{ seizoen.naam }}</td>
+            </tr>
+            <tr>
+                <th>Begindatum</th>
+                <td>{% if seizoen.beginDatum %}{{ seizoen.beginDatum|date('Y-m-d') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Einddatum</th>
+                <td>{% if seizoen.eindDatum %}{{ seizoen.eindDatum|date('Y-m-d') }}{% endif %}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('seizoen_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('seizoen_edit', { 'id': seizoen.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

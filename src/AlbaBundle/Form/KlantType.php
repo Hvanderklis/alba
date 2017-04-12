@@ -2,28 +2,26 @@
 
 namespace AlbaBundle\Form;
 
-use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 
-class KamerPrijsType extends AbstractType
+class KlantType extends AbstractType
 {
     /**
      * {@inheritdoc}
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
+        $builder->add('voornaam')->add('tussenvoegsel')->add('achternaam')->add('geboortedatum')->add('geslacht')->add('plaats')->add('taal')->add('email')->add('telefoon');
 
-        $builder->add('prijs')->add('kamer')->add('seizoen');
-        $builder->add('kamer', EntityType::class, array(
-            'class' => 'AlbaBundle\Entity\Kamer',
-            'label' => 'Room',
-            'choice_label' => function ($kamer){
-                return $kamer->getKamerNaam();
-    }
-        ) );
-
+        $builder->add('geslacht', ChoiceType::class, array(
+            'choices'  => array(
+                'Man' => "Man",
+                'Vrouw' => "Vrouw",
+            ),
+        ));
     }
     
     /**
@@ -32,7 +30,7 @@ class KamerPrijsType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'AlbaBundle\Entity\KamerPrijs'
+            'data_class' => 'AlbaBundle\Entity\Klant'
         ));
     }
 
@@ -41,7 +39,7 @@ class KamerPrijsType extends AbstractType
      */
     public function getBlockPrefix()
     {
-        return 'albabundle_kamerprijs';
+        return 'albabundle_klant';
     }
 
 

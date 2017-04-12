@@ -1,3 +1,11 @@
+alba_kamer_afbeelding:
+    resource: "@AlbaBundle/Controller/KamerAfbeeldingController.php"
+    type: annotation
+
+alba_klant:
+    resource: "@AlbaBundle/Controller/KlantController.php"
+    type:     annotation
+
 alba_reservering:
     resource: "@AlbaBundle/Controller/ReserveringController.php"
     type:     annotation

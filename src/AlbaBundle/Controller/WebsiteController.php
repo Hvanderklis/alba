@@ -14,7 +14,6 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 class WebsiteController extends Controller
 {
     /**
-<<<<<<< HEAD
      * @Route("/sightseeing")
      */
     public function sightseeingAction()

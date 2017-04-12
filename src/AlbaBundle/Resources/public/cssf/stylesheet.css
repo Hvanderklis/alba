@@ -62,6 +62,19 @@ i {
 .sight {
     height: 100%;
 }
+
+#offCanvasLeft {
+	background-color: #b300b3;
+}
+.callout.success {
+	background-color: #0d47a1 !important;
+}
+.callout.warning {
+	background-color: purple !important;
+}
+.sight {
+    height: 100%;
+}
 #map {
     height: 200px;
     width: 100%;

@@ -99,6 +99,7 @@ class ReserveringController extends Controller
             ->getQuery()
             ->getResult();
 
+
         return $this->render('AlbaBundle:Reservation:show.html.twig', array(
             'reservation' => $reservering,
             'delete_form' => $deleteForm->createView(),

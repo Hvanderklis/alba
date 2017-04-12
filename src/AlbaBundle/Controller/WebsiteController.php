@@ -28,7 +28,7 @@ class WebsiteController extends Controller
             ->add('submit', SubmitType::class, [
                 'label' => 'Submit!',
                 'attr'  => [
-                    'class' => 'button primary'
+                    'class' => 'button primary expanded'
                 ]
             ])
             ->getForm();

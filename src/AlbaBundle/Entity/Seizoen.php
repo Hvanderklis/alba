@@ -46,6 +46,7 @@ class Seizoen
      * @ORM\OneToMany(targetEntity="KamerPrijs", mappedBy="seizoen")
      */
     private $kamerPrijs;
+
     /**
      * Constructor
      */

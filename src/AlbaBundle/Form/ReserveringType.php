@@ -46,7 +46,7 @@ class ReserveringType extends AbstractType
                 'class' => 'AlbaBundle\Entity\Extra',
                 'choice_label'     => function($extra){
                     return $extra->getType();
-                },
+               },
                 'by_reference' => true,
                 'multiple' => true,
                 'expanded' => true,

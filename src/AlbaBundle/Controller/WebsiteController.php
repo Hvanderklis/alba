@@ -18,9 +18,7 @@ class WebsiteController extends Controller
     public function kameraction(){
         return $this->render('AlbaBundle::kamer.html.twig');
     }
-    public function showkameraction(){
-        return $this->render('');
-    }
+
     /**
      * @return \Symfony\Component\HttpFoundation\Response
      * @Route("/rooms", name="RoomsIndex")

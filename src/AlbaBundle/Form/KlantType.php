@@ -5,23 +5,23 @@ namespace AlbaBundle\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 
-class ReserveringType extends AbstractType
+class KlantType extends AbstractType
 {
     /**
      * {@inheritdoc}
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('aankomst')->add('vertek')->add('opmerking')->add('klant');
+        $builder->add('voornaam')->add('tussenvoegsel')->add('achternaam')->add('geboortedatum')->add('geslacht')->add('plaats')->add('taal')->add('email')->add('telefoon');
 
-        $builder->add('klant', EntityType::class, array(
-            'class' => 'AlbaBundle\Entity\klant',
-            'label' => 'Klant',
-            'choice_label' => function ($klant){
-                return $klant->getGeslacht();
-            }
-        ) );
+        $builder->add('geslacht', ChoiceType::class, array(
+            'choices'  => array(
+                'Man' => "Man",
+                'Vrouw' => "Vrouw",
+            ),
+        ));
     }
     
     /**
@@ -30,7 +30,7 @@ class ReserveringType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'AlbaBundle\Entity\Reservering'
+            'data_class' => 'AlbaBundle\Entity\Klant'
         ));
     }
 
@@ -39,7 +39,7 @@ class ReserveringType extends AbstractType
      */
     public function getBlockPrefix()
     {
-        return 'albabundle_reservering';
+        return 'albabundle_klant';
     }
 
 

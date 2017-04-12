@@ -1,0 +1,27 @@
+{% extends '@Alba/adminpanel.html.twig' %}
+
+{% block body %}
+    <h1 style="float: left">Extras list</h1>
+    <a style="float: right" class="button" href="{{ path('extra_new') }}"><i class="fa fa-plus"></i></a>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Type</th>
+                <th>Prijs</th>
+                <th>Omschrijving</th>
+                <th>More</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for extra in extras %}
+            <tr>
+                <td>{{ extra.type }}</td>
+                <td>{{ extra.prijs }}</td>
+                <td>{{ extra.omschrijving }}</td>
+                <td><a class="button" href="{{ path('extra_show', { 'id': extra.id }) }}"><i class="fa fa-eye"></i></a></td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

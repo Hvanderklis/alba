@@ -47,7 +47,6 @@ i {
 }
 .fa {
     font-size: 30px!important;
-    padding-bottom: 20px;
 }
 
 #offCanvasLeft {
@@ -90,24 +89,24 @@ i {
 }
 #TARTAN {
     background-image: url("../img/single.jpg");
-    height: 300px;
+    min-height: 300px;
 }
 #WHISKY {
     background-image: url("../img/double.jpg");
-    height: 300px;
+    min-height: 300px;
 }
 #THISTLE {
     background-image: url("../img/luxe.jpg");
-    height: 300px;
+    min-height: 300px;
 }
 #ALBAR {
     background-image: url("../img/wisky.jpg");
-    height: 300px;
+    min-height: 300px;
 }
 .infok {
     margin-left: -2px;
     margin-top: -16px;
-    height: 300px;
+    min-height: 300px;
     background-color: purple;
 }
 .container {

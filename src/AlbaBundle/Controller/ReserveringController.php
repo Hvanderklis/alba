@@ -5,12 +5,13 @@ namespace AlbaBundle\Controller;
 use AlbaBundle\Entity\Reservering;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component\HttpFoundation\Request;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\HttpFoundation\Request;
 
 /**
  * Reservering controller.
  *
- * @Route("reservering")
+ * @Route("adminpanel/reservation")
  */
 class ReserveringController extends Controller
 {
@@ -26,8 +27,8 @@ class ReserveringController extends Controller
 
         $reserverings = $em->getRepository('AlbaBundle:Reservering')->findAll();
 
-        return $this->render('reservering/index.html.twig', array(
-            'reserverings' => $reserverings,
+        return $this->render('AlbaBundle:Reservation:index.html.twig', array(
+            'reservations' => $reserverings,
         ));
     }
 
@@ -51,7 +52,7 @@ class ReserveringController extends Controller
             return $this->redirectToRoute('reservering_show', array('id' => $reservering->getId()));
         }
 
-        return $this->render('reservering/new.html.twig', array(
+        return $this->render('AlbaBundle:Reservation:new.html.twig', array(
             'reservering' => $reservering,
             'form' => $form->createView(),
         ));
@@ -63,13 +64,49 @@ class ReserveringController extends Controller
      * @Route("/{id}", name="reservering_show")
      * @Method("GET")
      */
-    public function showAction(Reservering $reservering)
+    public function showAction(Reservering $reservering, Request $request)
     {
+        $em = $this->getDoctrine()->getManager();
         $deleteForm = $this->createDeleteForm($reservering);
 
-        return $this->render('reservering/show.html.twig', array(
-            'reservering' => $reservering,
+        $customerRepository = $em->getRepository('AlbaBundle:Klant');
+        $customers = $customerRepository->findBy(['id' => $reservering->getKlant()]);
+
+        $reserId = $reservering->getId();
+        $kamerRepo = $em->getRepository('AlbaBundle:Kamer');
+        $kamers = $kamerRepo->createQueryBuilder('k')
+            ->innerJoin('k.reservering', 'r')
+            ->where('r.id = :reserveringId')
+            ->setParameter('reserveringId', $reserId)
+            ->getQuery()
+            ->getResult();
+
+        $reserId = $reservering->getId();
+        $extraRepo = $em->getRepository('AlbaBundle:Extra');
+        $extras = $extraRepo->createQueryBuilder('e')
+            ->innerJoin('e.reservering', 'r')
+            ->where('r.id = :reserveringId')
+            ->setParameter('reserveringId', $reserId)
+            ->getQuery()
+            ->getResult();
+
+        $reserId = $reservering->getId();
+        $gastRepo = $em->getRepository('AlbaBundle:Gast');
+        $gasten = $gastRepo->createQueryBuilder('g')
+            ->innerJoin('g.reservering', 'r')
+            ->where('r.id = :reserveringId')
+            ->setParameter('reserveringId', $reserId)
+            ->getQuery()
+            ->getResult();
+
+
+        return $this->render('AlbaBundle:Reservation:show.html.twig', array(
+            'reservation' => $reservering,
             'delete_form' => $deleteForm->createView(),
+            'customers' => $customers,
+            'rooms' => $kamers,
+            'extras' => $extras,
+            'guests' => $gasten,
         ));
     }
 
@@ -88,10 +125,10 @@ class ReserveringController extends Controller
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('reservering_edit', array('id' => $reservering->getId()));
+            return $this->redirectToRoute('reservering_show', array('id' => $reservering->getId()));
         }
 
-        return $this->render('reservering/edit.html.twig', array(
+        return $this->render('AlbaBundle:Reservation:edit.html.twig', array(
             'reservering' => $reservering,
             'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
@@ -111,6 +148,7 @@ class ReserveringController extends Controller
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
+
             $em->remove($reservering);
             $em->flush();
         }
@@ -131,6 +169,6 @@ class ReserveringController extends Controller
             ->setAction($this->generateUrl('reservering_delete', array('id' => $reservering->getId())))
             ->setMethod('DELETE')
             ->getForm()
-        ;
+            ;
     }
 }

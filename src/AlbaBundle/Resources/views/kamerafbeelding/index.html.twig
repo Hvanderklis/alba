@@ -1,0 +1,38 @@
+{% extends '@Alba/adminpanel.html.twig' %}
+
+{% block body %}
+    <h1>Kamerafbeeldings list</h1>
+
+    <table>
+        <thead>
+        <tr>
+            <th>File</th>
+            <th>Path</th>
+            <th>lol</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for kamerAfbeelding in kamerAfbeeldings %}
+            <tr>
+                <td>{{ kamerAfbeelding.name }}.{{ kamerAfbeelding.type }}</td>
+                <td>{{ kamerAfbeelding.path }}</td>
+                <td></td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('kamerafbeelding_show', { 'id': kamerAfbeelding.id }) }}">show</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('kamerafbeelding_new') }}">Create a new kamerAfbeelding</a>
+        </li>
+    </ul>
+{% endblock %}

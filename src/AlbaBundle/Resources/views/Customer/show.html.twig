@@ -47,25 +47,6 @@
             </tr>
         </tbody>
     </table>
-    <h2>Guest</h2>
-
-    <table>
-        <tbody>
-        <tr>
-            <th>Voornaam</th>
-            <td>{{ guest.Voornaam }}</td>
-        </tr>
-        <tr>
-            <th>Tussenvoegsel</th>
-            <td>{{ guest.Tussenvoegsel }}</td>
-        </tr>
-        <tr>
-            <th>Achternaam</th>
-            <td>{{ guest.Achternaam }}</td>
-        </tr>
-        </tbody>
-    </table>
-
     <ul>
         <li>
             <a href="{{ path('customer_index') }}" class="button">Back to the list</a>
@@ -75,8 +56,66 @@
         </li>
         <li>
             {{ form_start(delete_form) }}
-                <input type="submit" value="Delete" class="button alert">
+            <input type="submit" value="Delete" class="button alert">
             {{ form_end(delete_form) }}
         </li>
     </ul>
+    <h2>Guest</h2>
+
+    <table>
+        <thead>
+            <tr>
+                <th>First name</th>
+                <th>Prefix</th>
+                <th>Last name</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for guest in guests %}
+        <tr>
+            <td>{{ guest.voornaam }}</td>
+            <td>{{ guest.tussenvoegsel }}</td>
+            <td>{{ guest.achternaam }}</td>
+            <td>
+                <ul>
+                    <li>
+                        <a href="{{ path('guest_edit', { 'id': guest.id }) }}" class="button">Edit</a>
+                    </li>
+                </ul>
+            </td>
+        </tr>
+        </tbody>
+        {% endfor %}
+    </table>
+
+    <h2>Payments</h2>
+
+    <table>
+        <thead>
+        <tr>
+            <th>First name</th>
+            <th>Prefix</th>
+            <th>Last name</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for guest in guests %}
+        <tr>
+            <td>{{ guest.voornaam }}</td>
+            <td>{{ guest.tussenvoegsel }}</td>
+            <td>{{ guest.achternaam }}</td>
+            <td>
+                <ul>
+                    <li>
+                        <a href="{{ path('guest_edit', { 'id': guest.id }) }}" class="button">Edit</a>
+                    </li>
+                </ul>
+            </td>
+        </tr>
+        </tbody>
+        {% endfor %}
+    </table>
+
 {% endblock %}

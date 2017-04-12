@@ -49,6 +49,11 @@ class KlantController extends Controller
             $em->flush($klant);
             return $this->redirectToRoute('customer_show', array('id' => $klant->getId()));
         }
+
+        return $this->render('AlbaBundle:Customer:new.html.twig', array(
+            'klant' => $klant,
+            'form' => $form->createView(),
+        ));
     }
 
     /**
@@ -64,13 +69,20 @@ class KlantController extends Controller
         $customers = $customerRepository->findBy(['id' => $klant->getId()]);
 
         $gastRepo = $em->getRepository('AlbaBundle:Gast');
-        $gasten = $gastRepo->findBy(['id' => $klant->getGast()]);
+        $gasten = $gastRepo->createQueryBuilder('g')
+            ->innerJoin('g.klant', 'k')
+            ->where('k.id = :klantId')
+            ->setParameter('klantId', $customers)
+            ->getQuery()
+            ->getResult();
+
 
         $deleteForm = $this->createDeleteForm($klant);
 
         return $this->render('AlbaBundle:Customer:show.html.twig', array(
-            'customer' => $customers,
-            'guest' => $gasten,
+            'customer' => $klant,
+            'guests' => $gasten,
+            'delete_form' => $deleteForm->createView(),
         ));
     }
 

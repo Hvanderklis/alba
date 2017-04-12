@@ -1,50 +1,68 @@
 {% extends '@Alba/adminpanel.html.twig' %}
 
 {% block body %}
-    <h1>Klant</h1>
+    <h1>Customer</h1>
 
     <table>
         <tbody>
             <tr>
                 <th>Id</th>
-                <td>{{ klant.id }}</td>
+                <td>{{ customer.id }}</td>
             </tr>
             <tr>
                 <th>Voornaam</th>
-                <td>{{ klant.voornaam }}</td>
+                <td>{{ customer.voornaam }}</td>
             </tr>
             <tr>
                 <th>Tussenvoegsel</th>
-                <td>{{ klant.tussenvoegsel }}</td>
+                <td>{{ customer.tussenvoegsel }}</td>
             </tr>
             <tr>
                 <th>Achternaam</th>
-                <td>{{ klant.achternaam }}</td>
+                <td>{{ customer.achternaam }}</td>
             </tr>
             <tr>
                 <th>Geboortedatum</th>
-                <td>{% if klant.geboortedatum %}{{ klant.geboortedatum|date('Y-m-d') }}{% endif %}</td>
+                <td>{% if customer.geboortedatum %}{{ customer.geboortedatum|date('Y-m-d') }}{% endif %}</td>
             </tr>
             <tr>
                 <th>Geslacht</th>
-                <td>{{ klant.geslacht }}</td>
+                <td>{{ customer.geslacht }}</td>
             </tr>
             <tr>
                 <th>Plaats</th>
-                <td>{{ klant.plaats }}</td>
+                <td>{{ customer.plaats }}</td>
             </tr>
             <tr>
                 <th>Taal</th>
-                <td>{{ klant.taal }}</td>
+                <td>{{ customer.taal }}</td>
             </tr>
             <tr>
                 <th>Email</th>
-                <td>{{ klant.email }}</td>
+                <td>{{ customer.email }}</td>
             </tr>
             <tr>
                 <th>Telefoon</th>
-                <td>{{ klant.telefoon }}</td>
+                <td>{{ customer.telefoon }}</td>
             </tr>
+        </tbody>
+    </table>
+    <h2>Guest</h2>
+
+    <table>
+        <tbody>
+        <tr>
+            <th>Voornaam</th>
+            <td>{{ guest.Voornaam }}</td>
+        </tr>
+        <tr>
+            <th>Tussenvoegsel</th>
+            <td>{{ guest.Tussenvoegsel }}</td>
+        </tr>
+        <tr>
+            <th>Achternaam</th>
+            <td>{{ guest.Achternaam }}</td>
+        </tr>
         </tbody>
     </table>
 
@@ -53,7 +71,7 @@
             <a href="{{ path('customer_index') }}" class="button">Back to the list</a>
         </li>
         <li>
-            <a href="{{ path('customer_edit', { 'id': klant.id }) }}" class="button">Edit</a>
+            <a href="{{ path('customer_edit', { 'id': customer.id }) }}" class="button">Edit</a>
         </li>
         <li>
             {{ form_start(delete_form) }}

@@ -71,8 +71,11 @@ class Gast
      */
     private $reservering;
     /**
+     * @var \Doctrine\Common\Collections\ArrayCollection
+     *
      * @ORM\ManyToOne(targetEntity="Klant", inversedBy="gast")
      * @ORM\JoinColumn(name="Klantnummer", referencedColumnName="id")
+     * @ORM\JoinTable(name="klant")
      */
     private $klant;
     /**
@@ -293,5 +296,13 @@ class Gast
     public function getKlant()
     {
         return $this->klant;
+    }
+
+    /**
+     * @param int $id
+     */
+    public function __toString($id)
+    {
+        $this->id = $id;
     }
 }

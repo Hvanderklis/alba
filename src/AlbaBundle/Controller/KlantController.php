@@ -63,12 +63,20 @@ class KlantController extends Controller
      * @Route("/{id}", name="customer_show")
      * @Method("GET")
      */
-    public function showAction(Klant $klant)
+    public function showAction(Klant $klant, Request $request)
     {
+        $em = $this->getDoctrine()->getManager();
+        $customerRepository = $em->getRepository('AlbaBundle:Klant');
+        $customers = $customerRepository->findBy(['id' => $klant->getId()]);
+
+        $gastRepo = $em->getRepository('AlbaBundle:Gast');
+        $gasten = $gastRepo->findBy(['id' => $klant->getGast()]);
+
         $deleteForm = $this->createDeleteForm($klant);
 
         return $this->render('AlbaBundle:Customer:show.html.twig', array(
-            'klant' => $klant,
+            'customer' => $customers,
+            'guest' => $gasten,
             'delete_form' => $deleteForm->createView(),
         ));
     }

@@ -90,11 +90,15 @@ class Klant
     private $reservering;
 
     /**
+     * @var \Doctrine\Common\Collections\ArrayCollection
+     *
      * @ORM\OneToMany(targetEntity="Gast", mappedBy="klant")
+     * @ORM\JoinTable(name="gast")
      */
     private $gast;
 
     /**
+     *
      * @ORM\OneToMany(targetEntity="Kaart", mappedBy="klant")
      */
     private $kaart;
@@ -400,6 +404,11 @@ class Klant
     public function getGast()
     {
         return $this->gast;
+    }
+
+    public function __toString()
+    {
+        return $this->
     }
 
     /**

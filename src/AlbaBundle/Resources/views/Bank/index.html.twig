@@ -19,10 +19,10 @@
                 <td>
                     <ul>
                         <li>
-                            <a href="{{ path('bank_show', { 'id': bank.id }) }}">show</a>
+                            <a href="{{ path('bank_show', { 'id': bank.id }) }}" class="button">show</a>
                         </li>
                         <li>
-                            <a href="{{ path('bank_edit', { 'id': bank.id }) }}">edit</a>
+                            <a href="{{ path('bank_edit', { 'id': bank.id }) }}" class="button">edit</a>
                         </li>
                     </ul>
                 </td>
@@ -33,7 +33,7 @@
 
     <ul>
         <li>
-            <a href="{{ path('bank_new') }}">Create a new bank</a>
+            <a href="{{ path('bank_new') }}" class="button">Create a new bank</a>
         </li>
     </ul>
 {% endblock %}

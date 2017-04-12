@@ -50,6 +50,33 @@ class Reservering
     private $klant;
 
     /**
+     * @ORM\ManyToMany(targetEntity="AlbaBundle\Entity\Kamer", inversedBy="reservering")
+     * @ORM\JoinTable(name="kamer_reservering")
+     */
+    private $kamer;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="AlbaBundle\Entity\Gast", inversedBy="reservering")
+     * @ORM\JoinTable(name="gast_reservering")
+     */
+    private $gast;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="AlbaBundle\Entity\Extra", inversedBy="reservering")
+     * @ORM\JoinTable(name="extra_reservering")
+     */
+    private $extra;
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->kamer = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->gast = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->extra = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
      * Get id
      *
      * @return integer
@@ -153,5 +180,107 @@ class Reservering
     public function getKlant()
     {
         return $this->klant;
+    }
+
+    /**
+     * Add kamer
+     *
+     * @param \AlbaBundle\Entity\Kamer $kamer
+     *
+     * @return Reservering
+     */
+    public function addKamer(\AlbaBundle\Entity\Kamer $kamer)
+    {
+        $this->kamer[] = $kamer;
+
+        return $this;
+    }
+
+    /**
+     * Remove kamer
+     *
+     * @param \AlbaBundle\Entity\Kamer $kamer
+     */
+    public function removeKamer(\AlbaBundle\Entity\Kamer $kamer)
+    {
+        $this->kamer->removeElement($kamer);
+    }
+
+    /**
+     * Get kamer
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getKamer()
+    {
+        return $this->kamer;
+    }
+
+    /**
+     * Add gast
+     *
+     * @param \AlbaBundle\Entity\Gast $gast
+     *
+     * @return Reservering
+     */
+    public function addGast(\AlbaBundle\Entity\Gast $gast)
+    {
+        $this->gast[] = $gast;
+
+        return $this;
+    }
+
+    /**
+     * Remove gast
+     *
+     * @param \AlbaBundle\Entity\Gast $gast
+     */
+    public function removeGast(\AlbaBundle\Entity\Gast $gast)
+    {
+        $this->gast->removeElement($gast);
+    }
+
+    /**
+     * Get gast
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getGast()
+    {
+        return $this->gast;
+    }
+
+    /**
+     * Add extra
+     *
+     * @param \AlbaBundle\Entity\Extra $extra
+     *
+     * @return Reservering
+     */
+    public function addExtra(\AlbaBundle\Entity\Extra $extra)
+    {
+        $this->extra[] = $extra;
+
+        return $this;
+    }
+
+    /**
+     * Remove extra
+     *
+     * @param \AlbaBundle\Entity\Extra $extra
+     */
+    public function removeExtra(\AlbaBundle\Entity\Extra $extra)
+    {
+        $this->extra->removeElement($extra);
+    }
+
+    /**
+     * Get extra
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getExtra()
+    {
+        return $this->extra;
     }
 }

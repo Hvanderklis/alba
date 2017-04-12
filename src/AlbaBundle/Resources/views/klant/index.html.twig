@@ -1,0 +1,48 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Klants list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Voornaam</th>
+                <th>Tussenvoegsel</th>
+                <th>Achternaam</th>
+                <th>Geboortedatum</th>
+                <th>Geslacht</th>
+                <th>Plaats</th>
+                <th>Taal</th>
+                <th>Email</th>
+                <th>Telefoon</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for klant in klants %}
+            <tr>
+                <td><a href="{{ path('klant_show', { 'id': klant.id }) }}">{{ klant.id }}</a></td>
+                <td>{{ klant.voornaam }}</td>
+                <td>{{ klant.tussenvoegsel }}</td>
+                <td>{{ klant.achternaam }}</td>
+                <td>{% if klant.geboortedatum %}{{ klant.geboortedatum|date('Y-m-d') }}{% endif %}</td>
+                <td>{{ klant.geslacht }}</td>
+                <td>{{ klant.plaats }}</td>
+                <td>{{ klant.taal }}</td>
+                <td>{{ klant.email }}</td>
+                <td>{{ klant.telefoon }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('klant_show', { 'id': klant.id }) }}">show</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    
+{% endblock %}

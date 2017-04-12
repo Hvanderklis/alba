@@ -7,6 +7,10 @@
  */
 
 namespace AlbaBundle\Controller;
+
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 
@@ -17,6 +21,8 @@ class WebsiteController extends Controller
      */
     public function contacAction()
     {
+
         return $this->render("@Alba/contact.html.twig");
     }
+
 }

@@ -14,3 +14,4 @@ alba:
 app:
     resource: '@AppBundle/Controller/'
     type: annotation
+

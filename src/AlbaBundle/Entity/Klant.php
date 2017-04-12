@@ -102,6 +102,7 @@ class Klant
      * @ORM\OneToMany(targetEntity="Kaart", mappedBy="klant")
      */
     private $kaart;
+
     /**
      * Constructor
      */

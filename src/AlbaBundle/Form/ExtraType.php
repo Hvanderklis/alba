@@ -2,6 +2,7 @@
 
 namespace AlbaBundle\Form;
 
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -16,9 +17,7 @@ class ExtraType extends AbstractType
         $builder
             ->add('type')
             ->add('prijs')
-            ->add('omschrijving')
-            ->add('reserveringen')
-        ;
+            ->add('omschrijving');
     }
     
     /**

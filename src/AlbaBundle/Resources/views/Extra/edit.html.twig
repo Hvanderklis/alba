@@ -9,4 +9,8 @@
     {{ form_end(edit_form) }}
 
     <a class="button secondary" style="float: left" href="{{ path('extra_index') }}">Back to the list</a>
+
+    {{ form_start(delete_form) }}
+    <input type="submit" value="Delete">
+    {{ form_end(delete_form) }}
 {% endblock %}

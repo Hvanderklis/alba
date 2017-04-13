@@ -15,16 +15,23 @@ class KlantType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('voornaam')->add('tussenvoegsel')->add('achternaam')
+        $builder
+            ->add('voornaam')
+            ->add('tussenvoegsel')
+            ->add('achternaam')
             ->add('geboortedatum', BirthdayType::class, array(
                 'placeholder' => 'Select a value'))
-            ->add('geslacht')->add('plaats')->add('taal')->add('email')->add('telefoon');
-        $builder->add('geslacht', ChoiceType::class, array(
-            'choices'  => array(
-                'Man' => "Man",
-                'Vrouw' => "Vrouw",
-            ),
-        ));
+            ->add('geslacht', ChoiceType::class, array(
+                'choices'  => array(
+                    'Man' => "Man",
+                    'Vrouw' => "Vrouw",
+                ),
+            ))
+            ->add('plaats')
+            ->add('taal')
+            ->add('email')
+            ->add('telefoon')
+        ;
     }
     
     /**
@@ -44,6 +51,4 @@ class KlantType extends AbstractType
     {
         return 'albabundle_klant';
     }
-
-
 }

@@ -26,7 +26,7 @@ class KlantController extends Controller
 
         $klants = $em->getRepository('AlbaBundle:Klant')->findAll();
 
-        return $this->render('klant/index.html.twig', array(
+        return $this->render('Albabundle:klant:index.html.twig', array(
             'klants' => $klants,
         ));
     }
@@ -117,6 +117,7 @@ class KlantController extends Controller
 
         return $this->redirectToRoute('klant_index');
     }
+
 
     /**
      * Creates a form to delete a klant entity.

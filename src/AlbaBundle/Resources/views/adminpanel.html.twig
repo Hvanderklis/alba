@@ -41,11 +41,12 @@ awesome.css') }}">
     <div class="content">
 {% block body %}{% endblock %}
     </div>
-{% block javascripts %}{% endblock %}
+{% block javascripts %}
     <script src="{{ asset('bundles/alba/js/vendor/jquery.js') }}"></script>
     <script src="{{ asset('bundles/alba/js/vendor/foundation.min.js') }}"></script>
     <script>
         $(document).foundation();
     </script>
+{% endblock %}
 </body>
 </html>

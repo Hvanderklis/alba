@@ -7,13 +7,18 @@
                 <form>
                     <div class="row">
                         <div class="small-12 columns">
-                            <label>Room type
-                                <select>
-                                    <option>Single Room</option>
-                                    <option>Dubble Room</option>
-                                    <option>Luxury Room</option>
-                                    <option>Suite</option>
-                                </select>
+                            <label>How many person
+                            <select>
+                                <option></option>
+                                <option>1</option>
+                                <option>2</option>
+                                <option>3</option>
+                                <option>4</option>
+                                <option>5</option>
+                                <option>6</option>
+                                <option>7</option>
+                                <option>8</option>
+                            </select>
                             </label>
                             <label>Check-in date
                                 <input type="date" placeholder="Check-in date">
@@ -23,93 +28,165 @@
                             <label>Check-out date
                                 <input type="date" placeholder="Check-out date">
                             </label>
-                            <button type="submit" class="button">Book Now!</button>
+                            <button type="submit" id="colorlp" class="button">Book Now!</button>
                         </div>
                     </div>
                 </form>
             </div>
         </div>
         <!--welcome quote-->
-        <div class="medium-6 large-9 columns">
-            <h2 id="colorw">Welcome</h2>
+        <div class="medium-6 large-9 columns" id="opa">
+            <h2 id="colorw">ALBA</h2>
             <h4 id="colorw">May All Who Enter As Guests, Leave As Friends</h4>
-            <p class="subheader" id="colorw">There is beauty in space, and it is orderly. There is no weather, and there is regularity. It is predictable. Everything in space obeys the laws of physics. If you know these laws, and obey them, space will treat you kindly.</p>
         </div>
     </div>
 
-    <!--text-->
+    <!--text welcom-->
     <div class="callout large">
-        <center><h5>Welcome</h5></center>
+        <center><h2>Welcome</h2></center>
         <center><p class="letters">"For quite some years we have been visiting Scotland and in 2014 we decided to move
-                to Scotland and start our own Bed & Breakfast.
+                to Scotland and start our own Bed & Breakfast.<br/>
                 We’ve made plans already, but because of our mortgage we have to stay a few more
-                years in the Netherlands. The date is set to the first of september 2020!"</p></center>
+                years in the Netherlands.<br/> The date is set to the first of september 2020!"</p></center>
     </div>
+
     <!--Rooms-->
-    <div class="row small-up-1 medium-up-2 large-up-3">
+    <div class="row">
         <div class="column">
-            <div class="callout" id="book">
-                <p id="colorw">Single Room</p>
-                <p><img src="{{ asset('bundles/alba/img/single.jpg') }}" alt="Sigle Room"></p>
-                <p class="lead" id="colorw">Copernican Revolution caused an uproar</p>
-                <p class="subheader" id="colorw">Find Earth-like planets life outside the Solar System</p>
-                <a href="#" class="button">Link</a>
-            </div>
-        </div>
-        <div class="column">
-            <div class="callout" id="book">
-                <p id="colorw">Duoble Room</p>
-                <p><img src="{{ asset('bundles/alba/img/double.jpg') }}" alt="Double Room"></p>
-                <p class="lead" id="colorw">Copernican Revolution caused an uproar</p>
-                <p class="subheader" id="colorw">Find Earth-like planets life outside the Solar System</p>
-                <a href="#" class="button">Link</a>
-            </div>
-        </div>
-        <div class="column">
-            <div class="callout" id="book">
-                <p id="colorw">Whiskey Room</p>
-                <p><img src="{{ asset('bundles/alba/img/wisky.jpg') }}" alt="Whiskey"></p>
-                <p class="lead" id="colorw">Copernican Revolution caused an uproar</p>
-                <p class="subheader" id="colorw">Find Earth-like planets life outside the Solar System</p>
-                <a href="#" class="button">Link</a>
+
+            {#<div class="callout" id="book">#}
+                {#<p id="colorw">Single Room</p>#}
+                {#<p><img src="{{ asset('bundles/alba/img/single.jpg') }}" alt="Sigle Room"></p>#}
+                {#<p class="lead" id="colorw">Copernican Revolution caused an uproar</p>#}
+                {#<p class="subheader" id="colorw">Find Earth-like planets life outside the Solar System</p>#}
+                {#<a href="#" id="colorlp" class="button">Look Room</a>#}
+
+            <div class="row callout" id="TARTAN">
+                <div class="small-3 column infok">
+                    <br><br/><h3 id="colorw">TARTAN ROOM</h3>
+                    <p class="lead" id="colorw">Copernican Revolution caused an uproar</p>
+                    <p class="subheader" id="colorw">Find Earth-like planets life outside the Solar System</p>
+                    <a href="#" class="button">Look room</a>
+                </div>
+                <div class="small-9 column container">
+                    <img src="{{ asset('bundles/alba/img/vulling.png') }}" alt="vulling">
+                    <div class="overlay">
+                        <div class="text">25 pond p.p p.n</div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 
-    <div class="callout secondary">
-        <div class="row">
+    <div class="row">
+        <div class="column">
+
+            {#<div class="callout" id="book">#}
+                {#<p id="colorw">Duoble Room</p>#}
+                {#<p><img src="{{ asset('bundles/alba/img/double.jpg') }}" alt="Double Room"></p>#}
+                {#<p class="lead" id="colorw">Copernican Revolution caused an uproar</p>#}
+                {#<p class="subheader" id="colorw">Find Earth-like planets life outside the Solar System</p>#}
+                {#<a href="#" id="colorlp" class="button">Look Room</a>#}
+
+            <div class="row callout" id="WHISKY">
+                <div class="small-9 column container1">
+                    <img src="{{ asset('bundles/alba/img/vulling.png') }}" alt="vulling">
+                    <div class="overlayl">
+                        <div class="text">25 pond p.p p.n</div>
+                    </div>
+                </div>
+                <div class="small-3 column infok">
+                    <br><br/><h3 id="colorw">WHISKY ROOM</h3>
+                    <p class="lead" id="colorw">Copernican Revolution caused an uproar</p>
+                    <p class="subheader" id="colorw">Find Earth-like planets life outside the Solar System</p>
+                    <a href="#" class="button">Look room</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="column">
+
+            {#<div class="callout" id="book">#}
+                {#<p id="colorw">Whiskey Room</p>#}
+                {#<p><img src="{{ asset('bundles/alba/img/wisky.jpg') }}" alt="Whiskey"></p>#}
+                {#<p class="lead" id="colorw">Copernican Revolution caused an uproar</p>#}
+                {#<p class="subheader" id="colorw">Find Earth-like planets life outside the Solar System</p>#}
+                {#<a href="#" id="colorlp" class="button">Look Room</a>#}
+
+            <div class="row callout" id="THISTLE">
+                <div class="small-3 column infok">
+                    <br><br/><h3 id="colorw">THISTLE ROOM</h3>
+                    <p class="lead" id="colorw">Copernican Revolution caused an uproar</p>
+                    <p class="subheader" id="colorw">Find Earth-like planets life outside the Solar System</p>
+                    <a href="#" class="button">Look room</a>
+                </div>
+                <div class="small-9 column container">
+                    <img src="{{ asset('bundles/alba/img/vulling.png') }}" alt="vulling">
+                    <div class="overlay">
+                        <div class="text">25 pond p.p p.n</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="column">
+            <div class="row callout" id="ALBAR">
+                <div class="small-9 column container1">
+                    <img src="{{ asset('bundles/alba/img/vulling.png') }}" alt="vulling">
+                    <div class="overlayl">
+                        <div class="text">25 pond p.p p.n</div>
+                    </div>
+                </div>
+                <div class="small-3 column infok">
+                    <br><br/><h3 id="colorw">ALBA ROOM</h3>
+                    <p class="lead" id="colorw">Copernican Revolution caused an uproar</p>
+                    <p class="subheader" id="colorw">Find Earth-like planets life outside the Solar System</p>
+                    <a href="#" class="button">Look room</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--Options b&b-->
+    <div class="callout secondary" id="barr">
+        <div class="row" id="opaw">
             <div class="medium-4 columns">
                 <center>
                     <i class="fa fa-wifi" aria-hidden="true"></i>
-                    <h3>Wi-Fi</h3>
+                    <h3 class="lobo">Wi-Fi</h3>
                     <p class="letters">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corrupti atque, tenetur quam </p>
                 </center>
             </div>
             <div class="medium-4 columns">
                 <center>
                     <i class="fa fa-cutlery" aria-hidden="true"></i>
-                    <h3>Breakfast</h3>
+                    <h3 class="lobo">Breakfast</h3>
                     <p class="letters">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corrupti atque, tenetur quam </p>
                 </center>
             </div>
             <div class="medium-4 columns">
                 <center>
                     <i class="fa fa-glass" aria-hidden="true"></i>
-                    <h3>Scotch</h3>
+                    <h3 class="lobo">Scotch</h3>
                     <p class="letters">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corrupti atque, tenetur quam </p>
                 </center>
             </div>
         </div>
     </div>
 
+    <!--Extra books-->
     <div class="row">
         <div class="medium-6 columns">
             <div class="box">
                 <div class="info">
                     <h4 class="text-center">Host</h4>
-                    <center><i class="fa fa-users" aria-hidden="true"></i></center>
+                    <br/><center><i class="fa fa-users" aria-hidden="true"></i></center>
                     <p class="letters">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corrupti atque, tenetur quam aspernatur corporis at explicabo nulla dolore necessitatibus doloremque exercitationem sequi dolorem architecto perferendis quas aperiam debitis dolor soluta!</p>
-                    <a href="#" class="button expanded">Owners</a>
+                    <a href="#" id="colorlp" class="button expanded">Info</a>
                 </div>
             </div>
         </div>
@@ -117,9 +194,9 @@
             <div class="box">
                 <div class="info">
                     <h4 class="text-center">Guest book</h4>
-                    <center><i class="fa fa-book" aria-hidden="true"></i></center>
+                    <br/><center><i class="fa fa-book" aria-hidden="true"></i></center>
                     <p class="letters">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corrupti atque, tenetur quam aspernatur corporis at explicabo nulla dolore necessitatibus doloremque exercitationem sequi dolorem architecto perferendis quas aperiam debitis dolor soluta!</p>
-                    <a href="#" class="button expanded">Reviews</a>
+                    <a href="#" id="colorlp" class="button expanded">Reviews</a>
                 </div>
             </div>
         </div>

@@ -5,20 +5,20 @@ namespace AlbaBundle\Controller;
 use AlbaBundle\Entity\Klant;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component\HttpFoundation\Request;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\HttpFoundation\Request;
 
 /**
  * Klant controller.
  *
- * @Route("klant")
+ * @Route("adminpanel/customer")
  */
 class KlantController extends Controller
 {
     /**
-     * Lists all klant entities.
+     * Lists all customer entities.
      *
-     * @Route("/", name="klant_index")
-     * @Method("GET")
+     * @Route("/", name="customer_index")
      */
     public function indexAction()
     {
@@ -26,7 +26,7 @@ class KlantController extends Controller
 
         $klants = $em->getRepository('AlbaBundle:Klant')->findAll();
 
-        return $this->render('klant/index.html.twig', array(
+        return $this->render('AlbaBundle:Customer:index.html.twig', array(
             'klants' => $klants,
         ));
     }
@@ -34,7 +34,7 @@ class KlantController extends Controller
     /**
      * Creates a new klant entity.
      *
-     * @Route("/new", name="klant_new")
+     * @Route("/new", name="customer_new")
      * @Method({"GET", "POST"})
      */
     public function newAction(Request $request)
@@ -47,11 +47,10 @@ class KlantController extends Controller
             $em = $this->getDoctrine()->getManager();
             $em->persist($klant);
             $em->flush($klant);
-
-            return $this->redirectToRoute('klant_show', array('id' => $klant->getId()));
+            return $this->redirectToRoute('customer_show', array('id' => $klant->getId()));
         }
 
-        return $this->render('AlbaBundle:klant:new.html.twig', array(
+        return $this->render('AlbaBundle:Customer:new.html.twig', array(
             'klant' => $klant,
             'form' => $form->createView(),
         ));
@@ -60,15 +59,29 @@ class KlantController extends Controller
     /**
      * Finds and displays a klant entity.
      *
-     * @Route("/{id}", name="klant_show")
+     * @Route("/{id}", name="customer_show")
      * @Method("GET")
      */
-    public function showAction(Klant $klant)
+    public function showAction(Klant $klant, Request $request)
     {
+        $em = $this->getDoctrine()->getManager();
+        $customerRepository = $em->getRepository('AlbaBundle:Klant');
+        $customers = $customerRepository->findBy(['id' => $klant->getId()]);
+
+        $gastRepo = $em->getRepository('AlbaBundle:Gast');
+        $gasten = $gastRepo->createQueryBuilder('g')
+            ->innerJoin('g.klant', 'k')
+            ->where('k.id = :klantId')
+            ->setParameter('klantId', $customers)
+            ->getQuery()
+            ->getResult();
+
+
         $deleteForm = $this->createDeleteForm($klant);
 
-        return $this->render('klant/show.html.twig', array(
-            'klant' => $klant,
+        return $this->render('AlbaBundle:Customer:show.html.twig', array(
+            'customer' => $klant,
+            'guests' => $gasten,
             'delete_form' => $deleteForm->createView(),
         ));
     }
@@ -76,7 +89,7 @@ class KlantController extends Controller
     /**
      * Displays a form to edit an existing klant entity.
      *
-     * @Route("/{id}/edit", name="klant_edit")
+     * @Route("/{id}/edit", name="customer_edit")
      * @Method({"GET", "POST"})
      */
     public function editAction(Request $request, Klant $klant)
@@ -87,11 +100,10 @@ class KlantController extends Controller
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
-
-            return $this->redirectToRoute('klant_edit', array('id' => $klant->getId()));
+            return $this->redirectToRoute('customer_edit', array('id' => $klant->getId()));
         }
 
-        return $this->render('klant/edit.html.twig', array(
+        return $this->render('AlbaBundle:Customer:edit.html.twig', array(
             'klant' => $klant,
             'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
@@ -101,7 +113,7 @@ class KlantController extends Controller
     /**
      * Deletes a klant entity.
      *
-     * @Route("/{id}", name="klant_delete")
+     * @Route("/{id}", name="customer_delete")
      * @Method("DELETE")
      */
     public function deleteAction(Request $request, Klant $klant)
@@ -114,13 +126,11 @@ class KlantController extends Controller
             $em->remove($klant);
             $em->flush();
         }
-
-        return $this->redirectToRoute('klant_index');
+        return $this->redirectToRoute('customer_index');
     }
 
     /**
      * Creates a form to delete a klant entity.
-     *
      * @param Klant $klant The klant entity
      *
      * @return \Symfony\Component\Form\Form The form
@@ -128,9 +138,8 @@ class KlantController extends Controller
     private function createDeleteForm(Klant $klant)
     {
         return $this->createFormBuilder()
-            ->setAction($this->generateUrl('klant_delete', array('id' => $klant->getId())))
+            ->setAction($this->generateUrl('customer_delete', array('id' => $klant->getId())))
             ->setMethod('DELETE')
-            ->getForm()
-        ;
+            ->getForm();
     }
 }

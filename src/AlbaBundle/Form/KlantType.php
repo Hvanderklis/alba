@@ -3,6 +3,7 @@
 namespace AlbaBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\BirthdayType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
@@ -14,14 +15,23 @@ class KlantType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('voornaam')->add('tussenvoegsel')->add('achternaam')->add('geboortedatum')->add('geslacht')->add('plaats')->add('taal')->add('email')->add('telefoon');
-
-        $builder->add('geslacht', ChoiceType::class, array(
-            'choices'  => array(
-                'Man' => "Man",
-                'Vrouw' => "Vrouw",
-            ),
-        ));
+        $builder
+            ->add('voornaam')
+            ->add('tussenvoegsel')
+            ->add('achternaam')
+            ->add('geboortedatum', BirthdayType::class, array(
+                'placeholder' => 'Select a value'))
+            ->add('geslacht', ChoiceType::class, array(
+                'choices'  => array(
+                    'Man' => "Man",
+                    'Vrouw' => "Vrouw",
+                ),
+            ))
+            ->add('plaats')
+            ->add('taal')
+            ->add('email')
+            ->add('telefoon')
+        ;
     }
     
     /**
@@ -41,6 +51,4 @@ class KlantType extends AbstractType
     {
         return 'albabundle_klant';
     }
-
-
 }

@@ -22,17 +22,11 @@
         </tbody>
     </table>
 
-    <ul>
-        <li>
-            <a href="{{ path('kamerprijs_index') }}">Back to the list</a>
-        </li>
-        <li>
-            <a href="{{ path('kamerprijs_edit', { 'id': kamerPrijs.id }) }}">Edit</a>
-        </li>
-        <li>
-            {{ form_start(delete_form) }}
-                <input class="button alert" type="submit" value="Delete">
-            {{ form_end(delete_form) }}
-        </li>
-    </ul>
+    <a class="bsuccess button" href="{{ path('kamerprijs_index') }}">Back to the list</a>
+    <a class="button warning" href="{{ path('kamerprijs_edit', { 'id': kamerPrijs.id }) }}">Edit</a>
+
+    {{ form_start(delete_form) }}
+        <input class="alert button" class="button alert" type="submit" value="Delete">
+    {{ form_end(delete_form) }}
+
 {% endblock %}

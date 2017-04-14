@@ -1,8 +1,9 @@
 {% extends '@Alba/adminpanel.html.twig' %}
 {% block body %}
     <div class="panel">
-        <h1>Reservation</h1>
-        <a href="{{ path('reservering_new') }}" class="button"><i class="fa fa-plus"></i></a>
+        <h1 style="float: left">Reservation</h1>
+        <a style="float: right" class="button" href="{{ path('reservering_new') }}"><p style="margin-bottom: 0px;">New Item <i class="fa fa-plus"></i></p></a>
+
         <table class="table">
             <thead>
             <tr>

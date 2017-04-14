@@ -1,15 +1,13 @@
 {#{% trans_default_domain 'FOSUserBundle' %}#}
 <div class="login">
     <div class="login-form">
-        <h1>Login</h1>
-        {% if error %}
-            <div><i class="fa fa-exclamation-triangle" aria-hidden="true"></i> The username or the password is not correct. Try Again.</div>
-        {% endif %}
+        <!--Logo-->
     </div>
 </div>
 <div class="row">
     <div class="large-6 large-offset-3 columns">
         <div class="login-panel">
+            <h1>Login</h1>
             <form action="{{ path("fos_user_security_check") }}" method="post">
                 {% if csrf_token %}
                     <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
@@ -27,10 +25,13 @@
                     </div>
                 </div>
 
-                <input type="checkbox" id="remember_me" name="_remember_me" value="on" />
-                <label for="remember_me">Remember me</label>
+                {% if error %}
+                    <div><i class="fa fa-exclamation-triangle" aria-hidden="true"></i> The username or the password is not correct. Try Again.</div>
+                {% endif %}
 
+                <input type="checkbox" id="remember_me" name="_remember_me" value="on" />Remeber me<br/>
                 <input class="button large" type="submit" id="submit" name="_submmit" value="login">
+
             </form>
         </div>
     </div>

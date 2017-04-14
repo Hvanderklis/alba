@@ -31,4 +31,13 @@ class DashboardController extends Controller
 
         ]);
     }
+    /**
+     * @Route("/calendar", name="calendar")
+     */
+    public function CalendarAction(){
+        return $this->render("AlbaBundle:Default:calendar.html.twig", [
+
+        ]);
+    }
+
 }

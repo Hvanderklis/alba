@@ -1,20 +1,20 @@
-{% extends 'base.html.twig' %}
+{% extends '@Alba/adminpanel.html.twig' %}
 
 {% block body %}
-    <h1>Reservering edit</h1>
+    <h1>Gast edit</h1>
 
     {{ form_start(edit_form) }}
         {{ form_widget(edit_form) }}
-        <input type="submit" value="Edit" />
+        <input type="submit" value="Edit" class="button"/>
     {{ form_end(edit_form) }}
 
     <ul>
         <li>
-            <a href="{{ path('reservering_index') }}">Back to the list</a>
+            <a href="{{ path('guest_index') }}" class="button">Back to the list</a>
         </li>
         <li>
             {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
+                <input type="submit" value="Delete" class="button alert">
             {{ form_end(delete_form) }}
         </li>
     </ul>

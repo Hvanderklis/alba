@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Created by PhpStorm.
  * User: Richh
@@ -12,7 +13,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 class WebsiteController extends Controller
 {
     /**
-     * @return \Symfony\Component\HttpFoundation\Response
+     *
      * @Route("/room")
      */
     public function kameraction(){
@@ -20,7 +21,7 @@ class WebsiteController extends Controller
     }
 
     /**
-     * @return \Symfony\Component\HttpFoundation\Response
+     *
      * @Route("/rooms", name="RoomsIndex")
      */
     public function IndexAction(){
@@ -31,13 +32,30 @@ class WebsiteController extends Controller
             "Kamer" => $Rooms
         ]);
     }
+
     /**
-     * @return \Symfony\Component\HttpFoundation\Response
+     *
      * @Route("/{id}", name="RoomsShow")
      */
-    public function ShowAction(Kamer $kamer){
+    public function ShowAction(Kamer $kamer)
+    {
         return $this->render("@Alba/show.html.twig", [
             'Kamer' => $kamer
         ]);
+    }
+    /**
+     * @Route("/sightseeing")
+     */
+    public function sightseeingAction()
+    {
+        return $this->render("@Alba/sightseeing.html.twig");
+    }
+
+    /**
+     * @Route("/contact")
+     */
+    public function contacAction()
+    {
+        return $this->render("@Alba/contact.html.twig");
     }
 }

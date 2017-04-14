@@ -30,7 +30,7 @@ class Bank
 
     /**
      * @ORM\ManyToOne(targetEntity="Kaart", inversedBy="bank")
-     * @ORM\JoinColumn(name="Kaart_nummer", referencedColumnName="id")
+     * @ORM\JoinColumn(name="Kaartnummer", referencedColumnName="id")
      */
     private $kaart;
 

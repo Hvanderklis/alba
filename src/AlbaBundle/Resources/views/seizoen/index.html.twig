@@ -1,0 +1,29 @@
+{% extends 'AlbaBundle::adminpanel.html.twig' %}
+
+{% block body %}
+    <h1 style="float: left">Season list</h1>
+    <a style="float: right" class="button" href="{{ path('seizoen_new') }}"><h5>New item <i class="fa fa-plus"></i></h5></a>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Naam</th>
+                <th>Begindatum</th>
+                <th>Einddatum</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for seizoen in seizoens %}
+            <tr>
+                <td><a href="{{ path('seizoen_show', { 'id': seizoen.id }) }}">{{ seizoen.id }}</a></td>
+                <td>{{ seizoen.naam }}</td>
+                <td>{% if seizoen.beginDatum %}{{ seizoen.beginDatum|date('Y-m-d') }}{% endif %}</td>
+                <td>{% if seizoen.eindDatum %}{{ seizoen.eindDatum|date('Y-m-d') }}{% endif %}</td>
+                <td><a class="button" href="{{ path('seizoen_show', { 'id': seizoen.id }) }}"><i class="fa fa-eye"></i></a></td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

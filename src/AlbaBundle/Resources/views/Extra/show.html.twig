@@ -1,0 +1,28 @@
+{% extends '@Alba/adminpanel.html.twig' %}
+
+{% block body %}
+    <h1>Extra</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Type</th>
+                <td>{{ extra.type }}</td>
+            </tr>
+            <tr>
+                <th>Prijs</th>
+                <td>{{ extra.prijs }}</td>
+            </tr>
+            <tr>
+                <th>Omschrijving</th>
+                <td>{{ extra.omschrijving }}</td>
+            </tr>
+        </tbody>
+    </table>
+    <a class="button secondary" id="colorp" href="{{ path('extra_index') }}">Back to the list</a>
+    <a class="success button" href="{{ path('extra_edit', { 'id': extra.id }) }}">Edit</a>
+    {{ form_start(delete_form) }}
+    <input class="alert button" type="submit" value="Delete">
+    {{ form_end(delete_form) }}
+
+{% endblock %}

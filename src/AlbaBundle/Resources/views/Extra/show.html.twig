@@ -19,18 +19,10 @@
             </tr>
         </tbody>
     </table>
+    <a class="button secondary" id="colorp" href="{{ path('extra_index') }}">Back to the list</a>
+    <a class="success button" href="{{ path('extra_edit', { 'id': extra.id }) }}">Edit</a>
+    {{ form_start(delete_form) }}
+    <input class="alert button" type="submit" value="Delete">
+    {{ form_end(delete_form) }}
 
-    <ul>
-        <li>
-            <a class="button secondary" href="{{ path('extra_index') }}">Back to the list</a>
-        </li>
-        <li>
-            <a class="button edit" href="{{ path('extra_edit', { 'id': extra.id }) }}">Edit</a>
-        </li>
-        <li>
-            {{ form_start(delete_form) }}
-                <input class="button warning" type="submit" value="Delete">
-            {{ form_end(delete_form) }}
-        </li>
-    </ul>
 {% endblock %}

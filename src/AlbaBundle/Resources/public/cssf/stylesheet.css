@@ -24,14 +24,15 @@ ul li a {
 .top-bar ul {
     background-color: #0d47a1;
 }
+li:hover {
+    background-color: rgba(13, 71, 161, 0.45);
+    overflow: hidden;
+}
 #footer {
     background-color: #0d47a1;
 }
 footer {
     background-color: #0e3b81;
-}
-label {
-    color: white;
 }
 p {
     color: white;
@@ -180,4 +181,9 @@ i {
     background-image: url("../img/scotchbarrels.jpg");
     background-repeat: no-repeat;
     background-size: cover;
+}
+.content {
+    background-color: white;
+    margin: 0;
+    padding: 15px;
 }

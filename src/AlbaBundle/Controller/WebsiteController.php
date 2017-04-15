@@ -2,8 +2,10 @@
 
 namespace AlbaBundle\Controller;
 
+use AlbaBundle\Entity\Klant;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Component\BrowserKit\Response;
 use Symfony\Component\HttpFoundation\Request;
 class WebsiteController extends Controller
@@ -43,5 +45,37 @@ class WebsiteController extends Controller
 
         }
         return $this->render("@Alba/mail.html.twig");
+}
+
+    /**
+     * @return \Symfony\Component\HttpFoundation\Response
+     * @Route("/reserveren", name="reserveren")
+     */
+
+
+
+        /**
+         * Creates a new klant entity.
+         *
+         * @Route("/reserveren", name="reserveren")
+         * @Method({"GET", "POST"})
+         */
+    public function reserverenAction(Request $request)
+    {
+        $klant = new Klant();
+        $form = $this->createForm('AlbaBundle\Form\KlantType', $klant);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($klant);
+            $em->flush($klant);
+            return $this->redirectToRoute('customer_show', array('id' => $klant->getId()));
+        }
+
+        return $this->render('AlbaBundle:Reservation:reserveren.html.twig', array(
+            'klant' => $klant,
+            'form' => $form->createView(),
+        ));
     }
 }

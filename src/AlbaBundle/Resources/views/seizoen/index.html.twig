@@ -1,8 +1,13 @@
 {% extends 'AlbaBundle::adminpanel.html.twig' %}
 
 {% block body %}
+<<<<<<< HEAD
+    <h1 style="float: left">Season list</h1>
+    <a style="float: right" class="button" href="{{ path('seizoen_new') }}"><h5>New item <i class="fa fa-plus"></i></h5></a>
+=======
     <h1 style="float: left">Seizoens list</h1>
     <a style="float: right" class="button" href="{{ path('seizoen_new') }}"><p style="margin-bottom: 0px;">New Item <i class="fa fa-plus"></i></p></a>
+>>>>>>> a4b7e6b010445ede5d62f1ccb8e606db949a2fe7
 
     <table>
         <thead>
@@ -21,7 +26,7 @@
                 <td>{{ seizoen.naam }}</td>
                 <td>{% if seizoen.beginDatum %}{{ seizoen.beginDatum|date('Y-m-d') }}{% endif %}</td>
                 <td>{% if seizoen.eindDatum %}{{ seizoen.eindDatum|date('Y-m-d') }}{% endif %}</td>
-                <td><a class="button" href="{{ path('seizoen_show', { 'id': seizoen.id }) }}"><i class="fa fa-eye"></i> </a></td>
+                <td><a class="button" href="{{ path('seizoen_show', { 'id': seizoen.id }) }}"><i class="fa fa-eye"></i></a></td>
             </tr>
         {% endfor %}
         </tbody>

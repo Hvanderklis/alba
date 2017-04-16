@@ -1,5 +1,5 @@
 #colorp {
-    background-color: #6d41ba;
+    background-color: purple;
 }
 #colorw {
     color: white;
@@ -40,6 +40,7 @@ p {
 i {
     color: purple;
 }
+
 .button {
     background-color: #a567a5;
 }
@@ -62,10 +63,24 @@ i {
 .sight {
     height: 100%;
 }
+
+#offCanvasLeft {
+	background-color: #b300b3;
+}
+.callout.success {
+	background-color: #0d47a1 !important;
+}
+.callout.warning {
+	background-color: purple !important;
+}
+.sight {
+    height: 100%;
+}
 #map {
     height: 200px;
     width: 100%;
 }
+
 #sight {
     height: 400px;
     width: 100%;

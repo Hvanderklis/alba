@@ -1,0 +1,49 @@
+{% extends '@Alba/adminpanel.html.twig' %}
+
+{% block body %}
+    <h1>Guest's list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Voornaam</th>
+                <th>Tussenvoegsel</th>
+                <th>Achternaam</th>
+                <th>Woonplaats</th>
+                <th>Geboortedatum</th>
+                <th>Taal</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for gast in gasts %}
+            <tr>
+                <td><a href="{{ path('guest_show', { 'id': gast.id }) }}">{{ gast.id }}</a></td>
+                <td>{{ gast.voornaam }}</td>
+                <td>{{ gast.tussenvoegsel }}</td>
+                <td>{{ gast.achternaam }}</td>
+                <td>{{ gast.woonplaats }}</td>
+                <td>{% if gast.geboortedatum %}{{ gast.geboortedatum|date('Y-m-d') }}{% endif %}</td>
+                <td>{{ gast.taal }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('guest_show', { 'id': gast.id }) }}" class="button" >show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('guest_edit', { 'id': gast.id }) }}" class="button">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('guest_new') }}" class="button">Create a new gast</a>
+        </li>
+    </ul>
+{% endblock %}

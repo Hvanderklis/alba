@@ -24,11 +24,10 @@
         </tbody>
     </table>
 
-    <a  class="bsuccess button" href="{{ path('seizoen_index') }}">Back to the list</a>
-    <a  class="button warning" href="{{ path('seizoen_edit', { 'id': seizoen.id }) }}">Edit</a>
-
+    <a class="button secondary" id="colorp" href="{{ path('seizoen_index') }}">Back to the list</a>
+    <a class="success button" href="{{ path('seizoen_edit', { 'id': seizoen.id }) }}">Edit</a>
     {{ form_start(delete_form) }}
-        <input class="alert button" type="submit" value="Delete">
-    {{ form_end(delete_form) }}
+    <input class="alert button" type="submit" value="Delete">
+
 
 {% endblock %}

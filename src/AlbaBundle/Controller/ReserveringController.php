@@ -27,7 +27,7 @@ class ReserveringController extends Controller
 
         $reserverings = $em->getRepository('AlbaBundle:Reservering')->findAll();
 
-        return $this->render('AlbaBundle:Reservation:index.html.twig', array(
+        return $this->render('@Alba/Reservation/index.html.twig', array(
             'reservations' => $reserverings,
         ));
     }

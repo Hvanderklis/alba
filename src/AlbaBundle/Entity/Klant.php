@@ -109,6 +109,7 @@ class Klant
     public function __construct()
     {
         $this->reservering = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->kamer = new \Doctrine\Common\Collections\ArrayCollection();
         $this->gast = new \Doctrine\Common\Collections\ArrayCollection();
         $this->kaart = new \Doctrine\Common\Collections\ArrayCollection();
     }
@@ -444,5 +445,39 @@ class Klant
     public function getKaart()
     {
         return $this->kaart;
+    }
+
+    /**
+     * Add kamer
+     *
+     * @param \AlbaBundle\Entity\Kamer $kamer
+     *
+     * @return Klant
+     */
+    public function addKamer(\AlbaBundle\Entity\Kamer $kamer)
+    {
+        $this->kamer[] = $kamer;
+
+        return $this;
+    }
+
+    /**
+     * Remove kamer
+     *
+     * @param \AlbaBundle\Entity\Kamer $kamer
+     */
+    public function removeKamer(\AlbaBundle\Entity\Kamer $kamer)
+    {
+        $this->kamer->removeElement($kamer);
+    }
+
+    /**
+     * Get kamer
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getKamer()
+    {
+        return $this->kamer;
     }
 }

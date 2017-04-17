@@ -51,10 +51,88 @@ class ReserveringController extends Controller
 
             return $this->redirectToRoute('reservering_show', array('id' => $reservering->getId()));
         }
-
         return $this->render('AlbaBundle:Reservation:new.html.twig', array(
             'reservering' => $reservering,
             'form' => $form->createView(),
+        ));
+    }
+
+    /**
+     * Creates a new reservering entity.
+     *
+     * @Route("/new2", name="step2")
+     * @Method({"GET", "POST"})
+     */
+    public function step2Action(Request $request)
+    {
+        $reservering = new Reservering();
+        $form = $this->createForm('AlbaBundle\Form\ReserveringStep2Type', $reservering);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($reservering);
+            $em->flush($reservering);
+
+            return $this->redirectToRoute('step2_show', array('id' => $reservering->getId()));
+        }
+        return $this->render('AlbaBundle:Reservation:step2.html.twig', array(
+            'reservering' => $reservering,
+            'form' => $form->createView(),
+        ));
+    }
+
+
+
+    /**
+     * Finds and displays a reservering entity.
+     *
+     * @Route("/{id}", name="step2_show")
+     * @Method("GET")
+     */
+    public function step2ShowAction(Reservering $reservering, Request $request)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $deleteForm = $this->createDeleteForm($reservering);
+
+        $customerRepository = $em->getRepository('AlbaBundle:Klant');
+        $customers = $customerRepository->findBy(['id' => $reservering->getKlant()]);
+
+        $reserId = $reservering->getId();
+        $kamerRepo = $em->getRepository('AlbaBundle:Kamer');
+        $kamers = $kamerRepo->createQueryBuilder('k')
+            ->innerJoin('k.reservering', 'r')
+            ->where('r.id = :reserveringId')
+            ->setParameter('reserveringId', $reserId)
+            ->getQuery()
+            ->getResult();
+
+        $reserId = $reservering->getId();
+        $extraRepo = $em->getRepository('AlbaBundle:Extra');
+        $extras = $extraRepo->createQueryBuilder('e')
+            ->innerJoin('e.reservering', 'r')
+            ->where('r.id = :reserveringId')
+            ->setParameter('reserveringId', $reserId)
+            ->getQuery()
+            ->getResult();
+
+        $reserId = $reservering->getId();
+        $gastRepo = $em->getRepository('AlbaBundle:Gast');
+        $gasten = $gastRepo->createQueryBuilder('g')
+            ->innerJoin('g.reservering', 'r')
+            ->where('r.id = :reserveringId')
+            ->setParameter('reserveringId', $reserId)
+            ->getQuery()
+            ->getResult();
+
+
+        return $this->render('AlbaBundle:Reservation:step2show.html.twig', array(
+            'reservation' => $reservering,
+            'delete_form' => $deleteForm->createView(),
+            'customers' => $customers,
+            'rooms' => $kamers,
+            'extras' => $extras,
+            'guests' => $gasten,
         ));
     }
 

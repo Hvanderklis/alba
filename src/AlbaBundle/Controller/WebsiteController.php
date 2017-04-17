@@ -20,6 +20,26 @@ class WebsiteController extends Controller
         return $this->render("@Alba/sightseeing.html.twig");
     }
 
+    /**
+     * About
+     *
+     * @Route("/about", name="about")
+     */
+    public function aboutAction()
+    {
+        return $this->render("@Alba/about.html.twig");
+    }
+
+    /**
+     * Disclaimer
+     *
+     * @Route("/disclaimer", name="disclaimer")
+     */
+    public function disclaimerAction()
+    {
+        return $this->render("@Alba/disclaimer.html.twig");
+    }
+
      /**
       * Contact
       *

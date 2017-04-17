@@ -41,19 +41,19 @@
             <div class="small-6 large-3 columns">
                 <p class="lead">About us</p>
                 <ul class="menu vertical">
-                    <li><a href="#">About</a></li>
+                    <li><a href="{{ path('about') }}">About</a></li>
                     <li><a href="#">FAQ</a></li>
-                    <li><a href="#">Seesights</a></li>
-                    <li><a href="#">Contact</a></li>
+                    <li><a href="{{ path('sightseeing') }}">Seesights</a></li>
+                    <li><a href="{{ path('mail') }}">Contact</a></li>
                 </ul>
             </div>
             <div class="small-6 large-3 columns">
                 <p class="lead">Links</p>
                 <ul class="menu vertical">
-                    <li><a href="#">Rooms</a></li>
+                    <li><a href="">Rooms</a></li>
                     <li><a href="#">Extra</a></li>
                     <li><a href="#">Reservation</a></li>
-                    <li><a href="#">Terms of agreement</a></li>
+                    <li><a href="{{ path('disclaimer') }}">Terms of agreement</a></li>
                 </ul>
             </div>
             <div class="small-6 large-3 columns contact">

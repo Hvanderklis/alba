@@ -1,6 +1,7 @@
 {% extends 'AlbaBundle::adminpanel.html.twig' %}
 {% block body %}
-    <h1>Kamers list</h1>
+    <h1 style="float: left">Rooms list</h1>
+    <a style="float: right" class="button" href="{{ path('kamer_new') }}"><p style="margin-bottom: 0px;">New Item <i class="fa fa-plus"></i></p></a>
 
     <table>
         <thead>
@@ -22,10 +23,10 @@
                 <td>
                     <ul>
                         <li>
-                            <a class="button" href="{{ path('kamer_show', { 'id': kamer.id }) }}">show</a>
+                            <a href="{{ path('kamer_show', { 'id': kamer.id }) }}" class="button"><i class="fa fa-eye"></i></a>
                         </li>
                         <li>
-                            <a class ="button warning" href="{{ path('kamer_edit', { 'id': kamer.id }) }}">edit</a>
+                            <a href="{{ path('kamer_edit', { 'id': kamer.id }) }}" class="button warning">Edit</a>
                         </li>
                     </ul>
                 </td>
@@ -34,9 +35,4 @@
         </tbody>
     </table>
 
-    <ul>
-        <li>
-            <a class="button success" href="{{ path('kamer_new') }}">Create a new kamer</a>
-        </li>
-    </ul>
 {% endblock %}

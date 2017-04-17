@@ -1,7 +1,8 @@
 {% extends '@Alba/adminpanel.html.twig' %}
 
 {% block body %}
-    <h1>Kamerafbeeldings list</h1>
+    <h1 style="float: left">Kamerafbeeldings list</h1>
+    <a style="float: right" class="button" href="{{ path('kamerafbeelding_new') }}"><p style="margin-bottom: 0px;">New Item <i class="fa fa-plus"></i></p></a>
 
     <table>
         <thead>
@@ -30,9 +31,4 @@
         </tbody>
     </table>
 
-    <ul>
-        <li>
-            <a href="{{ path('kamerafbeelding_new') }}">Create a new kamerAfbeelding</a>
-        </li>
-    </ul>
 {% endblock %}

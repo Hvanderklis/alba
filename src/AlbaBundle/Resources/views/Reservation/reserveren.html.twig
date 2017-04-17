@@ -1,0 +1,16 @@
+{% extends 'AlbaBundle::base.html.twig' %}
+
+{% block body %}
+    <h1>Customer Registration</h1>
+
+    {{ form_start(form) }}
+    {{ form_widget(form) }}
+    <input type="submit" value="Create" />
+    {{ form_end(form) }}
+
+    <ul>
+        <li>
+            <a href="{{ path('alba_default_index') }}">Back to homepage</a>
+        </li>
+    </ul>
+{% endblock %}

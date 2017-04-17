@@ -2,8 +2,11 @@
 
 namespace AlbaBundle\Controller;
 
+
+use AlbaBundle\Entity\Klant;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Component\BrowserKit\Response;
 use Symfony\Component\HttpFoundation\Request;
 class WebsiteController extends Controller
@@ -44,4 +47,58 @@ class WebsiteController extends Controller
         }
         return $this->render("@Alba/mail.html.twig");
     }
+
+    /**
+     * Creates a new klant entity.
+     *
+     * @Route("/reserveren", name="reserveren")
+     * @Method({"GET", "POST"})
+     */
+    public function newAction(Request $request)
+    {
+        $klant = new Klant();
+        $form = $this->createForm('AlbaBundle\Form\KlantType', $klant);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($klant);
+            $em->flush($klant);
+            return $this->redirectToRoute('reserveren_show', array('id' => $klant->getId()));
+        }
+
+        return $this->render('AlbaBundle:Reservation:reserveren.html.twig', array(
+            'klant' => $klant,
+            'form' => $form->createView(),
+        ));
+    }
+
+    /**
+     * Finds and displays a klant entity.
+     *
+     * @Route("/{id}", name="reserveren_show")
+     * @Method("GET")
+     */
+    public function showAction(Klant $klant, Request $request)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $customerRepository = $em->getRepository('AlbaBundle:Klant');
+        $customers = $customerRepository->findBy(['id' => $klant->getId()]);
+
+        $gastRepo = $em->getRepository('AlbaBundle:Gast');
+        $gasten = $gastRepo->createQueryBuilder('g')
+            ->innerJoin('g.klant', 'k')
+            ->where('k.id = :klantId')
+            ->setParameter('klantId', $customers)
+            ->getQuery()
+            ->getResult();
+
+        return $this->render('AlbaBundle:Reservation:reserverenshow.html.twig', array(
+            'customer' => $klant,
+            'guests' => $gasten,
+        ));
+    }
+
+
+
 }

@@ -11,13 +11,18 @@ use Symfony\Component\HttpFoundation\Request;
 class WebsiteController extends Controller
 {
     /**
-     * @Route("/sightseeing")
+     * Sightseeing
+     *
+     * @Route("/sightseeing", name="sightseeing")
      */
     public function sightseeingAction()
     {
         return $this->render("@Alba/sightseeing.html.twig");
     }
+
      /**
+      * Contact
+      *
      * @Route("/contact", name="mail")
      */
     public function contacAction(Request $request)
@@ -46,6 +51,8 @@ class WebsiteController extends Controller
         }
         return $this->render("@Alba/mail.html.twig");
 }
+
+
 
     /**
      * @return \Symfony\Component\HttpFoundation\Response

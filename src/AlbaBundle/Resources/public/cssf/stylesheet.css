@@ -202,3 +202,16 @@ i {
     margin: 0;
     padding: 15px;
 }
+
+
+/*Contact fix base.html.twig*/
+.contact {
+    position: relative;
+}
+
+.contact li i {
+    padding: 5px;
+    color: #ffffff;
+    left: -15px;
+    position: absolute;
+}

@@ -110,9 +110,8 @@ class KamerAfbeeldingController extends Controller
         $form = $this->createDeleteForm($kamerAfbeelding);
         $form->handleRequest($request);
 
-        $uploadFolder = $this->getParameter('upload_directory');
         $kamerNaam = $kamerAfbeelding->getKamer()->getKamerNaam();
-        $kamerMaps = str_replace(" ", "_", $uploadFolder . $kamerNaam);
+        $kamerMaps = str_replace(" ", "_",  __DIR__.'/../../../web/uploads/' . $kamerNaam);
         $files = scandir($kamerMaps);
         $fileArray = [];
 

@@ -19,10 +19,12 @@
             </tr>
         </tbody>
     </table>
-    <a class="button secondary" id="colorp" href="{{ path('extra_index') }}">Back to the list</a>
-    <a class="success button" href="{{ path('extra_edit', { 'id': extra.id }) }}">Edit</a>
+
+    <a class="bsuccess button" href="{{ path('extra_index') }}">Back to the list</a>
+    <a class="button warning" href="{{ path('extra_edit', { 'id': extra.id }) }}">Edit</a>
+
     {{ form_start(delete_form) }}
-    <input class="alert button" type="submit" value="Delete">
+        <input class="alert button" type="submit" value="Delete">
     {{ form_end(delete_form) }}
 
 {% endblock %}

@@ -1,8 +1,42 @@
 {% trans_default_domain 'FOSUserBundle' %}
-
+<div class="title-bar">
+    <div class="title-bar-left">
+        <button class="menu-icon" type="button" data-open="offCanvasLeft"></button>
+        <span class="title-bar-title">Dashboard</span>
+    </div>
+    <ul class="menu align-right">
+        <li><a href="{{ path('fos_user_security_logout') }}">Log off</a></li>
+        <li><a href="{{ path('faq') }}">Help</a></li>
+        <li><a href="{{ path('fos_user_profile_show') }}">Account</a></li>
+    </ul>
+</div>
+<div class="off-canvas position-left" id="offCanvasLeft" data-off-canvas>
+    <button class="close-button" aria-label="Close menu" type="button" data-close>
+        <span aria-hidden="true">&times;</span>
+    </button>
+    <ul class="vertical dropdown menu" data-dropdown-menu style="max-width:
+    300px;">
+        <li><a href="#">Customers</a></li>
+        <li><a href="{{ path('reservering_index') }}">Reservation</a></li>
+        <li><a href="{{ path('seizoen_index') }}">Rooms and Season</a></li>
+        <li><a href="{{ path('kamer_index') }}">Rooms</a></li>
+        <li><a href="{{ path('kamerprijs_index') }}">Rooms prices</a></li>
+        <li><a href="{{ path('kamerafbeelding_index') }}">Room images</a></li>
+        <li><a href="{{ path('seizoen_index') }}">Season</a></li>
+        <li><a href="{{ path('extra_index') }}">Extra's</a></li>
+    </ul>
+</div>
 {{ form_start(form, { 'action': path('fos_user_profile_edit'), 'attr': { 'class': 'fos_user_profile_edit' } }) }}
-    {{ form_widget(form) }}
+    {#{{ form_widget(form) }}#}
+{{ form_label(form.username, 'username') }}
+{{ form_widget(form.username) }}
+
+{{ form_label(form.email, 'email') }}
+{{ form_widget(form.email) }}
+
+{{ form_label(form.current_password, 'current password') }}
+{{ form_widget(form.current_password) }}
     <div>
-        <input type="submit" value="{{ 'profile.edit.submit'|trans }}" />
+        <input type="submit" value="edit" />
     </div>
 {{ form_end(form) }}

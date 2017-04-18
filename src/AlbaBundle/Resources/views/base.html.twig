@@ -9,7 +9,7 @@
         <link rel="stylesheet" type="text/css" href="{{ asset('bundles/alba/cssf/foundation.css') }}">
         <link rel="stylesheet" type="text/css" href="{{ asset('bundles/alba/cssf/foundation.min.css') }}">
         <link rel="stylesheet" type="text/css" href="{{ asset('bundles/alba/cssf/stylesheet.css') }}">
-        <link rel="stylesheet" href="{{ asset('bundles/alba/font-awesome/css/font-awesome.css') }}">
+        <link rel="stylesheet" type="text/css" href="{{ asset('bundles/alba/font-awesome/css/font-awesome.css') }}">
     {% endblock %}
 </head>
 <body onload="initialize()">
@@ -22,13 +22,13 @@
     <div class="top-bar" id="realEstateMenu">
         <div class="top-bar-left">
             <ul class="menu accordion-menu" data-responsive-menu="accordion" role="tablist" aria-multiselectable="true" data-accordionmenu="kklsv3-accordionmenu" data-responsivemenu="kran3z-responsivemenu">
-                <li class="menu-text" role="menuitem"><img id="logo" src="{{ asset('bundles/alba/img/logo.png') }}"</li>
-                <li role="menuitem"><a href="/">Home</a></li>
+                <li class="menu-text" role="menuitem"><img id="logo" src="{{ asset('bundles/alba/img/logo.png') }}"></li>
+                <li role="menuitem"><a href="{{ path('homepage') }}">Home</a></li>
                 <li role="menuitem"><a href="#">Rooms</a></li>
                 <li role="menuitem"><a href="#">Reservation</a></li>
                 <li role="menuitem"><a href="#">About us</a></li>
-                <li role="menuitem"><a href="/sightseeing">Sightseeing</a></li>
-                <li role="menuitem"><a href="#">Contact</a></li>
+                <li role="menuitem"><a href="{{ path('sightseeing') }}">Sightseeing</a></li>
+                <li role="menuitem"><a href="{{ path('mail') }}">Contact</a></li>
             </ul>
         </div>
     </div>
@@ -41,24 +41,28 @@
             <div class="small-6 large-3 columns">
                 <p class="lead">About us</p>
                 <ul class="menu vertical">
-                    <li><a href="#">About</a></li>
+                    <li><a href="{{ path('about') }}">About</a></li>
                     <li><a href="#">FAQ</a></li>
-                    <li><a href="#">Seesights</a></li>
-                    <li><a href="#">Contact</a></li>
+                    <li><a href="{{ path('sightseeing') }}">Seesights</a></li>
+                    <li><a href="{{ path('mail') }}">Contact</a></li>
                 </ul>
             </div>
             <div class="small-6 large-3 columns">
                 <p class="lead">Links</p>
                 <ul class="menu vertical">
-                    <li><a href="#">Rooms</a></li>
+                    <li><a href="">Rooms</a></li>
                     <li><a href="#">Extra</a></li>
                     <li><a href="#">Reservation</a></li>
-                    <li><a href="#">Terms of agreement</a></li>
+                    <li><a href="{{ path('disclaimer') }}">Terms of agreement</a></li>
                 </ul>
             </div>
-            <div class="small-6 large-3 columns">
+            <div class="small-6 large-3 columns contact">
                 <p class="lead">Contact</p>
-                adress
+                <ul class="menu vertical">
+                    <li><i class="fa fa-envelope"></i><a>booking@alba-bb.co.uk</a></li>
+                    <li><i class="fa fa-map-marker"></i><a href="https://www.google.nl/maps/place/Aberlour,+Verenigd+Koninkrijk/@57.4676388,-3.2474862,14z/data=!3m1!4b1!4m5!3m4!1s0x488598876bda33e1:0x26ba9cc25839e9ac!8m2!3d57.474911!4d-3.216983" target="_blank"> How to find us</a></li>
+                    <li><i class="fa fa-mobile"></i><a>+447398045168</a></li>
+                </ul>
             </div>
             <div class="small-6 large-3 columns">
                 <p class="lead">Maps</p>
@@ -74,7 +78,25 @@
         </div>
     </footer>
 {% block javascripts %}
-
+    <script>
+        function initMap() {
+            var uluru = {lat: 57.474911, lng: -3.216983};
+            var map = new google.maps.Map(document.getElementById('map'), {
+                zoom: 14,
+                center: uluru,
+                mapTypeId: google.maps.MapTypeId.HYBRID,
+                scrollwheel: false,
+                navigationControl: false,
+                mapTypeControl: false,
+                scaleControl: false,
+                draggable: false,
+            });
+            var marker = new google.maps.Marker({
+                position: uluru,
+                map: map
+            });
+        }
+    </script>
 {% endblock %}
     <script async defer
             src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCBHP5Qvd9BG79TFPbNTVditsbUc-uY7Ng&callback=initMap"></script>

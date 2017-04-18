@@ -9,7 +9,7 @@
         <link rel="stylesheet" type="text/css" href="{{ asset('bundles/alba/cssf/foundation.css') }}">
         <link rel="stylesheet" type="text/css" href="{{ asset('bundles/alba/cssf/foundation.min.css') }}">
         <link rel="stylesheet" type="text/css" href="{{ asset('bundles/alba/cssf/stylesheet.css') }}">
-        <link rel="stylesheet" href="{{ asset('bundles/alba/font-awesome/css/font-awesome.css') }}">
+        <link rel="stylesheet" type="text/css" href="{{ asset('bundles/alba/font-awesome/css/font-awesome.css') }}">
     {% endblock %}
 </head>
 <body onload="initialize()">
@@ -22,7 +22,7 @@
     <div class="top-bar" id="realEstateMenu">
         <div class="top-bar-left">
             <ul class="menu accordion-menu" data-responsive-menu="accordion" role="tablist" aria-multiselectable="true" data-accordionmenu="kklsv3-accordionmenu" data-responsivemenu="kran3z-responsivemenu">
-                <li class="menu-text" role="menuitem"><img id="logo" src="{{ asset('bundles/alba/img/logo.png') }}"</li>
+                <li class="menu-text" role="menuitem"><img id="logo" src="{{ asset('bundles/alba/img/logo.png') }}"></li>
                 <li role="menuitem"><a href="/">Home</a></li>
                 <li role="menuitem"><a href="#">Rooms</a></li>
                 <li role="menuitem"><a href="#">Reservation</a></li>
@@ -74,7 +74,25 @@
         </div>
     </footer>
 {% block javascripts %}
-
+    <script>
+        function initMap() {
+            var uluru = {lat: 57.474911, lng: -3.216983};
+            var map = new google.maps.Map(document.getElementById('map'), {
+                zoom: 14,
+                center: uluru,
+                mapTypeId: google.maps.MapTypeId.HYBRID,
+                scrollwheel: false,
+                navigationControl: false,
+                mapTypeControl: false,
+                scaleControl: false,
+                draggable: false,
+            });
+            var marker = new google.maps.Marker({
+                position: uluru,
+                map: map
+            });
+        }
+    </script>
 {% endblock %}
     <script async defer
             src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCBHP5Qvd9BG79TFPbNTVditsbUc-uY7Ng&callback=initMap"></script>

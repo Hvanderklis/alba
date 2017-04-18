@@ -27,8 +27,4 @@
     <a class="bsuccess button" href="{{ path('kamer_index') }}">Back to the list</a>
     <a class="button warning" href="{{ path('kamer_edit', { 'id': kamer.id }) }}">Edit</a>
 
-    {{ form_start(delete_form) }}
-        <input class="alert button" type="submit" value="Delete">
-    {{ form_end(delete_form) }}
-
 {% endblock %}

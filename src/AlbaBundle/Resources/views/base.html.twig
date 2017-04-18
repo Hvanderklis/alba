@@ -9,7 +9,7 @@
         <link rel="stylesheet" type="text/css" href="{{ asset('bundles/alba/cssf/foundation.css') }}">
         <link rel="stylesheet" type="text/css" href="{{ asset('bundles/alba/cssf/foundation.min.css') }}">
         <link rel="stylesheet" type="text/css" href="{{ asset('bundles/alba/cssf/stylesheet.css') }}">
-        <link rel="stylesheet" href="{{ asset('bundles/alba/font-awesome/css/font-awesome.css') }}">
+        <link rel="stylesheet" type="text/css" href="{{ asset('bundles/alba/font-awesome/css/font-awesome.css') }}">
     {% endblock %}
 </head>
 <body onload="initialize()">
@@ -78,7 +78,25 @@
         </div>
     </footer>
 {% block javascripts %}
-
+    <script>
+        function initMap() {
+            var uluru = {lat: 57.474911, lng: -3.216983};
+            var map = new google.maps.Map(document.getElementById('map'), {
+                zoom: 14,
+                center: uluru,
+                mapTypeId: google.maps.MapTypeId.HYBRID,
+                scrollwheel: false,
+                navigationControl: false,
+                mapTypeControl: false,
+                scaleControl: false,
+                draggable: false,
+            });
+            var marker = new google.maps.Marker({
+                position: uluru,
+                map: map
+            });
+        }
+    </script>
 {% endblock %}
     <script async defer
             src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCBHP5Qvd9BG79TFPbNTVditsbUc-uY7Ng&callback=initMap"></script>

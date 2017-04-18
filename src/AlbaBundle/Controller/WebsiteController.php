@@ -40,53 +40,38 @@ class WebsiteController extends Controller
         return $this->render("@Alba/disclaimer.html.twig");
     }
 
-     /**
-      * Contact
-      *
+    /**
+     * Contact
+     *
      * @Route("/contact", name="mail")
      */
     public function contacAction(Request $request)
     {
         if($request->getMethod() == "POST") {
-
             $Subject = $request->get("Subject");
             $email = $request->get("Email");
             $message = $request->get("message");
-
-
             $mailer = $this->container->get('mailer');
             $transport = \Swift_SmtpTransport::newInstance('smtp.mailtrap.io', 465, 'ssl')
                 ->setUsername('6b85cd05068089')
                 ->setPassword('10aaf099663b37');
-
             $mailer = \Swift_Mailer::newInstance($transport);
-
             $message = \Swift_Message::newInstance('Test')
                 ->setSubject($Subject)
                 ->setFrom($email)
                 ->setTo('contact@alba.com')
                 ->setBody($message);
             $this->get('mailer')->send($message);
-
         }
         return $this->render("@Alba/mail.html.twig");
-}
-
-
+    }
 
     /**
-     * @return \Symfony\Component\HttpFoundation\Response
+     * Creates a new klant entity.
+     *
      * @Route("/reserveren", name="reserveren")
+     * @Method({"GET", "POST"})
      */
-
-
-
-        /**
-         * Creates a new klant entity.
-         *
-         * @Route("/reserveren", name="reserveren")
-         * @Method({"GET", "POST"})
-         */
     public function reserverenAction(Request $request)
     {
         $klant = new Klant();

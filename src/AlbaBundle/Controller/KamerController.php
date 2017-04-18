@@ -10,7 +10,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component
 /**
  * Kamer controller.
  *
- * @Route("adminpanel/kamer")
+ * @Route("adminpanel/room")
  */
 class KamerController extends Controller
 {

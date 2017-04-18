@@ -20,7 +20,16 @@
                 <td>{{ kamer.kamerNaam }}</td>
                 <td>{{ kamer.prijs }}</td>
                 <td>{{ kamer.omschrijving }}</td>
-                <td><a class="button" href="{{ path('kamer_show') }}"><i class="fa fa-eye"></i></a></td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('kamer_show', { 'id': kamer.id }) }}" class="button"><i class="fa fa-eye"></i></a>
+                        </li>
+                        <li>
+                            <a href="{{ path('kamer_edit', { 'id': kamer.id }) }}" class="button warning">Edit</a>
+                        </li>
+                    </ul>
+                </td>
             </tr>
         {% endfor %}
         </tbody>

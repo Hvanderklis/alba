@@ -20,14 +20,6 @@ class WebsiteController extends Controller
             $message = $request->get("message");
 
         }
-    }
-
-    /**
-     * @Route("/sightseeing")
-     */
-    public function sightseeingAction()
-    {
-        return $this->render("@Alba/sightseeing.html.twig");
         $mailer = $this->container->get('mailer');
         $transport = \Swift_SmtpTransport::newInstance('smtp.mailtrap.io', 465, 'ssl')
             ->setUsername('6b85cd05068089')
@@ -43,5 +35,13 @@ class WebsiteController extends Controller
         $this->get('mailer')->send($message);
 
         return $this->render("@Alba/mail.html.twig");
+    }
+
+    /**
+     * @Route("/sightseeing")
+     */
+    public function sightseeingAction()
+    {
+        return $this->render("@Alba/sightseeing.html.twig");
     }
 }

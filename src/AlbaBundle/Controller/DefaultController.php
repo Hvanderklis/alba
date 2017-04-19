@@ -144,4 +144,12 @@ class DefaultController extends Controller
     {
         return $this->render('@Alba/Default/FAQ.html.twig');
     }
+    /**
+     * @Route("/help")
+     */
+
+    public function helpAction()
+    {
+        return $this->render('@Alba/help.html.twig');
+    }
 }

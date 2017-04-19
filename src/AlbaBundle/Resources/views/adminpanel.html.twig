@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
 
-    <title>{% block title %}Welcome!{% endblock %}</title>
+    <title>{% block title %}Alba B&B{% endblock %}</title>
     {% block stylesheets %}{% endblock %}
     <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
     <link rel="stylesheet" href="{{ asset('bundles/alba/cssf/foundation.css') }}">
@@ -33,6 +33,9 @@
     300px;">
             <li><a href="{{ path('customer_index') }}">Customers</a></li>
             <li><a href="{{ path('guest_index') }}">Guest</a></li>
+            <li><a href="{{ path('payment_index') }}">Payment</a></li>
+            <li><a href="{{ path('bankIndex') }}">Bank</a></li>
+            <li><a href="{{ path('kamer_index') }}">Card</a></li>
             <li><a href="{{ path('reservering_index') }}">Reservation</a></li>
             <li><a href="{{ path('seizoen_index') }}">Rooms and Season</a></li>
             <li><a href="{{ path('kamer_index') }}">Rooms</a></li>

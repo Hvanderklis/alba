@@ -37,7 +37,7 @@ function initialize()
 
     var map = new google.maps.Map(document.getElementById("sight"), myOptions);
 
-    var map2 = new google.maps.Map(document.getElementById("map"), myOptions2);
+    var map2 = new google.maps.Map(document.getElementById("Map"), myOptions2);
 
     var marker, i;
 

@@ -19,7 +19,7 @@
                 <td><a href="{{ path('card_show', { 'id': kaart.id }) }}">{{ kaart.id }}</a></td>
                 <td>{{ kaart.creditcardGegevens }}</td>
                 <td>{% if kaart.vervaldatum %}{{ kaart.vervaldatum|date('Y-m-d') }}{% endif %}</td>
-                <td><a class="button" href="{{ path('card_show') }}"><i class="fa fa-eye"></i></a></td>
+                <td><a class="button" href="{{ path('card_show', { 'id': kaart.id }) }}"><i class="fa fa-eye"></i></a></td>
             </tr>
         {% endfor %}
         </tbody>

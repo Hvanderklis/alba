@@ -36,6 +36,9 @@ security:
             id: fos_user.user_provider.username
 
     firewalls:
+#        secured_area:
+#                form_login:
+#                    csrf_token_generator: security.csrf.token_manager
         main:
             pattern: ^/
             form_login:

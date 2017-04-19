@@ -3,6 +3,7 @@
 namespace AlbaBundle\Controller;
 
 use AlbaBundle\Entity\Kamer;
+use AlbaBundle\Entity\KamerAfbeelding;
 use AlbaBundle\Entity\Klant;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
@@ -46,11 +47,23 @@ class DefaultController extends Controller
      * @Route("/kamers/{id}", name="kamer_reserveren_show")
      *
      */
-    public function showKamerAction(Kamer $kamer)
-
+    public function showKamerAction(Kamer $kamer, Request $request)
     {
+        $em = $this->getDoctrine()->getManager();
+        $kamerRepo = $em->getRepository('AlbaBundle:Kamer');
+        $kamers = $kamerRepo->findBy(['id' => $kamer->getId()]);
 
+        $kamerAfbeeldingRepo = $em->getRepository('AlbaBundle:KamerAfbeelding');
+        $kamerAfbeeldingen = $kamerAfbeeldingRepo->createQueryBuilder('kafbeelding')
+            ->innerJoin('kafbeelding.kamer', 'k')
+            ->where('k.id = :kamerId')
+            ->setParameter('kamerId', $kamers)
+            ->getQuery()
+            ->getResult();
+
+        dump($kamers);
         return $this->render('AlbaBundle:kamer:kamerreserverenshow.html.twig', array(
+            'kamerAfbeeldingen' => $kamerAfbeeldingen,
             'kamer' => $kamer,
         ));
     }

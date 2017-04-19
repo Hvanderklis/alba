@@ -4,8 +4,8 @@
 #colorw {
     color: white;
 }
-li:hover {
-    background-color: red;
+.lichten:hover {
+    background-color: #4779c7;
 }
 ul li a {
     color: white;

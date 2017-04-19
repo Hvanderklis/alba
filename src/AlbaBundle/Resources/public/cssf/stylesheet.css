@@ -4,8 +4,14 @@
 #colorw {
     color: white;
 }
+li:hover {
+    background-color: red;
+}
 ul li a {
     color: white;
+}
+li a:hover {
+    color: purple;
 }
 #home {
     background-image: url("../img/Alba B&B header.jpg");
@@ -23,10 +29,6 @@ ul li a {
 }
 .top-bar ul {
     background-color: #0d47a1;
-}
-li:hover {
-    background-color: rgba(13, 71, 161, 0.45);
-    overflow: hidden;
 }
 #footer {
     background-color: #0d47a1;
@@ -202,6 +204,7 @@ i {
     margin: 0;
     padding: 15px;
 }
+
 /*Contact fix base.html.twig*/
 .contact {
     position: relative;
@@ -224,5 +227,10 @@ i {
     padding-left:80px;
 }
 #ownertext {
-    text-align:center;
+    text-align: center;
+}
+
+#icons {
+    width: 40px;
+
 }

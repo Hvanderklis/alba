@@ -36,17 +36,12 @@
         </tbody>
     </table>
 
-    <ul>
-        <li>
-            <a href="{{ path('guest_index') }}" class="button">Back to the list</a>
-        </li>
-        <li>
-            <a href="{{ path('guest_edit', { 'id': gast.id }) }}" class="button">Edit</a>
-        </li>
-        <li>
-            {{ form_start(delete_form) }}
-                <input type="submit" value="Delete" class="button alert">
-            {{ form_end(delete_form) }}
-        </li>
-    </ul>
+    <a class="bsuccess button" href="{{ path('guest_index') }}">Back to the list</a>
+
+    <a class="button warning" href="{{ path('guest_edit', { 'id': gast.id }) }}">Edit</a>
+
+    {{ form_start(delete_form) }}
+        <input class="alert button" type="submit" value="Delete">
+    {{ form_end(delete_form) }}
+
 {% endblock %}

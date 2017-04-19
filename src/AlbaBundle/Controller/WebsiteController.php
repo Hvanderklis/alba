@@ -2,6 +2,8 @@
 
 namespace AlbaBundle\Controller;
 
+use Symfony\Component\HttpFoundation\Session\Session;
+use AlbaBundle\Entity\Klant;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\BrowserKit\Response;
@@ -43,5 +45,24 @@ class WebsiteController extends Controller
         $this->get('mailer')->send($message);
 
         return $this->render("@Alba/mail.html.twig");
+    }
+
+    /**
+     * @Route("/reserveren" name="reserveren")
+     */
+    public function reserverenAction(Request $request)
+    {
+        if($request->getMethod() == "POST")
+        {
+            $Name = $request->get('Name');
+            $Insertion = $request->get('Insertion');
+            $Surname = $request->get('Surname');
+            $Birthdate = $request->get('Birthdate');
+            $Gender = $request->get('Gender');
+            $City = $request->get('City');
+            $Language = $request->get('Language');
+            $Email = $request->get('Email');
+            $Tel = $request->get('Tel');
+        }
     }
 }

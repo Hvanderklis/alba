@@ -27,8 +27,8 @@
                 <li class="lichten" role="menuitem"><a href="/">Home</a></li>
                 <li class="lichten" role="menuitem"><a href="#">Rooms</a></li>
                 <li class="lichten" role="menuitem"><a href="#">Reservation</a></li>
-                <li class="lichten" role="menuitem"><a href="#">About us</a></li>
-                <li class="lichten" role="menuitem"><a href="">Sightseeing</a></li>
+                <li class="lichten" role="menuitem"><a href="{{ path('about') }}">About us</a></li>
+                <li class="lichten" role="menuitem"><a href="{{ path('sightseeing') }}">Sightseeing</a></li>
                 <li class="lichten" role="menuitem"><a href="{{ path('mail') }}">Contact</a></li>
             </ul>
         </div>
@@ -44,7 +44,7 @@
                 <ul class="menu vertical">
                     <li><a href="{{ path('about') }}">About</a></li>
                     <li><a href="{{ path('faq') }}">FAQ</a></li>
-                    <li><a href="#">Disclamer</a> </li>
+                    <li><a href="{{ path('disclaimer') }}">Disclamer</a> </li>
                     <li><a href="#">Terms of agreement</a> </li>
                 </ul>
             </div>

@@ -4,8 +4,14 @@
 #colorw {
     color: white;
 }
+li:hover {
+    background-color: red;
+}
 ul li a {
     color: white;
+}
+li a:hover {
+    color: purple;
 }
 #home {
     background-image: url("../img/Alba B&B header.jpg");
@@ -23,10 +29,6 @@ ul li a {
 }
 .top-bar ul {
     background-color: #0d47a1;
-}
-li:hover {
-    background-color: rgba(13, 71, 161, 0.45);
-    overflow: hidden;
 }
 #footer {
     background-color: #0d47a1;
@@ -201,4 +203,7 @@ i {
     background-color: white;
     margin: 0;
     padding: 15px;
+}
+#icons {
+    width: 40px;
 }

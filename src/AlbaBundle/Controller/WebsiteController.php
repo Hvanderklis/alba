@@ -13,13 +13,25 @@ class WebsiteController extends Controller
     /**
      * @Route("/sightseeing")
      */
+
     public function sightseeingAction()
     {
         return $this->render("@Alba/sightseeing.html.twig");
     }
-     /**
+
+    /**
+     * @Route("/faq")
+     */
+
+    public function FAQAction()
+    {
+        return $this->render("@Alba/Default/FAQ.html.twig");
+    }
+
+    /**
      * @Route("/contact", name="mail")
      */
+
     public function contacAction(Request $request)
     {
         if($request->getMethod() == "POST") {

@@ -1,35 +1,53 @@
 {% extends '@Alba/base.html.twig' %}
 
 {% block body %}
-    <!DOCTYPE html>
-<html>
-    <head>
-        <title>Form</title>
-    </head>
-<div class="container">
-    <div class="col-md-5">
-        <div class="form-area">
-            <form action="{{ path ('mail') }}" method="post" role="form">
-                <br style="clear:both">
-                <h3 style="margin-bottom: 25px; text-align: center;">Contact Form</h3>
-                <div class="form-group">
-                    <input type="text" class="form-control" id="email" name="Email" placeholder="Email" required>
-                </div>
-                <div class="form-group">
-                    <input type="text" class="form-control" id="ubject" name="Subject" placeholder="Subject" required>
-                </div>
-                <div class="form-group">
-                    <textarea class="form-control" type="textarea" name="message" id="message" placeholder="Message" maxlength="140" rows="7"></textarea>
-                    <span class="help-block"><p id="characterLeft" class="help-block ">You have reached the limit</p></span>
-                </div>
+    <!--head title-->
+    <div class="row column text-center">
+        <h2>Contact</h2>
+        <hr>
+    </div>
 
-                <input type="submit" value="Send" class="btn"/>
-            </form>
+    <!--Contact-->
+    <div class="row small-up-2 large-up-3" style="padding-bottom: 40px">
+        <div class="column">
+            <h5>Email adress</h5>
+        </div>
+        <div class="column">
+            <h5>Tel.</h5>
+        </div>
+        <div class="column">
+            <h5>Adress</h5>
         </div>
     </div>
-</div>
 
-</html>
+    <div class="row">
+        <!--objecten-->
+        <div class="large-4 column">
+            <h3><b>How</b> to contact us</h3>
+            <br/>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corrupti atque, tenetur quam aspernatur corporis at explicabo nulla dolore necessitatibus doloremque exercitationem sequi dolorem architecto perferendis quas aperiam debitis dolor soluta!</p>
+        </div>
+        <!--Contact-Fom-->
+        <div class="large-8 column">
+            <div class="form-area">
+                <form action="{{ path ('mail') }}" method="post" role="form">
+                    <div class="form-group">
+                        <input type="text" class="form-control" id="email" name="Email" placeholder="Email" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" class="form-control" id="ubject" name="Subject" placeholder="Subject" required>
+                    </div>
+                    <div class="form-group">
+                        <textarea class="form-control" type="textarea" name="message" id="message" placeholder="Message" maxlength="140" rows="7"></textarea>
+                        <span class="help-block"><p id="characterLeft" class="help-block ">You have reached the limit</p></span>
+                    </div>
+
+                    <input  class="button expanded" type="submit" value="Send"/>
+                </form>
+            </div>
+        </div>
+    </div>
+
 {% endblock %}
 
 

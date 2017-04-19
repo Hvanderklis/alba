@@ -204,6 +204,33 @@ i {
     margin: 0;
     padding: 15px;
 }
+
+/*Contact fix base.html.twig*/
+.contact {
+    position: relative;
+}
+
+.contact li i {
+    padding: 5px;
+    color: #ffffff;
+    left: -15px;
+    position: absolute;
+}
+#owner {
+    float: left;
+}
+#owner img {
+    border-radius:125px;
+    display: block;
+}
+#owner p{
+    padding-left:80px;
+}
+#ownertext {
+    text-align: center;
+}
+
 #icons {
     width: 40px;
+
 }

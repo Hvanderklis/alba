@@ -10,7 +10,6 @@ function initialize()
     ];
 
     var latlng = new google.maps.LatLng(57.474911,-3.216983);
-    var latlng2 = new google.maps.LatLng(57.474911,-3.216983);
     var myOptions =
         {
             zoom: 12,
@@ -23,21 +22,7 @@ function initialize()
             mapTypeId: google.maps.MapTypeId.HYBRID
         };
 
-    var myOptions2 =
-        {
-            zoom: 14,
-            center: latlng2,
-            scrollwheel: false,
-            navigationControl: false,
-            mapTypeControl: false,
-            scaleControl: false,
-            draggable: false,
-            mapTypeId: google.maps.MapTypeId.HYBRID
-        };
-
     var map = new google.maps.Map(document.getElementById("sight"), myOptions);
-
-    var map2 = new google.maps.Map(document.getElementById("Map"), myOptions2);
 
     var marker, i;
 
@@ -54,12 +39,6 @@ function initialize()
             }
         })(marker, i));
     }
-
-    var myMarker2 = new google.maps.Marker(
-        {
-            position: latlng2,
-            map: map2
-        });
 
     var infowindow = new google.maps.InfoWindow();
 

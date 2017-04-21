@@ -27,8 +27,8 @@
                 <li class="lichten" role="menuitem"><a href="/">Home</a></li>
                 <li class="lichten" role="menuitem"><a href="#">Rooms</a></li>
                 <li class="lichten" role="menuitem"><a href="#">Reservation</a></li>
-                <li class="lichten" role="menuitem"><a href="#">About us</a></li>
-                <li class="lichten" role="menuitem"><a href="">Sightseeing</a></li>
+                <li class="lichten" role="menuitem"><a href="{{ path('about') }}">About us</a></li>
+                <li class="lichten" role="menuitem"><a href="{{ path('sightseeing') }}">Sightseeing</a></li>
                 <li class="lichten" role="menuitem"><a href="{{ path('mail') }}">Contact</a></li>
             </ul>
         </div>
@@ -39,33 +39,25 @@
 
     <footer>
         <div class="row expanded callout secondary" id="footer">
-            <div class="small-6 large-3 columns">
+            <div class="small-6 large-4 columns">
                 <p class="lead">About us</p>
                 <ul class="menu vertical">
                     <li><a href="{{ path('about') }}">About</a></li>
                     <li><a href="{{ path('faq') }}">FAQ</a></li>
-                    <li><a href="{{ path('sightseeing') }}">Seesights</a></li>
-                    <li><a href="{{ path('mail') }}">Contact</a></li>
+                    <li><a href="{{ path('disclaimer') }}">Disclamer</a> </li>
+                    <li><a href="#">Terms of agreement</a> </li>
                 </ul>
             </div>
-            <div class="small-6 large-3 columns">
-                <p class="lead">Links</p>
-                <ul class="menu vertical">
-                    <li><a href="">Rooms</a></li>
-                    <li><a href="#">Extra</a></li>
-                    <li><a href="#">Reservation</a></li>
-                    <li><a href="{{ path('disclaimer') }}">Terms of agreement</a></li>
-                </ul>
-            </div>
-            <div class="small-6 large-3 columns contact">
+
+            <div class="small-6 large-4 columns contact">
                 <p class="lead">Contact</p>
                 <ul class="menu vertical">
-                    <li><i class="fa fa-envelope" id="icons"></i><a>booking@alba-bb.co.uk</a></li>
-                    <li><i class="fa fa-map-marker" id="icons"></i><a href="https://www.google.nl/maps/place/Aberlour,+Verenigd+Koninkrijk/@57.4676388,-3.2474862,14z/data=!3m1!4b1!4m5!3m4!1s0x488598876bda33e1:0x26ba9cc25839e9ac!8m2!3d57.474911!4d-3.216983" target="_blank"> How to find us</a></li>
-                    <li><i class="fa fa-mobile" id="icons"></i><a>+447398045168</a></li>
+                    <li><i class="fa fa-envelope" id="icons" style="float: left"></i><a href="mailto:booking@alba-bb.co.uk">booking@alba-bb.co.uk</a></li>
+                    <li><i class="fa fa-map-marker" id="icons" style="float: left"></i><a href="https://www.google.nl/maps/place/Aberlour,+Verenigd+Koninkrijk/@57.4676388,-3.2474862,14z/data=!3m1!4b1!4m5!3m4!1s0x488598876bda33e1:0x26ba9cc25839e9ac!8m2!3d57.474911!4d-3.216983" target="_blank"> How to find us</a></li>
+                    <li><i class="fa fa-mobile" id="icons" style="float: left"></i><a href="tel:447398045168">+447398045168</a></li>
                 </ul>
             </div>
-            <div class="small-6 large-3 columns">
+            <div class="small-6 large-4 columns">
                 <p class="lead">Maps</p>
                 <div id="map"></div>
             </div>

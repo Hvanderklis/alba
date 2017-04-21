@@ -37,7 +37,6 @@ class DefaultController extends Controller
         $kamerRepo = $em->getRepository('AlbaBundle:Kamer')->findAll();
 
         $kamerafbeeldingRepo = $em->getRepository('AlbaBundle:KamerAfbeelding')->findAll();
-        dump($kamerafbeeldingRepo);
 
         return $this->render('AlbaBundle:kamer:kamerreserveren.html.twig', array(
             'kamer' => $kamerRepo,

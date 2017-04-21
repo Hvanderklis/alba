@@ -7,6 +7,9 @@
         <div class="medium-3 column">
             <div class="callout" id="book">
                 <p id="colorw">{{ kamer.kamerNaam }}</p>
+                {% for kamerafbeelding in kamerafbeelding %}
+                    <img src="/{{ kamerafbeelding.path}}/{{  kamerafbeelding.name }}.{{ kamerafbeelding.type }}" >
+                {% endfor %}
                 <p class="lead" id="colorw">{{ kamer.omschrijving }}</p>
                 <p class="subheader" id="colorw">&pound; {{ kamer.prijs }}</p>
             </div>

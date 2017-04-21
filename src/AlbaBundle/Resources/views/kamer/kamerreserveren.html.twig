@@ -8,7 +8,9 @@
             <div class="medium-3 column">
                 <div class="callout" id="book">
                     <p id="colorw">{{ kamer.kamerNaam }}</p>
-                    <p><img src="{{ asset('bundles/alba/img/single.jpg') }}" alt="Sigle Room"></p>
+                    {% for kamerafbeelding in kamerafbeelding %}
+                        <p><img src="{{ asset('bundles/alba/img/logo.png') }}" alt="Single Room"></p>
+                    {% endfor %}
                 </div>
             </div>
             <div>

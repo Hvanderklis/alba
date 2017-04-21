@@ -36,9 +36,22 @@ class DefaultController extends Controller
 
         $kamers = $em->getRepository('AlbaBundle:Kamer')->findAll();
 
-        return $this->render('AlbaBundle:kamer:kamerreserveren.html.twig', array(
-            'kamers' => $kamers,
-        ));
+        foreach ($kamers as $getkamerpicture) {
+            $kamerAfbeeldingRepo = $em->getRepository('AlbaBundle:KamerAfbeelding');
+            $kamerafbeeldingen = $kamerAfbeeldingRepo->createQueryBuilder('ka')
+                ->leftJoin('ka.kamer', 'k')
+                ->where('k.id = :kamerId')
+                ->setParameter('kamerId', $getkamerpicture)
+                ->getQuery()
+                ->getResult();
+
+            return $this->render('AlbaBundle:kamer:kamerreserveren.html.twig', array(
+                'kamers' => $kamers,
+                'kamerafbeelding' => $kamerafbeeldingen,
+            ));
+        }
+
+
     }
 
     /**
@@ -50,21 +63,21 @@ class DefaultController extends Controller
     public function showKamerAction(Kamer $kamer, Request $request)
     {
         $em = $this->getDoctrine()->getManager();
-        $kamerRepo = $em->getRepository('AlbaBundle:Kamer');
-        $kamers = $kamerRepo->findBy(['id' => $kamer->getId()]);
+        $roomRepository = $em->getRepository('AlbaBundle:Kamer');
+        $rooms = $roomRepository->findBy(['id' => $kamer->getId()]);
 
-        $kamerAfbeeldingRepo = $em->getRepository('AlbaBundle:KamerAfbeelding');
-        $kamerAfbeeldingen = $kamerAfbeeldingRepo->createQueryBuilder('kafbeelding')
-            ->innerJoin('kafbeelding.kamer', 'k')
+        $kamerAfbeeldingRepo2 = $em->getRepository('AlbaBundle:KamerAfbeelding');
+        $kamerafbeeldingen2 = $kamerAfbeeldingRepo2->createQueryBuilder('ka')
+            ->innerJoin('ka.kamer', 'k')
             ->where('k.id = :kamerId')
-            ->setParameter('kamerId', $kamers)
+            ->setParameter('kamerId', $rooms)
             ->getQuery()
             ->getResult();
 
-        dump($kamers);
-        return $this->render('AlbaBundle:kamer:kamerreserverenshow.html.twig', array(
-            'kamerAfbeeldingen' => $kamerAfbeeldingen,
+
+        return $this->render('AlbaBundle:Kamer:kamerreserverenshow.html.twig', array(
             'kamer' => $kamer,
+            'kamerafbeelding' => $kamerafbeeldingen2,
         ));
     }
 

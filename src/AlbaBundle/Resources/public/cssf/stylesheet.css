@@ -4,8 +4,14 @@
 #colorw {
     color: white;
 }
+.lichten:hover {
+    background-color: #4779c7;
+}
 ul li a {
     color: white;
+}
+li a:hover {
+    color: purple;
 }
 #home {
     background-image: url("../img/Alba B&B header.jpg");
@@ -23,10 +29,6 @@ ul li a {
 }
 .top-bar ul {
     background-color: #0d47a1;
-}
-li:hover {
-    background-color: rgba(13, 71, 161, 0.45);
-    overflow: hidden;
 }
 #footer {
     background-color: #0d47a1;
@@ -202,6 +204,7 @@ i {
     margin: 0;
     padding: 15px;
 }
+
 /*Contact fix base.html.twig*/
 .contact {
     position: relative;
@@ -213,16 +216,48 @@ i {
     left: -15px;
     position: absolute;
 }
-#owner {
-    float: left;
+#own p {
+    text-align: center;
+    padding-top: 15px;
 }
-#owner img {
+#own img {
     border-radius:125px;
     display: block;
+    text-align: center;
 }
-#owner p{
-    padding-left:80px;
+.backfun {
+    width: 100%;
+    height: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: initial;
+    background-image: url("../img/adground.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding: 15px;
 }
-#ownertext {
-    text-align:center;
+#icons {
+    width: 40px;
+    color: white;
+}
+.flikker {
+    position: relative;
+}
+.kleurverlicht {
+    padding: 15px;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 100%;
+    width: 100%;
+    opacity: 0;
+    transition: .5s ease;
+    color: white;
+    background-color: rgba(51, 51, 51, 0.8);
+}
+
+.flikker:hover .kleurverlicht {
+    opacity: 1;
 }

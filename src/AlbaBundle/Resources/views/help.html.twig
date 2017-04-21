@@ -1,0 +1,42 @@
+{% extends '@Alba/base.html.twig' %}
+{% block body %}
+    <div class="row column text-center">
+        <h2>FAQ</h2>
+        <hr>
+    </div>
+
+    <div class="row">
+        <ul class="accordion" data-accordion data-allow-all-closed="true">
+            <li class="accordion-item is-closed" data-accordion-item>
+                <!-- Accordion tab title -->
+                <a href="#" class="accordion-title">Where can i see the reservations?</a>
+
+                <!-- Accordion tab content: it would start in the open state due to using the `is-active` state class. -->
+                <div class="accordion-content" data-tab-content>
+                    <p>Panel 1. Lorem ipsum dolor</p>
+                </div>
+            </li>
+            <li class="accordion-item is-closed" data-accordion-item>
+                <a href="#" class="accordion-title">How do I know i someone has paid yet?</a>
+
+                <div class="accordion-content" data-tab-content>
+                    <p>Panel 1. Lorem ipsum dolor</p>
+                </div>
+            </li>
+            <li class="accordion-item is-closed" data-accordion-item>
+                <a href="#" class="accordion-title">What are the payment options?</a>
+
+                <div class="accordion-content" data-tab-content>
+                    <p>Panel 1. Lorem ipsum dolor</p>
+                </div>
+            </li>
+            <li class="accordion-item is-closed" data-accordion-item>
+                <a href="#" class="accordion-title">How does it work with seasonal bounded prices?</a>
+
+                <div class="accordion-content" data-tab-content>
+                    <p>Panel 1. Lorem ipsum dolor</p>
+                </div>
+            </li>
+        </ul>
+    </div>
+{% endblock %}

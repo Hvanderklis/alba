@@ -1,0 +1,37 @@
+{% extends 'AlbaBundle::base.html.twig' %}
+
+{% block stylesheets %}
+    <style>
+        .p{
+            color: black;
+        }
+    </style>
+{% endblock %}
+{% block body %}
+
+
+    {% set reserveren = app.session.get('reserveren') %}
+
+
+            <table>
+                <thead>
+                <tr>
+                    <th colspan="4">Reservation</th>
+                </tr>
+                <tr>
+                     {% for key ,reserveren in reserveren %}
+                    <th>{{ key }}</th>
+
+                </tr>
+                </thead>
+
+                <tbody>
+                <tr>
+                    <td>{{ reserveren }}</td>
+                </tr>
+                {% endfor %}
+            </table>
+{% endblock %}
+
+
+

@@ -12,7 +12,7 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('bundles/alba/font-awesome/css/font-awesome.css') }}">
     {% block stylesheets %}{% endblock %}
 </head>
-<body onload="initialize()" >
+<body onload="showMap()">
 
     <!--Menu-->
     <div class="title-bar" data-responsive-toggle="realEstateMenu" data-hide-for="small" data-responsivetoggle="2y5yz2-responsivetoggle" style="display: none;">
@@ -22,7 +22,7 @@
     <div class="top-bar" id="realEstateMenu">
         <div class="top-bar-left">
             <ul class="menu accordion-menu" data-responsive-menu="accordion" role="tablist" aria-multiselectable="true" data-accordionmenu="kklsv3-accordionmenu" data-responsivemenu="kran3z-responsivemenu">
-                <li class="menu-text" role="menuitem"><img id="logo" src="{{ asset('bundles/alba/img/logo.png') }}"</li>
+                <li class="menu-text" role="menuitem"><img id="logo" src="{{ asset('bundles/alba/img/logo.png') }}"></li>
                 <li class="lichten" role="menuitem"><a href="/">Home</a></li>
                 <li class="lichten" role="menuitem"><a href="#">Rooms</a></li>
                 <li class="lichten" role="menuitem"><a href="#">Reservation</a></li>
@@ -35,7 +35,6 @@
     <br/>
     <!--header -->
     {% block body %}{% endblock %}
-
     <footer>
         <div class="row expanded callout secondary" id="footer">
             <div class="small-6 large-4 columns">
@@ -47,7 +46,6 @@
                     <li><a href="#">Terms of agreement</a> </li>
                 </ul>
             </div>
-
             <div class="small-6 large-4 columns contact">
                 <p class="lead">Contact</p>
                 <ul class="menu vertical">

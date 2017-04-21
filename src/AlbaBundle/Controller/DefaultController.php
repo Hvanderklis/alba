@@ -152,4 +152,21 @@ class DefaultController extends Controller
             'form' => $form->createView(),
         ));
     }
+
+    /**
+     * @Route("/faq")
+     */
+
+    public function FAQAction()
+    {
+        return $this->render('@Alba/Default/FAQ.html.twig');
+    }
+    /**
+     * @Route("/help")
+     */
+
+    public function helpAction()
+    {
+        return $this->render('@Alba/help.html.twig');
+    }
 }

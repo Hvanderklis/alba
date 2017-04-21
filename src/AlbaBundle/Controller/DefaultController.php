@@ -34,23 +34,15 @@ class DefaultController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $kamers = $em->getRepository('AlbaBundle:Kamer')->findAll();
+        $kamerRepo = $em->getRepository('AlbaBundle:Kamer')->findAll();
 
-        foreach ($kamers as $getkamerpicture) {
-            $kamerAfbeeldingRepo = $em->getRepository('AlbaBundle:KamerAfbeelding');
-            $kamerafbeeldingen = $kamerAfbeeldingRepo->createQueryBuilder('ka')
-                ->leftJoin('ka.kamer', 'k')
-                ->where('k.id = :kamerId')
-                ->setParameter('kamerId', $getkamerpicture)
-                ->getQuery()
-                ->getResult();
+        $kamerafbeeldingRepo = $em->getRepository('AlbaBundle:KamerAfbeelding')->findAll();
+        dump($kamerafbeeldingRepo);
 
-            return $this->render('AlbaBundle:kamer:kamerreserveren.html.twig', array(
-                'kamers' => $kamers,
-                'kamerafbeelding' => $kamerafbeeldingen,
-            ));
-        }
-
+        return $this->render('AlbaBundle:kamer:kamerreserveren.html.twig', array(
+            'kamer' => $kamerRepo,
+            'kamerafbeelding' => $kamerafbeeldingRepo,
+        ));
 
     }
 
@@ -66,8 +58,8 @@ class DefaultController extends Controller
         $roomRepository = $em->getRepository('AlbaBundle:Kamer');
         $rooms = $roomRepository->findBy(['id' => $kamer->getId()]);
 
-        $kamerAfbeeldingRepo2 = $em->getRepository('AlbaBundle:KamerAfbeelding');
-        $kamerafbeeldingen2 = $kamerAfbeeldingRepo2->createQueryBuilder('ka')
+        $kamerAfbeeldingRepo = $em->getRepository('AlbaBundle:KamerAfbeelding');
+        $kamerafbeeldingen = $kamerAfbeeldingRepo->createQueryBuilder('ka')
             ->innerJoin('ka.kamer', 'k')
             ->where('k.id = :kamerId')
             ->setParameter('kamerId', $rooms)
@@ -77,7 +69,7 @@ class DefaultController extends Controller
 
         return $this->render('AlbaBundle:Kamer:kamerreserverenshow.html.twig', array(
             'kamer' => $kamer,
-            'kamerafbeelding' => $kamerafbeeldingen2,
+            'kamerafbeelding' => $kamerafbeeldingen,
         ));
     }
 

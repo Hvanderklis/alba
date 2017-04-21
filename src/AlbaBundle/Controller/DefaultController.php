@@ -114,25 +114,68 @@ class DefaultController extends Controller
     /**
      * Creates a new klant entity.
      *
-     * @Route("/reserveren", name="reserveren")
-     * @Method({"GET", "POST"})
+     * @Route("/reserveren2", name="reserveren2")
+     *
+     */
+    public function reserveren2Action(Request $request)
+    {
+
+        // get the cart from  the session
+        $session = $this->get('request_stack')->getCurrentRequest()->getSession();
+        // $cart = $session->set('cart', '');
+        $session->get('reserveren');
+
+        $criteria = $session->get('reserveren');
+        dump($criteria);
+
+
+        return $this->render("@Alba/Reservation/reserverenindex2.html.twig");
+    }
+
+    /**
+     * @route("/reserveren", name="reserveren")
      */
     public function reserverenAction(Request $request)
     {
-        $klant = new Klant();
-        $form = $this->createForm('AlbaBundle\Form\KlantType', $klant);
-        $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($klant);
-            $em->flush($klant);
-            return $this->redirectToRoute('customer_show', array('id' => $klant->getId()));
+        if($request->getMethod() == "POST") {
+            $Firstname = $request->get("Firstname");
+            $Insertion = $request->get("Insertion");
+            $Lastname = $request->get("Lastname");
+            $Birthdate = $request->get("Birthdate");
+            $Gender = $request->get("Gender");
+            $City = $request->get("City");
+            $Language = $request->get("Language");
+            $Email = $request->get("Email");
+            $Tel = $request->get("Tel");
+            $FirstnameGuest = $request->get("Guestfirstname");
+            $LastnameGuest = $request->get("Guestlastname");
+            $PhoneGuest = $request->get("Guestphonenumber");
+            $Address = $request->get("Guestaddress");
+
+            // get the cart from  the session
+            $session = $this->get('request_stack')->getCurrentRequest()->getSession();
+            // $cart = $session->set('cart', '');
+            $session->set('reserveren', array('Firstname' => $Firstname,
+                'Insertion' => $Insertion,
+                'Lastname' => $Lastname,
+                'Birthdate' => $Birthdate,
+                'Gender' => $Gender,
+                'City' => $City,
+                'Language' => $Language,
+                'Email' => $Email,
+                'Tel' => $Tel,
+                'Guestfirstname' => $FirstnameGuest,
+                'Guestlastname' => $LastnameGuest,
+                'Guestphonenumber' => $PhoneGuest,
+                'Guestaddress' => $Address
+            ));
+            $criteria = $session->get('reserveren');
+            dump($criteria);
+
+
+            return $this->render("@Alba/Reservation/reserverenindex2.html.twig");
         }
-
-        return $this->render('AlbaBundle:Reservation:reserveren.html.twig', array(
-            'klant' => $klant,
-            'form' => $form->createView(),
-        ));
+            return $this->render("@Alba/Reservation/form.html.twig");
     }
 }

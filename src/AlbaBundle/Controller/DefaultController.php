@@ -3,6 +3,7 @@
 namespace AlbaBundle\Controller;
 
 use AlbaBundle\Entity\Kamer;
+use AlbaBundle\Entity\KamerAfbeelding;
 use AlbaBundle\Entity\Klant;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
@@ -33,11 +34,15 @@ class DefaultController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $kamers = $em->getRepository('AlbaBundle:Kamer')->findAll();
+        $kamerRepo = $em->getRepository('AlbaBundle:Kamer')->findAll();
+
+        $kamerafbeeldingRepo = $em->getRepository('AlbaBundle:KamerAfbeelding')->findAll();
 
         return $this->render('AlbaBundle:kamer:kamerreserveren.html.twig', array(
-            'kamers' => $kamers,
+            'kamer' => $kamerRepo,
+            'kamerafbeelding' => $kamerafbeeldingRepo,
         ));
+
     }
 
     /**
@@ -46,12 +51,24 @@ class DefaultController extends Controller
      * @Route("/kamers/{id}", name="kamer_reserveren_show")
      *
      */
-    public function showKamerAction(Kamer $kamer)
-
+    public function showKamerAction(Kamer $kamer, Request $request)
     {
+        $em = $this->getDoctrine()->getManager();
+        $roomRepository = $em->getRepository('AlbaBundle:Kamer');
+        $rooms = $roomRepository->findBy(['id' => $kamer->getId()]);
 
-        return $this->render('AlbaBundle:kamer:kamerreserverenshow.html.twig', array(
+        $kamerAfbeeldingRepo = $em->getRepository('AlbaBundle:KamerAfbeelding');
+        $kamerafbeeldingen = $kamerAfbeeldingRepo->createQueryBuilder('ka')
+            ->innerJoin('ka.kamer', 'k')
+            ->where('k.id = :kamerId')
+            ->setParameter('kamerId', $rooms)
+            ->getQuery()
+            ->getResult();
+
+
+        return $this->render('AlbaBundle:Kamer:kamerreserverenshow.html.twig', array(
             'kamer' => $kamer,
+            'kamerafbeelding' => $kamerafbeeldingen,
         ));
     }
 

@@ -13,7 +13,7 @@
         <link rel="stylesheet" type="text/css" href="{{ asset('bundles/alba/font-awesome/css/font-awesome.css') }}">
     {% endblock %}
 </head>
-<body onload="initialize()" >
+<body onload="showMap()">
 
     <!--Menu-->
     <div class="title-bar" data-responsive-toggle="realEstateMenu" data-hide-for="small" data-responsivetoggle="2y5yz2-responsivetoggle" style="display: none;">
@@ -23,20 +23,21 @@
     <div class="top-bar" id="realEstateMenu">
         <div class="top-bar-left">
             <ul class="menu accordion-menu" data-responsive-menu="accordion" role="tablist" aria-multiselectable="true" data-accordionmenu="kklsv3-accordionmenu" data-responsivemenu="kran3z-responsivemenu">
-                <li class="menu-text" role="menuitem"><img id="logo" src="{{ asset('bundles/alba/img/logo.png') }}"</li>
-                <li class="lichten" role="menuitem"><a href="/">Home</a></li>
-                <li class="lichten" role="menuitem"><a href="#">Rooms</a></li>
-                <li class="lichten" role="menuitem"><a href="#">Reservation</a></li>
-                <li class="lichten" role="menuitem"><a href="{{ path('about') }}">About us</a></li>
-                <li class="lichten" role="menuitem"><a href="{{ path('sightseeing') }}">Sightseeing</a></li>
-                <li class="lichten" role="menuitem"><a href="{{ path('mail') }}">Contact</a></li>
+                <li class="menu-text" role="menuitem"><img id="logo" src="{{ asset('bundles/alba/img/logo.png') }}"></li>
+                <li role="menuitem"><a href="/">Home</a></li>
+                <li role="menuitem"><a href="">Rooms</a></li>
+                <li role="menuitem"><a href="#">Reservation</a></li>
+                <li role="menuitem"><a href="{{ path('about') }}">About us</a></li>
+                <li role="menuitem"><a href="{{ path('sightseeing') }}">Sightseeing</a></li>
+                <li role="menuitem"><a href="#">About us</a></li>
+                <li role="menuitem"><a href="{{ path('sightseeing') }}">Sightseeing</a></li>
+                <li role="menuitem"><a href="{{ path('mail') }}">Contact</a></li>
             </ul>
         </div>
     </div>
     <br/>
     <!--header -->
     {% block body %}{% endblock %}
-
     <footer>
         <div class="row expanded callout secondary" id="footer">
             <div class="small-6 large-4 columns">
@@ -44,11 +45,22 @@
                 <ul class="menu vertical">
                     <li><a href="{{ path('about') }}">About us</a></li>
                     <li><a href="{{ path('faq') }}">FAQ</a></li>
+                    <li><a href="{{ path('sightseeing') }}">Seesights</a></li>
+                    <li><a href="{{ path('mail') }}">Contact</a></li>
+                    <li><a href="{{ path('about') }}">About</a></li>
+                </ul>
+            </div>
+            <div class="small-6 large-3 columns">
+                <p class="lead">Links</p>
+                <ul class="menu vertical">
+                    <li><a href="">Rooms</a></li>
+                    <li><a href="#">Extra</a></li>
+                    <li><a href="#">Reservation</a></li>
+                    <li><a href="{{ path('disclaimer') }}">Terms of agreement</a></li>
                     <li><a href="{{ path('disclaimer') }}">Disclaimer</a> </li>
                     <li><a href="#">Terms of agreement</a> </li>
                 </ul>
             </div>
-
             <div class="small-6 large-4 columns contact">
                 <p class="lead">Contact</p>
                 <ul class="menu vertical">

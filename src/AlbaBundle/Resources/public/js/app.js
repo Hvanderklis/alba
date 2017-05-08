@@ -1,51 +1,68 @@
-function initialize()
-{
+function showMap() {
+    var myLatLng = {lat: 57.474911, lng: -3.216983};
+    sight = new google.maps.Map(document.getElementById('sight'), {
+        zoom: 12,
+        center: myLatLng,
+        mapTypeId: google.maps.MapTypeId.HYBRID,
+        scrollwheel: false,
+        navigationControl: false,
+        mapTypeControl: false,
+        scaleControl: false,
+        draggable: false
+    });
 
     var locations = [
-        ['Knockando Woolmill', 57.465735, -3.355088, 3],
-        ['Linn Falls', 57.461174, -3.226149, 4],
-        ['Aberlour Distillery', 57.467516, -3.228945, 2],
-        ['The Macallan Distillery', 57.484647, -3.206955, 1],
-        ['Aberlour', 57.474911, -3.216983, 5]
+        {
+            title: 'Knockando Woolmill',
+            position: {lat: 57.465735, lng: -3.355088},
+            icon: {
+                url: "http://maps.google.com/mapfiles/ms/icons/blue-dot.png",
+                scaledSize: new google.maps.Size(32, 32)
+            }
+
+        },
+        {
+            title: 'Linn Falls',
+            position: {lat: 57.461174, lng: -3.226149},
+            icon: {
+                url: "http://maps.google.com/mapfiles/ms/icons/red-dot.png",
+                scaledSize: new google.maps.Size(32, 32)
+            }
+        },
+        {
+            title: 'Aberlour Distillery',
+            position: {lat: 57.467516, lng: -3.228945},
+            icon: {
+                url: "http://maps.google.com/mapfiles/ms/icons/purple-dot.png",
+                scaledSize: new google.maps.Size(32, 32)
+            }
+        },
+        {
+            title: 'The Macallan Distillery',
+            position: {lat: 57.484647, lng: -3.206955},
+            icon: {
+                url: "http://maps.google.com/mapfiles/ms/icons/yellow-dot.png",
+                scaledSize: new google.maps.Size(32, 32)
+            }
+        },
+        {
+            title: 'Aberlour',
+            position: {lat: 57.474911, lng: -3.216983},
+            icon: {
+                url: "http://maps.google.com/mapfiles/ms/icons/green-dot.png",
+                scaledSize: new google.maps.Size(32, 32)
+            }
+        }
     ];
 
-    var latlng = new google.maps.LatLng(57.474911,-3.216983);
-    var myOptions =
-        {
-            zoom: 12,
-            center: latlng,
-            scrollwheel: false,
-            navigationControl: false,
-            mapTypeControl: false,
-            scaleControl: false,
-            draggable: false,
-            mapTypeId: google.maps.MapTypeId.HYBRID
-        };
-
-    var map = new google.maps.Map(document.getElementById("sight"), myOptions);
-
-    var marker, i;
-
-    for (i = 0; i < locations.length; i++) {
-        marker = new google.maps.Marker({
-            position: new google.maps.LatLng(locations[i][1], locations[i][2]),
-            map: map
+    locations.forEach( function( element, index ){
+        var marker = new google.maps.Marker({
+            position: element.position,
+            map: sight,
+            title: element.title,
+            icon: element.icon
         });
-
-        google.maps.event.addListener(marker, 'click', (function(marker, i) {
-            return function() {
-                infowindow.setContent(locations[i][0]);
-                infowindow.open(map, marker);
-            }
-        })(marker, i));
-    }
-
-    var infowindow = new google.maps.InfoWindow();
-
-    google.maps.event.addListener(marker, 'click', (function(marker, i) {
-        return function() {
-            infowindow.setContent(locations[i][0]);
-            infowindow.open(map, marker);
-        }
-    })(marker, i));
+    });
 }
+
+

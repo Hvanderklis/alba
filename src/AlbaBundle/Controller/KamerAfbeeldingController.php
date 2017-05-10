@@ -110,8 +110,8 @@ class KamerAfbeeldingController extends Controller
         $form = $this->createDeleteForm($kamerAfbeelding);
         $form->handleRequest($request);
 
-        $kamerNaam = $kamerAfbeelding->getKamer()->getKamerNaam();
-        $kamerMaps = str_replace(" ", "_",  __DIR__.'/../../../web/uploads/' . $kamerNaam);
+        $kamerNaam = $kamerAfbeelding->getPath();
+        $kamerMaps = str_replace(" ", "_", __DIR__ . '/../../../web/' . $kamerNaam);
         $files = scandir($kamerMaps);
         $fileArray = [];
 
@@ -119,19 +119,16 @@ class KamerAfbeeldingController extends Controller
             if($file == "." || $file == ".."){
                 continue;
             }
-            array_push($fileArray, "uploads/" . $kamerNaam . "/" .$file);
+            array_push($fileArray, "uploads/" . $kamerNaam . "/" . $file);
         }
 
-        $imagePath = $kamerAfbeelding->getPath(). "/" . $kamerAfbeelding->getName() . "." . $kamerAfbeelding->getType();
+        $imagePath = __DIR__ . '/../../../web/' . $kamerAfbeelding->getPath(). "/" . $kamerAfbeelding->getName() . "." . $kamerAfbeelding->getType();
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
-            if(in_array($imagePath, $fileArray)){
-                unlink($imagePath);
-                $em->remove($kamerAfbeelding);
-                $em->flush();
-            }
-
+            unlink($imagePath);
+            $em->remove($kamerAfbeelding);
+            $em->flush();
         }
         return $this->redirectToRoute('kamerafbeelding_index');
     }

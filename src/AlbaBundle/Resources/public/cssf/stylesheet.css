@@ -265,3 +265,30 @@ i {
 #example-menu{
     background-color: #0d47a1;
 }
+
+#alba{
+    padding-left:45px;
+}
+
+#icons {
+    padding-left:50px;
+}
+
+@media screen and (max-width: 766px) {
+    #responsive {
+        width:50%;
+    }
+}
+
+@media screen and (max-width: 766px) {
+    #imgresponsive img {
+        display: none;
+    }
+}
+
+@media screen and (max-width: 766px) {
+    #footerresponsive {
+        padding-top:20px;
+    }
+}
+

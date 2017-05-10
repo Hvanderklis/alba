@@ -9,7 +9,6 @@
         <tr>
             <th>File</th>
             <th>Path</th>
-            <th>lol</th>
             <th>Actions</th>
         </tr>
         </thead>
@@ -18,11 +17,10 @@
             <tr>
                 <td>{{ kamerAfbeelding.name }}.{{ kamerAfbeelding.type }}</td>
                 <td>{{ kamerAfbeelding.path }}</td>
-                <td></td>
                 <td>
                     <ul>
                         <li>
-                            <a href="{{ path('kamerafbeelding_show', { 'id': kamerAfbeelding.id }) }}">show</a>
+                            <a href="{{ path('kamerafbeelding_show', { 'id': kamerAfbeelding.id }) }}" style="color: midnightblue">show</a>
                         </li>
                     </ul>
                 </td>

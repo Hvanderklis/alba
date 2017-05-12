@@ -3,14 +3,15 @@
 {% block body %}
     <h1>{{ kamer.kamerNaam }}</h1>
 
-    <div class="row">
-        <div class="large-6 column callout.k," id="book">
-           <p>{{ kamer.kamerNaam }}</p>
-           {% for kamerafbeelding in kamerafbeelding %}
-                    <img src="/{{ kamerafbeelding.path}}/{{  kamerafbeelding.name }}.{{ kamerafbeelding.type }}" >
-                {% endfor %}
-                <p class="lead">{{ kamer.omschrijving }}</p>
-                <p class="subheader">&pound; {{ kamer.prijs }}</p>
+    <div class="large-12 column">
+        <div class="callout" id="book">
+            <p style="color: black">{{ kamer.kamerNaam }}</p>
+            {% for kamerafbeelding in kamerafbeelding %}
+                <img src="/{{ kamerafbeelding.path}}/{{  kamerafbeelding.name }}.{{ kamerafbeelding.type }}" >
+            {% endfor %}
+            <p class="lead" style="color: black">{{ kamer.omschrijving }}</p>
+            <p class="subheader" style="color: black">&pound; {{ kamer.prijs }}</p>
+            <a class="button" href="{{ path('kamer_reserveren_show', { 'id': kamer.id }) }}">Info</a>
         </div>
     </div>
     <a class="button secondary" href="{{ path('kamer_reserveren') }}">Back to the list</a>

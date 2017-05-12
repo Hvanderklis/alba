@@ -273,6 +273,9 @@ i {
     padding-left:50px;
 }
 
+#example-menu li:hover {
+    background-color: #80bfff;
+}
 /* Small only */
 @media screen and (max-width: 39.9375em) {
     #responsive {width:50%;}

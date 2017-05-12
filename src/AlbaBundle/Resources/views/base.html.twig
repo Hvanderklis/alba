@@ -20,18 +20,20 @@
         <button class = "menu-icon" type = "button" data-toggle></button>
         <br><br>
     </div>
+
     <div id="example-menu">
         <ul class="vertical medium-horizontal menu" data-responsive-menu="drilldown medium-dropdown">
             <li class="menu-text" role="menuitem"><img id="logo" src="{{ asset('bundles/alba/img/logo.png') }}"></li>
             <li role="menuitem"><a href="/">Home</a></li>
-            <li role="menuitem"><a href="">Rooms</a></li>
+            <li role="menuitem"><a href="{{ path('kamer_reserveren') }}">Rooms</a></li>
             <li role="menuitem"><a href="#">Reservation</a></li>
             <li role="menuitem"><a href="{{ path('about') }}">About us</a></li>
             <li role="menuitem"><a href="{{ path('sightseeing') }}">Sightseeing</a></li>
             <li role="menuitem"><a href="{{ path('mail') }}">Contact</a></li>
         </ul>
+
     </div>
-    <br/>
+
     <!--header -->
     {% block body %}{% endblock %}
     <footer>
@@ -54,7 +56,9 @@
                     <li><a href="{{ path('disclaimer') }}">Disclaimer</a> </li>
                 </ul>
             </div>
+
             <div class="small-6 large-3 columns contact" id="footerresponsive">
+
                 <p class="lead">Contact</p>
                 <ul class="menu vertical" id="alba">
                     <li><i class="fa fa-envelope" id="icons"></i><a href="mailto:booking@alba-bb.co.uk">booking@alba-bb.co.uk</a></li>
@@ -62,8 +66,8 @@
                     <li><i class="fa fa-mobile" id="icons" style="padding-left:57px;"></i><a href="tel:447398045168">+447398045168</a></li>
                 </ul>
             </div>
-            <div class="small-6 large-3 columns" id="footerresponsive">
 
+            <div class="small-6 large-3 columns" id="footerresponsive">
                 <p class="lead">Maps</p>
                 <div id="map"></div>
             </div>

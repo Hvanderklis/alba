@@ -1,18 +1,28 @@
 {% extends 'AlbaBundle::base.html.twig' %}
 
 {% block body %}
-    <h1>{{ kamer.kamerNaam }}</h1>
+    <div class="row">
+        <h1>{{ kamer.kamerNaam }}</h1>
+    </div>
 
-    <div class="large-12 column">
-        <div class="callout" id="book">
-            <p style="color: black">{{ kamer.kamerNaam }}</p>
-            {% for kamerafbeelding in kamerafbeelding %}
-                <img src="/{{ kamerafbeelding.path}}/{{  kamerafbeelding.name }}.{{ kamerafbeelding.type }}" >
-            {% endfor %}
-            <p class="lead" style="color: black">{{ kamer.omschrijving }}</p>
-            <p class="subheader" style="color: black">&pound; {{ kamer.prijs }}</p>
-            <a class="button" href="{{ path('kamer_reserveren_show', { 'id': kamer.id }) }}">Info</a>
+    <div class="row">
+        <div class="large-4 column">
+                {% for kamerafbeelding in kamerafbeelding %}
+                    <img src="/{{ kamerafbeelding.path}}/{{  kamerafbeelding.name }}.{{ kamerafbeelding.type }}" >
+                {% endfor %}
+        </div>
+
+        <div class="large-8 column">
+            <div class="callout" id="book">
+                <p>{{ kamer.omschrijving }}</p>
+                <p class="lead">All our rooms have ensuite bathrooms and WiFi</p>
+                <p class="subheader">&pound; {{ kamer.prijs }}</p>
+            </div>
         </div>
     </div>
-    <a class="button secondary" href="{{ path('kamer_reserveren') }}">Back to the list</a>
+
+    <br>
+    <div class="row">
+        <a class="button" id="colorlp" href="{{ path('kamer_reserveren') }}">Back To Rooms</a>
+    </div>
 {% endblock %}

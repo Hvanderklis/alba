@@ -1,0 +1,41 @@
+{% extends '@Alba/adminpanel.html.twig' %}
+
+{% block body %}
+    <h1>Betalings list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Betaald</th>
+                <th>Datum</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for betaling in betalings %}
+            <tr>
+                <td><a href="{{ path('betaling_show', { 'id': betaling.id }) }}">{{ betaling.id }}</a></td>
+                <td>{{ betaling.betaald }}</td>
+                <td>{% if betaling.datum %}{{ betaling.datum|date('Y-m-d') }}{% endif %}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('betaling_show', { 'id': betaling.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('betaling_edit', { 'id': betaling.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('betaling_new') }}">Create a new betaling</a>
+        </li>
+    </ul>
+{% endblock %}

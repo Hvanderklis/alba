@@ -36,10 +36,16 @@ class Betaling
     private $datum;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Kaart", inversedBy="betaling")
-     * @ORM\JoinColumn(name="Kaartnummer", referencedColumnName="id")
+     * @ORM\OneToOne(targetEntity="AlbaBundle\Entity\Reservering", inversedBy="betaling")
+     * @ORM\JoinColumn(referencedColumnName="id", name="reservation_id")
      */
-    private $kaart;
+    private $reservering;
+
+    /**
+     * @ORM\OneToOne(targetEntity="AlbaBundle\Entity\Klant", inversedBy="betaling")
+     * @ORM\JoinColumn(referencedColumnName="id", name="customer_id")
+     */
+    private $klant;
 
     /**
      * Get id
@@ -100,26 +106,50 @@ class Betaling
     }
 
     /**
-     * Set kaart
+     * Set reservering
      *
-     * @param \AlbaBundle\Entity\Kaart $kaart
+     * @param \AlbaBundle\Entity\Reservering $reservering
      *
      * @return Betaling
      */
-    public function setKaart(\AlbaBundle\Entity\Kaart $kaart = null)
+    public function setReservering(\AlbaBundle\Entity\Reservering $reservering = null)
     {
-        $this->kaart = $kaart;
+        $this->reservering = $reservering;
 
         return $this;
     }
 
     /**
-     * Get kaart
+     * Get reservering
      *
-     * @return \AlbaBundle\Entity\Kaart
+     * @return \AlbaBundle\Entity\Reservering
      */
-    public function getKaart()
+    public function getReservering()
     {
-        return $this->kaart;
+        return $this->reservering;
+    }
+
+    /**
+     * Set klant
+     *
+     * @param \AlbaBundle\Entity\Klant $klant
+     *
+     * @return Betaling
+     */
+    public function setKlant(\AlbaBundle\Entity\Klant $klant = null)
+    {
+        $this->klant = $klant;
+
+        return $this;
+    }
+
+    /**
+     * Get klant
+     *
+     * @return \AlbaBundle\Entity\Klant
+     */
+    public function getKlant()
+    {
+        return $this->klant;
     }
 }

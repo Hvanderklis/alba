@@ -2,8 +2,6 @@
 
 namespace AlbaBundle\Form;
 
-use AlbaBundle\AlbaBundle;
-use Doctrine\ORM\Mapping\Entity;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -16,12 +14,19 @@ class BetalingType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('betaald')
+        $builder
+            ->add('betaald')
             ->add('datum')
-            ->add('kaart', EntityType::class, [
-                'class' => 'AlbaBundle\Entity\Kaart',
-                'choice_label' => function($kaart){
-                    return $kaart->getId();
+            ->add('reservering', EntityType::class, [
+                'class' => 'AlbaBundle\Entity\Reservering',
+                'choice_label' => function($reserveren){
+                    return $reserveren->getId();
+                }
+            ])
+            ->add('klant', EntityType::class, [
+                'class' => 'AlbaBundle\Entity\Klant',
+                'choice_label' => function($customer){
+                    return $customer->getVoornaam();
                 }
             ]);
     }

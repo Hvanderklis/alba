@@ -4,15 +4,15 @@
         <h2>Rentable Rooms</h2>
         <hr>
     </div>
-    <table class="row">
+    <div class="row">
     {% for kamer in kamer %}
 
-        <div class="medium-6 column">
+        <div class="small-12 medium-6 large-6 column">
             <div class="callout" id="book">
                 <p id="colorw">{{ kamer.kamerNaam }}</p>
                 {% for kamerafbeelding in kamerafbeelding %}
                     {% if kamerafbeelding.kamer.id == kamer.id %}
-                        <img src="/{{ kamerafbeelding.path}}/{{  kamerafbeelding.name }}.{{ kamerafbeelding.type }}" alt="{{ kamer.kamerNaam }}">
+                        <img id="roomIm" src="/{{ kamerafbeelding.path}}/{{  kamerafbeelding.name }}.{{ kamerafbeelding.type }}" alt="{{ kamer.kamerNaam }}">
                     {% endif %}
                 {% endfor %}
                 <p id="colorw" style="padding-top: 20px">{{ kamer.omschrijving }}</p>
@@ -22,5 +22,5 @@
         </div>
 
     {% endfor %}
-    </table>
+    </div>
 {% endblock %}

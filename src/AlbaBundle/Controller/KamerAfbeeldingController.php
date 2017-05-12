@@ -57,20 +57,25 @@ class KamerAfbeeldingController extends Controller
             $position = strpos($type, '.');
             $lenght = strlen($type);
             $typo = substr($type, $position, $lenght);
-            $typo = ltrim($typo,'.');
+            $typo = ltrim($typo, '.');
             $kamerAfbeelding->setType($typo);
 
             $roomId = $em->getRepository('AlbaBundle:Kamer')->find($kamerAfbeelding->getKamer());
             $roomName = $roomId->getKamerNaam();
             $roomName = str_replace(" ", "_", $roomName);
-            $kamerAfbeelding->setPath("uploads/" . $roomName);
+            if($fullImageName == $roomName){
+                $kamerAfbeelding->setPath("uploads/" . $roomName);
 
-            $kamerAfbeelding->upload();
+                $kamerAfbeelding->upload();
 
-            $em->persist($kamerAfbeelding);
-            $em->flush($kamerAfbeelding);
+                $em->persist($kamerAfbeelding);
+                $em->flush($kamerAfbeelding);
 
-            return $this->redirectToRoute('kamerafbeelding_show', array('id' => $kamerAfbeelding->getId()));
+                return $this->redirectToRoute('kamerafbeelding_show', array('id' => $kamerAfbeelding->getId()));
+            }
+            else{
+                return $this->redirectToRoute('kamerafbeelding_new')
+            }
         }
 
         return $this->render('@Alba/kamerafbeelding/new.html.twig', array(

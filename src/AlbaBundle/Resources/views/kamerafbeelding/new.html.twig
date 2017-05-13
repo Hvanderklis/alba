@@ -1,6 +1,12 @@
 {% extends '@Alba/adminpanel.html.twig' %}
 
 {% block body %}
+    {% for flashMessage in app.session.flashbag.get('error') %}
+        <div class="error">
+            {{ flashMessage }}
+        </div>
+    {% endfor %}
+
     <h1>Kamerafbeelding creation</h1>
 
     {{ form_start(form) }}

@@ -65,12 +65,30 @@ class KamerAfbeeldingController extends Controller
             $roomName = str_replace(" ", "_", $roomName);
             $kamerAfbeelding->setPath("uploads/" . $roomName);
 
-            $kamerAfbeelding->upload();
+            $kamerMaps = str_replace(" ", "_", __DIR__ . '/../../../web/uploads/' . $roomName);
+            $files = scandir($kamerMaps);
+            $fileArray = [];
 
-            $em->persist($kamerAfbeelding);
-            $em->flush($kamerAfbeelding);
+            foreach ($files as $file){
+                if($file == "." || $file == ".."){
+                    continue;
+                }
+                array_push($fileArray, "uploads/" . $roomName . "/" . $file);
+            }
 
-            return $this->redirectToRoute('kamerafbeelding_show', array('id' => $kamerAfbeelding->getId()));
+            $checkFile = "uploads/". $roomName . "/" . $imageName . "." . $typo;
+
+            if (in_array($checkFile, $fileArray)){
+                $this->get('session')->getFlashBag()->set('error', 'The name does already exist');
+            }
+            else {
+                $kamerAfbeelding->upload();
+
+                $em->persist($kamerAfbeelding);
+                $em->flush($kamerAfbeelding);
+
+                return $this->redirectToRoute('kamerafbeelding_show', array('id' => $kamerAfbeelding->getId()));
+            }
         }
 
         return $this->render('@Alba/kamerafbeelding/new.html.twig', array(

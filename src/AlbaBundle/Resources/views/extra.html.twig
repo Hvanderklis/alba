@@ -1,0 +1,22 @@
+{% extends 'AlbaBundle::base.html.twig' %}
+
+{% block body %}
+    <table>
+        <thead>
+        <tr>
+            <th>Type</th>
+            <th>Prijs</th>
+            <th>Omschrijving</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for extra in extras %}
+            <tr>
+                <td>{{ extra.type }}</td>
+                <td>{{ extra.prijs }}</td>
+                <td>{{ extra.omschrijving }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

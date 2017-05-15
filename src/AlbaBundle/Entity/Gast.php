@@ -52,7 +52,7 @@ class Gast
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="Geboortedatum", type="date")
+     * @ORM\Column(name="Geboortedatum", type="string", length=255)
      */
     private $geboortedatum;
 
@@ -74,7 +74,6 @@ class Gast
      *
      * @ORM\ManyToOne(targetEntity="Klant", inversedBy="gast")
      * @ORM\JoinColumn(name="Klantnummer", referencedColumnName="id")
-     * @ORM\JoinTable(name="klant")
      */
     private $klant;
 
@@ -195,7 +194,7 @@ class Gast
     /**
      * Set geboortedatum
      *
-     * @param \DateTime $geboortedatum
+     * @param string $geboortedatum
      *
      * @return Gast
      */
@@ -209,7 +208,7 @@ class Gast
     /**
      * Get geboortedatum
      *
-     * @return \DateTime
+     * @return string
      */
     public function getGeboortedatum()
     {
@@ -288,18 +287,4 @@ class Gast
         return $this;
     }
 
-    /**
-     * Get klant
-     *
-     * @return \AlbaBundle\Entity\Klant
-     */
-    public function getKlant()
-    {
-        return $this->klant;
-    }
-
-    public function __toString()
-    {
-        return $this->getId();
-    }
 }

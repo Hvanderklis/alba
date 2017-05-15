@@ -40,7 +40,9 @@ class DefaultController extends Controller
 
         $kamerafbeeldingRepo = $em->getRepository('AlbaBundle:KamerAfbeelding')->findAll();
 
-        return $this->render('AlbaBundle:kamer:kamerreserveren.html.twig', array(
+        return $this->render('AlbaBundle:kamer:booking.html.twig', array(
+
+
             'kamer' => $kamerRepo,
             'kamerafbeelding' => $kamerafbeeldingRepo,
         ));
@@ -50,7 +52,7 @@ class DefaultController extends Controller
     /**
      * Finds and displays a kamer entity.
      *
-     * @Route("/kamers/{id}", name="kamer_reserveren_show")
+     * @Route("/kamers/{id}", name="kamer_show")
      *
      */
     public function showKamerAction(Kamer $kamer, Request $request)
@@ -67,8 +69,8 @@ class DefaultController extends Controller
             ->getQuery()
             ->getResult();
 
+        return $this->render('AlbaBundle:Kamer:bookingshow.html.twig', array(
 
-        return $this->render('AlbaBundle:Kamer:kamerreserverenshow.html.twig', array(
             'kamer' => $kamer,
             'kamerafbeelding' => $kamerafbeeldingen,
         ));
@@ -194,7 +196,7 @@ class DefaultController extends Controller
 
             $kamers = $em->getRepository('AlbaBundle:Kamer')->findAll();
 
-            return $this->render('AlbaBundle:kamer:kamerreserveren.html.twig', array(
+            return $this->render('AlbaBundle:kamer:booking.html.twig', array(
                 'kamers' => $kamers,
             ));
 
@@ -350,7 +352,7 @@ class DefaultController extends Controller
             $criteria = $session->get('reserveren');
             dump($criteria);
 
-            return $this->render('AlbaBundle:kamer:reservation.html.twig');
+            return $this->render('AlbaBundle:kamer:booking.html.twig');
         }
     }
     /**

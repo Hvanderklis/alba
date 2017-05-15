@@ -14,46 +14,58 @@
 <body onload="showMap()">
 
     <!--Menu-->
-    <div class="title-bar" data-responsive-toggle="realEstateMenu" data-hide-for="small" data-responsivetoggle="2y5yz2-responsivetoggle" style="display: none;">
-        <button class="menu-icon" type="button" data-toggle=""></button>
-        <div class="title-bar-title">Menu</div>
+    <div class = "title-bar" id="realEstateMenu" data-responsive-toggle = "example-menu" data-hide-for = "medium">
+        <button class = "menu-icon" type = "button" data-toggle></button>
+        <br><br>
     </div>
-    <div class="top-bar" id="realEstateMenu">
-        <div class="top-bar-left">
-            <ul class="menu accordion-menu" data-responsive-menu="accordion" role="tablist" aria-multiselectable="true" data-accordionmenu="kklsv3-accordionmenu" data-responsivemenu="kran3z-responsivemenu">
-                <li class="menu-text" role="menuitem"><img id="logo" src="{{ asset('bundles/alba/img/logo.png') }}"></li>
-                <li class="lichten" role="menuitem"><a href="/">Home</a></li>
-                <li class="lichten" role="menuitem"><a href="#">Rooms</a></li>
-                <li class="lichten" role="menuitem"><a href="#">Reservation</a></li>
-                <li class="lichten" role="menuitem"><a href="{{ path('about') }}">About us</a></li>
-                <li class="lichten" role="menuitem"><a href="{{ path('sightseeing') }}">Sightseeing</a></li>
-                <li class="lichten" role="menuitem"><a href="{{ path('mail') }}">Contact</a></li>
-            </ul>
-        </div>
+
+    <div id="example-menu">
+        <ul class="vertical medium-horizontal menu" data-responsive-menu="drilldown medium-dropdown">
+            <li class="menu-text" role="menuitem"><img id="logo" src="{{ asset('bundles/alba/img/logo.png') }}"></li>
+            <li role="menuitem"><a href="/">Home</a></li>
+            <li role="menuitem"><a href="{{ path('kamer_reserveren') }}">Rooms</a></li>
+            <li role="menuitem"><a href="#">Reservation</a></li>
+            <li role="menuitem"><a href="{{ path('about') }}">About us</a></li>
+            <li role="menuitem"><a href="{{ path('sightseeing') }}">Sightseeing</a></li>
+            <li role="menuitem"><a href="{{ path('mail') }}">Contact</a></li>
+        </ul>
+
     </div>
-    <br/>
+
     <!--header -->
     {% block body %}{% endblock %}
     <footer>
         <div class="row expanded callout secondary" id="footer">
-            <div class="small-6 large-4 columns">
+            <div class="small-6 large-3 columns">
                 <p class="lead">About us</p>
                 <ul class="menu vertical">
                     <li><a href="{{ path('about') }}">About us</a></li>
                     <li><a href="{{ path('faq') }}">FAQ</a></li>
-                    <li><a href="{{ path('disclaimer') }}">Disclaimer</a> </li>
-                    <li><a href="#">Terms of agreement</a> </li>
+                    <li><a href="{{ path('sightseeing') }}">Sightseeing</a></li>
+                    <li><a href="{{ path('mail') }}">Contact</a></li>
                 </ul>
             </div>
-            <div class="small-6 large-4 columns contact">
-                <p class="lead">Contact</p>
+            <div class="small-6 large-3 columns">
+                <p class="lead">Links</p>
                 <ul class="menu vertical">
-                    <li><i class="fa fa-envelope" id="icons" style="float: left"></i><a href="mailto:booking@alba-bb.co.uk">booking@alba-bb.co.uk</a></li>
-                    <li><i class="fa fa-map-marker" id="icons" style="float: left"></i><a href="https://www.google.nl/maps/place/Aberlour,+Verenigd+Koninkrijk/@57.4676388,-3.2474862,14z/data=!3m1!4b1!4m5!3m4!1s0x488598876bda33e1:0x26ba9cc25839e9ac!8m2!3d57.474911!4d-3.216983" target="_blank"> How to find us</a></li>
-                    <li><i class="fa fa-mobile" id="icons" style="float: left"></i><a href="tel:447398045168">+447398045168</a></li>
+                    <li><a href="{{ path('kamer_reserveren') }}">Rooms</a></li>
+                    <li><a href="#">Extra</a></li>
+                    <li><a href="#">Reservation</a></li>
+                    <li><a href="{{ path('disclaimer') }}">Disclaimer</a> </li>
                 </ul>
             </div>
-            <div class="small-6 large-4 columns">
+
+            <div class="small-6 large-3 columns contact" id="footerresponsive">
+
+                <p class="lead">Contact</p>
+                <ul class="menu vertical" id="alba">
+                    <li><i class="fa fa-envelope" id="icons"></i><a href="{{ path('mail') }}">booking@alba-bb.co.uk</a></li>
+                    <li><i class="fa fa-map-marker" id="icons" style="padding-left: 56px;"></i><a href="https://www.google.nl/maps/place/Aberlour,+Verenigd+Koninkrijk/@57.4676388,-3.2474862,14z/data=!3m1!4b1!4m5!3m4!1s0x488598876bda33e1:0x26ba9cc25839e9ac!8m2!3d57.474911!4d-3.216983" target="_blank"> How to find us</a></li>
+                    <li><i class="fa fa-mobile" id="icons" style="padding-left: 58px;"></i><a href="tel:447398045168">+447398045168</a></li>
+                </ul>
+            </div>
+
+            <div class="small-6 large-3 columns" id="footerresponsive">
                 <p class="lead">Maps</p>
                 <div id="map"></div>
             </div>
@@ -94,7 +106,9 @@
     <script src="{{ asset('bundles/alba/js/vendor/jquery.js') }}"></script>
     <script src="{{ asset('bundles/alba/js/vendor/foundation.js') }}"></script>
     <script>
-        $(document).foundation();
+        $(document).ready(function() {
+            $(document).foundation();
+        })
     </script>
 </body>
 </html>

@@ -5,7 +5,8 @@ namespace AlbaBundle\Controller;
 use AlbaBundle\Entity\Betaling;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component\HttpFoundation\Request;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\HttpFoundation\Request;
 
 /**
  * Betaling controller.
@@ -17,7 +18,7 @@ class BetalingController extends Controller
     /**
      * Lists all betaling entities.
      *
-     * @Route("/", name="payment_index")
+     * @Route("/", name="betaling_index")
      * @Method("GET")
      */
     public function indexAction()
@@ -26,7 +27,7 @@ class BetalingController extends Controller
 
         $betalings = $em->getRepository('AlbaBundle:Betaling')->findAll();
 
-        return $this->render('AlbaBundle:Payment:index.html.twig', array(
+        return $this->render('@Alba/betaling/index.html.twig', array(
             'betalings' => $betalings,
         ));
     }
@@ -34,7 +35,7 @@ class BetalingController extends Controller
     /**
      * Creates a new betaling entity.
      *
-     * @Route("/new", name="payment_new")
+     * @Route("/new", name="betaling_new")
      * @Method({"GET", "POST"})
      */
     public function newAction(Request $request)
@@ -48,10 +49,10 @@ class BetalingController extends Controller
             $em->persist($betaling);
             $em->flush($betaling);
 
-            return $this->redirectToRoute('payment_show', array('id' => $betaling->getId()));
+            return $this->redirectToRoute('betaling_show', array('id' => $betaling->getId()));
         }
 
-        return $this->render('AlbaBundle:Payment:new.html.twig', array(
+        return $this->render('@Alba/betaling/new.html.twig', array(
             'betaling' => $betaling,
             'form' => $form->createView(),
         ));
@@ -60,14 +61,14 @@ class BetalingController extends Controller
     /**
      * Finds and displays a betaling entity.
      *
-     * @Route("/{id}", name="payment_show")
+     * @Route("/{id}", name="betaling_show")
      * @Method("GET")
      */
     public function showAction(Betaling $betaling)
     {
         $deleteForm = $this->createDeleteForm($betaling);
 
-        return $this->render('AlbaBundle:Payment:show.html.twig', array(
+        return $this->render('@Alba/betaling/show.html.twig', array(
             'betaling' => $betaling,
             'delete_form' => $deleteForm->createView(),
         ));
@@ -76,7 +77,7 @@ class BetalingController extends Controller
     /**
      * Displays a form to edit an existing betaling entity.
      *
-     * @Route("/{id}/edit", name="payment_edit")
+     * @Route("/{id}/edit", name="betaling_edit")
      * @Method({"GET", "POST"})
      */
     public function editAction(Request $request, Betaling $betaling)
@@ -88,10 +89,10 @@ class BetalingController extends Controller
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('payment_edit', array('id' => $betaling->getId()));
+            return $this->redirectToRoute('betaling_edit', array('id' => $betaling->getId()));
         }
 
-        return $this->render('AlbaBundle:Payment:edit.html.twig', array(
+        return $this->render('@Alba/betaling/edit.html.twig', array(
             'betaling' => $betaling,
             'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
@@ -101,7 +102,7 @@ class BetalingController extends Controller
     /**
      * Deletes a betaling entity.
      *
-     * @Route("/{id}", name="payment_delete")
+     * @Route("/{id}", name="betaling_delete")
      * @Method("DELETE")
      */
     public function deleteAction(Request $request, Betaling $betaling)
@@ -115,7 +116,7 @@ class BetalingController extends Controller
             $em->flush();
         }
 
-        return $this->redirectToRoute('payment_index');
+        return $this->redirectToRoute('betaling_index');
     }
 
     /**
@@ -128,7 +129,7 @@ class BetalingController extends Controller
     private function createDeleteForm(Betaling $betaling)
     {
         return $this->createFormBuilder()
-            ->setAction($this->generateUrl('payment_delete', array('id' => $betaling->getId())))
+            ->setAction($this->generateUrl('betaling_delete', array('id' => $betaling->getId())))
             ->setMethod('DELETE')
             ->getForm()
         ;

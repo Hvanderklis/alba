@@ -104,6 +104,10 @@ class Klant
 
 
     /**
+     * @ORM\OneToOne(targetEntity="AlbaBundle\Entity\Betaling", mappedBy="klant")
+     */
+    private $betaling;
+    /**
      * Constructor
      */
     public function __construct()
@@ -439,5 +443,29 @@ class Klant
     public function getKaart()
     {
         return $this->kaart;
+    }
+
+    /**
+     * Set betaling
+     *
+     * @param \AlbaBundle\Entity\Betaling $betaling
+     *
+     * @return Klant
+     */
+    public function setBetaling(\AlbaBundle\Entity\Betaling $betaling = null)
+    {
+        $this->betaling = $betaling;
+
+        return $this;
+    }
+
+    /**
+     * Get betaling
+     *
+     * @return \AlbaBundle\Entity\Betaling
+     */
+    public function getBetaling()
+    {
+        return $this->betaling;
     }
 }

@@ -1,0 +1,44 @@
+{% extends '@Alba/adminpanel.html.twig' %}
+
+{% block body %}
+    <h1>Betaling</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ betaling.id }}</td>
+            </tr>
+            <tr>
+                <th>Betaald</th>
+                <td>{{ betaling.betaald }}</td>
+            </tr>
+            <tr>
+                <th>Datum</th>
+                <td>{% if betaling.datum %}{{ betaling.datum|date('Y-m-d') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Klant</th>
+                <td>{{ betaling.getKlant().getAchternaam() }}</td>
+            </tr>
+            <tr>
+                <th>Reserveringsnummer</th>
+                <td>{{ betaling.getReservering().getId() }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('betaling_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('betaling_edit', { 'id': betaling.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

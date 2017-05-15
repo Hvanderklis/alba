@@ -65,7 +65,7 @@ class KlantController extends Controller
     public function showAction(Klant $klant, Request $request)
     {
         $em = $this->getDoctrine()->getManager();
-        $customerRepository = $em->getRepository('AlbaBundle:Klant');
+        $customerRepository = $em->getRepository('AlbaBundle:KamerAfbeelding');
         $customers = $customerRepository->findBy(['id' => $klant->getId()]);
 
         $gastRepo = $em->getRepository('AlbaBundle:Gast');

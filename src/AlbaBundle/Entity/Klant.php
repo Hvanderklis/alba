@@ -45,7 +45,7 @@ class Klant
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="Geboortedatum", type="date")
+     * @ORM\Column(name="Geboortedatum", type="string", length=255)
      */
     private $geboortedatum;
 
@@ -93,7 +93,6 @@ class Klant
      * @var \Doctrine\Common\Collections\ArrayCollection
      *
      * @ORM\OneToMany(targetEntity="Gast", mappedBy="klant")
-     * @ORM\JoinTable(name="gast")
      */
     private $gast;
 
@@ -102,6 +101,7 @@ class Klant
      * @ORM\OneToMany(targetEntity="Kaart", mappedBy="klant")
      */
     private $kaart;
+
 
     /**
      * Constructor
@@ -198,7 +198,7 @@ class Klant
     /**
      * Set geboortedatum
      *
-     * @param \DateTime $geboortedatum
+     * @param string $geboortedatum
      *
      * @return Klant
      */
@@ -212,7 +212,7 @@ class Klant
     /**
      * Get geboortedatum
      *
-     * @return \DateTime
+     * @return string
      */
     public function getGeboortedatum()
     {
@@ -405,11 +405,6 @@ class Klant
     public function getGast()
     {
         return $this->gast;
-    }
-
-    public function __toString()
-    {
-        return $this->getGast();
     }
 
     /**

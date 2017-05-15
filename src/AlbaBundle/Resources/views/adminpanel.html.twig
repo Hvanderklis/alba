@@ -21,7 +21,7 @@
         </div>
         <ul class="menu align-right">
             <li><a href="{{ path('fos_user_security_logout') }}">Log off</a></li>
-            <li><a href="{{ path('faq') }}">Help</a></li>
+            <li><a href="{{ path('alba_default_help') }}">Help</a></li>
             <li><a href="{{ path('fos_user_profile_show') }}">Account</a></li>
         </ul>
     </div>
@@ -33,15 +33,16 @@
     300px;">
             <li><a href="{{ path('customer_index') }}">Customers</a></li>
             <li><a href="{{ path('guest_index') }}">Guest</a></li>
-            <li><a href="{{ path('payment_index') }}">Payment</a></li>
+            <li><a href="{{ path('betaling_index') }}">Payment</a></li>
             <li><a href="{{ path('bankIndex') }}">Bank</a></li>
-            <li><a href="{{ path('kamer_index') }}">Card</a></li>
+            <li><a href="{{ path('card_index') }}">Card</a></li>
             <li><a href="{{ path('reservering_index') }}">Reservation</a></li>
             <li><a href="{{ path('seizoen_index') }}">Rooms and Season</a></li>
             <li><a href="{{ path('kamer_index') }}">Rooms</a></li>
             <li><a href="{{ path('kamerprijs_index') }}">Rooms prices</a></li>
             <li><a href="{{ path('kamerafbeelding_index') }}">Room images</a></li>
             <li><a href="{{ path('seizoen_index') }}">Season</a></li>
+            <li><a href="{{ path('bankIndex') }}">Bank</a></li>
             <li><a href="{{ path('extra_index') }}">Extra's</a></li>
         </ul>
     </div>
@@ -51,8 +52,10 @@
 {% block javascripts %}{% endblock %}
     <script src="{{ asset('bundles/alba/js/vendor/jquery.js') }}"></script>
     <script src="{{ asset('bundles/alba/js/vendor/foundation.min.js') }}"></script>
+    <script src="{{ asset('bundles/alba/js/vendor/what-input.js') }}"></script>
     <script>
         $(document).foundation();
+        $(document).foundation('alert', 'reflow');
     </script>
 </body>
 </html>

@@ -47,19 +47,14 @@
             </tr>
         </tbody>
     </table>
-    <ul>
-        <li>
-            <a href="{{ path('customer_index') }}" class="button">Back to the list</a>
-        </li>
-        <li>
-            <a href="{{ path('customer_edit', { 'id': customer.id }) }}" class="button">Edit</a>
-        </li>
-        <li>
-            {{ form_start(delete_form) }}
-            <input type="submit" value="Delete" class="button alert">
-            {{ form_end(delete_form) }}
-        </li>
-    </ul>
+
+    <a class="bsuccess button" href="{{ path('customer_index') }}" class="button">Back to the list</a>
+    <a class="button warning" href="{{ path('customer_edit', { 'id': customer.id }) }}" class="button">Edit</a>
+
+    {{ form_start(delete_form) }}
+        <input class="alert button" type="submit" value="Delete" class="button alert">
+    {{ form_end(delete_form) }}
+
     <h2>Guest</h2>
 
     <table>
@@ -88,34 +83,4 @@
         </tbody>
         {% endfor %}
     </table>
-
-    <h2>Payments</h2>
-
-    <table>
-        <thead>
-        <tr>
-            <th>First name</th>
-            <th>Prefix</th>
-            <th>Last name</th>
-            <th>Actions</th>
-        </tr>
-        </thead>
-        <tbody>
-        {% for guest in guests %}
-        <tr>
-            <td>{{ guest.voornaam }}</td>
-            <td>{{ guest.tussenvoegsel }}</td>
-            <td>{{ guest.achternaam }}</td>
-            <td>
-                <ul>
-                    <li>
-                        <a href="{{ path('guest_edit', { 'id': guest.id }) }}" class="button">Edit</a>
-                    </li>
-                </ul>
-            </td>
-        </tr>
-        </tbody>
-        {% endfor %}
-    </table>
-
 {% endblock %}

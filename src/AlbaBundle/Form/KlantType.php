@@ -20,11 +20,13 @@ class KlantType extends AbstractType
             ->add('tussenvoegsel')
             ->add('achternaam')
             ->add('geboortedatum', BirthdayType::class, array(
-                'placeholder' => 'Select a value'))
+                'placeholder' => array(
+                    'year' => 'Year', 'month' => 'Month', 'day' => 'Day',
+                )))
             ->add('geslacht', ChoiceType::class, array(
                 'choices'  => array(
-                    'Man' => "Man",
-                    'Vrouw' => "Vrouw",
+                    'Male' => "Man",
+                    'Female' => "Vrouw",
                 ),
             ))
             ->add('plaats')

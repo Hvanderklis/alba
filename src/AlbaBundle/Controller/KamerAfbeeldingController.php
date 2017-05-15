@@ -65,12 +65,30 @@ class KamerAfbeeldingController extends Controller
             $roomName = str_replace(" ", "_", $roomName);
             $kamerAfbeelding->setPath("uploads/" . $roomName);
 
-            $kamerAfbeelding->upload();
+            $kamerMaps = str_replace(" ", "_", __DIR__ . '/../../../web/uploads/' . $roomName);
+            $files = scandir($kamerMaps);
+            $fileArray = [];
 
-            $em->persist($kamerAfbeelding);
-            $em->flush($kamerAfbeelding);
+            foreach ($files as $file){
+                if($file == "." || $file == ".."){
+                    continue;
+                }
+                array_push($fileArray, "uploads/" . $roomName . "/" . $file);
+            }
 
-            return $this->redirectToRoute('kamerafbeelding_show', array('id' => $kamerAfbeelding->getId()));
+            $checkFile = "uploads/". $roomName . "/" . $imageName . "." . $typo;
+
+            if (in_array($checkFile, $fileArray)){
+                $this->get('session')->getFlashBag()->set('error', 'The name does already exist');
+            }
+            else {
+                $kamerAfbeelding->upload();
+
+                $em->persist($kamerAfbeelding);
+                $em->flush($kamerAfbeelding);
+
+                return $this->redirectToRoute('kamerafbeelding_show', array('id' => $kamerAfbeelding->getId()));
+            }
         }
 
         return $this->render('@Alba/kamerafbeelding/new.html.twig', array(
@@ -110,8 +128,8 @@ class KamerAfbeeldingController extends Controller
         $form = $this->createDeleteForm($kamerAfbeelding);
         $form->handleRequest($request);
 
-        $kamerNaam = $kamerAfbeelding->getKamer()->getKamerNaam();
-        $kamerMaps = str_replace(" ", "_",  __DIR__.'/../../../web/uploads/' . $kamerNaam);
+        $kamerNaam = $kamerAfbeelding->getPath();
+        $kamerMaps = str_replace(" ", "_", __DIR__ . '/../../../web/' . $kamerNaam);
         $files = scandir($kamerMaps);
         $fileArray = [];
 
@@ -119,19 +137,16 @@ class KamerAfbeeldingController extends Controller
             if($file == "." || $file == ".."){
                 continue;
             }
-            array_push($fileArray, "uploads/" . $kamerNaam . "/" .$file);
+            array_push($fileArray, "uploads/" . $kamerNaam . "/" . $file);
         }
 
-        $imagePath = $kamerAfbeelding->getPath(). "/" . $kamerAfbeelding->getName() . "." . $kamerAfbeelding->getType();
+        $imagePath = __DIR__ . '/../../../web/' . $kamerAfbeelding->getPath(). "/" . $kamerAfbeelding->getName() . "." . $kamerAfbeelding->getType();
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
-            if(in_array($imagePath, $fileArray)){
-                unlink($imagePath);
-                $em->remove($kamerAfbeelding);
-                $em->flush();
-            }
-
+            unlink($imagePath);
+            $em->remove($kamerAfbeelding);
+            $em->flush();
         }
         return $this->redirectToRoute('kamerafbeelding_index');
     }

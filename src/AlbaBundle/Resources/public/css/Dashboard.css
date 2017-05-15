@@ -22,6 +22,7 @@ ul li a {
     border: 1px solid #ccc;
     padding: 15px;
     margin-top: 30px;
+    background-color: white;
 }
 .login-panel i {
     font-size: 30px;
@@ -51,9 +52,19 @@ ul li a {
     margin-right: auto;
     max-width: initial;
     background-color: white;
+    padding: 15px;
 }
 body {
     background-image: url("../img/Day 4 Loch Carron2.JPG");
     background-repeat: no-repeat;
     background-size: cover;
+}
+#logo {
+    width: 80px;
+}
+
+.error {
+    background-color: red;
+    border-radius: 10px;
+    padding: 15px;
 }

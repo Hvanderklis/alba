@@ -66,6 +66,11 @@ class Reservering
      * @ORM\JoinTable(name="extra_reservering")
      */
     private $extra;
+
+    /**
+     * @ORM\OneToOne(targetEntity="AlbaBundle\Entity\Betaling", mappedBy="reservering")
+     */
+    private $betaling;
     /**
      * Constructor
      */
@@ -282,5 +287,29 @@ class Reservering
     public function getExtra()
     {
         return $this->extra;
+    }
+
+    /**
+     * Set betaling
+     *
+     * @param \AlbaBundle\Entity\Betaling $betaling
+     *
+     * @return Reservering
+     */
+    public function setBetaling(\AlbaBundle\Entity\Betaling $betaling = null)
+    {
+        $this->betaling = $betaling;
+
+        return $this;
+    }
+
+    /**
+     * Get betaling
+     *
+     * @return \AlbaBundle\Entity\Betaling
+     */
+    public function getBetaling()
+    {
+        return $this->betaling;
     }
 }

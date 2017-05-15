@@ -47,16 +47,11 @@ class Kaart
     private $bank;
 
     /**
-     * @ORM\OneToMany(targetEntity="Betaling", mappedBy="kaart")
-     */
-    private $betaling;
-    /**
      * Constructor
      */
     public function __construct()
     {
         $this->bank = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->betaling = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**
@@ -173,39 +168,5 @@ class Kaart
     public function getBank()
     {
         return $this->bank;
-    }
-
-    /**
-     * Add betaling
-     *
-     * @param \AlbaBundle\Entity\Betaling $betaling
-     *
-     * @return Kaart
-     */
-    public function addBetaling(\AlbaBundle\Entity\Betaling $betaling)
-    {
-        $this->betaling[] = $betaling;
-
-        return $this;
-    }
-
-    /**
-     * Remove betaling
-     *
-     * @param \AlbaBundle\Entity\Betaling $betaling
-     */
-    public function removeBetaling(\AlbaBundle\Entity\Betaling $betaling)
-    {
-        $this->betaling->removeElement($betaling);
-    }
-
-    /**
-     * Get betaling
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getBetaling()
-    {
-        return $this->betaling;
     }
 }

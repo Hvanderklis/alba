@@ -5,16 +5,16 @@
 
     {{ form_start(edit_form) }}
         {{ form_widget(edit_form) }}
-        <input type="submit" value="Commit changes" class="button" />
+        <input type="submit" value="Edit" />
     {{ form_end(edit_form) }}
 
     <ul>
         <li>
-            <a href="{{ path('payment_index') }}" class="button">Back to the list</a>
+            <a href="{{ path('betaling_index') }}">Back to the list</a>
         </li>
         <li>
             {{ form_start(delete_form) }}
-                <input type="submit" value="Delete" class="button alert">
+                <input type="submit" value="Delete">
             {{ form_end(delete_form) }}
         </li>
     </ul>

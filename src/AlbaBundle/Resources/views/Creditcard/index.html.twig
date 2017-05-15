@@ -1,7 +1,8 @@
 {% extends '@Alba/adminpanel.html.twig' %}
 
 {% block body %}
-    <h1>Creditcard list</h1>
+    <h1 style="float: left">Creditcard list</h1>
+    <a style="float: right" class="button" href="{{ path('card_new') }}"><p style="margin-bottom: 0px;">New Item <i class="fa fa-plus"></i></p></a>
 
     <table>
         <thead>
@@ -18,24 +19,9 @@
                 <td><a href="{{ path('card_show', { 'id': kaart.id }) }}">{{ kaart.id }}</a></td>
                 <td>{{ kaart.creditcardGegevens }}</td>
                 <td>{% if kaart.vervaldatum %}{{ kaart.vervaldatum|date('Y-m-d') }}{% endif %}</td>
-                <td>
-                    <ul>
-                        <li>
-                            <a href="{{ path('card_show', { 'id': kaart.id }) }}" class="button">show</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('card_edit', { 'id': kaart.id }) }}" class="button">edit</a>
-                        </li>
-                    </ul>
-                </td>
+                <td><a class="button" href="{{ path('card_show') }}"><i class="fa fa-eye"></i></a></td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
-
-    <ul>
-        <li>
-            <a href="{{ path('card_new') }}" class="button">Create a new kaart</a>
-        </li>
-    </ul>
 {% endblock %}

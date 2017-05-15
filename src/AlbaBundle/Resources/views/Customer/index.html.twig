@@ -1,7 +1,8 @@
 {% extends '@Alba/adminpanel.html.twig' %}
 
 {% block body %}
-    <h1>Customers list</h1>
+    <h1 style="float: left">Customers list</h1>
+    <a style="float: right" class="button" href="{{ path('customer_new') }}"><p style="margin-bottom: 0px;">New Item <i class="fa fa-plus"></i></p></a>
 
     <table>
         <thead>
@@ -32,24 +33,10 @@
                 <td>{{ klant.taal }}</td>
                 <td>{{ klant.email }}</td>
                 <td>{{ klant.telefoon }}</td>
-                <td>
-                    <ul>
-                        <li>
-                            <a href="{{ path('customer_show', { 'id': klant.id }) }}" class="button">View more</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('customer_edit', { 'id': klant.id }) }}" class="button">Edit</a>
-                        </li>
-                    </ul>
-                </td>
+                <td><a class="button" href="{{ path('customer_show', { 'id': klant.id }) }}"><i class="fa fa-eye"></i></a></td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
 
-    <ul>
-        <li>
-            <a href="{{ path('customer_new') }}" class="button">Create a new customer</a>
-        </li>
-    </ul>
 {% endblock %}

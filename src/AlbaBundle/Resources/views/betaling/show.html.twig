@@ -17,19 +17,27 @@
                 <th>Datum</th>
                 <td>{% if betaling.datum %}{{ betaling.datum|date('Y-m-d') }}{% endif %}</td>
             </tr>
+            <tr>
+                <th>Klant</th>
+                <td>{{ betaling.getKlant().getAchternaam() }}</td>
+            </tr>
+            <tr>
+                <th>Reserveringsnummer</th>
+                <td>{{ betaling.getReservering().getId() }}</td>
+            </tr>
         </tbody>
     </table>
 
     <ul>
         <li>
-            <a href="{{ path('payment_index') }}" class="button">Back to the list</a>
+            <a href="{{ path('betaling_index') }}">Back to the list</a>
         </li>
         <li>
-            <a href="{{ path('payment_edit', { 'id': betaling.id }) }}" class="button">Edit</a>
+            <a href="{{ path('betaling_edit', { 'id': betaling.id }) }}">Edit</a>
         </li>
         <li>
             {{ form_start(delete_form) }}
-                <input type="submit" value="Delete" class="button alert">
+                <input type="submit" value="Delete">
             {{ form_end(delete_form) }}
         </li>
     </ul>

@@ -1,7 +1,8 @@
 {% extends '@Alba/adminpanel.html.twig' %}
 
 {% block body %}
-    <h1>Guest's list</h1>
+    <h1 style="float: left">Guest list</h1>
+    <a style="float: right" class="button" href="{{ path('guest_new') }}"><p style="margin-bottom: 0px;">New Item <i class="fa fa-plus"></i></p></a>
 
     <table>
         <thead>
@@ -26,24 +27,10 @@
                 <td>{{ gast.woonplaats }}</td>
                 <td>{% if gast.geboortedatum %}{{ gast.geboortedatum|date('Y-m-d') }}{% endif %}</td>
                 <td>{{ gast.taal }}</td>
-                <td>
-                    <ul>
-                        <li>
-                            <a href="{{ path('guest_show', { 'id': gast.id }) }}" class="button" >show</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('guest_edit', { 'id': gast.id }) }}" class="button">edit</a>
-                        </li>
-                    </ul>
-                </td>
+                <td><a class="button" href="{{ path('guest_show') }}"><i class="fa fa-eye"></i></a></td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
 
-    <ul>
-        <li>
-            <a href="{{ path('guest_new') }}" class="button">Create a new gast</a>
-        </li>
-    </ul>
 {% endblock %}

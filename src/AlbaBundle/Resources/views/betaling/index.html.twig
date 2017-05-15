@@ -15,16 +15,16 @@
         <tbody>
         {% for betaling in betalings %}
             <tr>
-                <td><a href="{{ path('payment_show', { 'id': betaling.id }) }}" class="button">{{ betaling.id }}</a></td>
+                <td><a href="{{ path('betaling_show', { 'id': betaling.id }) }}">{{ betaling.id }}</a></td>
                 <td>{{ betaling.betaald }}</td>
                 <td>{% if betaling.datum %}{{ betaling.datum|date('Y-m-d') }}{% endif %}</td>
                 <td>
                     <ul>
                         <li>
-                            <a href="{{ path('payment_show', { 'id': betaling.id }) }}" class="button">View more</a>
+                            <a href="{{ path('betaling_show', { 'id': betaling.id }) }}">show</a>
                         </li>
                         <li>
-                            <a href="{{ path('payment_edit', { 'id': betaling.id }) }}" class="button">Edit</a>
+                            <a href="{{ path('betaling_edit', { 'id': betaling.id }) }}">edit</a>
                         </li>
                     </ul>
                 </td>
@@ -35,7 +35,7 @@
 
     <ul>
         <li>
-            <a href="{{ path('payment_new') }}" class="button success">Create a new payment order</a>
+            <a href="{{ path('betaling_new') }}">Create a new betaling</a>
         </li>
     </ul>
 {% endblock %}

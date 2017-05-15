@@ -110,6 +110,7 @@ class ReserveringController extends Controller
         ));
     }
 
+
     /**
      * Displays a form to edit an existing reservering entity.
      *

@@ -4,8 +4,6 @@
     <div class="row">
         <h2>{{ kamer.kamerNaam }}</h2>
     </div>
-
-<<<<<<< HEAD
     <table>
         <tbody>
         <tr>
@@ -25,26 +23,4 @@
     <a class="button primary" href="{{ path('booking')  }}">Book now</a>
     <a class="button secondary" href="{{ path('kamer_reserveren') }}">Back to the list</a>
 {% endblock %}
-=======
-    <div class="row">
-        <div class="large-4 column">
-                {% for kamerafbeelding in kamerafbeelding %}
-                    <img src="/{{ kamerafbeelding.path}}/{{  kamerafbeelding.name }}.{{ kamerafbeelding.type }}" >
-                {% endfor %}
-        </div>
 
-        <div class="large-8 column">
-            <div class="callout" id="book">
-                <p>{{ kamer.omschrijving }}</p>
-                <p class="lead">All our rooms have ensuite bathrooms and WiFi</p>
-                <p class="subheader">&pound; {{ kamer.prijs }}</p>
-            </div>
-        </div>
-    </div>
-
-    <br>
-    <div class="row">
-        <a class="button" id="colorlp" href="{{ path('kamer_reserveren') }}">Back To Rooms</a>
-    </div>
-{% endblock %}
->>>>>>> 751c5ddf337e83e57509a0c860a718cd9c72b893

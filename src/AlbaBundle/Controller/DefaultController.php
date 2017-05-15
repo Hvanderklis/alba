@@ -38,7 +38,7 @@ class DefaultController extends Controller
 
         $kamerafbeeldingRepo = $em->getRepository('AlbaBundle:KamerAfbeelding')->findAll();
 
-        return $this->render('AlbaBundle:kamer:kamerreserveren.html.twig', array(
+        return $this->render('AlbaBundle:kamer:kamers.html.twig', array(
             'kamer' => $kamerRepo,
             'kamerafbeelding' => $kamerafbeeldingRepo,
         ));
@@ -48,7 +48,7 @@ class DefaultController extends Controller
     /**
      * Finds and displays a kamer entity.
      *
-     * @Route("/kamers/{id}", name="kamer_reserveren_show")
+     * @Route("/kamers/{id}", name="kamer_show")
      *
      */
     public function showKamerAction(Kamer $kamer, Request $request)
@@ -66,7 +66,7 @@ class DefaultController extends Controller
             ->getResult();
 
 
-        return $this->render('AlbaBundle:Kamer:kamerreserverenshow.html.twig', array(
+        return $this->render('AlbaBundle:Kamer:kamersshow.html.twig', array(
             'kamer' => $kamer,
             'kamerafbeelding' => $kamerafbeeldingen,
         ));

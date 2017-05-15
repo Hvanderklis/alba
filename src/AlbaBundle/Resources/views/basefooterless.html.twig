@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=320, initial-scale=0.5">
+    <title>{% block title %}Bed&Breakfast Alba{% endblock %}</title>
+    <script src="http://maps.google.com/maps/api/js?sensor=false" type="text/javascript"></script>
+    {% block stylesheets %}
+        <link rel="stylesheet" type="text/css" href="{{ asset('bundles/alba/cssf/foundation.css') }}">
+        <link rel="stylesheet" type="text/css" href="{{ asset('bundles/alba/cssf/foundation.min.css') }}">
+        <link rel="stylesheet" type="text/css" href="{{ asset('bundles/alba/cssf/stylesheet.css') }}">
+        <link rel="stylesheet" type="text/css" href="{{ asset('bundles/alba/font-awesome/css/font-awesome.css') }}">
+    {% endblock %}
+</head>
+<body onload="initialize()">
+
+<!--Menu-->
+<div class="title-bar" data-responsive-toggle="realEstateMenu" data-hide-for="small" data-responsivetoggle="2y5yz2-responsivetoggle" style="display: none;">
+    <button class="menu-icon" type="button" data-toggle=""></button>
+    <div class="title-bar-title">Menu</div>
+</div>
+<div class="top-bar" id="realEstateMenu">
+    <div class="top-bar-left">
+        <ul class="menu accordion-menu" data-responsive-menu="accordion" role="tablist" aria-multiselectable="true" data-accordionmenu="kklsv3-accordionmenu" data-responsivemenu="kran3z-responsivemenu">
+            <li class="menu-text" role="menuitem"><img id="logo" src="{{ asset('bundles/alba/img/logo.png') }}"></li>
+            <li role="menuitem"><a href="{{ path('homepage') }}">Home</a></li>
+            <li role="menuitem"><a href="">Rooms</a></li>
+            <li role="menuitem"><a href="#">Reservation</a></li>
+            <li role="menuitem"><a href="{{ path('about') }}">About us</a></li>
+            <li role="menuitem"><a href="{{ path('sightseeing') }}">Sightseeing</a></li>
+            <li role="menuitem"><a href="{{ path('mail') }}">Contact</a></li>
+        </ul>
+    </div>
+</div>
+<br/>
+<!--header -->
+{% block body %}{% endblock %}
+
+</body>
+</html>

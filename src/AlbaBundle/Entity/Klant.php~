@@ -45,7 +45,7 @@ class Klant
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="Geboortedatum", type="date")
+     * @ORM\Column(name="Geboortedatum", type="string", length=255)
      */
     private $geboortedatum;
 
@@ -104,7 +104,12 @@ class Klant
     private $kaart;
 
     /**
+<<<<<<< HEAD
+     * Constructor
+     */
+=======
      * @ORM\OneToOne(targetEntity="AlbaBundle\Entity\Betaling", mappedBy="klant")
      */
     private $betaling;
+>>>>>>> 751c5ddf337e83e57509a0c860a718cd9c72b893
 }

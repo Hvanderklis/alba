@@ -49,7 +49,8 @@ class DefaultController extends Controller
     /**
      * Finds and displays a kamer entity.
      *
-     * @Route("/kamers/{id}", name="kamer_show")
+//     * @Route("/kamers/{id}", name="kamer_show")
+     * @Route("/kamers/{id}", name="kamer_reserveren_show")
      */
     public function showKamerAction(Kamer $kamer, Request $request){
         $em = $this->getDoctrine()->getManager();

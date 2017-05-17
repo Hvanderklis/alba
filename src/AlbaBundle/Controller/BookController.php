@@ -6,10 +6,19 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 
+/**
+ * Class BookController
+ * @package AlbaBundle\Controller
+ * @Route("/reservation")
+ */
 class BookController extends Controller
 {
     /**
-     * @Route("/reserveren", name="reserveren")
+     * Step One
+     *
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\Response
+     * @Route("/stepone", name="bookStepOne")
      */
     public function reserverenAction(Request $request){
         $em = $this->getDoctrine()->getManager();
@@ -32,25 +41,30 @@ class BookController extends Controller
 
             dump($checkDates);
 
-            $kamerId = $checkDates;
-            $kamers = $roomRepository->createQueryBuilder('k')
-                ->innerJoin('k.reservering', 'r')
-                ->where('k.id != :kamerId')
-                ->setParameter('kamerId', $kamerId)
-                ->getQuery()
-                ->getResult();
+            if ($checkDates != null){
+                $kamerId = $checkDates;
+                $kamers = $roomRepository->createQueryBuilder('k')
+                    ->innerJoin('k.reservering', 'r')
+                    ->where('k.id != :kamerId')
+                    ->setParameter('kamerId', $kamerId)
+                    ->getQuery()
+                    ->getResult();
+                dump($kamers);
+                dump(count($kamers));
+                dump(count($kamers) * 2);
 
-            dump($kamers);
-            dump(count($kamers));
-            dump(count($kamers) * 2);
-
-            if (count($kamers) * 2 < $travelingCompanions){
-                dump('meh');
-            } else {
-                dump('yeah');
+                if (count($kamers) * 2 < $travelingCompanions){
+                    dump('meh');
+                } else {
+                    dump('yeah');
+                }
+            } 
 
 
-            }
+
+
+
+
 
 //            $session = $this->get('request_stack')->getCurrentRequest()->getSession();
 ////            // $cart = $session->set('cart', '');
@@ -58,6 +72,8 @@ class BookController extends Controller
 
 //            dump($session);
         }
+
+        return $this->render('@Alba/web_reserveren/stepOne.html.twig');
 //            $Firstname = $request->get("Firstname");
 //            $Insertion = $request->get("Insertion");
 //            $Lastname = $request->get("Lastname");
@@ -98,6 +114,6 @@ class BookController extends Controller
 //                'kamers' => $kamers,
 //            ));
 //        }
-        return $this->render('@Alba/web_reserveren/form.html.twig');
+//        return $this->render('@Alba/web_reserveren/form.html.twig');
     }
 }

@@ -276,6 +276,9 @@ i {
 #example-menu li:hover {
     background-color: #80bfff;
 }
+.extra th {
+    text-align: center;
+}
 /* Small only */
 @media screen and (max-width: 39.9375em) {
     #responsive {width:50%;}

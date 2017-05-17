@@ -20,7 +20,8 @@ class KamerAfbeeldingType extends AbstractType
                 'class' => 'AlbaBundle\Entity\Kamer',
                 'choice_label' => function($kamer){
                     return $kamer->getKamernaam();
-                }
+                },
+                'label' => 'Room'
             ])
         ;
     }

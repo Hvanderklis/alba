@@ -4,23 +4,23 @@ namespace AlbaBundle\Controller;
 
 use AlbaBundle\Entity\Gast;
 use AlbaBundle\Entity\Kamer;
-use AlbaBundle\Entity\KamerAfbeelding;
 use AlbaBundle\Entity\Klant;
 use AlbaBundle\Entity\Reservering;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component\HttpFoundation\Request;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\HttpFoundation\Request;
 
 /**
  * KamerReserveren controller.
  *
  * @Route("/")
  */
-
 class DefaultController extends Controller
 {
     /**
-     * @Route("/")
+     * Homepage
+     *
+     * @Route("/"), name="homepage"
      */
     public function indexAction()
     {
@@ -32,8 +32,8 @@ class DefaultController extends Controller
      *
      * @Route("/kamers", name="kamer_reserveren")
      */
-    public function kamerAction()
-    {
+    public function kamerAction(){
+
         $em = $this->getDoctrine()->getManager();
 
         $kamerRepo = $em->getRepository('AlbaBundle:Kamer')->findAll();
@@ -41,22 +41,17 @@ class DefaultController extends Controller
         $kamerafbeeldingRepo = $em->getRepository('AlbaBundle:KamerAfbeelding')->findAll();
 
         return $this->render('AlbaBundle:kamer:booking.html.twig', array(
-
-
             'kamer' => $kamerRepo,
             'kamerafbeelding' => $kamerafbeeldingRepo,
         ));
-
     }
 
     /**
      * Finds and displays a kamer entity.
      *
      * @Route("/kamers/{id}", name="kamer_show")
-     *
      */
-    public function showKamerAction(Kamer $kamer, Request $request)
-    {
+    public function showKamerAction(Kamer $kamer, Request $request){
         $em = $this->getDoctrine()->getManager();
         $roomRepository = $em->getRepository('AlbaBundle:Kamer');
         $rooms = $roomRepository->findBy(['id' => $kamer->getId()]);
@@ -70,7 +65,6 @@ class DefaultController extends Controller
             ->getResult();
 
         return $this->render('AlbaBundle:Kamer:bookingshow.html.twig', array(
-
             'kamer' => $kamer,
             'kamerafbeelding' => $kamerafbeeldingen,
         ));
@@ -81,8 +75,7 @@ class DefaultController extends Controller
      *
      * @Route("/sightseeing", name="sightseeing")
      */
-    public function sightseeingAction()
-    {
+    public function sightseeingAction(){
         return $this->render("@Alba/sightseeing.html.twig");
     }
 
@@ -91,8 +84,7 @@ class DefaultController extends Controller
      *
      * @Route("/about", name="about")
      */
-    public function aboutAction()
-    {
+    public function aboutAction(){
         return $this->render("@Alba/about.html.twig");
     }
 
@@ -101,8 +93,7 @@ class DefaultController extends Controller
      *
      * @Route("/disclaimer", name="disclaimer")
      */
-    public function disclaimerAction()
-    {
+    public function disclaimerAction(){
         return $this->render("@Alba/disclaimer.html.twig");
     }
 
@@ -111,8 +102,7 @@ class DefaultController extends Controller
      *
      * @Route("/contact", name="mail")
      */
-    public function contacAction(Request $request)
-    {
+    public function contacAction(Request $request){
         if($request->getMethod() == "POST") {
             $Subject = $request->get("Subject");
             $email = $request->get("Email");
@@ -136,10 +126,8 @@ class DefaultController extends Controller
      * Creates a new klant entity.
      *
      * @Route("/reserveren2", name="reserveren2")
-     *
      */
-    public function reserveren2Action(Request $request)
-    {
+    public function reserveren2Action(Request $request){
 
         // get the cart from  the session
         $session = $this->get('request_stack')->getCurrentRequest()->getSession();
@@ -149,60 +137,7 @@ class DefaultController extends Controller
         $criteria = $session->get('reserveren');
         dump($criteria);
 
-
         return $this->render("@Alba/Reservation/reserverenindex2.html.twig");
-    }
-
-    /**
-     * @route("/reserveren", name="reserveren")
-     */
-    public function reserverenAction(Request $request)
-    {
-
-        if($request->getMethod() == "POST") {
-            $Firstname = $request->get("Firstname");
-            $Insertion = $request->get("Insertion");
-            $Lastname = $request->get("Lastname");
-            $Birthdate = $request->get("Birthdate");
-            $Gender = $request->get("Gender");
-            $City = $request->get("City");
-            $Language = $request->get("Language");
-            $Email = $request->get("Email");
-            $Tel = $request->get("Tel");
-            $GuestFirstname = $request->get("GuestFirstname");
-            $GuestInsertion = $request->get("GuestInsertion");
-            $GuestLastname = $request->get("GuestLastname");
-
-            // get the cart from  the session
-            $session = $this->get('request_stack')->getCurrentRequest()->getSession();
-            // $cart = $session->set('cart', '');
-            $session->set('reserveren', array('Firstname' => $Firstname,
-                'Insertion' => $Insertion,
-                'Lastname' => $Lastname,
-                'Birthdate' => $Birthdate,
-                'Gender' => $Gender,
-                'City' => $City,
-                'Language' => $Language,
-                'Email' => $Email,
-                'Tel' => $Tel,
-                'GuestFirstname' => $GuestFirstname,
-                'GuestInsertion' => $GuestInsertion,
-                'GuestLastname' => $GuestLastname,
-            ));
-            $criteria = $session->get('reserveren');
-            dump($criteria);
-
-            $em = $this->getDoctrine()->getManager();
-
-            $kamers = $em->getRepository('AlbaBundle:Kamer')->findAll();
-
-            return $this->render('AlbaBundle:kamer:booking.html.twig', array(
-                'kamers' => $kamers,
-            ));
-
-
-        }
-            return $this->render("@Alba/Reservation/form.html.twig");
     }
 
 

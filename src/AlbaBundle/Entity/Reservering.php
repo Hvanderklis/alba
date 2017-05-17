@@ -71,6 +71,12 @@ class Reservering
      * @ORM\OneToOne(targetEntity="AlbaBundle\Entity\Betaling", mappedBy="reservering")
      */
     private $betaling;
+
+    /**
+     * @ORM\Column(name="price", type="float")
+     */
+    private $price;
+
     /**
      * Constructor
      */
@@ -161,6 +167,30 @@ class Reservering
     public function getOpmerking()
     {
         return $this->opmerking;
+    }
+
+    /**
+     * Set price
+     *
+     * @param float $price
+     *
+     * @return Reservering
+     */
+    public function setPrice($price)
+    {
+        $this->price = $price;
+
+        return $this;
+    }
+
+    /**
+     * Get price
+     *
+     * @return float
+     */
+    public function getPrice()
+    {
+        return $this->price;
     }
 
     /**

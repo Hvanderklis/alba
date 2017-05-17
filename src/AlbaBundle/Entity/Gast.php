@@ -43,6 +43,11 @@ class Gast
     private $achternaam;
 
     /**
+     * @ORM\Column(name="gender", type="string", length=255)
+     */
+    private $gender;
+
+    /**
      * @var string
      *
      * @ORM\Column(name="Woonplaats", type="string", length=255)
@@ -168,6 +173,30 @@ class Gast
     }
 
     /**
+     * Set gender
+     *
+     * @param string $gender
+     *
+     * @return Gast
+     */
+    public function setGender($gender)
+    {
+        $this->gender = $gender;
+
+        return $this;
+    }
+
+    /**
+     * Get gender
+     *
+     * @return string
+     */
+    public function getGender()
+    {
+        return $this->gender;
+    }
+
+    /**
      * Set woonplaats
      *
      * @param string $woonplaats
@@ -287,4 +316,13 @@ class Gast
         return $this;
     }
 
+    /**
+     * Get klant
+     *
+     * @return \AlbaBundle\Entity\Klant
+     */
+    public function getKlant()
+    {
+        return $this->klant;
+    }
 }

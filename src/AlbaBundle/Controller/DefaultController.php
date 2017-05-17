@@ -169,9 +169,6 @@ class DefaultController extends Controller
             $Language = $request->get("Language");
             $Email = $request->get("Email");
             $Tel = $request->get("Tel");
-            $GuestFirstname = $request->get("GuestFirstname");
-            $GuestInsertion = $request->get("GuestInsertion");
-            $GuestLastname = $request->get("GuestLastname");
 
             // get the cart from  the session
             $session = $this->get('request_stack')->getCurrentRequest()->getSession();
@@ -185,9 +182,6 @@ class DefaultController extends Controller
                 'Language' => $Language,
                 'Email' => $Email,
                 'Tel' => $Tel,
-                'GuestFirstname' => $GuestFirstname,
-                'GuestInsertion' => $GuestInsertion,
-                'GuestLastname' => $GuestLastname,
             ));
             $criteria = $session->get('reserveren');
             dump($criteria);
@@ -210,9 +204,31 @@ class DefaultController extends Controller
      */
     public function reserverenGastAction(Request $request)
     {
+        if($request->getMethod() == "POST") {
+            $GuestFirstname = $request->get("GuestFirstname");
+            $GuestInsertion = $request->get("GuestInsertion");
+            $GuestLastname = $request->get("GuestLastname");
+
+            // get the cart from  the session
+            $session = $this->get('request_stack')->getCurrentRequest()->getSession();
+            // $cart = $session->set('cart', '');
+            $session->set('reserveren_gast', array(
+                'GuestFirstname' => $GuestFirstname,
+                'GuestInsertion' => $GuestInsertion,
+                'GuestLastname' => $GuestLastname,
+            ));
+            $criteria = $session->get('reserveren_gast');
+            dump($criteria);
 
 
+            $em = $this->getDoctrine()->getManager();
 
+            $kamers = $em->getRepository('AlbaBundle:Kamer')->findAll();
+
+            return $this->render('AlbaBundle:kamer:booking.html.twig', array(
+                'kamers' => $kamers,
+            ));
+        }
         return $this->render('AlbaBundle:Reservation:formguest.html.twig');
     }
 
@@ -235,9 +251,9 @@ class DefaultController extends Controller
         $Language = $this->get('session')->get('reserveren')['Language'];
         $Email = $this->get('session')->get('reserveren')['Firstname'];
         $Tel = $this->get('session')->get('reserveren')['Tel'];
-        $GuestFirstname = $this->get('session')->get('reserveren')['GuestFirstname'];
-        $GuestInsertion = $this->get('session')->get('reserveren')['GuestInsertion'];
-        $GuestLastname = $this->get('session')->get('reserveren')['GuestLastname'];
+        $GuestFirstname = $this->get('session')->get('reserveren_gast')['GuestFirstname'];
+        $GuestInsertion = $this->get('session')->get('reserveren_gast')['GuestInsertion'];
+        $GuestLastname = $this->get('session')->get('reserveren_gast')['GuestLastname'];
 
 
         $klant = new Klant();

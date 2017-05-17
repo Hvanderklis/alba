@@ -3,6 +3,7 @@
 namespace AlbaBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -13,7 +14,16 @@ class KamerType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('kamerNaam')->add('prijs')->add('omschrijving');
+        $builder
+            ->add('kamerNaam', TextType::class, array(
+                'label' => 'Room Name'
+            ))
+            ->add('prijs', TextType::class, array(
+                'label' => 'Price'
+            ))
+            ->add('omschrijving', TextType::class, array(
+                'label' => 'Description'
+            ));
     }
     
     /**

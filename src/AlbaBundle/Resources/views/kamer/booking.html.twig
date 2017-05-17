@@ -14,8 +14,8 @@
         <p id="colorw">{{ kamer.kamerNaam }}</p>
         <p><img src="{{ asset('bundles/alba/img/single.jpg') }}" alt="Sigle Room"></p>
         <p class="lead" id="colorw">{{ kamer.omschrijving }}</p>
-        <p class="subheader" id="colorw">€ {{ kamer.prijs }}</p>
-        <a class="button" href="{{ path('kamer_reserveren_show', { 'id': kamer.id }) }}">Info</a>
+        <p class="subheader" id="colorw">&pound; {{ kamer.prijs }}</p>
+        <a class="button" href="{{ path('kamer_reserveren_show', { 'id': kamer.id }) }}">Look Room</a>
     {% endfor %}
     </div>
     </div>

@@ -4,43 +4,185 @@
 <!-- multistep form -->
 {% set reserveren = app.session.get('reserveren') %}
     <form action="{{ path ('reserveren') }}" method="post" role="form" id="msform">
-    <!-- progressbar -->
-    <ul id="progressbar">
-        <li class="active">Personal Details</li>
-        <li>Location Details</li>
-        <li>Guest Details</li>
-    </ul>
 
-        <!-- fieldsets -->
-    <fieldset>
-        <h2 class="fs-title">klant</h2>
-        <h3 class="fs-subtitle">Here we will need some personal details</h3>
-        <input type="text" class="form-control" id="Firstname" name="Firstname" placeholder="First name" required>
-        <input type="text" class="form-control" id="Insertion" name="Insertion" placeholder="Insertion" required>
-        <input type="text" class="form-control" id="Lastname" name="Lastname" placeholder="Last name" required>
-        <input type="text" class="form-control" id="Birthdate" name="Birthdate" placeholder="Birth date" required>
-        <select class="form-control" id="Gender" name="Gender" placeholder="Gender" >
-        <option value="">Gender</option>
-        <option value="Man">Man</option>
-        <option value="Woman">Woman</option>
-        </select>
-        <input type="button" name="next" class="next action-button" value="Next" />
-    </fieldset>
+        <div>
+            <ul class="tabs" data-tabs id="example-tabs">
+                <li class="tabs-title is-active"><a href="#panel1" aria-selected="true">Choose your date</a></li>
+                <li class="tabs-title disabled"><a href="#panel2">Choose Room</a></li>
+                <li class="tabs-title disabled"><a href="#panel3">Customer</a></li>
+                <li class="tabs-title disabled"><a href="#panel4">Guest</a></li>
+                <li class="tabs-title disabled"><a href="#panel5">Extra</a></li>
+                <li class="tabs-title disabled"><a href="#panel6">Confirm</a></li>
+                <li class="tabs-title disabled"><a href="#panel7">Payment</a></li>
+            </ul>
 
-    <fieldset>
-        <h2 class="fs-title">klant</h2>
-        <h3 class="fs-subtitle">Here we will need some information about your location</h3>
-        <input type="text" class="form-control" id="City" name="City" placeholder="City" required>
-        <select class="form-control" id="Language" name="Language" placeholder="Choose your language" >
-            <option value="">Language</option>
-            <option value="English">English</option>
-            <option value="Dutch">Dutch</option>
-        </select>
-        <input type="email" class="form-control" id="Email" name="Email" placeholder="Email" required>
-        <input type="tel" class="form-control" id="Tel" name="Tel" placeholder="Tel" required>
-        <input type="button" name="previous" class="previous action-button" value="Previous" />
-        <input type="button" name="next" class="next action-button" value="Next" />
-    </fieldset>
+            <div class="tabs-content" data-tabs-content="example-tabs">
+                <div class="tabs-panel is-active" id="panel1">
+                    <div class="row">
+
+                        <div class="large-8 column">
+                            <form>
+                                <div class="row">
+                                    <div class="medium-6 columns">
+                                        <label>Check-in
+                                            <input type="date">
+                                        </label>
+                                    </div>
+                                    <div class="medium-6 columns">
+                                        <label>Checkout
+                                            <input type="date">
+                                        </label>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+
+                        <div class="large-4 column">
+                            <form>
+                                <div class="row">
+                                    <div class="columns">
+                                        <label>Persons:
+                                            <input type="number">
+                                        </label>
+                                        <a class="button expanded" href="#panel2">Check Availability</a>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tabs-panel" id="panel2">
+
+                </div>
+
+                <div class="tabs-panel" id="panel3">
+                    <div class="row">
+
+                        <div class="large-4 columns">
+                            <h3>Reservation info</h3>
+                            <hr>
+                            <p>Check in: </p>
+                            <p>Check out: </p>
+                            <p>Adult: </p>
+                            <p>Child: </p>
+                            <h3>Room info</h3>
+                            <hr>
+                            <p>Deluxe One-bedroom Suite</p>
+                            <hr>
+                            <p>Total Cost: </p>
+                        </div>
+
+                        <div class="large-4 columns">
+                            <h3>Reservation info</h3>
+                            <form>
+                                <div class="row">
+                                    <div class="columns">
+                                        <label>Name
+                                            <input type="text" id="Firstname" name="Firstname" placeholder="Firstname">
+                                        </label>
+                                        <label>Insertion
+                                            <input type="text" id="Insertion" name="Insertion" placeholder="Insertion">
+                                        </label>
+                                        <label>Last name
+                                            <input type="text" id="Lastname" name="Lastname" placeholder="Lastname">
+                                        </label>
+                                        <label>Date of Birth
+                                            <input type="text" id="Birthdate" name="Birthdate" placeholder="Birth date">
+                                        </label>
+                                        <select id="Gender" name="Gender">
+                                            <option value=""></option>
+                                            <option value="Man">Male</option>
+                                            <option value="Woman">Female</option>
+                                        </select>
+                                        <label>Email
+                                            <input type="email" id="Email" name="Email" placeholder="Email">
+                                        </label>
+                                        <label>Phone
+                                            <input type="number" id="Tel" name="Tel" placeholder="Phonenumber">
+                                        </label>
+                                        <label>City
+                                            <input type="text" id="City" name="City" placeholder="City">
+                                        </label>
+                                        <select id="Language" name="Language">
+                                            <option value="">Language</option>
+                                            <option value="English">English</option>
+                                            <option value="Dutch">Dutch</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+
+                        <div class="large-4 columns">
+                            <h3>Request</h3>
+                            <label>
+                                Special request
+                                <textarea placeholder="None"></textarea>
+                            </label>
+                            <a class="button expanded" href="#">Submit</a>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="tabs-panel" id="panel4">
+                    <div class="row">
+                        <div class="large-4 columns">
+                            <h3>Reservation info</h3>
+                            <hr>
+                            <p>Check in: </p>
+                            <p>Check out: </p>
+                            <p>Adult: </p>
+                            <p>Child: </p>
+                            <h3>Room info</h3>
+                            <hr>
+                            <p>Deluxe One-bedroom Suite</p>
+                            <hr>
+                            <p>Total Cost: </p>
+                        </div>
+
+                        <div class="large-4 columns">
+                            <h3>Reservationinfo</h3>
+                            <hr>
+                            <p>Name: </p>
+                            <p>Lastname: </p>
+                            <p>Email: </p>
+                            <p>Phone: </p>
+                            <p>City: </p>
+                            <p>Address: </p>
+                        </div>
+
+                        <div class="large-4 columns">
+                            <h3>Special Request</h3>
+                            <hr>
+                            <p>Request: </p>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="tabs-panel" id="panel5">
+                    <div class="row">
+
+                    </div>
+                </div>
+
+                <div class="tabs-panel" id="panel6">
+                    <div class="row">
+
+                    </div>
+                </div>
+
+                <div class="tabs-panel" id="panel7">
+                    <div class="row">
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
 
     <!--fieldset>
         <h2 class="fs-title">Guest Details</h2>
@@ -51,7 +193,7 @@
         <input type="button" name="previous" class="previous action-button" value="Previous" />
         <input type="submit"  class="submit action-button" value="Send" />
     </fieldset-->
-        
+
 </form>
 <!-- jQuery -->
 <script src="http://thecodeplayer.com/uploads/js/jquery-1.9.1.min.js" type="text/javascript"></script>

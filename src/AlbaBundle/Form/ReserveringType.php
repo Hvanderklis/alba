@@ -32,6 +32,7 @@ class ReserveringType extends AbstractType
                 },
                 'label' => 'Customer'
             ])
+
             ->add('kamer', EntityType::class, [
                 'class' => 'AlbaBundle\Entity\Kamer',
                 'choice_label'     => function($kamer){
@@ -42,6 +43,7 @@ class ReserveringType extends AbstractType
                 'expanded' => true,
                 'label' => 'Room'
             ])
+
             ->add('gast', EntityType::class, [
                 'class' => 'AlbaBundle\Entity\Gast',
                 'choice_label'     => function($gast){

@@ -1,0 +1,33 @@
+{% extends 'AlbaBundle::base.html.twig' %}
+
+{% block body %}
+    <div class="row">
+        <h2>{{ kamer.kamerNaam }}</h2>
+    </div>
+
+    <div class="row">
+        <div class="large-4 column">
+                {% for kamerafbeelding in kamerafbeelding %}
+                    <img src="/{{ kamerafbeelding.path}}/{{  kamerafbeelding.name }}.{{ kamerafbeelding.type }}" >
+                {% endfor %}
+        </div>
+
+        <div class="large-8 column">
+            <div class="callout" id="book">
+                <p>{{ kamer.omschrijving }}</p>
+                <p class="lead">All our rooms have ensuite bathrooms and WiFi</p>
+                <p class="subheader">&pound; {{ kamer.prijs }}</p>
+            </div>
+        </div>
+    </div>
+
+    <br>
+    <div class="row">
+        <div class="large-6 column">
+            <a class="button" id="colorlp" href="{{ path('kamer_reserveren') }}">Back To Rooms</a>
+        </div>
+        <div class="large-6 column">
+            <a class="button large" id="colorlp" href="#">Book Now</a>
+        </div>
+    </div>
+{% endblock %}

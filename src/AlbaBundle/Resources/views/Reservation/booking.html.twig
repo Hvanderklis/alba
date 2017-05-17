@@ -1,0 +1,19 @@
+{% extends '@Alba/base.html.twig' %}
+{% block stylesheets %}
+    <style>
+        .p{
+            color: black;
+        }
+    </style>
+{% endblock %}
+{% block body %}
+    <h1>Reservering creation</h1>
+
+    {{ form_start(form) }}
+    {{ form_widget(form) }}
+    <input class="button success"  style="float: right" type="submit" value="Create" />
+    {{ form_end(form) }}
+
+    <a  class="bsuccess button" href="{{ path('reserveren') }}">Back to the list</a>
+
+{% endblock %}

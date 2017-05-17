@@ -50,8 +50,10 @@
 {% block javascripts %}{% endblock %}
     <script src="{{ asset('bundles/alba/js/vendor/jquery.js') }}"></script>
     <script src="{{ asset('bundles/alba/js/vendor/foundation.min.js') }}"></script>
+    <script src="{{ asset('bundles/alba/js/vendor/what-input.js') }}"></script>
     <script>
         $(document).foundation();
+        $(document).foundation('alert', 'reflow');
     </script>
 </body>
 </html>

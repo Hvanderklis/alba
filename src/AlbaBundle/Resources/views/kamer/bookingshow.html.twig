@@ -1,0 +1,26 @@
+{% extends 'AlbaBundle::base.html.twig' %}
+
+{% block body %}
+    <div class="row">
+        <h2>{{ kamer.kamerNaam }}</h2>
+    </div>
+    <table>
+        <tbody>
+        <tr>
+            <th>Kamernaam</th>
+            <td>{{ kamer.kamerNaam }}</td>
+        </tr>
+        <tr>
+            <th>Prijs</th>
+            <td>€ {{ kamer.prijs }}</td>
+        </tr>
+        <tr>
+            <th>Omschrijving</th>
+            <td>{{ kamer.omschrijving }}</td>
+        </tr>
+        </tbody>
+    </table>
+    <a class="button primary" href="{{ path('booking')  }}">Book now</a>
+    <a class="button secondary" href="{{ path('kamer_reserveren') }}">Back to the list</a>
+{% endblock %}
+

@@ -10,7 +10,6 @@ use Symfony\Component\BrowserKit\Response;
 use Symfony\Component\HttpFoundation\Request;
 class WebsiteController extends Controller
 {
-
     /**
      * @Route("/sightseeing")
      */

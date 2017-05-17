@@ -11,7 +11,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component
 /**
  * Kamerafbeelding controller.
  *
- * @Route("adminpanel/kamerafbeelding")
+ * @Route("adminpanel/roomimage")
  */
 class KamerAfbeeldingController extends Controller
 {

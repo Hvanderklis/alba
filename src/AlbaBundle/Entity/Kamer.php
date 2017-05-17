@@ -250,4 +250,8 @@ class Kamer
     {
         return $this->kamerPrijs;
     }
+
+    public function __toString() {
+        return $this->kamerNaam;
+    }
 }

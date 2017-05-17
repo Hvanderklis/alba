@@ -24,15 +24,7 @@ class ReserveringType extends AbstractType
                     return $customer->getVoornaam();
                 }
             ])
-            ->add('kamer', EntityType::class, [
-                'class' => 'AlbaBundle\Entity\Kamer',
-                'choice_label'     => function($kamer){
-                    return $kamer->getKamerNaam();
-                },
-                'by_reference' => true,
-                'multiple' => true,
-                'expanded' => true,
-            ])
+            ->add('kamer')
             ->add('gast', EntityType::class, [
                 'class' => 'AlbaBundle\Entity\Gast',
                 'choice_label'     => function($gast){

@@ -47,22 +47,4 @@ class WebsiteController extends Controller
         return $this->render("@Alba/mail.html.twig");
     }
 
-    /**
-     * @Route("/reserveren" name="reserveren")
-     */
-    public function reserverenAction(Request $request)
-    {
-        if($request->getMethod() == "POST")
-        {
-            $Name = $request->get('Name');
-            $Insertion = $request->get('Insertion');
-            $Surname = $request->get('Surname');
-            $Birthdate = $request->get('Birthdate');
-            $Gender = $request->get('Gender');
-            $City = $request->get('City');
-            $Language = $request->get('Language');
-            $Email = $request->get('Email');
-            $Tel = $request->get('Tel');
-        }
-    }
 }

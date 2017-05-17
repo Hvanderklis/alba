@@ -205,6 +205,17 @@ class DefaultController extends Controller
             return $this->render("@Alba/Reservation/form.html.twig");
     }
 
+    /**
+     * @Route("/reserveren_gast", name="reserveren_gast")
+     */
+    public function reserverenGastAction(Request $request)
+    {
+
+
+
+        return $this->render('AlbaBundle:Reservation:formguest.html.twig');
+    }
+
 
     /**
      * @Route("booking", name="booking")

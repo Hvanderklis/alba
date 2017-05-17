@@ -11,20 +11,6 @@ use Symfony\Component\HttpFoundation\Request;
 class WebsiteController extends Controller
 {
     /**
-     * @Route("/contact", name="mail")
-     */
-    public function contacAction(Request $request)
-    {
-        if ($request->getMethod() == "POST") {
-
-            $Subject = $request->get("Subject");
-            $email = $request->get("Email");
-            $message = $request->get("message");
-
-        }
-    }
-
-    /**
      * @Route("/sightseeing")
      */
     public function sightseeingAction()

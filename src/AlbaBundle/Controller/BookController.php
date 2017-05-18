@@ -74,6 +74,8 @@ class BookController extends Controller
     }
 
     /**
+     * Step two
+     *
      * @return \Symfony\Component\HttpFoundation\Response
      * @Route("/steptwo", name="bookStepTwo")
      */
@@ -117,15 +119,72 @@ class BookController extends Controller
     }
 
     /**
+     * Step Three
+     *
      * @Route("/stepthree", name="bookStepThree")
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function stepThreeAction(){
+    public function stepThreeAction(Request $request){
         $session = $this->get('request_stack')->getCurrentRequest()->getSession();
 
         $res = $session->get('reserveren');
         dump($res);
 
+        if ($request->getMethod() == 'POST'){
+            $firstName = $request->get("firstName");
+            $insertion = $request->get("insertion");
+            $lastName = $request->get("lastName");
+            $birthday = $request->get("birthday");
+            $gender = $request->get("gender");
+            $city = $request->get("city");
+            $language = $request->get("language");
+            $email = $request->get("email");
+            $tel = $request->get("tel");
+
+            $step3 = array(
+                'firstName' => $firstName,
+                'insertion' => $insertion,
+                'lastName' => $lastName,
+                'birthday' => $birthday,
+                'gender' => $gender,
+                'city' => $city,
+                'language' => $language,
+                'email' => $email,
+                'phone' => $tel
+            );
+
+            $record = array('step1' => $res['step1'], 'step2' =>$res['step2'], 'step3' => $step3 );
+
+            $session->set('reserveren', $record);
+
+            return $this->redirect( $this->generateUrl('bookStepFour') );
+        }
+
         return $this->render('@Alba/web_reserveren/stepThree.html.twig');
+    }
+
+    /**
+     * @Route("/stepfour", name="bookStepFour")
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function stepFourAction(Request $request){
+        $session = $this->get('request_stack')->getCurrentRequest()->getSession();
+
+        $res = $session->get('reserveren');
+        dump($res);
+
+        $travelCompanios = (intval($res['step1']['traveling-companions']));
+
+        $step4 = [];
+
+        if ($request->getMethod() == 'POST'){
+            for ($x = 1; $x <= $travelCompanios; $x++){
+
+            }
+        }
+
+        return $this->render('@Alba/web_reserveren/stepFour.html.twig', [
+            'travelCompanios' => $travelCompanios
+        ]);
     }
 }

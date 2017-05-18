@@ -1,0 +1,13 @@
+{% extends '@Alba/base.html.twig' %}
+{% block body %}
+    {% set reserveren = app.session.get('reserveren_gast') %}
+<form action="{{ path ('reserveren_gast') }}" method="post" role="form" >
+    <fieldset>
+        <input type="text" name="GuestFirstname" id="GuestFirstname" placeholder="GuestFirstname" required>
+        <input type="text" name="GuestLastname" placeholder="GuestLastname" required>
+        <input type="text" name="GuestInsertion" placeholder="GuestInsertion" required>
+        <input type="button" name="previous" class="previous action-button" value="Previous" />
+        <input type="submit"  class="submit action-button" value="Send" />
+    </fieldset>
+</form>
+{% endblock %}

@@ -84,9 +84,7 @@ class BookController extends Controller
         $roomRepository = $em->getRepository('AlbaBundle:Kamer');
         $session = $this->get('request_stack')->getCurrentRequest()->getSession();
 
-//        $res = $session->get('reserveren', array());
         $res = $session->get('reserveren');
-
 
         $kamers = $this->get('session')->get('reserveren')['step1']['kamers'];
         $test = count($kamers) + 1;
@@ -164,6 +162,8 @@ class BookController extends Controller
     }
 
     /**
+     * Step 4
+     *
      * @Route("/stepfour", name="bookStepFour")
      * @return \Symfony\Component\HttpFoundation\Response
      */
@@ -179,12 +179,50 @@ class BookController extends Controller
 
         if ($request->getMethod() == 'POST'){
             for ($x = 1; $x <= $travelCompanios; $x++){
+                $firstName = $request->get("firstName". $x);
+                $insertion = $request->get("insertion". $x);
+                $lastName = $request->get('lastName'. $x);
+                $gender = $request->get('gender'. $x);
+                $city = $request->get('city'. $x);
+                $language = $request->get('language'. $x);
 
+                $step4[$x]['firstName'] = $firstName;
+                $step4[$x]['insertion'] = $insertion;
+                $step4[$x]['lastName'] = $lastName;
+                $step4[$x]['gender'] = $gender;
+                $step4[$x]['city'] = $city;
+                $step4[$x]['language'] = $language;
             }
+
+            $record = array('step1' => $res['step1'], 'step2' => $res['step2'], 'step3' => $res['step3'], 'step4' => $step4);
+
+            $session->set('reserveren', $record);
+
+            $test = $session->get('reserveren', array());
+            dump($test);
+
+            return $this->redirect( $this->generateUrl('bookStepSix') );
         }
 
         return $this->render('@Alba/web_reserveren/stepFour.html.twig', [
             'travelCompanios' => $travelCompanios
+        ]);
+    }
+
+    /**
+     * Step 6
+     *
+     * @Route("/stepsix", name="bookStepSix")
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function stepSixAction(){
+        $session = $this->get('request_stack')->getCurrentRequest()->getSession();
+
+        $res = $session->get('reserveren');
+        dump($res);
+
+        return $this->render('@Alba/web_reserveren/stepSix.html.twig', [
+
         ]);
     }
 }

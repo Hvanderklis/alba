@@ -1,0 +1,9 @@
+{% extends '@Alba/base.html.twig' %}
+{% block body %}
+    {% set reserveren = app.session.get('reserveren') %}
+
+    <form action="{{ path('bookStepSix') }}" method="post">
+
+        <input type="submit">
+    </form>
+{% endblock %}

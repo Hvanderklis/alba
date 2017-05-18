@@ -10,7 +10,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component
 /**
  * Kamerprij controller.
  *
- * @Route("adminpanel/kamerprijs")
+ * @Route("adminpanel/roomprice")
  */
 class KamerPrijsController extends Controller
 {

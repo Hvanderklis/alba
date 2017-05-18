@@ -186,11 +186,15 @@ class DefaultController extends Controller
             $criteria = $session->get('reserveren');
             dump($criteria);
 
+
+
+
+
             $em = $this->getDoctrine()->getManager();
 
             $kamers = $em->getRepository('AlbaBundle:Kamer')->findAll();
 
-            return $this->render('AlbaBundle:kamer:booking.html.twig', array(
+            return $this->render('AlbaBundle:Reservation:formguest.html.twig', array(
                 'kamers' => $kamers,
             ));
 
@@ -218,6 +222,9 @@ class DefaultController extends Controller
                 'GuestLastname' => $GuestLastname,
             ));
             $criteria = $session->get('reserveren_gast');
+            $criteria1 = $session->get('reserveren');
+
+            dump($criteria1);
             dump($criteria);
 
 
@@ -232,6 +239,28 @@ class DefaultController extends Controller
         return $this->render('AlbaBundle:Reservation:formguest.html.twig');
     }
 
+
+    /**
+     * @Route("/reserveren_extra", name="reserveren_extra")
+     */
+    public function reserverenExtraAction(Request $request){
+
+
+        $reservering = new Reservering();
+        $form = $this->createForm('AlbaBundle\Form\ReserveringType', $reservering);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($reservering);
+            $em->flush($reservering);
+        }
+
+        return $this->render('AlbaBundle:Reservation:formextra.html.twig', array(
+            'reservering' => $reservering,
+            'form' => $form->createView(),
+        ));
+    }
 
     /**
      * @Route("booking", name="booking")
@@ -290,7 +319,7 @@ class DefaultController extends Controller
         $em1->flush($gast);
 
 
-        $criteria = $session->get('reserveren');
+        $criteria = $session->get(' reserveren');
         dump($criteria);
 
         $reservering = new Reservering();
@@ -397,5 +426,19 @@ class DefaultController extends Controller
     public function helpAction()
     {
         return $this->render('@Alba/help.html.twig');
+    }
+    /**
+     * @Route("/extra")
+     */
+
+    public function extraAction()
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $extras = $em->getRepository('AlbaBundle:Extra')->findAll();
+
+        return $this->render('AlbaBundle::extra.html.twig', array(
+            'extras' => $extras,
+        ));
     }
 }

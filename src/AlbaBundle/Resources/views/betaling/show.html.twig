@@ -10,19 +10,19 @@
                 <td>{{ betaling.id }}</td>
             </tr>
             <tr>
-                <th>Betaald</th>
+                <th>Payed</th>
                 <td>{{ betaling.betaald }}</td>
             </tr>
             <tr>
-                <th>Datum</th>
+                <th>Date</th>
                 <td>{% if betaling.datum %}{{ betaling.datum|date('Y-m-d') }}{% endif %}</td>
             </tr>
             <tr>
-                <th>Klant</th>
+                <th>Customer</th>
                 <td>{{ betaling.getKlant().getAchternaam() }}</td>
             </tr>
             <tr>
-                <th>Reserveringsnummer</th>
+                <th>Reservation Number</th>
                 <td>{{ betaling.getReservering().getId() }}</td>
             </tr>
         </tbody>

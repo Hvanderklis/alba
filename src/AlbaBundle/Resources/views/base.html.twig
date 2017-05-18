@@ -29,43 +29,39 @@
             <li role="menuitem"><a href="{{ path('sightseeing') }}">Sightseeing</a></li>
             <li role="menuitem"><a href="{{ path('mail') }}">Contact</a></li>
         </ul>
-
     </div>
 
     <!--header -->
     {% block body %}{% endblock %}
     <footer>
         <div class="row expanded callout secondary" id="footer">
-            <div class="small-6 large-3 columns">
+            <div class="small-12 large-3 columns">
                 <p class="lead">About us</p>
                 <ul class="menu vertical">
                     <li><a href="{{ path('about') }}">About us</a></li>
                     <li><a href="{{ path('faq') }}">FAQ</a></li>
-                    <li><a href="{{ path('sightseeing') }}">Sightseeing</a></li>
                     <li><a href="{{ path('mail') }}">Contact</a></li>
                 </ul>
             </div>
-            <div class="small-6 large-3 columns">
+            <div class="small-12 large-3 columns" id="links">
                 <p class="lead">Links</p>
                 <ul class="menu vertical">
                     <li><a href="{{ path('kamer_reserveren') }}">Rooms</a></li>
-                    <li><a href="#">Extra</a></li>
                     <li><a href="#">Reservation</a></li>
                     <li><a href="{{ path('disclaimer') }}">Disclaimer</a> </li>
+                    <li><a href="{{ path('alba_default_extra') }}">Extra</a></li>
                 </ul>
             </div>
-
-            <div class="small-6 large-3 columns contact" id="footerresponsive">
-
+            <div class="small-12 large-3 columns contact" id="footerresponsive">
                 <p class="lead">Contact</p>
                 <ul class="menu vertical" id="alba">
-                    <li><i class="fa fa-envelope" id="icons"></i><a href="{{ path('mail') }}">booking@alba-bb.co.uk</a></li>
-                    <li><i class="fa fa-map-marker" id="icons" style="padding-left: 56px;"></i><a href="https://www.google.nl/maps/place/Aberlour,+Verenigd+Koninkrijk/@57.4676388,-3.2474862,14z/data=!3m1!4b1!4m5!3m4!1s0x488598876bda33e1:0x26ba9cc25839e9ac!8m2!3d57.474911!4d-3.216983" target="_blank"> How to find us</a></li>
-                    <li><i class="fa fa-mobile" id="icons" style="padding-left: 58px;"></i><a href="tel:447398045168">+447398045168</a></li>
+                    <li><i class="fa fa-envelope" id="footIcon"></i><a href="mailto:booking@alba-bb.co.uk">booking@alba-bb.co.uk</a></li>
+                    <li><i class="fa fa-map-marker" id="footIcon" style="padding-left: 56px;"></i><a href="https://www.google.nl/maps/place/Aberlour,+Verenigd+Koninkrijk/@57.4676388,-3.2474862,14z/data=!3m1!4b1!4m5!3m4!1s0x488598876bda33e1:0x26ba9cc25839e9ac!8m2!3d57.474911!4d-3.216983" target="_blank"> How to find us</a></li>
+                    <li><i class="fa fa-mobile" id="footIcon" style="padding-left: 58px;"></i><a href="tel:447398045168">+447398045168</a></li>
                 </ul>
             </div>
+            <div class="small-12 large-3 columns" id="footerresponsive">
 
-            <div class="small-6 large-3 columns" id="footerresponsive">
                 <p class="lead">Maps</p>
                 <div id="map"></div>
             </div>

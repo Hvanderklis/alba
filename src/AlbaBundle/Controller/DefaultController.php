@@ -294,10 +294,6 @@ class DefaultController extends Controller
         $gast->setWoonplaats("/");
         $gast->setTaal("/");
         $gast->setKlant($klant);
-        
-
-
-
 
         $em1 = $this->getDoctrine()->getManager();
         $em1->persist($gast);

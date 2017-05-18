@@ -131,6 +131,8 @@ class BookController extends Controller
         $res = $session->get('reserveren');
         dump($res);
 
+
+
         if ($request->getMethod() == 'POST'){
             $firstName = $request->get("firstName");
             $insertion = $request->get("insertion");
@@ -158,8 +160,10 @@ class BookController extends Controller
 
             $session->set('reserveren', $record);
 
-            return $this->redirect( $this->generateUrl('bookStepFour') );
-        }
+
+                return $this->redirect( $this->generateUrl('bookStepFour') );
+            }
+
 
         return $this->render('@Alba/web_reserveren/stepThree.html.twig');
     }
@@ -281,9 +285,9 @@ class BookController extends Controller
     public function stepSix2Action()
     {
         $em = $this->getDoctrine()->getManager();
+        $roomRepo = $em->getRepository('AlbaBundle:Kamer');
         $session = $this->get('request_stack')->getCurrentRequest()->getSession();
         $res = $session->get('reserveren');
-        dump($res);
 
         $firstName = $res['step3']['firstName'];
         $insertion = $res['step3']['insertion'];
@@ -299,17 +303,16 @@ class BookController extends Controller
         $klant->setVoornaam($firstName);
         $klant->setTussenvoegsel($insertion);
         $klant->setAchternaam($lastName);
-        $klant->setGeboortedatum($birthday);
+        $klant->setGeboortedatum('lol');
         $klant->setGeslacht($gender);
         $klant->setPlaats($city);
         $klant->setTaal($language);
         $klant->setEmail($email);
-        $klant->setTelefoon($phone);
+        $klant->setTelefoon(intval($phone));
 
         $em->persist($klant);
-        $em->flush();
 
-        for ($x = 1; $x <=count($res['step4']); $x++){
+        for ($x = 1; $x <=count($res['step4']); $x++) {
             $test2 = $res['step4'][$x];
 
             $gast = new Gast();
@@ -320,16 +323,34 @@ class BookController extends Controller
             $gast->setWoonplaats('city');
             $gast->setTaal('language');
             $gast->setKlant($klant->getId());
-
             $em->persist($gast);
-            $em->flush();
+            dump($gast);
         }
 
+        $arrival = $res['step1']['arrival'];
+        $departure = $res['step1']['departure'];
+
+        $arrival = date_create($arrival);
+        $departure = date_create($departure);
+
+
         $reservering = new Reservering();
+        $reservering->setAankomst($arrival);
+        $reservering->setVertek($departure);
+        $reservering->setKlant($klant->getId());
 
-        
 
-        dump($reservering);
+        for ($x = 1; $x <=count($res['step2']); $x++){
+            $test = $res['step2'][$x];
+            $kamer = $test->getId();
+            $kamer = $roomRepo->find($kamer);
+            $reservering->addKamer($kamer);
+            $kamer->addReservering($reservering);
 
+            $em->persist($kamer);
+            $em->persist($reservering);
+        }
+        $em->flush();
+        return $this->redirectToRoute('homepage');
     }
 }

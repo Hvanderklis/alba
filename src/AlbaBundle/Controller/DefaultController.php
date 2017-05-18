@@ -71,6 +71,8 @@ class DefaultController extends Controller
         ));
     }
 
+
+
     /**
      * Sightseeing
      *
@@ -149,7 +151,7 @@ class DefaultController extends Controller
 
         // get the cart from  the session
         $session = $this->get('request_stack')->getCurrentRequest()->getSession();
-       $session->get('reserveren');
+        $session->get('reserveren');
 
         $Firstname = $this->get('session')->get('reserveren')['Firstname'];
         $Insertion = $this->get('session')->get('reserveren')['Insertion'];
@@ -224,8 +226,6 @@ class DefaultController extends Controller
      */
     public function newreserverenAction(Request $request)
     {
-
-
         if ($request->getMethod() == "POST") {
             $session = $this->get('request_stack')->getCurrentRequest()->getSession();
             $Firstname = $request->get("Firstname");

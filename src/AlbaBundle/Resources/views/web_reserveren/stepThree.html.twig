@@ -1,0 +1,25 @@
+{% extends '@Alba/base.html.twig' %}
+{% block body %}
+    {% set reserveren = app.session.get('reserveren') %}
+
+    <form action="{{ path('bookStepThree') }}" method="post">
+        <input type="text" id="firstname" name="firstname" placeholder="First name" required>
+        <input type="text" id="insertion" name="insertion" placeholder="Insertion" required>
+        <input type="text" id="lastname" name="lastname" placeholder="Last name" required>
+        <input type="text" id="birthday" name="birthday" placeholder="Birthday" required>
+        <select id="gender" name="gender" required>
+            <option disabled selected>Gender</option>
+            <option value="Man">Man</option>
+            <option value="Woman">Woman</option>
+        </select>
+
+        <input type="text" id="city" name="city" placeholder="City" required>
+        <select id="language" name="language" required>
+        <option value="">Language</option>
+        <option value="English">English</option>
+        <option value="Dutch">Dutch</option>
+        </select>
+        <input type="email" class="form-control" id="Email" name="Email" placeholder="Email" required>
+        <input type="tel" class="form-control" id="Tel" name="Tel" placeholder="Tel" required>
+    </form>
+{% endblock %}

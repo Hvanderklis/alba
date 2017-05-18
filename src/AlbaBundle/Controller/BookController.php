@@ -20,10 +20,15 @@ class BookController extends Controller
      * @return \Symfony\Component\HttpFoundation\Response
      * @Route("/stepone", name="bookStepOne")
      */
-    public function reserverenAction(Request $request){
+    public function stepOneAction(Request $request){
+        $session = $this->get('request_stack')->getCurrentRequest()->getSession();
+
         $em = $this->getDoctrine()->getManager();
         $reservationRepository = $em->getRepository('AlbaBundle:Reservering');
         $roomRepository = $em->getRepository('AlbaBundle:Kamer');
+
+        $amountRooms = $roomRepository->findAll();
+        $travelingCompanionsAmount = count($amountRooms) * 2;
 
         if($request->getMethod() == "POST") {
             $arrival = $request->get('arrival');
@@ -39,81 +44,88 @@ class BookController extends Controller
                 ->getQuery()
                 ->getResult();
 
-            dump($checkDates);
-
-            if ($checkDates != null){
-                $kamerId = $checkDates;
+            if (empty($checkDates)){
+                $kamers = $roomRepository->findAll();
+            } else {
+                $kamerIds = $checkDates;
                 $kamers = $roomRepository->createQueryBuilder('k')
                     ->innerJoin('k.reservering', 'r')
                     ->where('k.id != :kamerId')
-                    ->setParameter('kamerId', $kamerId)
+                    ->setParameter('kamerId', $kamerIds)
                     ->getQuery()
                     ->getResult();
-                dump($kamers);
-                dump(count($kamers));
-                dump(count($kamers) * 2);
-
-                if (count($kamers) * 2 < $travelingCompanions){
-                    dump('meh');
-                } else {
-                    dump('yeah');
-                }
             }
 
+            $step1 = array('step1' => array(
+                'arrival' => $arrival,
+                'departure' => $department,
+                'traveling-companions' => $travelingCompanions,
+                'kamers' => $kamers
+            ));
 
+            $session->set('reserveren', $step1);
 
-
-
-
-
-//            $session = $this->get('request_stack')->getCurrentRequest()->getSession();
-////            // $cart = $session->set('cart', '');
-//            $session->set('reserveren', array('arrival' => $arrival));
-
-//            dump($session);
+            return $this->redirect( $this->generateUrl('bookStepTwo') );
         }
 
-        return $this->render('@Alba/web_reserveren/stepOne.html.twig');
-//            $Firstname = $request->get("Firstname");
-//            $Insertion = $request->get("Insertion");
-//            $Lastname = $request->get("Lastname");
-//            $Birthdate = $request->get("Birthdate");
-//            $Gender = $request->get("Gender");
-//            $City = $request->get("City");
-//            $Language = $request->get("Language");
-//            $Email = $request->get("Email");
-//            $Tel = $request->get("Tel");
-//            $GuestFirstname = $request->get("GuestFirstname");
-//            $GuestInsertion = $request->get("GuestInsertion");
-//            $GuestLastname = $request->get("GuestLastname");
+        return $this->render('@Alba/web_reserveren/stepOne.html.twig', [
+            'amountTravel' => $travelingCompanionsAmount
+        ]);
+    }
 
-//            // get the cart from  the session
-//            $session = $this->get('request_stack')->getCurrentRequest()->getSession();
-//            // $cart = $session->set('cart', '');
-//            $session->set('reserveren', array('Firstname' => $Firstname,
-//                'Insertion' => $Insertion,
-//                'Lastname' => $Lastname,
-//                'Birthdate' => $Birthdate,
-//                'Gender' => $Gender,
-//                'City' => $City,
-//                'Language' => $Language,
-//                'Email' => $Email,
-//                'Tel' => $Tel,
-//                'GuestFirstname' => $GuestFirstname,
-//                'GuestInsertion' => $GuestInsertion,
-//                'GuestLastname' => $GuestLastname,
-//            ));
-//            $criteria = $session->get('reserveren');
-//            dump($criteria);
-//
-//            $em = $this->getDoctrine()->getManager();
-//
-//            $kamers = $em->getRepository('AlbaBundle:Kamer')->findAll();
-//
-//            return $this->render('AlbaBundle:kamer:booking.html.twig', array(
-//                'kamers' => $kamers,
-//            ));
-//        }
-//        return $this->render('@Alba/web_reserveren/form.html.twig');
+    /**
+     * @return \Symfony\Component\HttpFoundation\Response
+     * @Route("/steptwo", name="bookStepTwo")
+     */
+    public function stepTwoAction(Request $request){
+        $em = $this->getDoctrine()->getManager();
+        $roomRepository = $em->getRepository('AlbaBundle:Kamer');
+        $session = $this->get('request_stack')->getCurrentRequest()->getSession();
+
+//        $res = $session->get('reserveren', array());
+        $res = $session->get('reserveren');
+
+
+        $kamers = $this->get('session')->get('reserveren')['step1']['kamers'];
+        $test = count($kamers) + 1;
+
+        $kamer = array();
+
+        if($request->getMethod() == "POST") {
+            for($x = 1; $x < $test; $x ++) {
+                $cijfer = (string)$x;
+                $kamer[$x] = $request->get($cijfer);
+
+                $roomId = intval($kamer[$x]);
+                $kamer[$x] = $roomRepository->find($roomId);
+
+                if ($kamer[$x] == null){
+                    unset($kamer[$x]);
+                };
+            }
+
+            $record = array('step1' => $res['step1'], 'step2' => $kamer);
+
+            $session->set('reserveren', $record);
+
+            return $this->redirect( $this->generateUrl('bookStepThree') );
+        }
+
+        return $this->render('@Alba/web_reserveren/stepTwo.html.twig', [
+            'kamers' => $kamers,
+        ]);
+    }
+
+    /**
+     * @Route("/stepthree", name="bookStepThree")
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function stepThreeAction(){
+        $session = $this->get('request_stack')->getCurrentRequest()->getSession();
+
+        $res = $session->get('reserveren');
+        dump($res);
+
+        return $this->render('@Alba/web_reserveren/stepThree.html.twig');
     }
 }

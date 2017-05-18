@@ -427,4 +427,18 @@ class DefaultController extends Controller
     {
         return $this->render('@Alba/help.html.twig');
     }
+    /**
+     * @Route("/extra")
+     */
+
+    public function extraAction()
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $extras = $em->getRepository('AlbaBundle:Extra')->findAll();
+
+        return $this->render('AlbaBundle::extra.html.twig', array(
+            'extras' => $extras,
+        ));
+    }
 }

@@ -10,7 +10,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component
 /**
  * Seizoen controller.
  *
- * @Route("adminpanel/seizoen")
+ * @Route("adminpanel/season")
  */
 class SeizoenController extends Controller
 {

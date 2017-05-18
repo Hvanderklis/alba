@@ -176,10 +176,6 @@ class DefaultController extends Controller
             $criteria = $session->get('reserveren');
             dump($criteria);
 
-
-
-
-
             $em = $this->getDoctrine()->getManager();
 
             $kamers = $em->getRepository('AlbaBundle:Kamer')->findAll();

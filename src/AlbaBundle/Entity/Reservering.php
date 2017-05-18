@@ -39,7 +39,7 @@ class Reservering
     /**
      * @var string
      *
-     * @ORM\Column(name="Opmerking", type="string", length=255)
+     * @ORM\Column(name="Opmerking", type="string", length=255, nullable=true)
      */
     private $opmerking;
 

@@ -2,6 +2,9 @@
 
 namespace AlbaBundle\Controller;
 
+use AlbaBundle\Entity\Gast;
+use AlbaBundle\Entity\Klant;
+use AlbaBundle\Entity\Reservering;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -216,13 +219,117 @@ class BookController extends Controller
      * @return \Symfony\Component\HttpFoundation\Response
      */
     public function stepSixAction(){
+        $em = $this->getDoctrine()->getManager();
+        $roomRepo = $em->getRepository('AlbaBundle:Kamer');
         $session = $this->get('request_stack')->getCurrentRequest()->getSession();
 
         $res = $session->get('reserveren');
         dump($res);
 
-        return $this->render('@Alba/web_reserveren/stepSix.html.twig', [
+        $arrival = $res['step1']['arrival'];
+        $departure = $res['step1']['departure'];
 
+        $kamers = [];
+        for ($x = 1; $x <=count($res['step2']); $x++){
+            $test = $res['step2'][$x];
+            $kamer = $test->getId();
+            $kamer = $roomRepo->find($kamer);
+            $kamers[$x] =$kamer;
+        }
+
+        $firstName = $res['step3']['firstName'];
+        $insertion = $res['step3']['insertion'];
+        $lastName = $res['step3']['lastName'];
+        $birthday = $res['step3']['birthday'];
+        $gender = $res['step3']['gender'];
+        $city = $res['step3']['city'];
+        $language = $res['step3']['language'];
+        $email = $res['step3']['email'];
+        $phone = $res['step3']['phone'];
+
+        $gasten = [];
+        for ($x = 1; $x <=count($res['step4']); $x++){
+            $test2 = $res['step4'][$x];
+            dump($test2);
+            $gasten[$x] = $test2;
+        }
+
+
+        return $this->render('@Alba/web_reserveren/stepSix.html.twig', [
+            'arrival' => $arrival,
+            'departure' => $departure,
+            'kamers' => $kamers,
+            'firstName' => $firstName,
+            'insertion' => $insertion,
+            'lastName' => $lastName,
+            'birthday' => $birthday,
+            'gender' => $gender,
+            'city' => $city,
+            'language' => $language,
+            'email' => $email,
+            'phone' => $phone,
+            'gasten' => $gasten,
         ]);
+    }
+
+    /**
+     * Step 7
+     *
+     * @Route("/final", name="bookStepSix2")
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function stepSix2Action()
+    {
+        $em = $this->getDoctrine()->getManager();
+        $session = $this->get('request_stack')->getCurrentRequest()->getSession();
+        $res = $session->get('reserveren');
+        dump($res);
+
+        $firstName = $res['step3']['firstName'];
+        $insertion = $res['step3']['insertion'];
+        $lastName = $res['step3']['lastName'];
+        $birthday = $res['step3']['birthday'];
+        $gender = $res['step3']['gender'];
+        $city = $res['step3']['city'];
+        $language = $res['step3']['language'];
+        $email = $res['step3']['email'];
+        $phone = $res['step3']['phone'];
+
+        $klant = new Klant();
+        $klant->setVoornaam($firstName);
+        $klant->setTussenvoegsel($insertion);
+        $klant->setAchternaam($lastName);
+        $klant->setGeboortedatum($birthday);
+        $klant->setGeslacht($gender);
+        $klant->setPlaats($city);
+        $klant->setTaal($language);
+        $klant->setEmail($email);
+        $klant->setTelefoon($phone);
+
+        $em->persist($klant);
+        $em->flush();
+
+        for ($x = 1; $x <=count($res['step4']); $x++){
+            $test2 = $res['step4'][$x];
+
+            $gast = new Gast();
+            $gast->setVoornaam($test2['firstName']);
+            $gast->setTussenvoegsel($test2['insertion']);
+            $gast->setAchternaam($test2['lastName']);
+            $gast->setGender('gender');
+            $gast->setWoonplaats('city');
+            $gast->setTaal('language');
+            $gast->setKlant($klant->getId());
+
+            $em->persist($gast);
+            $em->flush();
+        }
+
+        $reservering = new Reservering();
+
+        
+
+        dump($reservering);
+
     }
 }

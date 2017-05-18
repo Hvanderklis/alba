@@ -2,8 +2,132 @@
 {% block body %}
     {% set reserveren = app.session.get('reserveren') %}
 
-    <form action="{{ path('bookStepSix') }}" method="post">
+    <h1>Your Entry:</h1>
 
-        <input type="submit">
+    <form action="{{ path('bookStepSix2') }}" method="post">
+        <table>
+            <thead>
+            <tr>
+                <th>Reservation</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <th>Arrival</th>
+                <td>{{ arrival }}</td>
+            </tr>
+            <tr>
+                <th>Departure</th>
+                <td>{{ departure }}</td>
+            </tr>
+            </tbody>
+        </table>
+
+        <br>
+
+        <table>
+            <thead>
+            <tr>
+                <th>Rooms:</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for kamer in kamers %}
+                <tr>
+                    <th>Name</th>
+                    <td>{{ kamer.kamerNaam }}</td>
+                    <th>Price</th>
+                    <td>&pound; {{ kamer.prijs }}</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+
+        <table>
+            <thead>
+            <tr>
+                <th>Your Details:</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <th>First Name</th>
+                <td>{{ firstName }}</td>
+            </tr>
+            <tr>
+                <th>Insertion</th>
+                <td>{{ insertion }}</td>
+            </tr>
+            <tr>
+                <th>Last Name</th>
+                <td>{{ lastName }}</td>
+            </tr>
+            <tr>
+                <th>Birthday</th>
+                <td>{{ birthday }}</td>
+            </tr>
+            <tr>
+                <th>Gender</th>
+                <td>{{ gender }}</td>
+            </tr>
+            <tr>
+                <th>City</th>
+                <td>{{ city }}</td>
+            </tr>
+            <tr>
+                <th>Language</th>
+                <td>{{ language }}</td>
+            </tr>
+            <tr>
+                <th>Email</th>
+                <td>{{ email }}</td>
+            </tr>
+            <tr>
+                <th>Phone</th>
+                <td>{{ phone }}</td>
+            </tr>
+            </tbody>
+        </table>
+
+        <table>
+            <thead>
+            <tr>
+                <th>Guest</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for key, gast in gasten %}
+                <tr>
+                    <th>Gast {{ key }}</th>
+                </tr>
+                <tr>
+                    <th>FirstName</th>
+                    <td>{{ gast.firstName }}</td>
+                </tr>
+                <tr>
+                    <th>Insertion</th>
+                    <td>{{ gast.insertion }}</td>
+                </tr>
+                <tr>
+                    <th>Last Name</th>
+                    <td>{{ gast.lastName }}</td>
+                </tr>
+                <tr>
+                    <th>Gender</th>
+                    <td>{{ gast.gender }}</td>
+                </tr>
+                <tr>
+                    <th>City</th>
+                    <td>{{ gast.city }}</td>
+                </tr>
+                <tr>
+                    <th>Language</th>
+                    <td>{{ gast.language }}</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+
+        <input type="submit" value="Confirm">
     </form>
 {% endblock %}

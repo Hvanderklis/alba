@@ -1,6 +1,5 @@
 {% extends 'AlbaBundle::base.html.twig' %}
 {% block body %}
-
     {% set reserveren = app.session.get('reserveren') %}
     <h1>Rentable Rooms</h1>
     <h2>Welcome {{ reserveren.Firstname }}</h2>
@@ -21,5 +20,6 @@
     </div>
     </div>
         </table>
+
     </div>
 {% endblock %}

@@ -45,7 +45,7 @@ class Klant
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="Geboortedatum", type="date", length=255, nullable=true)
+     * @ORM\Column(name="Geboortedatum", type="string", length=255)
      */
     private $geboortedatum;
 

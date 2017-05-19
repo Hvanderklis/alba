@@ -3,6 +3,7 @@
 namespace AlbaBundle\Controller;
 
 use AlbaBundle\Entity\Betaling;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -12,6 +13,7 @@ use Symfony\Component\HttpFoundation\Request;
  * Betaling controller.
  *
  * @Route("adminpanel/payment")
+ * @Security("has_role('ROLE_USER')")
  */
 class BetalingController extends Controller
 {

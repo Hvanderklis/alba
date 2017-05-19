@@ -233,12 +233,15 @@ class BookController extends Controller
         $arrival = $res['step1']['arrival'];
         $departure = $res['step1']['departure'];
 
+
         $kamers = [];
         for ($x = 1; $x <=count($res['step2']); $x++){
-            $test = $res['step2'][$x];
-            $kamer = $test->getId();
-            $kamer = $roomRepo->find($kamer);
-            $kamers[$x] =$kamer;
+            if (isset($res['step2'][$x])){
+                $test = $res['step2'][$x];
+                $kamer = $test->getId();
+                $kamer = $roomRepo->find($kamer);
+                $kamers[$x] =$kamer;
+            }
         }
 
         $firstName = $res['step3']['firstName'];
@@ -292,7 +295,6 @@ class BookController extends Controller
         $firstName = $res['step3']['firstName'];
         $insertion = $res['step3']['insertion'];
         $lastName = $res['step3']['lastName'];
-        $birthday = $res['step3']['birthday'];
         $gender = $res['step3']['gender'];
         $city = $res['step3']['city'];
         $language = $res['step3']['language'];
@@ -324,7 +326,6 @@ class BookController extends Controller
             $gast->setTaal('language');
             $gast->setKlant($klant->getId());
             $em->persist($gast);
-            dump($gast);
         }
 
         $arrival = $res['step1']['arrival'];
@@ -341,14 +342,16 @@ class BookController extends Controller
 
 
         for ($x = 1; $x <=count($res['step2']); $x++){
-            $test = $res['step2'][$x];
-            $kamer = $test->getId();
-            $kamer = $roomRepo->find($kamer);
-            $reservering->addKamer($kamer);
-            $kamer->addReservering($reservering);
+            if (isset($res['step2'][$x])) {
+                $test = $res['step2'][$x];
+                $kamer = $test->getId();
+                $kamer = $roomRepo->find($kamer);
+                $reservering->addKamer($kamer);
+                $kamer->addReservering($reservering);
 
-            $em->persist($kamer);
-            $em->persist($reservering);
+                $em->persist($kamer);
+                $em->persist($reservering);
+            }
         }
         $em->flush();
         return $this->redirectToRoute('homepage');

@@ -2,6 +2,7 @@
 
 namespace AlbaBundle\Controller;
 
+use AlbaBundle\Entity\Extra;
 use AlbaBundle\Entity\Gast;
 use AlbaBundle\Entity\Klant;
 use AlbaBundle\Entity\Reservering;
@@ -214,6 +215,19 @@ class BookController extends Controller
         return $this->render('@Alba/web_reserveren/stepFour.html.twig', [
             'travelCompanios' => $travelCompanios
         ]);
+    }
+
+    /**
+     * Step 5
+     *
+     * @Route("/stepfive", name="bookStepFive")
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function stepFiveAction() {
+        $em=$this->getDoctrine()->getManager();
+        $extraRepository=$em->getRepository('AlbaBundle:Extra')->findAll();
+        return $this->render('@Alba/web_reserveren/stepFive.html.twig', array(
+            'extra' => $extraRepository,));
     }
 
     /**

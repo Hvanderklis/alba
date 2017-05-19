@@ -18,6 +18,7 @@ class KlantType extends AbstractType
     {
         $builder
             ->add('voornaam', TextType::class, array(
+
                 'label' => 'First Name'
             ))
             ->add('tussenvoegsel', TextType::class, array(
@@ -26,6 +27,7 @@ class KlantType extends AbstractType
             ->add('achternaam', TextType::class, array(
                 'label' => 'Last Name'
             ))
+
             ->add('geboortedatum', BirthdayType::class, array(
                 'placeholder' => array(
                     'year' => 'Year', 'month' => 'Month', 'day' => 'Day',

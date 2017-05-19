@@ -1,0 +1,13 @@
+{% extends '@Alba/base.html.twig' %}
+{% block body %}
+    <form action="" method="post">
+
+        {% for kamer in  kamers %}
+            <label for="kamer">{{ kamer.kamernaam }}</label>
+            <input type="checkbox" name="{{ loop.index }}" id="kamer" value="{{ kamer.id }}">
+            <br>
+        {% endfor %}
+
+        <input type="submit" value="next">
+    </form>
+{% endblock %}

@@ -1,0 +1,27 @@
+{% extends '@Alba/base.html.twig' %}
+{% block body %}
+    {% set reserveren = app.session.get('reserveren') %}
+
+    <form action="{{ path('bookStepOne') }}" method="post">
+        <fieldset>
+            <h2 class="fs-title">Arrival and Departure</h2>
+            <h3 class="fs-subtitle">Choose here your arrival & departure</h3>
+
+            <label for="arrival">Arrival date</label>
+            <input type="date" class="form-control" id="arrival" name="arrival" placeholder="Arrival" required>
+
+            <label for="departure">Departure date</label>
+            <input type="date" class="form-control" id="departure" name="departure" placeholder="Departure" required>
+
+            <label for="traveling-companions">Your Traveling companions</label>
+            <select name="traveling-companions" id="traveling-companions">
+                <script>
+                    for ($i = 0; $i < {{ amountTravel }}; $i++){
+                        document.write("<option value='" + $i + "'>"+ $i +"</option>");
+                    }
+                </script>
+            </select>
+            <input type="submit" value="next" class="next" />
+        </fieldset>
+    </form>
+{% endblock %}

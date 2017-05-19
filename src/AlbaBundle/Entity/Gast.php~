@@ -43,6 +43,11 @@ class Gast
     private $achternaam;
 
     /**
+     * @ORM\Column(name="gender", type="string", length=255)
+     */
+    private $gender;
+
+    /**
      * @var string
      *
      * @ORM\Column(name="Woonplaats", type="string", length=255)
@@ -76,5 +81,4 @@ class Gast
      * @ORM\JoinColumn(name="Klantnummer", referencedColumnName="id")
      */
     private $klant;
-
 }

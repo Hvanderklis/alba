@@ -4,6 +4,7 @@ namespace AlbaBundle\Controller;
 
 use AlbaBundle\Entity\Kamer;
 use AlbaBundle\Entity\KamerAfbeelding;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component\HttpFoundation\Request;
@@ -11,7 +12,8 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component
 /**
  * Kamerafbeelding controller.
  *
- * @Route("adminpanel/kamerafbeelding")
+ * @Route("adminpanel/roomimage")
+ * @Security("has_role('ROLE_USER')")
  */
 class KamerAfbeeldingController extends Controller
 {

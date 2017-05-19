@@ -3,6 +3,7 @@
 namespace AlbaBundle\Controller;
 
 use AlbaBundle\Entity\Klant;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -12,6 +13,7 @@ use Symfony\Component\HttpFoundation\Request;
  * Klant controller.
  *
  * @Route("adminpanel/customer")
+ * @Security("has_role('ROLE_USER')")
  */
 class KlantController extends Controller
 {

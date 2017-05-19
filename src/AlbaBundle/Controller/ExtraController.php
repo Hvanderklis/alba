@@ -3,6 +3,7 @@
 namespace AlbaBundle\Controller;
 
 use AlbaBundle\Entity\Extra;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component\HttpFoundation\Request;
@@ -11,6 +12,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component
  * Extra controller.
  *
  * @Route("adminpanel/extra")
+ * @Security("has_role('ROLE_USER')")
  */
 class ExtraController extends Controller
 {

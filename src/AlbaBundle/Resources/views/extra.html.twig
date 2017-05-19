@@ -1,0 +1,27 @@
+{% extends 'AlbaBundle::base.html.twig' %}
+
+{% block body %}
+<div class="row backfun">
+    <div class="row column text-center">
+        <h2>Extra's</h2>
+    </div>
+    <table>
+        <thead>
+        <tr class="extra">
+            <th>Service</th>
+            <th>Price</th>
+            <th>Description</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for extra in extras %}
+            <tr>
+                <td>{{ extra.type }}</td>
+                <td>&pound;{{ extra.prijs }}</td>
+                <td>{{ extra.omschrijving }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

@@ -10,11 +10,11 @@
                 <td>{{ kaart.id }}</td>
             </tr>
             <tr>
-                <th>Creditcardgegevens</th>
+                <th>Creditcard Information</th>
                 <td>{{ kaart.creditcardGegevens }}</td>
             </tr>
             <tr>
-                <th>Vervaldatum</th>
+                <th>Expiration Date</th>
                 <td>{% if kaart.vervaldatum %}{{ kaart.vervaldatum|date('Y-m-d') }}{% endif %}</td>
             </tr>
         </tbody>

@@ -1,13 +1,14 @@
 {% extends '@Alba/base.html.twig' %}
 {% block body %}
-    <form action="" method="post">
+    <form action="{{ path('bookStepTwo') }}" method="post">
 
         {% for kamer in  kamers %}
-            <label for="kamer">{{ kamer.kamernaam }}</label>
-            <input type="checkbox" name="{{ loop.index }}" id="kamer" value="{{ kamer.id }}">
+            <label for="room">{{ kamer.kamernaam }}</label>
+            <input type="checkbox" name="{{ loop.index }}" id="room" value="{{ kamer.id }}">
             <br>
         {% endfor %}
 
-        <input class="button" id="colorw" type="submit" value="next">
+        <input class="button" name="previous" type="submit" value="Previous">
+        <input class="button" name="next" id="colorw" type="submit" value="Next">
     </form>
 {% endblock %}

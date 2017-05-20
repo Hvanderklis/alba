@@ -17,7 +17,7 @@ use Symfony\Component\HttpFoundation\Request;
 class BookController extends Controller
 {
     /**
-     * Step One
+     * Step 1 - Arrival, Departure and amount travelCompanions
      *
      * @param Request $request
      * @return \Symfony\Component\HttpFoundation\Response
@@ -77,7 +77,7 @@ class BookController extends Controller
     }
 
     /**
-     * Step two
+     * Step 2 - Choose rooms
      *
      * @return \Symfony\Component\HttpFoundation\Response
      * @Route("/steptwo", name="bookStepTwo")
@@ -94,7 +94,7 @@ class BookController extends Controller
 
         $kamer = array();
 
-        if($request->getMethod() == "POST") {
+        if($request->getMethod() == "POST" && $request->get('next')) {
             for($x = 1; $x < $test; $x ++) {
                 $cijfer = (string)$x;
                 $kamer[$x] = $request->get($cijfer);
@@ -105,13 +105,13 @@ class BookController extends Controller
                 if ($kamer[$x] == null){
                     unset($kamer[$x]);
                 };
+
+                $record = array('step1' => $res['step1'], 'step2' => $kamer);
+
+                $session->set('reserveren', $record);
+
+                return $this->redirect( $this->generateUrl('bookStepThree') );
             }
-
-            $record = array('step1' => $res['step1'], 'step2' => $kamer);
-
-            $session->set('reserveren', $record);
-
-            return $this->redirect( $this->generateUrl('bookStepThree') );
         }
 
         return $this->render('@Alba/web_reserveren/stepTwo.html.twig', [
@@ -120,7 +120,7 @@ class BookController extends Controller
     }
 
     /**
-     * Step Three
+     * Step 3
      *
      * @Route("/stepthree", name="bookStepThree")
      * @return \Symfony\Component\HttpFoundation\Response

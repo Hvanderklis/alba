@@ -9,6 +9,7 @@ use AlbaBundle\Entity\Reservering;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Security\Http\Session\SessionAuthenticationStrategy;
 
 /**
  * Class BookController
@@ -162,8 +163,8 @@ class BookController extends Controller
             $session->set('reserveren', $record);
 
 
-                return $this->redirect( $this->generateUrl('bookStepFour') );
-            }
+            return $this->redirect( $this->generateUrl('bookStepFour') );
+        }
 
 
         return $this->render('@Alba/web_reserveren/stepThree.html.twig');
@@ -209,7 +210,7 @@ class BookController extends Controller
             $test = $session->get('reserveren', array());
             dump($test);
 
-            return $this->redirect( $this->generateUrl('bookStepSix') );
+            return $this->redirect( $this->generateUrl('bookStepFive') );
         }
 
         return $this->render('@Alba/web_reserveren/stepFour.html.twig', [
@@ -223,11 +224,39 @@ class BookController extends Controller
      * @Route("/stepfive", name="bookStepFive")
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function stepFiveAction() {
-        $em=$this->getDoctrine()->getManager();
-        $extraRepository=$em->getRepository('AlbaBundle:Extra')->findAll();
+    public function stepFiveAction(Request $request) {
+        $em = $this->getDoctrine()->getManager();
+        $extraRepository = $em->getRepository('AlbaBundle:Extra');
+        $session = $this->get('request_stack')->getCurrentRequest()->getSession();
+
+        $res = $session->get('reserveren');
+
+        $extras = $this->get('session')->get('reserveren')['step5']['omschrijving'];
+        $test = count($extras) + 1;
+
+        $extra = array();
+
+        if($request->getMethod() == "POST") {
+            for($x = 1; $x < $test; $x ++) {
+                $cijfer = (string)$x;
+                $extra[$x] = $request->get($cijfer);
+
+                $extraId = intval($extra[$x]);
+                $extra[$x] = $extraRepository->find($extraId);
+
+                if ($extra[$x] == null){
+                    unset($extra[$x]);
+                };
+            }
+            $record = array('step1' => $res['step1'], 'step2' => $res['step2'], 'step3' => $res['step3'], 'step4' => $res['step4'], 'step5' => $step5);
+            $session->set('reserveren', $record);
+            $test = $session->get('reserveren', array());
+            dump($test);
+            return $this->redirect($this->generateUrl('bookStepSix'));
+        }
+
         return $this->render('@Alba/web_reserveren/stepFive.html.twig', array(
-            'extra' => $extraRepository,));
+            'extras' => $extras));
     }
 
     /**
@@ -239,6 +268,7 @@ class BookController extends Controller
     public function stepSixAction(){
         $em = $this->getDoctrine()->getManager();
         $roomRepo = $em->getRepository('AlbaBundle:Kamer');
+        $extraRepo = $em->getRepository('AlbaBundle:Extra');
         $session = $this->get('request_stack')->getCurrentRequest()->getSession();
 
         $res = $session->get('reserveren');
@@ -258,6 +288,16 @@ class BookController extends Controller
             }
         }
 
+        $extras = [];
+        for ($x = 1; $x <=count($res['step5']); $x++){
+            if (isset($res['step5'][$x])){
+                $test = $res['step5'][$x];
+                $extra = $test->getId();
+                $extra = $extraRepo->find($extra);
+                $extras[$x] =$extra;
+            }
+        }
+
         $firstName = $res['step3']['firstName'];
         $insertion = $res['step3']['insertion'];
         $lastName = $res['step3']['lastName'];
@@ -267,6 +307,9 @@ class BookController extends Controller
         $language = $res['step3']['language'];
         $email = $res['step3']['email'];
         $phone = $res['step3']['phone'];
+        $type = $res['step5']['type'];
+        $prijs = $res['step5']['prijs'];
+        $omschrijving = $res['step5']['omschrijving'];
 
         $gasten = [];
         for ($x = 1; $x <=count($res['step4']); $x++){
@@ -274,6 +317,7 @@ class BookController extends Controller
             dump($test2);
             $gasten[$x] = $test2;
         }
+
 
 
         return $this->render('@Alba/web_reserveren/stepSix.html.twig', [
@@ -289,7 +333,11 @@ class BookController extends Controller
             'language' => $language,
             'email' => $email,
             'phone' => $phone,
+            'type' => $type,
+            'prijs' => $prijs,
+            'omschrijving' => $omschrijving,
             'gasten' => $gasten,
+            'extras' => $extras,
         ]);
     }
 

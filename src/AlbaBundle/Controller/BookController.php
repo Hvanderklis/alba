@@ -88,31 +88,32 @@ class BookController extends Controller
         $session = $this->get('request_stack')->getCurrentRequest()->getSession();
 
         $res = $session->get('reserveren');
+        dump($res);
 
         $kamers = $this->get('session')->get('reserveren')['step1']['kamers'];
         $test = count($kamers) + 1;
 
         $kamer = array();
 
-        if($request->getMethod() == "POST" && $request->get('next')) {
-            for($x = 1; $x < $test; $x ++) {
-                $cijfer = (string)$x;
-                $kamer[$x] = $request->get($cijfer);
-
-                $roomId = intval($kamer[$x]);
-                $kamer[$x] = $roomRepository->find($roomId);
-
-                if ($kamer[$x] == null){
-                    unset($kamer[$x]);
-                };
-
-                $record = array('step1' => $res['step1'], 'step2' => $kamer);
-
-                $session->set('reserveren', $record);
-
-                return $this->redirect( $this->generateUrl('bookStepThree') );
-            }
-        }
+//        if($request->getMethod() == "POST" && $request->get('next')) {
+//            for($x = 1; $x < $test; $x ++) {
+//                $cijfer = (string)$x;
+//                $kamer[$x] = $request->get($cijfer);
+//
+//                $roomId = intval($kamer[$x]);
+//                $kamer[$x] = $roomRepository->find($roomId);
+//
+//                if ($kamer[$x] == null){
+//                    unset($kamer[$x]);
+//                };
+//
+//                $record = array('step1' => $res['step1'], 'step2' => $kamer);
+//
+//                $session->set('reserveren', $record);
+//
+//                return $this->redirect( $this->generateUrl('bookStepThree') );
+//            }
+//        }
 
         return $this->render('@Alba/web_reserveren/stepTwo.html.twig', [
             'kamers' => $kamers,

@@ -125,6 +125,9 @@ class BookController extends Controller
                 );
             }
         }
+        if ($request->getMethod() == "POST" && $request->get('previous')){
+            $this->redirectToRoute('bookStepOne');
+        }
 
         return $this->render('@Alba/web_reserveren/stepTwo.html.twig', [
             'kamers' => $kamers,

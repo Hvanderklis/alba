@@ -95,25 +95,36 @@ class BookController extends Controller
 
         $kamer = array();
 
-//        if($request->getMethod() == "POST" && $request->get('next')) {
-//            for($x = 1; $x < $test; $x ++) {
-//                $cijfer = (string)$x;
-//                $kamer[$x] = $request->get($cijfer);
-//
-//                $roomId = intval($kamer[$x]);
-//                $kamer[$x] = $roomRepository->find($roomId);
-//
-//                if ($kamer[$x] == null){
-//                    unset($kamer[$x]);
-//                };
-//
-//                $record = array('step1' => $res['step1'], 'step2' => $kamer);
-//
-//                $session->set('reserveren', $record);
-//
-//                return $this->redirect( $this->generateUrl('bookStepThree') );
-//            }
-//        }
+
+        if($request->getMethod() == "POST" && $request->get('next')) {
+            for($x = 1; $x < $test; $x ++) {
+                $cijfer = (string)$x;
+                $kamer[$x] = $request->get($cijfer);
+
+                $roomId = intval($kamer[$x]);
+                $kamer[$x] = $roomRepository->find($roomId);
+
+                if ($kamer[$x] == null){
+                    unset($kamer[$x]);
+                };
+            }
+
+            $amountRooms = count($kamers);
+            $people = intval($this->get('session')->get('reserveren')['step1']['traveling-companions']) + 1;
+
+            if ($people >= $amountRooms){
+                $record = array('step1' => $res['step1'], 'step2' => $kamer);
+
+                $session->set('reserveren', $record);
+
+                return $this->redirect( $this->generateUrl('bookStepThree') );
+            } else {
+                $this->addFlash(
+                    'notice',
+                    'You can book only ' . $people . ' room(s)!'
+                );
+            }
+        }
 
         return $this->render('@Alba/web_reserveren/stepTwo.html.twig', [
             'kamers' => $kamers,
@@ -121,7 +132,7 @@ class BookController extends Controller
     }
 
     /**
-     * Step 3
+     * Step 3 Customer details
      *
      * @Route("/stepthree", name="bookStepThree")
      * @return \Symfony\Component\HttpFoundation\Response
@@ -131,8 +142,6 @@ class BookController extends Controller
 
         $res = $session->get('reserveren');
         dump($res);
-
-
 
         if ($request->getMethod() == 'POST'){
             $firstName = $request->get("firstName");

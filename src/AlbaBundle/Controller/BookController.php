@@ -217,6 +217,23 @@ class BookController extends Controller
     }
 
     /**
+     * Step 5
+     *
+     * @Route("/stepfive", name="bookStepFive")
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function stepFiveAction()
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $extras = $em->getRepository('AlbaBundle:Extra')->findAll();
+
+        return $this->render('@Alba/web_reserveren/stepFive.html.twig', array(
+            'extras' => $extras,
+        ));
+    }
+
+    /**
      * Step 6
      *
      * @Route("/stepsix", name="bookStepSix")

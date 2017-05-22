@@ -27,7 +27,7 @@
                 <td>{{ gast.woonplaats }}</td>
                 <td>{% if gast.geboortedatum %}{{ gast.geboortedatum|date('Y-m-d') }}{% endif %}</td>
                 <td>{{ gast.taal }}</td>
-                <td><a class="button" href="{{ path('guest_show') }}"><i class="fa fa-eye"></i></a></td>
+                <td><a class="button" href="{{ path('guest_show', { 'id': gast.id }) }}"><i class="fa fa-eye"></i></a></td>
             </tr>
         {% endfor %}
         </tbody>

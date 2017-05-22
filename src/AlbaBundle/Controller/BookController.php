@@ -95,7 +95,6 @@ class BookController extends Controller
 
         $kamer = array();
 
-
         if($request->getMethod() == "POST" && $request->get('next')) {
             for($x = 1; $x < $test; $x ++) {
                 $cijfer = (string)$x;
@@ -109,7 +108,7 @@ class BookController extends Controller
                 };
             }
 
-            $amountRooms = count($kamers);
+            $amountRooms = count($kamer);
             $people = intval($this->get('session')->get('reserveren')['step1']['traveling-companions']) + 1;
 
             if ($people >= $amountRooms){

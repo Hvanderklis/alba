@@ -17,71 +17,75 @@
                 <form action="{{ path('bookStepThree') }}" method="post">
                     <div class="row">
 
-                    <div class="large-4 columns">
-                        <h3>Reservation info</h3>
-                        <hr>
-                        <p>Check in: </p>
-                        <p>Check out: </p>
-                        <p>Guest: </p>
+                        <div class="large-4 columns">
+                            <h3>Reservation info</h3>
+                            <hr>
+                            <p style="color:black;">Check in: {{ arrival|date ('d M Y') }}</p>
+                            <p style="color:black;">Check out: {{ departure|date ('d M Y') }}</p>
+                            <p style="color:black;">Persons: {{ people }}</p>
 
-                        <h3>Room info</h3>
-                        <hr>
-                        <p>Deluxe One-bedroom Suite</p>
-                        <hr>
-                        <p>Total Cost: </p>
-                    </div>
+                            <h3>Room info</h3>
+                            <hr>
+                            {% for kamer in kamers %}
+                                <p style="color: black">{{ kamer.kamerNaam }}: &pound; {{ kamer.prijs }}</p>
+                            {% endfor %}
+                            <hr>
+                            <p style="color:black;">Total cost for the room(s): &pound; {{ sum }}</p>
+                        </div>
 
-                    <div class="large-4 columns">
-                        <h3>Reservation info</h3>
-                        <form>
+                        <div class="large-4 columns">
+                            <h3>Customer info</h3>
                             <div class="row">
                                 <div class="columns">
                                     <label>Name
-                                        <input type="text" id="Firstname" name="Firstname" placeholder="Firstname">
+                                        <input type="text" id="Firstname" name="firstName" placeholder="Firstname">
                                     </label>
                                     <label>Insertion
                                         <input type="text" id="Insertion" name="Insertion" placeholder="Insertion">
                                     </label>
                                     <label>Last name
-                                        <input type="text" id="Lastname" name="Lastname" placeholder="Lastname">
+                                        <input type="text" id="Lastname" name="lastName" placeholder="Lastname">
                                     </label>
                                     <label>Date of Birth
-                                        <input type="text" id="Birthdate" name="Birthdate" placeholder="Birth date">
+                                        <input type="date" id="Birthdate" name="birthdate" placeholder="Birth date">
                                     </label>
-                                    <select id="Gender" name="Gender">
-                                        <option value=""></option>
-                                        <option value="Man">Male</option>
-                                        <option value="Woman">Female</option>
-                                    </select>
+                                    <label>Gender
+                                        <select id="Gender" name="gender">
+                                            <option value=""></option>
+                                            <option value="Man">Male</option>
+                                            <option value="Woman">Female</option>
+                                        </select>
+                                    </label>
                                     <label>Email
-                                        <input type="email" id="Email" name="Email" placeholder="Email">
+                                        <input type="email" id="Email" name="email" placeholder="Email">
                                     </label>
                                     <label>Phone
-                                        <input type="number" id="Tel" name="Tel" placeholder="Phonenumber">
+                                        <input type="number" id="Tel" name="tel" placeholder="Phonenumber">
                                     </label>
                                     <label>City
-                                        <input type="text" id="City" name="City" placeholder="City">
+                                        <input type="text" id="City" name="city" placeholder="City">
                                     </label>
-                                    <select id="Language" name="Language">
-                                        <option value="">Language</option>
-                                        <option value="English">English</option>
-                                        <option value="Dutch">Dutch</option>
-                                    </select>
+                                    <label>Language
+                                        <select id="Language" name="language">
+                                            <option value=""></option>
+                                            <option value="English">English</option>
+                                            <option value="Dutch">Dutch</option>
+                                        </select>
+                                    </label>
                                 </div>
                             </div>
-                        </form>
-                    </div>
+                        </div>
 
-                    <div class="large-4 columns">
-                        <h3>Request</h3>
-                        <label>
-                            Special request
-                            <textarea placeholder="None"></textarea>
-                        </label>
-                        <a class="button expanded" href="#">Submit</a>
+                        <div class="large-4 columns">
+                            <h3>Reservation Note</h3>
+                            <div class="row">
+                                <div class="columns">
+                                    <label>Note
+                                        <textarea type="text" id="note" name="note" placeholder="Please enter here your note!"></textarea>
+                                    </label>
+                            <input type="submit" class="button expanded next" value="Next">
+                        </div>
                     </div>
-
-                </div>
                 </form>
             </div>
         </div>
@@ -122,5 +126,5 @@
         <input type="tel" id="tel" name="tel" required>
 
         <input type="submit">
-    </form-->
+   </form-->
 {% endblock %}

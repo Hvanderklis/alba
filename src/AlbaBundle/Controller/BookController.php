@@ -145,6 +145,25 @@ class BookController extends Controller
         $res = $session->get('reserveren');
         dump($res);
 
+        $arrival = $res['step1']['arrival'];
+        $departure = $res['step1']['departure'];
+        $people = intval($res['step1']['traveling-companions']) + 1;
+        $kamers = $res['step2'];
+        $kamers = array_values($kamers);
+
+        $sumRoom = [];
+        for ($x = 0; $x < count($kamers); $x++){
+            $sumRoom[$x] = $kamers[$x]->getPrijs();
+        }
+
+        $sum = 0;
+        foreach($sumRoom as $key=>$value)
+        {
+            $sum+= $value;
+        }
+
+
+
         if ($request->getMethod() == 'POST'){
             $firstName = $request->get("firstName");
             $insertion = $request->get("insertion");
@@ -177,7 +196,13 @@ class BookController extends Controller
             }
 
 
-        return $this->render('@Alba/web_reserveren/stepThree.html.twig');
+        return $this->render('@Alba/web_reserveren/stepThree.html.twig', [
+            'arrival' => $arrival,
+            'departure' => $departure,
+            'people' => $people,
+            'kamers' => $kamers,
+            'sum' => $sum,
+        ]);
     }
 
     /**

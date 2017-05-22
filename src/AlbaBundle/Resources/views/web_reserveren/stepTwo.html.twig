@@ -27,6 +27,7 @@
                         <th>Check room</th>
                         <th>Room name</th>
                         <th>Room price</th>
+                        <th>Description</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -35,6 +36,7 @@
                             <td><input type="checkbox" name="{{ loop.index }}" id="room" value="{{ kamer.id }}"></td>
                             <td><label for="room">{{ kamer.kamernaam }}</label></td>
                             <td>&pound; {{ kamer.prijs }}</td>
+                            <td>{{ kamer.omschrijving }}</td>
                         </tr>
                     {% endfor %}
                     </tbody>

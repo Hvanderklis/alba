@@ -73,10 +73,9 @@ class Reservering
     private $betaling;
 
     /**
-     * @ORM\Column(name="price", type="float", nullable=true)
+     * @ORM\Column(name="prijs", type="float", nullable=true)
      */
-    private $price;
-
+    private $prijs;
     /**
      * Constructor
      */
@@ -170,27 +169,27 @@ class Reservering
     }
 
     /**
-     * Set price
+     * Set prijs
      *
-     * @param float $price
+     * @param float $prijs
      *
      * @return Reservering
      */
-    public function setPrice($price)
+    public function setPrijs($prijs)
     {
-        $this->price = $price;
+        $this->prijs = $prijs;
 
         return $this;
     }
 
     /**
-     * Get price
+     * Get prijs
      *
      * @return float
      */
-    public function getPrice()
+    public function getPrijs()
     {
-        return $this->price;
+        return $this->prijs;
     }
 
     /**

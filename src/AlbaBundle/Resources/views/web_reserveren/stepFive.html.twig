@@ -56,7 +56,8 @@
                             <tbody>
 
                             <form action="" method="post">
-                            {% for extra in extras %}
+                            {% for extra in findall %}
+
                                 <tr>
                                     <td><input type="checkbox" name="{{ loop.index }}" id="extra" value="{{ extra.id }}"></td>
                                     <td><input type="text" name="type" id="type" value="{{ extra.type }}" readonly></td>

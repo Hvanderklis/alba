@@ -131,7 +131,7 @@ class BookController extends Controller
         $session = $this->get('request_stack')->getCurrentRequest()->getSession();
 
         $res = $session->get('reserveren');
-        dump($res);
+
 
 
 
@@ -180,7 +180,7 @@ class BookController extends Controller
         $session = $this->get('request_stack')->getCurrentRequest()->getSession();
 
         $res = $session->get('reserveren');
-        dump($res);
+
 
         $travelCompanios = (intval($res['step1']['traveling-companions']));
 
@@ -208,7 +208,7 @@ class BookController extends Controller
             $session->set('reserveren', $record);
 
             $test = $session->get('reserveren', array());
-            dump($test);
+
 
             return $this->redirect( $this->generateUrl('bookStepFive') );
         }
@@ -227,12 +227,12 @@ class BookController extends Controller
     public function stepFiveAction(Request $request) {
         $em = $this->getDoctrine()->getManager();
         $extraRepository = $em->getRepository('AlbaBundle:Extra');
+        $findall = $extraRepository->findAll();
         $session = $this->get('request_stack')->getCurrentRequest()->getSession();
 
         $res = $session->get('reserveren');
 
-        $extras = $this->get('session')->get('reserveren')['step5']['omschrijving'];
-        $test = count($extras) + 1;
+        $test = count($findall) + 1;
 
         $extra = array();
 
@@ -248,15 +248,16 @@ class BookController extends Controller
                     unset($extra[$x]);
                 };
             }
-            $record = array('step1' => $res['step1'], 'step2' => $res['step2'], 'step3' => $res['step3'], 'step4' => $res['step4'], 'step5' => $step5);
+            $record = array('step1' => $res['step1'], 'step2' => $res['step2'], 'step3' => $res['step3'], 'step4' => $res['step4'], 'step5' => $extra);
             $session->set('reserveren', $record);
             $test = $session->get('reserveren', array());
-            dump($test);
+
             return $this->redirect($this->generateUrl('bookStepSix'));
+
         }
 
         return $this->render('@Alba/web_reserveren/stepFive.html.twig', array(
-            'extras' => $extras));
+            'findall' => $findall));
     }
 
     /**
@@ -272,7 +273,6 @@ class BookController extends Controller
         $session = $this->get('request_stack')->getCurrentRequest()->getSession();
 
         $res = $session->get('reserveren');
-        dump($res);
 
         $arrival = $res['step1']['arrival'];
         $departure = $res['step1']['departure'];
@@ -297,7 +297,7 @@ class BookController extends Controller
                 $extras[$x] =$extra;
             }
         }
-
+dump($extras);
         $firstName = $res['step3']['firstName'];
         $insertion = $res['step3']['insertion'];
         $lastName = $res['step3']['lastName'];
@@ -307,14 +307,13 @@ class BookController extends Controller
         $language = $res['step3']['language'];
         $email = $res['step3']['email'];
         $phone = $res['step3']['phone'];
-        $type = $res['step5']['type'];
+        /*$type = $res['step5']['type'];
         $prijs = $res['step5']['prijs'];
         $omschrijving = $res['step5']['omschrijving'];
-
+*/
         $gasten = [];
         for ($x = 1; $x <=count($res['step4']); $x++){
             $test2 = $res['step4'][$x];
-            dump($test2);
             $gasten[$x] = $test2;
         }
 
@@ -333,9 +332,9 @@ class BookController extends Controller
             'language' => $language,
             'email' => $email,
             'phone' => $phone,
-            'type' => $type,
-            'prijs' => $prijs,
-            'omschrijving' => $omschrijving,
+//            'type' => $type,
+//            'prijs' => $prijs,
+//            'omschrijving' => $omschrijving,
             'gasten' => $gasten,
             'extras' => $extras,
         ]);
@@ -416,6 +415,40 @@ class BookController extends Controller
             }
         }
         $em->flush();
-        return $this->redirectToRoute('homepage');
+        return $this->redirectToRoute('bookStepEight');
     }
+
+
+    /**
+     * Step 8
+     *
+     * @Route("/overzicht", name="bookStepEight")
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function stepEightAction()
+        {
+
+            $session = $this->get('request_stack')->getCurrentRequest()->getSession();
+
+            $res = $session->get('reserveren');
+
+            $email = $res['step3']['email'];
+
+
+            $mailer = $this->container->get('mailer');
+            $transport = \Swift_SmtpTransport::newInstance('smtp.mailtrap.io', 465, 'ssl')
+                ->setUsername('6b85cd05068089')
+                ->setPassword('10aaf099663b37');
+
+            $mailer = \Swift_Mailer::newInstance($transport);
+
+            $message = \Swift_Message::newInstance('Test')
+                ->setSubject('Summary')
+                ->setFrom('info@alba.com')
+                ->setTo($email)
+                ->setBody('Hallo');
+            $this->get('mailer')->send($message);
+
+            return $this->render("@Alba/mail.html.twig");
+        }
 }

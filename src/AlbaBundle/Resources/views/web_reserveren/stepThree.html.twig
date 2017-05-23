@@ -1,6 +1,7 @@
 {% extends '@Alba/base.html.twig' %}
 {% block body %}
     {% set reserveren = app.session.get('reserveren') %}
+<<<<<<< HEAD
 
     <form action="{{ path('bookStepThree') }}" method="post">
         <label for="firstName">First name</label>
@@ -38,4 +39,89 @@
 
         <input type="submit">
     </form>
+=======
+    <div>
+        <ul class="tabs" data-tabs id="example-tabs">
+            <li class="tabs-title disabled"><a href="#panel1" aria-selected="true">Choose your date</a></li>
+            <li class="tabs-title disabled"><a href="#panel2">Choose Room</a></li>
+            <li class="tabs-title is-active"><a href="#panel3">Customer</a></li>
+            <li class="tabs-title disabled"><a href="#panel4">Guest</a></li>
+            <li class="tabs-title disabled"><a href="#panel5">Extra</a></li>
+            <li class="tabs-title disabled"><a href="#panel6">Confirm</a></li>
+            <li class="tabs-title disabled"><a href="#panel7">Payment</a></li>
+        </ul>
+
+        <div class="tabs-content" data-tabs-content="example-tabs">
+
+            <div class="tabs-panel" id="panel3">
+                <div class="row">
+
+                    <div class="large-4 columns">
+                        <h3>Reservation info</h3>
+                        <hr>
+                        <p style="color:black;">Check in: </p>
+                        <p style="color:black;">Check out: </p>
+                        <p style="color:black;">Persons: </p>
+                        <h3>Room info</h3>
+                        <hr>
+                        <p style="color:black;">Selected Room:</p>
+                        <hr>
+                        <p style="color:black;">Total Cost: </p>
+                    </div>
+
+                    <div class="large-4 columns">
+                        <h3>Customer info</h3>
+                        <form action="{{ path('bookStepThree') }}" method="post">
+                            <div class="row">
+                                <div class="columns">
+                                    <label>Name
+                                        <input type="text" id="Firstname" name="firstName" placeholder="Firstname">
+                                    </label>
+                                    <label>Insertion
+                                        <input type="text" id="Insertion" name="Insertion" placeholder="Insertion">
+                                    </label>
+                                    <label>Last name
+                                        <input type="text" id="Lastname" name="lastName" placeholder="Lastname">
+                                    </label>
+                                    <label>Date of Birth
+                                        <input type="date" id="Birthdate" name="birthdate" placeholder="Birth date">
+                                    </label>
+                                    <label>Gender
+                                    <select id="Gender" name="gender">
+                                        <option value=""></option>
+                                        <option value="Man">Male</option>
+                                        <option value="Woman">Female</option>
+                                    </select>
+                                    </label>
+                                </div>
+                            </div>
+                    </div>
+
+                    <div class="large-4 columns">
+                        <br><br>
+                        <label>Email
+                            <input type="email" id="Email" name="email" placeholder="Email">
+                        </label>
+                        <label>Phone
+                            <input type="number" id="Tel" name="tel" placeholder="Phonenumber">
+                        </label>
+                        <label>City
+                            <input type="text" id="City" name="city" placeholder="City">
+                        </label>
+                        <label>Language
+                            <select id="Language" name="language">
+                                <option value=""></option>
+                                <option value="English">English</option>
+                                <option value="Dutch">Dutch</option>
+                            </select>
+                        </label>
+                        <input type="submit" class="button expanded next" value="Next">
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+>>>>>>> 29421c71dc09175aa7d28594add0d2c8ec6a58f0
 {% endblock %}

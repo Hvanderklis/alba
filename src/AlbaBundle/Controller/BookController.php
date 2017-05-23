@@ -224,6 +224,7 @@ class BookController extends Controller
      * @Route("/stepfive", name="bookStepFive")
      * @return \Symfony\Component\HttpFoundation\Response
      */
+
     public function stepFiveAction(Request $request) {
         $em = $this->getDoctrine()->getManager();
         $extraRepository = $em->getRepository('AlbaBundle:Extra');

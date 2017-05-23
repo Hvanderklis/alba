@@ -1,39 +1,150 @@
 {% extends '@Alba/base.html.twig' %}
 {% block body %}
     {% set reserveren = app.session.get('reserveren') %}
+    <ul class="tabs" data-tabs id="example-tabs">
+        <li class="tabs-title disabled"><a href="#panel1" aria-selected="true">Choose your date</a></li>
+        <li class="tabs-title disabled"><a href="#panel2">Choose Room</a></li>
+        <li class="tabs-title disabled"><a href="#panel3">Customer</a></li>
+        <li class="tabs-title is-active"><a href="#panel4">Guest</a></li>
+        <li class="tabs-title disabled"><a href="#panel5">Extra</a></li>
+        <li class="tabs-title disabled"><a href="#panel6">Confirm</a></li>
+        <li class="tabs-title disabled"><a href="#panel7">Payment</a></li>
+    </ul>
 
-    <form action="{{ path('bookStepFour') }}" method="post">
-        {% for i in 1..travelCompanios %}
-            <div>
-                <fieldset>
-                    <legend>Travel Companion {{ i }}</legend>
-                    <label for="firstName">First name</label>
-                    <input type="text" required name="firstName{{ i }}" id="firstName">
+    <div class="tabs-content" data-tabs-content="example-tabs">
 
-                    <label for="insertion">Insertion</label>
-                    <input type="text" name="insertion{{ i }}" id="insertion">
+        <div class="tabs-panel" id="panel2">
 
-                    <label for="lastName">Lastname</label>
-                    <input type="text" required name="lastName{{ i }}" id="lastName">
+        </div>
 
-                    <label for="gender">Gender</label>
-                    <select id="gender" name="gender{{ i }}" required>
-                        <option value="Man">Man</option>
-                        <option value="Woman">Woman</option>
-                    </select>
+        <div class="tabs-panel" id="panel3">
+            <div class="row">
 
-                    <label for="city">City</label>
-                    <input type="text" id="city" name="city{{ i }}" required>
+                <div class="large-4 columns">
+                    <h3>Reservation info</h3>
+                    <hr>
+                    <p>Check in: </p>
+                    <p>Check out: </p>
+                    <p>Adult: </p>
+                    <p>Child: </p>
+                    <h3>Room info</h3>
+                    <hr>
+                    <p>Deluxe One-bedroom Suite</p>
+                    <hr>
+                    <p>Total Cost: </p>
+                </div>
 
-                    <label for="language">Language</label>
-                    <select id="language" name="language{{ i }}" required>
-                        <option value="English">English</option>
-                        <option value="Dutch">Dutch</option>
-                    </select>
+                <div class="large-4 columns">
+                    <h3>Reservation info</h3>
+                    <form>
+                        <div class="row">
+                            <div class="columns">
+                                <label>Name
+                                    <input type="text" id="Firstname" name="Firstname" placeholder="Firstname">
+                                </label>
+                                <label>Insertion
+                                    <input type="text" id="Insertion" name="Insertion" placeholder="Insertion">
+                                </label>
+                                <label>Last name
+                                    <input type="text" id="Lastname" name="Lastname" placeholder="Lastname">
+                                </label>
+                                <label>Date of Birth
+                                    <input type="text" id="Birthdate" name="Birthdate" placeholder="Birth date">
+                                </label>
+                                <select id="Gender" name="Gender">
+                                    <option value=""></option>
+                                    <option value="Man">Male</option>
+                                    <option value="Woman">Female</option>
+                                </select>
+                                <label>Email
+                                    <input type="email" id="Email" name="Email" placeholder="Email">
+                                </label>
+                                <label>Phone
+                                    <input type="number" id="Tel" name="Tel" placeholder="Phonenumber">
+                                </label>
+                                <label>City
+                                    <input type="text" id="City" name="City" placeholder="City">
+                                </label>
+                                <select id="Language" name="Language">
+                                    <option value="">Language</option>
+                                    <option value="English">English</option>
+                                    <option value="Dutch">Dutch</option>
+                                </select>
+                            </div>
+                        </div>
+                    </form>
+                </div>
 
-                </fieldset>
+                <div class="large-4 columns">
+                    <h3>Request</h3>
+                    <label>
+                        Special request
+                        <textarea placeholder="None"></textarea>
+                    </label>
+                    <a class="button expanded" href="#">Submit</a>
+                </div>
+
             </div>
-        {% endfor %}
-        <input type="submit">
-    </form>
+        </div>
+
+        <div class="tabs-panel" id="panel4">
+            <div class="row">
+                <div class="large-4 columns">
+                    <h3>Reservation info</h3>
+                    <hr>
+                    <p style="color: black;">Check in: </p>
+                    <p style="color: black;">Check out: </p>
+                    <p style="color: black;">Persons: </p>
+                    <h3>Customer info</h3>
+                    <hr>
+                    <p style="color: black;">Name: </p>
+                    <p style="color: black;">Lastname: </p>
+                    <p style="color: black;">Email: </p>
+                    <p style="color: black;">Phone: </p>
+                    <h3>Room info</h3>
+                    <hr>
+                    <p style="color: black;">Selected Room: </p>
+                    <hr>
+                    <p style="color: black;">Total Cost: </p>
+                </div>
+
+                <div class="large-8 columns">
+                    <form action="{{ path('bookStepFour') }}" method="post">
+                        {% for i in 1..travelCompanios %}
+                            <div>
+                                <fieldset>
+                                    <h3>Travel Companion {{ i }}</h3>
+                                    <label for="firstName">First name</label>
+                                    <input type="text" required name="firstName{{ i }}" id="firstName">
+
+                                    <label for="insertion">Insertion</label>
+                                    <input type="text" name="insertion{{ i }}" id="insertion">
+
+                                    <label for="lastName">Lastname</label>
+                                    <input type="text" required name="lastName{{ i }}" id="lastName">
+
+                                    <label for="gender">Gender</label>
+                                    <select id="gender" name="gender{{ i }}" required>
+                                        <option value="Man">Man</option>
+                                        <option value="Woman">Woman</option>
+                                    </select>
+
+                                    <label for="city">City</label>
+                                    <input type="text" id="city" name="city{{ i }}" required>
+
+                                    <label for="language">Language</label>
+                                    <select id="language" name="language{{ i }}" required>
+                                        <option value="English">English</option>
+                                        <option value="Dutch">Dutch</option>
+                                    </select>
+
+                                </fieldset>
+                            </div>
+                        {% endfor %}
+                        <input type="submit" class="button expanded next" value="Next">
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 {% endblock %}

@@ -2,129 +2,93 @@
 {% block body %}
     {% set reserveren = app.session.get('reserveren') %}
 
-        <ul class="tabs" data-tabs id="example-tabs">
-            <li class="tabs-title disabled"><a>Choose your date</a></li>
-            <li class="tabs-title disabled"><a>Choose Room</a></li>
-            <li class="tabs-title is-active"><a href="#panel3" aria-selected="true">Customer</a></li>
-            <li class="tabs-title disabled"><a>Guest</a></li>
-            <li class="tabs-title disabled"><a>Extra</a></li>
-            <li class="tabs-title disabled"><a>Confirm</a></li>
-            <li class="tabs-title disabled"><a>Payment</a></li>
-        </ul>
+    <ul class="tabs" data-tabs id="example-tabs">
+        <li class="tabs-title disabled"><a>Choose your date</a></li>
+        <li class="tabs-title disabled"><a>Choose Room</a></li>
+        <li class="tabs-title is-active"><a href="#panel3" aria-selected="true">Customer</a></li>
+        <li class="tabs-title disabled"><a>Guest</a></li>
+        <li class="tabs-title disabled"><a>Extra</a></li>
+        <li class="tabs-title disabled"><a>Confirm</a></li>
+        <li class="tabs-title disabled"><a>Payment</a></li>
+    </ul>
 
-        <div class="tabs-content" data-tabs-content="example-tabs">
-            <div class="tabs-panel" id="panel3">
-                <form action="{{ path('bookStepThree') }}" method="post">
-                    <div class="row">
+    <div class="tabs-content" data-tabs-content="example-tabs">
+        <div class="tabs-panel" id="panel3">
+            <form action="{{ path('bookStepThree') }}" method="post">
+                <div class="row">
 
-                        <div class="large-4 columns">
-                            <h3>Reservation info</h3>
-                            <hr>
-                            <p style="color:black;">Check in: {{ arrival|date ('d M Y') }}</p>
-                            <p style="color:black;">Check out: {{ departure|date ('d M Y') }}</p>
-                            <p style="color:black;">Persons: {{ people }}</p>
+                    <div class="large-4 columns">
+                        <h3>Reservation info</h3>
+                        <hr>
+                        <p style="color:black;">Check in: {{ arrival|date ('d M Y') }}</p>
+                        <p style="color:black;">Check out: {{ departure|date ('d M Y') }}</p>
+                        <p style="color:black;">Persons: {{ people }}</p>
 
-                            <h3>Room info</h3>
-                            <hr>
-                            {% for kamer in kamers %}
-                                <p style="color: black">{{ kamer.kamerNaam }}: &pound; {{ kamer.prijs }}</p>
-                            {% endfor %}
-                            <hr>
-                            <p style="color:black;">Total cost for the room(s): &pound; {{ sum }}</p>
-                        </div>
+                        <h3>Room info</h3>
+                        <hr>
+                        {% for kamer in kamers %}
+                            <p style="color: black">{{ kamer.kamerNaam }}: &pound; {{ kamer.prijs }}</p>
+                        {% endfor %}
+                        <hr>
+                        <p style="color:black;">Total cost for the room(s): &pound; {{ sum }}</p>
+                    </div>
 
-                        <div class="large-4 columns">
-                            <h3>Customer info</h3>
-                            <div class="row">
-                                <div class="columns">
-                                    <label>Name
-                                        <input type="text" id="Firstname" name="firstName" placeholder="Firstname">
-                                    </label>
-                                    <label>Insertion
-                                        <input type="text" id="Insertion" name="insertion" placeholder="Insertion">
-                                    </label>
-                                    <label>Last name
-                                        <input type="text" id="Lastname" name="lastName" placeholder="Lastname">
-                                    </label>
-                                    <label>Date of Birth
-                                        <input type="date" id="Birthdate" name="birthday" placeholder="Birth date">
-                                    </label>
-                                    <label>Gender
-                                        <select id="Gender" name="gender">
-                                            <option value=""></option>
-                                            <option value="Man">Male</option>
-                                            <option value="Woman">Female</option>
-                                        </select>
-                                    </label>
-                                    <label>Email
-                                        <input type="email" id="Email" name="email" placeholder="Email">
-                                    </label>
-                                    <label>Phone
-                                        <input type="number" id="Tel" name="tel" placeholder="Phone number">
-                                    </label>
-                                    <label>City
-                                        <input type="text" id="City" name="city" placeholder="City">
-                                    </label>
-                                    <label>Language
-                                        <select id="Language" name="language">
-                                            <option value=""></option>
-                                            <option value="English">English</option>
-                                            <option value="Dutch">Dutch</option>
-                                        </select>
-                                    </label>
-                                </div>
+                    <div class="large-4 columns">
+                        <h3>Customer info</h3>
+                        <div class="row">
+                            <div class="columns">
+                                <label>Name
+                                    <input type="text" id="Firstname" name="firstName" placeholder="Firstname">
+                                </label>
+                                <label>Insertion
+                                    <input type="text" id="Insertion" name="insertion" placeholder="Insertion">
+                                </label>
+                                <label>Last name
+                                    <input type="text" id="Lastname" name="lastName" placeholder="Lastname">
+                                </label>
+                                <label>Date of Birth
+                                    <input type="date" id="Birthdate" name="birthday" placeholder="Birth date">
+                                </label>
+                                <label>Gender
+                                    <select id="Gender" name="gender">
+                                        <option value=""></option>
+                                        <option value="Man">Male</option>
+                                        <option value="Woman">Female</option>
+                                    </select>
+                                </label>
+                                <label>Email
+                                    <input type="email" id="Email" name="email" placeholder="Email">
+                                </label>
+                                <label>Phone
+                                    <input type="number" id="Tel" name="tel" placeholder="Phone number">
+                                </label>
+                                <label>City
+                                    <input type="text" id="City" name="city" placeholder="City">
+                                </label>
+                                <label>Language
+                                    <select id="Language" name="language">
+                                        <option value=""></option>
+                                        <option value="English">English</option>
+                                        <option value="Dutch">Dutch</option>
+                                    </select>
+                                </label>
                             </div>
                         </div>
+                    </div>
 
-                        <div class="large-4 columns">
-                            <h3>Reservation Note</h3>
-                            <div class="row">
-                                <div class="columns">
-                                    <label>Note
-                                        <textarea type="text" id="note" name="note" placeholder="Please enter here your note!"></textarea>
-                                    </label>
-                            <input type="submit" class="button expanded next" value="Next">
+                    <div class="large-4 columns">
+                        <h3>Reservation Note</h3>
+                        <div class="row">
+                            <div class="columns">
+                                <label>Note
+                                    <textarea type="text" id="note" name="note" placeholder="Please enter here your note!"></textarea>
+                                </label>
+                            </div>
                         </div>
                     </div>
-                </form>
-            </div>
+                </div>
+                <input type="submit" class="button expanded next" value="Next">
+            </form>
         </div>
-
-
-    <!--form action="{{ path('bookStepThree') }}" method="post">
-        <label for="firstName">First name</label>
-        <input type="text" id="firstName" name="firstName" required>
-
-        <label for="insertion">Insertion</label>
-        <input type="text" id="insertion" name="insertion">
-
-        <label for="lastName">Last name</label>
-        <input type="text" id="lastName" name="lastName" required>
-
-        <label for="birthday">Birthday</label>
-        <input type="date" id="birthday" name="birthday" required>
-
-        <label for="gender">Gender</label>
-        <select id="gender" name="gender" required>
-            <option value="Man">Man</option>
-            <option value="Woman">Woman</option>
-        </select>
-
-        <label for="city">City</label>
-        <input type="text" id="city" name="city" required>
-
-        <label for="language">Language</label>
-        <select id="language" name="language" required>
-            <option value="English">English</option>
-            <option value="Dutch">Dutch</option>
-        </select>
-
-        <label for="email">Email</label>
-        <input type="email" id="email" name="email" required>
-
-        <label for="tel">Phone</label>
-        <input type="tel" id="tel" name="tel" required>
-
-        <input type="submit">
-   </form-->
+    </div>
 {% endblock %}

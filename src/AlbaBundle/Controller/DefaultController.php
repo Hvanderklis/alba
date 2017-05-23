@@ -40,7 +40,7 @@ class DefaultController extends Controller
 
         $kamerafbeeldingRepo = $em->getRepository('AlbaBundle:KamerAfbeelding')->findAll();
 
-        return $this->render('AlbaBundle:kamer:booking.html.twig', array(
+        return $this->render('AlbaBundle:kamer:kamers.html.twig', array(
             'kamer' => $kamerRepo,
             'kamerafbeelding' => $kamerafbeeldingRepo,
         ));

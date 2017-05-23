@@ -127,7 +127,34 @@
             {% endfor %}
             </tbody>
         </table>
+    <table>
+    <thead>
+    <tr>
+        <th>Extra</th>
+    </tr>
+    </thead>
+        <tbody>
+            {% for extra in extras %}
 
+                <tr>
+                    <th>Id</th>
+                    <td>{{ extra.id}}</td>
+                </tr>
+                <tr>
+                    <th>Type</th>
+                    <td>{{ extra.type }}</td>
+                </tr>
+                <tr>
+                    <th>Prijs</th>
+                    <td>{{ extra.prijs }}</td>
+                </tr>
+                <tr>
+                    <th>Omschrijving</th>
+                    <td>{{ extra.omschrijving }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
         <input type="submit" value="Confirm">
     </form>
 {% endblock %}

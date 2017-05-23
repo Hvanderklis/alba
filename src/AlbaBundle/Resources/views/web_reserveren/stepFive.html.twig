@@ -1,0 +1,79 @@
+{% extends '@Alba/base.html.twig' %}
+{% block body %}
+    {% set reserveren = app.session.get('reserveren') %}
+    <div xmlns="http://www.w3.org/1999/html">
+        <ul class="tabs" data-tabs id="example-tabs">
+            <li class="tabs-title disabled"><a href="#panel1" aria-selected="true">Choose your date</a></li>
+            <li class="tabs-title disabled"><a href="#panel2">Choose Room</a></li>
+            <li class="tabs-title disabled"><a href="#panel3">Customer</a></li>
+            <li class="tabs-title disabled"><a href="#panel4">Guest</a></li>
+            <li class="tabs-title is-active"><a href="#panel5">Extra</a></li>
+            <li class="tabs-title disabled"><a href="#panel6">Confirm</a></li>
+            <li class="tabs-title disabled"><a href="#panel7">Payment</a></li>
+        </ul>
+
+        <div class="tabs-content" data-tabs-content="example-tabs">
+            <div class="tabs-panel" id="panel5">
+                <form action="{{ path('bookStepFive') }}" method="post">
+                    <div class="row">
+                        <div class="large-4 columns">
+                            <h3>Reservation info</h3>
+                            <hr>
+                            <p style="color:black;">Check in: {{ arrival|date ('d M Y') }}</p>
+                            <p style="color:black;">Check out: {{ departure|date ('d M Y') }}</p>
+                            <p style="color:black;">Persons: {{ people }}</p>
+
+                            <h3>Room info</h3>
+                            <hr>
+                            {% for kamer in kamers %}
+                                <p style="color: black">{{ kamer.kamerNaam }}: &pound; {{ kamer.prijs }}</p>
+                            {% endfor %}
+                            <hr>
+                            <p style="color:black;">Total cost for the room(s): &pound; {{ sum }}</p>
+                        </div>
+
+                        <div class="large-4 columns">
+                            <h3>Customer info</h3>
+                            <hr>
+                            <p style="color: black;">First name: {{ firstName }}</p>
+                            <p style="color: black;">Insertion: {{ insertion }}</p>
+                            <p style="color: black;">Last name: {{ lastName }}</p>
+                            <p style="color: black;">Email: {{ email }}</p>
+                            <p style="color: black;">Phone: {{ phone }}</p>
+                        </div>
+
+                        <div class="large-4 columns">
+                            <h3>Special request</h3>
+                            <hr>
+                            <p style="color: black">{{ note }}</p>
+
+                            <br>
+
+                            <table>
+                                <thead>
+                                <tr class="extra">
+                                    <th>Check Extra</th>
+                                    <th>Service</th>
+                                    <th>Price</th>
+                                    <th>Description</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {% for extra in findall %}
+                                    <tr>
+                                        <td><input type="checkbox" name="{{ loop.index }}" id="extra" value="{{ extra.id }}"></td>
+                                        <td>{{ extra.type }}</td>
+                                        <td>{{ extra.prijs }}</td>
+                                        <td>{{ extra.omschrijving }}</td>
+                                    </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                            <input type="submit" class="button" value="Submit">
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}

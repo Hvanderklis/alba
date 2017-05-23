@@ -1,13 +1,31 @@
 {% extends '@Alba/base.html.twig' %}
 {% block body %}
-    <form action="" method="post">
+    <div xmlns="http://www.w3.org/1999/html">
+        <ul class="tabs" data-tabs id="example-tabs">
+            <li class="tabs-title disabled"><a href="#panel1" aria-selected="true">Choose your date</a></li>
+            <li class="tabs-title is-active"><a href="#panel2">Choose Room</a></li>
+            <li class="tabs-title disabled"><a href="#panel3">Customer</a></li>
+            <li class="tabs-title disabled"><a href="#panel4">Guest</a></li>
+            <li class="tabs-title disabled"><a href="#panel5">Extra</a></li>
+            <li class="tabs-title disabled"><a href="#panel6">Confirm</a></li>
+            <li class="tabs-title disabled"><a href="#panel7">Payment</a></li>
+        </ul>
 
-        {% for kamer in  kamers %}
-            <label for="kamer">{{ kamer.kamernaam }}</label>
-            <input type="checkbox" name="{{ loop.index }}" id="kamer" value="{{ kamer.id }}">
-            <br>
-        {% endfor %}
+        <div class="tabs-content" data-tabs-content="example-tabs">
 
-        <input class="button" id="colorw" type="submit" value="next">
-    </form>
+            <div class="tabs-panel" id="panel2">
+                <form action="" method="post">
+
+                    {% for kamer in  kamers %}
+                        <label for="kamer">{{ kamer.kamernaam }}</label>
+                        <input type="checkbox" name="{{ loop.index }}" id="kamer" value="{{ kamer.id }}">
+                        <br>
+                    {% endfor %}
+
+                    <input class="button" id="colorw" type="submit" value="next">
+                </form>
+            </div>
+
+        </div>
+    </div>
 {% endblock %}

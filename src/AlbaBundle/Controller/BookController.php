@@ -94,7 +94,6 @@ class BookController extends Controller
         $test = count($kamers) + 1;
 
         $kamer = array();
-
         if($request->getMethod() == "POST" && $request->get('next')) {
             for($x = 1; $x < $test; $x ++) {
                 $cijfer = (string)$x;
@@ -157,12 +156,9 @@ class BookController extends Controller
         }
 
         $sum = 0;
-        foreach($sumRoom as $key=>$value)
-        {
+        foreach($sumRoom as $key=>$value) {
             $sum+= $value;
         }
-
-
 
         if ($request->getMethod() == 'POST'){
             $firstName = $request->get("firstName");
@@ -174,6 +170,7 @@ class BookController extends Controller
             $language = $request->get("language");
             $email = $request->get("email");
             $tel = $request->get("tel");
+            $note = $request->get('note');
 
             $step3 = array(
                 'firstName' => $firstName,
@@ -184,15 +181,18 @@ class BookController extends Controller
                 'city' => $city,
                 'language' => $language,
                 'email' => $email,
-                'phone' => $tel
+                'phone' => $tel,
+                'note' => $note
             );
+
+            $travelCompanions = intval($res['step1']['traveling-companions']);
+            dump($travelCompanions);
 
             $record = array('step1' => $res['step1'], 'step2' =>$res['step2'], 'step3' => $step3 );
 
             $session->set('reserveren', $record);
 
-
-                return $this->redirect( $this->generateUrl('bookStepFour') );
+//            return $this->redirect( $this->generateUrl('bookStepFour') );
             }
 
 

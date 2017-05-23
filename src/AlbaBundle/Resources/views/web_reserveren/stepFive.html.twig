@@ -1,5 +1,76 @@
 {% extends '@Alba/base.html.twig' %}
 {% block body %}
+<<<<<<< HEAD
+    <div>
+        <ul class="tabs" data-tabs id="example-tabs">
+            <li class="tabs-title"><a href="#panel1">Choose your date</a></li>
+            <li class="tabs-title"><a href="#panel2">Choose Room</a></li>
+            <li class="tabs-title"><a href="#panel3">Customer</a></li>
+            <li class="tabs-title"><a href="#panel4">Guest</a></li>
+            <li class="tabs-title"><a href="#panel5" aria-selected="true">Extra</a></li>
+            <li class="tabs-title"><a href="#panel6">Confirm</a></li>
+            <li class="tabs-title"><a href="#panel7">Payment</a></li>
+        </ul>
+
+        <div class="tabs-content" data-tabs-content="example-tabs">
+            <div class="tabs-panel is-active" id="panel5">
+                <div class="row">
+                    <div class="large-4 columns">
+                        <h3>Reservation info</h3>
+                        <hr>
+                        <p>Check in: </p>
+                        <p>Check out: </p>
+                        <p>Adult: </p>
+                        <p>Child: </p>
+                        <h3>Room info</h3>
+                        <hr>
+                        <p>Deluxe One-bedroom Suite</p>
+                        <hr>
+                        <p>Total Cost: </p>
+                    </div>
+
+                    <div class="large-4 columns">
+                        <h3>Reservationinfo</h3>
+                        <hr>
+                        <p>Name: </p>
+                        <p>Lastname: </p>
+                        <p>Email: </p>
+                        <p>Phone: </p>
+                        <p>City: </p>
+                        <p>Address: </p>
+                    </div>
+
+                    <div class="large-4 columns">
+                        <h3>Request</h3>
+                        <label>
+                            Special request
+                            <textarea placeholder="None"></textarea>
+                        </label>
+                        <table>
+                            <thead>
+                            <tr >
+                                <th>Service</th>
+                                <th>Price</th>
+                                <th>description</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+
+                            <form action="" method="post">
+                            {% for extra in findall %}
+
+                                <tr>
+                                    <td><input type="checkbox" name="{{ loop.index }}" id="extra" value="{{ extra.id }}"></td>
+                                    <td><input type="text" name="type" id="type" value="{{ extra.type }}" readonly></td>
+                                    <td><input type="text" name="prijs" id="prijs" value="{{ extra.prijs }}" readonly></td>
+                                    <td><input type="text" name="omschrijving" id="omschrijving" value="{{ extra.omschrijving }}" readonly></td>
+                                </tr>
+                            {% endfor %}
+                                <input type="submit" class="button expanded" value="next">
+                                </form>
+                            </tbody>
+                        </table>
+=======
     {% set reserveren = app.session.get('reserveren') %}
     <div xmlns="http://www.w3.org/1999/html">
         <ul class="tabs" data-tabs id="example-tabs">
@@ -99,10 +170,18 @@
                             <a class="button expanded" href="#">Submit</a>
                         </div>
 
+>>>>>>> 29421c71dc09175aa7d28594add0d2c8ec6a58f0
                     </div>
                 </div>
 
             </div>
         </div>
+<<<<<<< HEAD
+            </div>
+
+{% endblock %}
+
+=======
     </div>
 {% endblock %}
+>>>>>>> 29421c71dc09175aa7d28594add0d2c8ec6a58f0

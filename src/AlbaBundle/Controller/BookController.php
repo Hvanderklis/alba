@@ -504,6 +504,7 @@ class BookController extends Controller
             'extras' => $extras,
             'note' => $note,
             'guest' => $guest,
+            'sum' => $sum,
         ]);
     }
 

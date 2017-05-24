@@ -23,9 +23,11 @@
                     <p style="color: black">Comments: This is the comment </p>
                     <h3>Room info</h3>
                     <hr>
-                    <p style="color: black">kamernaam</p>
-                    <p style="color: black">&pound; kamerprijs}</p>
+                    {% for kamer in kamers %}
+                    <p style="color: black">{{  kamer.kamerNaam }}</p>
+                    <p style="color: black">&pound; {{ kamer.prijs }}</p>
                     <hr>
+                    {% endfor %}
                     <p style="color: black">Total Cost: </p>
                 </div>
 
@@ -38,7 +40,7 @@
                                     {{ firstName }} {{ insertion }} {{ lastName }}
                                 </label>
                                 <label>Date of Birth
-                                    {{ birthday }}<
+                                    {{ birthday }}
                                 </label>
                                 <label>Gender
                                     {{ gender }}

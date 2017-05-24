@@ -431,6 +431,19 @@ class BookController extends Controller
             $test2 = $res['step4'][$x];
             $gasten[$x] = $test2;
         }
+        //kamers and total
+        $kamers = $res['step2'];
+        $kamers = array_values($kamers);
+
+        $sumRoom = [];
+        for ($x = 0; $x < count($kamers); $x++){
+            $sumRoom[$x] = $kamers[$x]->getPrijs();
+        }
+
+        $sum = 0;
+        foreach($sumRoom as $key=>$value) {
+            $sum+= $value;
+        }
 
         return $this->render('@Alba/web_reserveren/stepSix.html.twig', [
             'arrival' => $arrival,

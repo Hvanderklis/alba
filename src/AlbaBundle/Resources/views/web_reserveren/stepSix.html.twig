@@ -2,132 +2,70 @@
 {% block body %}
     {% set reserveren = app.session.get('reserveren') %}
 
-    <h1>Your Entry:</h1>
+<div class="tabs-content" data-tabs-content="example-tabs">
+    <div class="tabs-panel">
+        <div class="row">
+                <div class="large-4 columns">
+                    <h3>Reservation info</h3>
+                    <hr>
+                    <p>Check in: {{ arrival }} </p>
+                    <p>Check out: {{ departure }} </p>
+                    <p>Extra's: Pickup service - &pound; 30  </p>
+                    <p>Comments: This is the comment </p>
+                    <h3>Room info</h3>
+                    <hr>
+                    <p>kamernaam</p>
+                    <p>&pound; kamerprijs}</p>
+                    <hr>
+                    <p>Total Cost: </p>
+                </div>
 
-    <form action="{{ path('bookStepSix2') }}" method="post">
-        <table>
-            <thead>
-            <tr>
-                <th>Reservation</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr>
-                <th>Arrival</th>
-                <td>{{ arrival }}</td>
-            </tr>
-            <tr>
-                <th>Departure</th>
-                <td>{{ departure }}</td>
-            </tr>
-            </tbody>
-        </table>
+                <div class="large-4 columns">
+                    <h3>Reservation info</h3>
+                    <form>
+                        <div class="row">
+                            <div class="columns">
+                                <label>Name
+                                    {{ firstName }} {{ insertion }} {{ lastName }}
+                                </label>
+                                <label>Date of Birth
+                                    {{ birthday }}<
+                                </label>
+                                <label>Gender
+                                    {{ gender }}
+                                </label>
+                                <label>Email
+                                    {{ email }}
+                                </label>
+                                <label>Phone
+                                    {{ phone }}
+                                </label>
+                                <label>City
+                                    {{ city }}
+                                </label>
+                                <label>Language
+                                    {{ language }}
+                                </label>
+                            </div>
+                        </div>
+                    </form>
+                </div>
 
-        <br>
+                <div class="large-4 columns">
+                    <h3>Guests</h3>
+                    {% for key, gast in gasten %}
+                    <label>
+                        Guest {{ key }}
+                    </label>
+                        <label>Name
+                            {{ gast.firstName }} {{ gast.insertion }} {{ gast.lastName }}
+                        </label>
+                    {% endfor %}
+                </div>
 
-        <table>
-            <thead>
-            <tr>
-                <th>Rooms:</th>
-            </tr>
-            </thead>
-            <tbody>
-            {% for kamer in kamers %}
-                <tr>
-                    <th>Name</th>
-                    <td>{{ kamer.kamerNaam }}</td>
-                    <th>Price</th>
-                    <td>&pound; {{ kamer.prijs }}</td>
-                </tr>
-            {% endfor %}
-            </tbody>
-        </table>
+            </div>
+        </div>
 
-        <table>
-            <thead>
-            <tr>
-                <th>Your Details:</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr>
-                <th>First Name</th>
-                <td>{{ firstName }}</td>
-            </tr>
-            <tr>
-                <th>Insertion</th>
-                <td>{{ insertion }}</td>
-            </tr>
-            <tr>
-                <th>Last Name</th>
-                <td>{{ lastName }}</td>
-            </tr>
-            <tr>
-                <th>Birthday</th>
-                <td>{{ birthday }}</td>
-            </tr>
-            <tr>
-                <th>Gender</th>
-                <td>{{ gender }}</td>
-            </tr>
-            <tr>
-                <th>City</th>
-                <td>{{ city }}</td>
-            </tr>
-            <tr>
-                <th>Language</th>
-                <td>{{ language }}</td>
-            </tr>
-            <tr>
-                <th>Email</th>
-                <td>{{ email }}</td>
-            </tr>
-            <tr>
-                <th>Phone</th>
-                <td>{{ phone }}</td>
-            </tr>
-            </tbody>
-        </table>
+    </div>
 
-        <table>
-            <thead>
-            <tr>
-                <th>Guest</th>
-            </tr>
-            </thead>
-            <tbody>
-            {% for key, gast in gasten %}
-                <tr>
-                    <th>Gast {{ key }}</th>
-                </tr>
-                <tr>
-                    <th>FirstName</th>
-                    <td>{{ gast.firstName }}</td>
-                </tr>
-                <tr>
-                    <th>Insertion</th>
-                    <td>{{ gast.insertion }}</td>
-                </tr>
-                <tr>
-                    <th>Last Name</th>
-                    <td>{{ gast.lastName }}</td>
-                </tr>
-                <tr>
-                    <th>Gender</th>
-                    <td>{{ gast.gender }}</td>
-                </tr>
-                <tr>
-                    <th>City</th>
-                    <td>{{ gast.city }}</td>
-                </tr>
-                <tr>
-                    <th>Language</th>
-                    <td>{{ gast.language }}</td>
-                </tr>
-            {% endfor %}
-            </tbody>
-        </table>
-
-        <input type="submit" value="Confirm">
-    </form>
 {% endblock %}

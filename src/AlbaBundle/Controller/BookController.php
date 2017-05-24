@@ -469,14 +469,19 @@ class BookController extends Controller
         $gender = $res['step3']['gender'];
         $city = $res['step3']['city'];
         $language = $res['step3']['language'];
+        $birthday = $res['step3']['birthday'];
         $email = $res['step3']['email'];
         $phone = $res['step3']['phone'];
+
+
+        $birthday = date_create($birthday);
+
 
         $klant = new Klant();
         $klant->setVoornaam($firstName);
         $klant->setTussenvoegsel($insertion);
         $klant->setAchternaam($lastName);
-        $klant->setGeboortedatum('lol');
+        $klant->setGeboortedatum($birthday);
         $klant->setGeslacht($gender);
         $klant->setPlaats($city);
         $klant->setTaal($language);
@@ -505,10 +510,23 @@ class BookController extends Controller
         $arrival = date_create($arrival);
         $departure = date_create($departure);
 
+        $kamers = $res['step2'];
+        $kamers = array_values($kamers);
+
+        $sumRoom = [];
+        for ($x = 0; $x < count($kamers); $x++){
+            $sumRoom[$x] = $kamers[$x]->getPrijs();
+        }
+
+        $sum = 0;
+        foreach($sumRoom as $key=>$value) {
+            $sum+= $value;
+        }
 
         $reservering = new Reservering();
         $reservering->setAankomst($arrival);
         $reservering->setVertek($departure);
+        $reservering->setPrijs($sum);
         $reservering->setKlant($klant->getId());
 
 
@@ -520,12 +538,13 @@ class BookController extends Controller
                 $reservering->addKamer($kamer);
                 $kamer->addReservering($reservering);
 
+
                 $em->persist($kamer);
                 $em->persist($reservering);
             }
         }
-//        $em->flush();
-//        return $this->redirectToRoute('bookStepEight');
+        $em->flush();
+        return $this->redirectToRoute('bookStepEight');
     }
 
     /**

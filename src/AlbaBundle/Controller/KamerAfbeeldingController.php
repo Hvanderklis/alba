@@ -67,7 +67,8 @@ class KamerAfbeeldingController extends Controller
             $roomName = str_replace(" ", "_", $roomName);
             $kamerAfbeelding->setPath("uploads/" . $roomName);
 
-                $kamerMaps = str_replace(" ", "_", __DIR__ . '/../../../web/uploads/' . $roomName);
+            mkdir(__DIR__ . '/../../../web/uploads/' . $roomName);
+            $kamerMaps = str_replace(" ", "_", __DIR__ . '/../../../web/uploads/' . $roomName);
             $files = scandir($kamerMaps);
             $fileArray = [];
             foreach ($files as $file){

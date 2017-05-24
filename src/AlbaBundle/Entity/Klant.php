@@ -45,7 +45,7 @@ class Klant
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="Geboortedatum", type="string", length=255)
+     * @ORM\Column(name="Geboortedatum", type="date", length=255)
      */
     private $geboortedatum;
 
@@ -202,7 +202,7 @@ class Klant
     /**
      * Set geboortedatum
      *
-     * @param string $geboortedatum
+     * @param \DateTime $geboortedatum
      *
      * @return Klant
      */
@@ -216,7 +216,7 @@ class Klant
     /**
      * Get geboortedatum
      *
-     * @return string
+     * @return \DateTime
      */
     public function getGeboortedatum()
     {

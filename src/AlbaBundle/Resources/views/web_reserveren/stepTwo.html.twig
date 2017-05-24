@@ -1,31 +1,50 @@
 {% extends '@Alba/base.html.twig' %}
 {% block body %}
-    <div xmlns="http://www.w3.org/1999/html">
-        <ul class="tabs" data-tabs id="example-tabs">
-            <li class="tabs-title disabled"><a href="#panel1" aria-selected="true">Choose your date</a></li>
-            <li class="tabs-title is-active"><a href="#panel2">Choose Room</a></li>
-            <li class="tabs-title disabled"><a href="#panel3">Customer</a></li>
-            <li class="tabs-title disabled"><a href="#panel4">Guest</a></li>
-            <li class="tabs-title disabled"><a href="#panel5">Extra</a></li>
-            <li class="tabs-title disabled"><a href="#panel6">Confirm</a></li>
-            <li class="tabs-title disabled"><a href="#panel7">Payment</a></li>
-        </ul>
+    <ul class="tabs" data-tabs id="example-tabs">
+        <li class="tabs-title disabled"><a>Choose your date</a></li>
+        <li class="tabs-title is-active"><a href="#panel2" aria-selected="true">Choose Room</a></li>
+        <li class="tabs-title disabled"><a>Customer</a></li>
+        <li class="tabs-title disabled"><a>Guest</a></li>
+        <li class="tabs-title disabled"><a>Extra</a></li>
+        <li class="tabs-title disabled"><a>Confirm</a></li>
+        <li class="tabs-title disabled"><a>Payment</a></li>
+    </ul>
 
-        <div class="tabs-content" data-tabs-content="example-tabs">
+    <div class="tabs-content" data-tabs-content="example-tabs">
+        <div class="tabs-panel is-active" id="panel2">
 
-            <div class="tabs-panel" id="panel2">
-                <form action="" method="post">
+            {#flash message#}
+            {% for flash_message in app.session.flashBag.get('notice') %}
+                <div class="flash-notice">
+                    {{ flash_message }}
+                </div>
+            {% endfor %}
 
+            <form action="{{ path('bookStepTwo') }}" method="post">
+                <table>
+                    <thead>
+                    <tr>
+                        <th>Check room</th>
+                        <th>Room name</th>
+                        <th>Room price</th>
+                        <th>Description</th>
+                    </tr>
+                    </thead>
+                    <tbody>
                     {% for kamer in  kamers %}
-                        <label for="kamer">{{ kamer.kamernaam }}</label>
-                        <input type="checkbox" name="{{ loop.index }}" id="kamer" value="{{ kamer.id }}">
-                        <br>
+                        <tr>
+                            <td><input type="checkbox" name="{{ loop.index }}" id="room" value="{{ kamer.id }}"></td>
+                            <td><label for="room">{{ kamer.kamernaam }}</label></td>
+                            <td>&pound; {{ kamer.prijs }}</td>
+                            <td>{{ kamer.omschrijving }}</td>
+                        </tr>
                     {% endfor %}
+                    </tbody>
+                </table>
 
-                    <input class="button" id="colorw" type="submit" value="next">
-                </form>
-            </div>
-
+                <input class="button" name="previous" type="submit" value="Previous">
+                <input class="button" name="next" id="colorw" type="submit" value="Next">
+            </form>
         </div>
     </div>
 {% endblock %}

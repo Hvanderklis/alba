@@ -27,6 +27,8 @@ class BookController extends Controller
      */
     public function stepOneAction(Request $request){
         $session = $this->get('request_stack')->getCurrentRequest()->getSession();
+        $res = $session->get('reserveren');
+        dump($res);
 
         $em = $this->getDoctrine()->getManager();
         $reservationRepository = $em->getRepository('AlbaBundle:Reservering');
@@ -90,6 +92,10 @@ class BookController extends Controller
         $session = $this->get('request_stack')->getCurrentRequest()->getSession();
 
         $res = $session->get('reserveren');
+        dump($res);
+
+        $round = round(intval($this->get('session')->get('reserveren')['step1']['traveling-companions']) + 1 / 2);
+        dump($round);
 
         $kamers = $this->get('session')->get('reserveren')['step1']['kamers'];
         $test = count($kamers) + 1;
@@ -125,7 +131,8 @@ class BookController extends Controller
             }
         }
         if ($request->getMethod() == "POST" && $request->get('previous')){
-            $this->redirectToRoute('bookStepOne');
+            $session->set('reserveren', null);
+            return $this->redirectToRoute('bookStepOne');
         }
 
         return $this->render('@Alba/web_reserveren/stepTwo.html.twig', [
@@ -418,10 +425,7 @@ class BookController extends Controller
         $language = $res['step3']['language'];
         $email = $res['step3']['email'];
         $phone = $res['step3']['phone'];
-        /*$type = $res['step5']['type'];
-        $prijs = $res['step5']['prijs'];
-        $omschrijving = $res['step5']['omschrijving'];
-*/
+
         $gasten = [];
         for ($x = 1; $x <=count($res['step4']); $x++){
             $test2 = $res['step4'][$x];
@@ -441,9 +445,6 @@ class BookController extends Controller
             'language' => $language,
             'email' => $email,
             'phone' => $phone,
-//            'type' => $type,
-//            'prijs' => $prijs,
-//            'omschrijving' => $omschrijving,
             'gasten' => $gasten,
             'extras' => $extras,
         ]);
@@ -523,8 +524,8 @@ class BookController extends Controller
                 $em->persist($reservering);
             }
         }
-        $em->flush();
-        return $this->redirectToRoute('bookStepEight');
+//        $em->flush();
+//        return $this->redirectToRoute('bookStepEight');
     }
 
     /**

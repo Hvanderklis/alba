@@ -545,12 +545,21 @@ class BookController extends Controller
 
 
         $sumRoom = [];
+        $sumExtra = [];
         for ($x = 0; $x < count($kamers); $x++){
             $sumRoom[$x] = $kamers[$x]->getPrijs();
         }
 
+        for ($x = 0; $x < count($extras); $x++){
+            $sumExtra[$x] = $extras[$x]->getPrijs();
+        }
+
         $sum = 0;
         foreach($sumRoom as $key=>$value) {
+            $sum+= $value;
+        }
+
+        foreach($sumExtra as $key=>$value) {
             $sum+= $value;
         }
 

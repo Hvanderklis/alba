@@ -199,7 +199,13 @@ class BookController extends Controller
 
             $session->set('reserveren', $record);
 
-           return $this->redirect( $this->generateUrl('bookStepFour') );
+            $guest = intval($res['step1']['traveling-companions']);
+
+            if ($guest == 0){
+                return $this->redirect( $this->generateUrl('bookStepFive') );
+            } else {
+                return $this->redirect( $this->generateUrl('bookStepFour') );
+            }
         }
 
         return $this->render('@Alba/web_reserveren/stepThree.html.twig', [
@@ -352,12 +358,23 @@ class BookController extends Controller
                 };
             }
 
+            $guest = intval($res['step1']['traveling-companions']);
+
+            if ($guest == 0){
+                $record = array('step1' => $res['step1'], 'step2' => $res['step2'], 'step3' => $res['step3'], 'step4' => [], 'step5' => $extra);
+
+                $session->set('reserveren', $record);
+
+                return $this->redirect($this->generateUrl('bookStepSix'));
+            } else {
+                $record = array('step1' => $res['step1'], 'step2' => $res['step2'], 'step3' => $res['step3'], 'step4' => $res['step4'], 'step5' => $extra);
+
+                $session->set('reserveren', $record);
+
+                return $this->redirect($this->generateUrl('bookStepSix'));
+            }
             dump($extra);
-            $record = array('step1' => $res['step1'], 'step2' => $res['step2'], 'step3' => $res['step3'], 'step4' => $res['step4'], 'step5' => $extra);
 
-            $session->set('reserveren', $record);
-
-            return $this->redirect($this->generateUrl('bookStepSix'));
 
         }
 
@@ -383,7 +400,7 @@ class BookController extends Controller
      * @Route("/stepsix", name="bookStepSix")
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function stepSixAction(){
+    public function stepSixAction(Request $request){
         $em = $this->getDoctrine()->getManager();
         $roomRepo = $em->getRepository('AlbaBundle:Kamer');
         $extraRepo = $em->getRepository('AlbaBundle:Extra');
@@ -392,8 +409,21 @@ class BookController extends Controller
         $res = $session->get('reserveren');
         dump($res);
 
+        $guest = intval($res['step1']['traveling-companions']);
+
+        if ($guest == 0){
+            $gasten = [];
+        } else {
+            $gasten = [];
+            for ($x = 1; $x <=count($res['step4']); $x++){
+                $test2 = $res['step4'][$x];
+                $gasten[$x] = $test2;
+            }
+        }
+
         $arrival = $res['step1']['arrival'];
         $departure = $res['step1']['departure'];
+
 
         //kamers and total
         $kamers = $res['step2'];
@@ -440,10 +470,21 @@ class BookController extends Controller
         $phone = $res['step3']['phone'];
         $note = $res['step3']['note'];
 
-        $gasten = [];
-        for ($x = 1; $x <=count($res['step4']); $x++){
-            $test2 = $res['step4'][$x];
-            $gasten[$x] = $test2;
+        if ($request->getMethod() == "POST"){
+            return $this->redirectToRoute('bookStepSix2');
+        }
+        //kamers and total
+        $kamers = $res['step2'];
+        $kamers = array_values($kamers);
+
+        $sumRoom = [];
+        for ($x = 0; $x < count($kamers); $x++){
+            $sumRoom[$x] = $kamers[$x]->getPrijs();
+        }
+
+        $sum = 0;
+        foreach($sumRoom as $key=>$value) {
+            $sum+= $value;
         }
 
         return $this->render('@Alba/web_reserveren/stepSix.html.twig', [
@@ -462,6 +503,7 @@ class BookController extends Controller
             'gasten' => $gasten,
             'extras' => $extras,
             'note' => $note,
+            'guest' => $guest,
         ]);
     }
 
@@ -471,10 +513,10 @@ class BookController extends Controller
      * @Route("/final", name="bookStepSix2")
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function stepSix2Action()
-    {
+    public function stepSix2Action(){
         $em = $this->getDoctrine()->getManager();
         $roomRepo = $em->getRepository('AlbaBundle:Kamer');
+        $ExtraRepo = $em->getRepository('AlbaBundle:Extra');
         $session = $this->get('request_stack')->getCurrentRequest()->getSession();
         $res = $session->get('reserveren');
 
@@ -490,7 +532,6 @@ class BookController extends Controller
 
 
         $birthday = date_create($birthday);
-
 
         $klant = new Klant();
         $klant->setVoornaam($firstName);
@@ -515,7 +556,7 @@ class BookController extends Controller
             $gast->setGender('gender');
             $gast->setWoonplaats('city');
             $gast->setTaal('language');
-            $gast->setKlant($klant->getId());
+            $gast->setKlant($klant);
             $em->persist($gast);
         }
 
@@ -528,9 +569,19 @@ class BookController extends Controller
         $kamers = $res['step2'];
         $kamers = array_values($kamers);
 
+        $extras = $res['step5'];
+        $extras = array_values($extras);
+        dump($extras);
+
+
         $sumRoom = [];
+        $sumExtra = [];
         for ($x = 0; $x < count($kamers); $x++){
             $sumRoom[$x] = $kamers[$x]->getPrijs();
+        }
+
+        for ($x = 0; $x < count($extras); $x++){
+            $sumExtra[$x] = $extras[$x]->getPrijs();
         }
 
         $sum = 0;
@@ -538,12 +589,17 @@ class BookController extends Controller
             $sum+= $value;
         }
 
+        foreach($sumExtra as $key=>$value) {
+            $sum+= $value;
+        }
+
         $reservering = new Reservering();
         $reservering->setAankomst($arrival);
         $reservering->setVertek($departure);
         $reservering->setPrijs($sum);
-        $reservering->setKlant($klant->getId());
-
+        $reservering->setOpmerking($res['step3']['note']);
+        $reservering->setKlant($klant);
+        dump($reservering);
 
         for ($x = 1; $x <=count($res['step2']); $x++){
             if (isset($res['step2'][$x])) {
@@ -553,8 +609,14 @@ class BookController extends Controller
                 $reservering->addKamer($kamer);
                 $kamer->addReservering($reservering);
 
+                $test2 = $res['step5'][$x];
+                $extra = $test2->getId();
+                $extra = $ExtraRepo->find($extra);
+                $reservering->addExtra($extra);
+                $extra->addReservering($reservering);
 
                 $em->persist($kamer);
+                $em->persist($extra);
                 $em->persist($reservering);
             }
         }

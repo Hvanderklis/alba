@@ -25,11 +25,13 @@
                     <p style="color: black">Comments: {{ note }}</p>
                     <h3>Room info</h3>
                     <hr>
-                    <p style="color: black">kamernaam: </p>
+
                     {% for kamer in kamers %}
-                    <p style="color: black">Name: {{ kamer.kamerNaam }} &pound; {{ kamer.prijs }}</p>
-                    {% endfor %}
+                    <p style="color: black">{{  kamer.kamerNaam }}</p>
+                    <p style="color: black">&pound; {{ kamer.prijs }}</p>
                     <hr>
+                    {% endfor %}
+
                     <p style="color: black">Total Cost: </p>
                 </div>
 
@@ -66,6 +68,9 @@
 
                 <div class="large-4 columns">
                     <h3>Guests</h3>
+                    {% if guest == 0%}
+                        <p style="color:#000;">No guests</p>
+                    {% endif %}
                     {% for key, gast in gasten %}
                     <label>
                         Guest: {{ key }}
@@ -74,8 +79,11 @@
                             {{ gast.firstName }} {{ gast.insertion }} {{ gast.lastName }}
                         </label>
                     {% endfor %}
-                </div>
 
+                    <form action="{{ path('bookStepSix2') }}" method="post">
+                        <input type="submit" value="Confirm">
+                    </form>
+                </div>
             </div>
         </div>
     </div>

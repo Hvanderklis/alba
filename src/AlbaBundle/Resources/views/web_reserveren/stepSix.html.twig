@@ -2,7 +2,7 @@
 {% block body %}
     {% set reserveren = app.session.get('reserveren') %}
 
-    <h1>Your Entry:</h1>
+    <h3>Your Booking</h3>
 
     <form action="{{ path('bookStepSix2') }}" method="post">
         <table>
@@ -51,8 +51,8 @@
             </thead>
             <tbody>
             <tr>
-                <th>First Name</th>
-                <td>{{ firstName }}</td>
+                <th>Name</th>
+                <td>{{ firstName }} {{ insertion }} {{ lastName }}</td>
             </tr>
             <tr>
                 <th>Insertion</th>
@@ -155,6 +155,6 @@
                 {% endfor %}
             </tbody>
         </table>
-        <input type="submit" value="Confirm">
+        <input type="submit" class="button" value="Confirm">
     </form>
 {% endblock %}

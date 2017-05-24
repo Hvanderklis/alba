@@ -395,6 +395,19 @@ class BookController extends Controller
         $arrival = $res['step1']['arrival'];
         $departure = $res['step1']['departure'];
 
+        //kamers and total
+        $kamers = $res['step2'];
+        $kamers = array_values($kamers);
+
+        $sumRoom = [];
+        for ($x = 0; $x < count($kamers); $x++){
+            $sumRoom[$x] = $kamers[$x]->getPrijs();
+        }
+
+        $sum = 0;
+        foreach($sumRoom as $key=>$value) {
+            $sum+= $value;
+        }
 
         $kamers = [];
         for ($x = 1; $x <=count($res['step2']); $x++){
@@ -425,6 +438,7 @@ class BookController extends Controller
         $language = $res['step3']['language'];
         $email = $res['step3']['email'];
         $phone = $res['step3']['phone'];
+        $note = $res['step3']['note'];
 
         $gasten = [];
         for ($x = 1; $x <=count($res['step4']); $x++){
@@ -447,6 +461,7 @@ class BookController extends Controller
             'phone' => $phone,
             'gasten' => $gasten,
             'extras' => $extras,
+            'note' => $note,
         ]);
     }
 

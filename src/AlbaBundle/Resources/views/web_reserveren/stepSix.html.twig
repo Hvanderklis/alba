@@ -19,12 +19,16 @@
                     <hr>
                     <p style="color: black">Check in: {{ arrival }} </p>
                     <p style="color: black">Check out: {{ departure }} </p>
-                    <p style="color: black">Extra's: Pickup service - &pound; 30  </p>
-                    <p style="color: black">Comments: This is the comment </p>
+                    {% for extra in extras %}
+                    <p style="color: black">Extra's: {{ extra.type }} &pound; {{ extra.prijs }}</p>
+                    {% endfor %}
+                    <p style="color: black">Comments: {{ note }}</p>
                     <h3>Room info</h3>
                     <hr>
-                    <p style="color: black">kamernaam</p>
-                    <p style="color: black">&pound; kamerprijs}</p>
+                    <p style="color: black">kamernaam: </p>
+                    {% for kamer in kamers %}
+                    <p style="color: black">Name: {{ kamer.kamerNaam }} &pound; {{ kamer.prijs }}</p>
+                    {% endfor %}
                     <hr>
                     <p style="color: black">Total Cost: </p>
                 </div>
@@ -34,25 +38,25 @@
                     <form>
                         <div class="row">
                             <div class="columns">
-                                <label>Name
+                                <label><strong>Name: </strong>
                                     {{ firstName }} {{ insertion }} {{ lastName }}
                                 </label>
-                                <label>Date of Birth
+                                <label><strong>Date of Birth: </strong>
                                     {{ birthday }}<
                                 </label>
-                                <label>Gender
+                                <label><strong>Gender: </strong>
                                     {{ gender }}
                                 </label>
-                                <label>Email
+                                <label><strong>Email: </strong>
                                     {{ email }}
                                 </label>
-                                <label>Phone
+                                <label><strong>Phone: </strong>
                                     {{ phone }}
                                 </label>
-                                <label>City
+                                <label><strong>City: </strong>
                                     {{ city }}
                                 </label>
-                                <label>Language
+                                <label><strong>Language: </strong>
                                     {{ language }}
                                 </label>
                             </div>
@@ -64,9 +68,9 @@
                     <h3>Guests</h3>
                     {% for key, gast in gasten %}
                     <label>
-                        Guest {{ key }}
+                        Guest: {{ key }}
                     </label>
-                        <label>Name
+                        <label><strong>Name:</strong>
                             {{ gast.firstName }} {{ gast.insertion }} {{ gast.lastName }}
                         </label>
                     {% endfor %}

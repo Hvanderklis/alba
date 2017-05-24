@@ -24,21 +24,21 @@ class Kamer
     /**
      * @var string
      *
-     * @ORM\Column(name="Kamer_naam", type="string", length=255)
+     * @ORM\Column(name="kamer_naam", type="string", length=255)
      */
     private $kamerNaam;
 
     /**
      * @var int
      *
-     * @ORM\Column(name="Prijs", type="integer")
+     * @ORM\Column(name="prijs", type="integer")
      */
     private $prijs;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="Omschrijving", type="string", length=255)
+     * @ORM\Column(name="omschrijving", type="string", length=255)
      */
     private $omschrijving;
 

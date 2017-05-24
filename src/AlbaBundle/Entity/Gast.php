@@ -57,7 +57,7 @@ class Gast
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="Geboortedatum", type="string", length=255, nullable=true)
+     * @ORM\Column(name="Geboortedatum", type="date", length=255, nullable=true)
      */
     private $geboortedatum;
 
@@ -81,7 +81,6 @@ class Gast
      * @ORM\JoinColumn(name="Klantnummer", referencedColumnName="id")
      */
     private $klant;
-
     /**
      * Constructor
      */
@@ -223,7 +222,7 @@ class Gast
     /**
      * Set geboortedatum
      *
-     * @param string $geboortedatum
+     * @param \DateTime $geboortedatum
      *
      * @return Gast
      */
@@ -237,7 +236,7 @@ class Gast
     /**
      * Get geboortedatum
      *
-     * @return string
+     * @return \DateTime
      */
     public function getGeboortedatum()
     {

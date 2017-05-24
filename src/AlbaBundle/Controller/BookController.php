@@ -424,7 +424,6 @@ class BookController extends Controller
         $arrival = $res['step1']['arrival'];
         $departure = $res['step1']['departure'];
 
-
         $kamers = [];
         for ($x = 1; $x <=count($res['step2']); $x++){
             if (isset($res['step2'][$x])){
@@ -474,7 +473,7 @@ class BookController extends Controller
             'phone' => $phone,
             'gasten' => $gasten,
             'extras' => $extras,
-            'guest' => $guest
+            'guest' => $guest,
         ]);
     }
 
@@ -484,10 +483,10 @@ class BookController extends Controller
      * @Route("/final", name="bookStepSix2")
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function stepSix2Action()
-    {
+    public function stepSix2Action(){
         $em = $this->getDoctrine()->getManager();
         $roomRepo = $em->getRepository('AlbaBundle:Kamer');
+        $ExtraRepo = $em->getRepository('AlbaBundle:Extra');
         $session = $this->get('request_stack')->getCurrentRequest()->getSession();
         $res = $session->get('reserveren');
 
@@ -503,7 +502,6 @@ class BookController extends Controller
 
 
         $birthday = date_create($birthday);
-
 
         $klant = new Klant();
         $klant->setVoornaam($firstName);
@@ -528,7 +526,7 @@ class BookController extends Controller
             $gast->setGender('gender');
             $gast->setWoonplaats('city');
             $gast->setTaal('language');
-            $gast->setKlant($klant->getId());
+            $gast->setKlant($klant);
             $em->persist($gast);
         }
 
@@ -540,6 +538,11 @@ class BookController extends Controller
 
         $kamers = $res['step2'];
         $kamers = array_values($kamers);
+
+        $extras = $res['step5'];
+        $extras = array_values($extras);
+        dump($extras);
+
 
         $sumRoom = [];
         for ($x = 0; $x < count($kamers); $x++){
@@ -555,8 +558,9 @@ class BookController extends Controller
         $reservering->setAankomst($arrival);
         $reservering->setVertek($departure);
         $reservering->setPrijs($sum);
-        $reservering->setKlant($klant->getId());
-
+        $reservering->setOpmerking($res['step3']['note']);
+        $reservering->setKlant($klant);
+        dump($reservering);
 
         for ($x = 1; $x <=count($res['step2']); $x++){
             if (isset($res['step2'][$x])) {
@@ -566,8 +570,14 @@ class BookController extends Controller
                 $reservering->addKamer($kamer);
                 $kamer->addReservering($reservering);
 
+                $test2 = $res['step5'][$x];
+                $extra = $test2->getId();
+                $extra = $ExtraRepo->find($extra);
+                $reservering->addExtra($extra);
+                $extra->addReservering($reservering);
 
                 $em->persist($kamer);
+                $em->persist($extra);
                 $em->persist($reservering);
             }
         }

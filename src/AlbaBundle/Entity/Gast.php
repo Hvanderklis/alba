@@ -48,25 +48,11 @@ class Gast
     private $gender;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="Woonplaats", type="string", length=255)
-     */
-    private $woonplaats;
-
-    /**
      * @var \DateTime
      *
      * @ORM\Column(name="Geboortedatum", type="date", length=255, nullable=true)
      */
     private $geboortedatum;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="Taal", type="string", length=255)
-     */
-    private $taal;
 
     /**
      * Many Groups have Many Users.
@@ -81,6 +67,7 @@ class Gast
      * @ORM\JoinColumn(name="Klantnummer", referencedColumnName="id")
      */
     private $klant;
+
     /**
      * Constructor
      */
@@ -196,30 +183,6 @@ class Gast
     }
 
     /**
-     * Set woonplaats
-     *
-     * @param string $woonplaats
-     *
-     * @return Gast
-     */
-    public function setWoonplaats($woonplaats)
-    {
-        $this->woonplaats = $woonplaats;
-
-        return $this;
-    }
-
-    /**
-     * Get woonplaats
-     *
-     * @return string
-     */
-    public function getWoonplaats()
-    {
-        return $this->woonplaats;
-    }
-
-    /**
      * Set geboortedatum
      *
      * @param \DateTime $geboortedatum
@@ -241,30 +204,6 @@ class Gast
     public function getGeboortedatum()
     {
         return $this->geboortedatum;
-    }
-
-    /**
-     * Set taal
-     *
-     * @param string $taal
-     *
-     * @return Gast
-     */
-    public function setTaal($taal)
-    {
-        $this->taal = $taal;
-
-        return $this;
-    }
-
-    /**
-     * Get taal
-     *
-     * @return string
-     */
-    public function getTaal()
-    {
-        return $this->taal;
     }
 
     /**

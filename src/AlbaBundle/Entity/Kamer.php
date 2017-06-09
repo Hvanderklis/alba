@@ -43,6 +43,11 @@ class Kamer
     private $omschrijving;
 
     /**
+     * @ORM\Column(name="aantal_gasten", type="integer")
+     */
+    private $aantalGasten;
+
+    /**
      * Many Groups have Many Users.
      * @ORM\ManyToMany(targetEntity="AlbaBundle\Entity\Reservering", mappedBy="kamer")
      */
@@ -150,6 +155,30 @@ class Kamer
     }
 
     /**
+     * Set aantalGasten
+     *
+     * @param integer $aantalGasten
+     *
+     * @return Kamer
+     */
+    public function setAantalGasten($aantalGasten)
+    {
+        $this->aantalGasten = $aantalGasten;
+
+        return $this;
+    }
+
+    /**
+     * Get aantalGasten
+     *
+     * @return integer
+     */
+    public function getAantalGasten()
+    {
+        return $this->aantalGasten;
+    }
+
+    /**
      * Add reservering
      *
      * @param \AlbaBundle\Entity\Reservering $reservering
@@ -249,9 +278,5 @@ class Kamer
     public function getKamerPrijs()
     {
         return $this->kamerPrijs;
-    }
-
-    public function __toString() {
-        return $this->kamerNaam;
     }
 }

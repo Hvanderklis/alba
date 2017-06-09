@@ -20,12 +20,12 @@
                             <div class="row">
                                 <div class="medium-6 columns">
                                     <label for="arrival">Check-in</label>
-                                    <input type="date" id="arrival" name="arrival"/>
+                                    <input type="date" id="arrival" name="arrival" required/>
                                 </div>
 
                                 <div class="medium-6 columns">
                                     <label for="departure">Checkout</label>
-                                    <input type="date" id="departure" name="departure"/>
+                                    <input type="date" id="departure" name="departure" required/>
                                 </div>
                             </div>
                         </div>
@@ -34,9 +34,9 @@
                             <div class="row">
                                 <div class="columns">
                                     <label for="traveling-companions">Your Traveling companions</label>
-                                    <select name="traveling-companions" id="traveling-companions">
+                                    <select name="traveling-companions" id="traveling-companions" required>
                                         <script>
-                                            for ($i = 0; $i < {{ amountTravel }}; $i++){
+                                            for ($i = 0; $i < {{ amount }}; $i++){
                                                 document.write("<option value='" + $i + "'>"+ $i +"</option>");
                                             }
                                         </script>

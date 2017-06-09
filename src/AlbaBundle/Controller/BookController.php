@@ -28,14 +28,33 @@ class BookController extends Controller
     public function stepOneAction(Request $request){
         $session = $this->get('request_stack')->getCurrentRequest()->getSession();
         $res = $session->get('reserveren');
-        dump($res);
+
+        //test
 
         $em = $this->getDoctrine()->getManager();
         $reservationRepository = $em->getRepository('AlbaBundle:Reservering');
         $roomRepository = $em->getRepository('AlbaBundle:Kamer');
 
-        $amountRooms = $roomRepository->findAll();
-        $travelingCompanionsAmount = count($amountRooms) * 2;
+        $getPeople = $roomRepository->createQueryBuilder('kamer')
+        ->select('kamer.aantalGasten')
+        ->getQuery()
+        ->getResult();
+
+        $peopleRoom = [];
+        for ($x = 0; $x <count($getPeople); $x++){
+            $peopleRoom[$x] = array_values($getPeople[$x]);
+        }
+
+        $test = [];
+        for ($x = 0; $x < count($peopleRoom); $x ++){
+            $test[$x] = $peopleRoom[$x][0];
+        }
+
+        $sum = 0;
+        foreach($test as $key=>$value) {
+            $sum+= $value;
+        }
+        dump($sum);
 
         if($request->getMethod() == "POST") {
             $arrival = $request->get('arrival');
@@ -76,7 +95,7 @@ class BookController extends Controller
         }
 
         return $this->render('@Alba/web_reserveren/stepOne.html.twig', [
-            'amountTravel' => $travelingCompanionsAmount
+            'amount' => $sum
         ]);
     }
 
@@ -87,6 +106,7 @@ class BookController extends Controller
      * @Route("/steptwo", name="bookStepTwo")
      */
     public function stepTwoAction(Request $request){
+        //test
         $em = $this->getDoctrine()->getManager();
         $roomRepository = $em->getRepository('AlbaBundle:Kamer');
         $session = $this->get('request_stack')->getCurrentRequest()->getSession();
@@ -265,15 +285,11 @@ class BookController extends Controller
                 $insertion = $request->get("insertion". $x);
                 $lastName = $request->get('lastName'. $x);
                 $gender = $request->get('gender'. $x);
-                $city = $request->get('city'. $x);
-                $language = $request->get('language'. $x);
 
                 $step4[$x]['firstName'] = $firstName;
                 $step4[$x]['insertion'] = $insertion;
                 $step4[$x]['lastName'] = $lastName;
                 $step4[$x]['gender'] = $gender;
-                $step4[$x]['city'] = $city;
-                $step4[$x]['language'] = $language;
             }
 
             $record = array('step1' => $res['step1'], 'step2' => $res['step2'], 'step3' => $res['step3'], 'step4' => $step4);
@@ -373,9 +389,6 @@ class BookController extends Controller
 
                 return $this->redirect($this->generateUrl('bookStepSix'));
             }
-            dump($extra);
-
-
         }
 
         return $this->render('@Alba/web_reserveren/stepFive.html.twig', array(
@@ -473,6 +486,7 @@ class BookController extends Controller
         if ($request->getMethod() == "POST"){
             return $this->redirectToRoute('bookStepSix2');
         }
+
         //kamers and total
         $kamers = $res['step2'];
         $kamers = array_values($kamers);
@@ -531,7 +545,6 @@ class BookController extends Controller
         $email = $res['step3']['email'];
         $phone = $res['step3']['phone'];
 
-
         $birthday = date_create($birthday);
 
         $klant = new Klant();
@@ -555,8 +568,6 @@ class BookController extends Controller
             $gast->setTussenvoegsel($test2['insertion']);
             $gast->setAchternaam($test2['lastName']);
             $gast->setGender('gender');
-            $gast->setWoonplaats('city');
-            $gast->setTaal('language');
             $gast->setKlant($klant);
             $em->persist($gast);
         }
@@ -600,7 +611,6 @@ class BookController extends Controller
         $reservering->setPrijs($sum);
         $reservering->setOpmerking($res['step3']['note']);
         $reservering->setKlant($klant);
-        dump($reservering);
 
         for ($x = 1; $x <=count($res['step2']); $x++){
             if (isset($res['step2'][$x])) {
